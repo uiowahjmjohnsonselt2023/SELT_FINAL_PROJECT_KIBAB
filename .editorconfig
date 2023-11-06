@@ -1,0 +1,31 @@
+# EditorConfig is awesome: http://EditorConfig.org
+# top-most EditorConfig file
+root=true
+
+[*]
+charset=utf-8
+# Unix-style newlines with a newline ending every file
+end_of_line=lf
+trim_trailing_whitespace=true
+insert_final_newline=true
+indent_style=space
+indent_size=2
+tab_width=2
+max_line_length=120
+
+[{*.jhm,*.xslt,*.xul,*.rng,*.xsl,*.xsd,*.ant,*.tld,*.fxml,*.jrxml,*.xml,*.jnlp,*.wsdl}]
+indent_style=space
+indent_size=2
+
+[{*.erb,*.rhtml}]
+indent_style=space
+indent_size=2
+
+[{rcov,spec,rake,cucumber,rails,spork,capfile,gemfile,rakefile,guardfile,isolate,vagrantfile,Puppetfile,*.gemspec,*.jbuilder,*.rbw,*.thor,*.ru,*.rb,*.rake}]
+indent_style=space
+indent_size=2
+
+[{*.yml,*.yaml}]
+indent_style=space
+indent_size=2
+

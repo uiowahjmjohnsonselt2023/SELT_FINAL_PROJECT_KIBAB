@@ -1,0 +1,27 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/-CYdvQHq)
+=begin rdoc
+
+This directory contains the Rotten Potatoes rails app that we will use for HW6
+and enhance througout the semester.
+
+Before running the app, change into the top-level directory--i.e. the one
+containing this README file--and enter the following commands to install gems
+and set up and initialize the database  (You only need to do this before running
+the app for the first time:
+
+bundle install
+
+rake db:migrate
+
+rake db:seed
+
+Now you are ready to try out the app.  Enter the following
+command to start the rails server:
+
+rails server -p $PORT -b $IP
+
+or simply:
+
+rails server
+
+=end
