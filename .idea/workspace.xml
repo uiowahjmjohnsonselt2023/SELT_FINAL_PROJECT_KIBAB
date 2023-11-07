@@ -4,7 +4,67 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="152071fb-b06a-46d0-9fa9-6ddceb23ee54" name="Changes" comment="" />
+    <list default="true" id="152071fb-b06a-46d0-9fa9-6ddceb23ee54" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/SELT_FINAL_PROJECT_KIBAB.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SELT_FINAL_PROJECT_KIBAB.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/Gemfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/Gemfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/README.rdoc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/Rakefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/app/assets/images/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/app/assets/javascripts/application.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/app/assets/stylesheets/application.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/app/controllers/application_controller.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/app/controllers/concerns/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/app/helpers/application_helper.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/app/mailers/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/app/models/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/app/models/concerns/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/app/views/layouts/application.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/bin/bundle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/bin/rails" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/bin/rake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/bin/setup" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config.ru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/application.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/boot.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/database.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/environment.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/environments/development.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/environments/production.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/environments/test.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/assets.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/backtrace_silencers.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/cookies_serializer.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/filter_parameter_logging.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/inflections.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/mime_types.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/session_store.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/to_time_preserves_timezone.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/wrap_parameters.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/locales/en.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/routes.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/config/secrets.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/db/seeds.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/lib/assets/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/lib/tasks/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/log/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/public/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/public/422.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/public/500.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/test/controllers/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/test/fixtures/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/test/helpers/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/test/integration/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/test/mailers/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/test/models/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/test/test_helper.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/vendor/assets/javascripts/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rails-app/vendor/assets/stylesheets/.keep" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,23 +81,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/zamba/OneDrive/Documents/GitHub/SELT_FINAL_PROJECT_KIBAB",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ruby.rails.projectView.checked": "true",
-    "ruby.structure.view.model.defaults.configured": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/zamba/OneDrive/Documents/GitHub/hw6-selt2023-zambangeloK2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
+    &quot;ruby.structure.view.model.defaults.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="RackRunConfigurationType" factoryName="Rack">
+      <RACK_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
+      <RACK_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$" />
+      <RACK_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RACK_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RACK_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
+      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
+      <RACK_CONFIG_SETTINGS_ID NAME="PORT" VALUE="9292" />
+      <RACK_CONFIG_SETTINGS_ID NAME="IP" VALUE="127.0.0.1" />
+      <RACK_CONFIG_SETTINGS_ID NAME="CONFIG_FILE" VALUE="" />
+      <RACK_CONFIG_SETTINGS_ID NAME="RACK_SERVER_TYPE" VALUE="Default" />
+      <RACK_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -47,7 +124,8 @@
       <option name="presentableId" value="Default" />
       <updated>1699389234663</updated>
       <workItem from="1699389235718" duration="11000" />
-      <workItem from="1699389258327" duration="861000" />
+      <workItem from="1699389258327" duration="2148000" />
+      <workItem from="1699405514688" duration="366000" />
     </task>
     <servers />
   </component>
