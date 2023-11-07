@@ -15,4 +15,9 @@
     <orderEntry type="library" scope="PROVIDED" name="byebug (v11.1.3, Remote-rbenv: ruby-2.6.10-p210 (2)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v12.3.3, Remote-rbenv: ruby-2.6.10-p210 (2)) [gem]" level="application" />
   </component>
+  <component name="RakeTasksCache">
+    <option name="myRootTask">
+      <RakeTaskImpl id="rake" />
+    </option>
+  </component>
 </module>

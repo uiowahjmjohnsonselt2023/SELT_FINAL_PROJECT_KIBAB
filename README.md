@@ -6,10 +6,10 @@ Upon opening the application the user should see the home screen of the website 
 New users that want further functionality as buyers or to have seller functionality should be expected to initially create a new user profile including a username, and password. The user will then be required to re-login to confirm that the user has created an account successfully. If successful, then have access to either a buy mode or sell mode which will be more tailored to a user. The buy mode will act similarly to the buy mode when not logged in but may include things such as stored payment methods, shipping addresses, etc. The user will also have access to their purchase history to see previously bought items. The user can use their user profile page to select links regarding selling items including the link to sell a new item or to view the items they are currently selling.
 
 ## Cloning Instructions
-** Make sure to cd into the directory before cloning **
-git init
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/uiowahjmjohnsonselt2023/SELT_FINAL_PROJECT_KIBAB
-git push -u origin main
+**Make sure to cd into the directory before cloning**\
+git init\
+git add .\
+git commit -m "first commit"\
+git branch -M main\
+git remote add origin https://github.com/uiowahjmjohnsonselt2023/SELT_FINAL_PROJECT_KIBAB \
+git push -u origin main\

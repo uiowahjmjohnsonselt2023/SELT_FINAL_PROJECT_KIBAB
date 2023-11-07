@@ -6,64 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="152071fb-b06a-46d0-9fa9-6ddceb23ee54" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/SELT_FINAL_PROJECT_KIBAB.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SELT_FINAL_PROJECT_KIBAB.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/Gemfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/Gemfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/README.rdoc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/Rakefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/app/assets/images/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/app/assets/javascripts/application.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/app/assets/stylesheets/application.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/app/controllers/application_controller.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/app/controllers/concerns/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/app/helpers/application_helper.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/app/mailers/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/app/models/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/app/models/concerns/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/app/views/layouts/application.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/bin/bundle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/bin/rails" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/bin/rake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/bin/setup" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config.ru" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/application.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/boot.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/database.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/environment.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/environments/development.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/environments/production.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/environments/test.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/assets.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/backtrace_silencers.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/cookies_serializer.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/filter_parameter_logging.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/inflections.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/mime_types.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/session_store.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/to_time_preserves_timezone.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/initializers/wrap_parameters.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/locales/en.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/routes.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/config/secrets.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/db/seeds.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/lib/assets/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/lib/tasks/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/log/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/public/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/public/422.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/public/500.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/test/controllers/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/test/fixtures/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/test/helpers/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/test/integration/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/test/mailers/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/test/models/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/test/test_helper.rb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/vendor/assets/javascripts/.keep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rails-app/vendor/assets/stylesheets/.keep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rdoc" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +15,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -116,6 +62,7 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="true" RAKE_SPRING_PRE_LOADER_OPTION="true" RAILS_SPRING_PRE_LOADER_OPTION="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="152071fb-b06a-46d0-9fa9-6ddceb23ee54" name="Changes" comment="" />
@@ -125,7 +72,7 @@
       <updated>1699389234663</updated>
       <workItem from="1699389235718" duration="11000" />
       <workItem from="1699389258327" duration="2148000" />
-      <workItem from="1699405514688" duration="366000" />
+      <workItem from="1699405514688" duration="644000" />
     </task>
     <servers />
   </component>
