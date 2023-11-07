@@ -93,11 +93,17 @@ GEM
     rack (1.6.13)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (0.9.5)
-      actionmailer (>= 0.6.1)
-      actionpack (>= 1.4.0)
-      activerecord (>= 1.6.0)
-      rake (>= 0.4.15)
+    rails (4.2.11)
+      actionmailer (= 4.2.11)
+      actionpack (= 4.2.11)
+      actionview (= 4.2.11)
+      activejob (= 4.2.11)
+      activemodel (= 4.2.11)
+      activerecord (= 4.2.11)
+      activesupport (= 4.2.11)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.2.11)
+      sprockets-rails
     rails-deprecated_sanitizer (1.0.4)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.9)
@@ -165,7 +171,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg
-  rails
+  rails (= 4.2.11)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
@@ -175,7 +181,7 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 RUBY VERSION
-   ruby 3.1.4p223
+   ruby 2.6.6p146
 
 BUNDLED WITH
-   2.3.26
+   1.17.3
