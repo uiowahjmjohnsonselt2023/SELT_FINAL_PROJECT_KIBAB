@@ -12,4 +12,4 @@ git add .\
 git commit -m "first commit"\
 git branch -M main\
 git remote add origin https://github.com/uiowahjmjohnsonselt2023/SELT_FINAL_PROJECT_KIBAB \
-git push -u origin main\
+git push -u origin main
