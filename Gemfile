@@ -45,3 +45,7 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+  gem 'pg', '~>0.2' # for Heroku deployment
+end
+
