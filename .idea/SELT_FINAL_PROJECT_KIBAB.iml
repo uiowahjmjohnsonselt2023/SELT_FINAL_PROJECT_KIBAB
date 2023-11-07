@@ -9,10 +9,11 @@
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Remote-rbenv: ruby-2.6.6-p146" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.4, Remote-rbenv: ruby-2.6.10-p210 (2)) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="byebug (v11.1.3, Remote-rbenv: ruby-2.6.10-p210 (2)) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.4, Remote-rbenv: ruby-2.6.6-p146) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.17.2, Remote-rbenv: ruby-2.6.6-p146) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="byebug (v11.1.3, Remote-rbenv: ruby-2.6.6-p146) [gem]" level="application" />
   </component>
   <component name="RakeTasksCache">
     <option name="myRootTask">
