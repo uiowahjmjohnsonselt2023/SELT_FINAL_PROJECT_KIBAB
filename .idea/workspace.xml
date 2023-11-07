@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/SELT_FINAL_PROJECT_KIBAB.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SELT_FINAL_PROJECT_KIBAB.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +75,7 @@
       <updated>1699389234663</updated>
       <workItem from="1699389235718" duration="11000" />
       <workItem from="1699389258327" duration="2148000" />
-      <workItem from="1699405514688" duration="3689000" />
+      <workItem from="1699405514688" duration="4480000" />
     </task>
     <servers />
   </component>
