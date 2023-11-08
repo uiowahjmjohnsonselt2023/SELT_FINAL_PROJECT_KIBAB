@@ -12,6 +12,10 @@ class UsersController < ApplicationController
   end
 
   def create
+    if @user.valid?
+      @user.create()#with stuff
+      redirect_to users_path
+    end
     redirect_to users_path
   end
 
