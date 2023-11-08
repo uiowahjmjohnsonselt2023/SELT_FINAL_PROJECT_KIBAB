@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# will add fake data later - Brandon
+users = [{:user_id => 0, :email => "", :password_hash => "", :first_name => "", :last_name => "", :address => ""}]
+products = [{:product_id => 0, :name => "", :category => "", :description => "", :price => "", :location => "", :is_sold? => true}]
