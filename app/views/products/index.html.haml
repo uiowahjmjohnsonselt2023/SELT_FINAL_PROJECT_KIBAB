@@ -1,3 +1,5 @@
--#
-
-%h1 KIBAB Shop - Products#Index Haml
+.welcome_statement
+  %h1 Shop KIBAB
+  .product_search_bar
+    = text_field_tag 'product_searched', nil, size: 50, :id => 'search_bar'
+    = submit_tag 'Search', :id => 'search_button'
