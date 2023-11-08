@@ -38,7 +38,6 @@ GEM
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
     arel (6.0.4)
-    bcrypt (3.1.19)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
     builder (3.2.4)
@@ -255,7 +254,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
   byebug
   capybara
   coffee-rails (~> 4.1.0)
