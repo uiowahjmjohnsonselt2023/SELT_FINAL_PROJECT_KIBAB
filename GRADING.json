@@ -1,0 +1,9 @@
+{
+  "GROUP" : "G002",
+  "ALL_SPRINTS" : {
+    "SPRINT1_URL" : "https://glacial-depths-15499-48fc4ab6a25b.herokuapp.com",
+    "SPRINT2_URL" : "https://glacial-depths-15499-48fc4ab6a25b.herokuapp.com/",
+    "SPRINT3_URL" : "https://glacial-depths-15499-48fc4ab6a25b.herokuapp.com/",
+    "FINAL_URL" : "https://glacial-depths-15499-48fc4ab6a25b.herokuapp.com/"
+  }
+}
