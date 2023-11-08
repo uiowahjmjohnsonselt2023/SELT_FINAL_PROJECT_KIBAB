@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  # test
   def show
     id = params[:id]
   end
