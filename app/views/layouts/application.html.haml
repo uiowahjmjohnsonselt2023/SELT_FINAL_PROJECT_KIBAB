@@ -1,18 +1,3 @@
--# <!DOCTYPE html>
--# <html>
--# <head>
--#   <title>RailsApp</title>
--#   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
--#   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
--#   <%= csrf_meta_tags %>
--# </head>
--# <body>
--#
--# <%= yield %>
--#
--# </body>
--# </html>
-
 !!!
 %html
   %head
@@ -22,7 +7,27 @@
     = csrf_meta_tags
 
   %body
-    %h1.title KIBAB Shop - App HAML
+    %nav.navbar
+      .nav-item
+        %a(href=products_path) KIBAB Shop
+      .nav-item
+        %a(href="#" ) About
+      .nav-item
+        %a(href=users_path) Login
+    -# %h2
+    -#   .header-field KIBAB Shop
+    -#   .header-field{:class => nil}= link_to 'About', 'about'
+    -#   .header-field{:class => nil}= link_to 'Login', new_user_path
+    -# %table
+    -#   %thead
+    -#     %tr
+    -#       %th KIBAB Shop
+    -#       %th{:class => nil}= link_to 'About', 'about'
+    -#       %th{:class => nil}= link_to 'Login', new_user_path
+    -# %h2 KIBAB Shop
+    -# %h2 Bid
+    -# %h2 About
+    -# %h2 Login
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
