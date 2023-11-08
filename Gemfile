@@ -38,6 +38,8 @@ group :development, :test do
   gem 'byebug'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3' #, '~>1.3.6'
+  gem 'cucumber-rails', require: false
+  gem 'rspec-rails'
 end
 
 group :development do
