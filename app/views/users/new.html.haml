@@ -1,6 +1,6 @@
 %h1 New User
 
-= form_tag users_path do
+= form_tag users_path, :method => 'post' do
   = label :user, :first_name, 'First Name'
   = text_field :first_name, 'first_name'
 

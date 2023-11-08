@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def show
     id = params[:id]
+    if !current_user?(id)
+      flash[:warning]="Can only show profile of logged-in user"
+    end
   end
 
   def index
@@ -13,7 +16,6 @@ class UsersController < ApplicationController
 
   def create
     if @user.valid?
-      @user.create()#with stuff
       redirect_to users_path
     end
     redirect_to users_path
