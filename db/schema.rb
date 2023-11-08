@@ -11,6 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20231108032307) do
+
+  create_table "products", primary_key: "product_id", force: :cascade do |t|
+    t.string  "name"
+    t.string  "category"
+    t.string  "description"
+    t.string  "price"
+    t.string  "location"
+    t.boolean "is_sold?"
+    t.integer "user_id"
+  end
+
+  create_table "users", primary_key: "user_id", force: :cascade do |t|
+    t.string "email"
+    t.string "password_hash"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address"
+  end
 
 end
