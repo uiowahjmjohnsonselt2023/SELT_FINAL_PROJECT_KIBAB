@@ -13,3 +13,12 @@ git commit -m "first commit"\
 git branch -M main\
 git remote add origin https://github.com/uiowahjmjohnsonselt2023/SELT_FINAL_PROJECT_KIBAB \
 git push -u origin main
+
+## Bundling Instructions
+**Make sure to run 'bundle install --without production'**\
+Check to make sure you have bundler 1.17.3 with 'bundler -v'\
+If it isn't the right version, run 'gem uninstall bundler', followed by 'gem install bundler -v 1.17.3'\
+To switch your Ruby version, run 'rbenv global 2.6.6', and check with 'ruby -v'
+
+## Heroku App
+[KIBAB App](https://glacial-depths-15499-48fc4ab6a25b.herokuapp.com/)
