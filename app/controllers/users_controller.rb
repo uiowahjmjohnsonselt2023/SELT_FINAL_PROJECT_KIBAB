@@ -20,7 +20,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    puts User.view_all_users
     if @user.save
       flash[:notice] = "Sign up successful! Welcome to KIBAB"
       redirect_to users_path
