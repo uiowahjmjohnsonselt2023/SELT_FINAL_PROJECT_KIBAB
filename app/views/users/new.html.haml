@@ -20,4 +20,9 @@
   = label :user, :password_confirmation, 'Confirm Password'
   = text_field :user, 'password_confirmation'
 
+  = label :user, ''
+
   = submit_tag 'Create User'
+
+.login
+  = link_to 'Login', login_path_path

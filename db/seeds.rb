@@ -14,12 +14,22 @@ users = [{:email => "johnjones@gmail.com", :password => "password", :password_co
          {:email => "brendansuttor@yahoo.com", :password => "password", :password_confirmation => "password", :first_name => "Brendan", :last_name => "Suttor", :address => "56 Atlantic Street Muncie IN 47302"},
          {:email => "kaileymackin@gmail.com", :password => "password", :password_confirmation => "password", :first_name => "Kailey", :last_name => "Mackin", :address => "879 East Ryan Court Nashville TN 37205"},
          {:email => "megantaylor@yahoo.com", :password => "password", :password_confirmation => "password", :first_name => :"Megan", :last_name => "Taylor", :address => "797 Plymouth Drive Yonkers NY 10701"},
-         {:email => "jennamarbles@hotmail.com", :password => "password", :password_confirmation => "password", :first_name => "Jenna", :last_name => "Marbles", :address => "998 Marconi Court Spring Valley NY 10977"}
-  ]
-products = [{:product_id => 0, :name => "", :category => "", :description => "", :price => "", :location => "", :is_sold? => true}]
+         {:email => "jennamarbles@hotmail.com", :password => "password", :password_confirmation => "password", :first_name => "Jenna", :last_name => "Marbles", :address => "998 Marconi Court Spring Valley NY 10977"}]
+
+
+products = [{:name => "Bookshelf", :category => "Home", :description => "Like New", :price => "89.65", :location => "Iowa City Iowa", :is_sold? => false, :user_id => 1},
+            {:name => "Shower Curtain", :category => "Home", :description => "Used", :price => "15.49", :location => "Iowa City Iowa", :is_sold? => false, :user_id => 1},
+            {:name => "Face Wash", :category => "Personal Care", :description => "New", :price => "5.00", :location => "Denver Colorado", :is_sold? => false, :user_id => 1},
+            {:name => "Stapler", :category => "Office", :description => "New", :price => "7.12", :location => "Kansas City Missouri", :is_sold? => false, :user_id => 1},
+            {:name => "Makeup Brush", :category => "Personal Care", :description => "Like New", :price => "3.15", :location => "Iowa City Iowa", :is_sold? => false, :user_id => 1},
+            {:name => "Zip Up Hoodie", :category => "Clothing", :description => "Well Worn", :price => "23.32", :location => "Seattle Washington", :is_sold? => false, :user_id => 1},
+            {:name => "TV", :category => "Entertainment", :description => "Like New", :price => "142.24", :location => "Iowa City Iowa", :is_sold? => false, :user_id => 1}]
 
 users.each do |user|
   User.create!(user)
 end
 
+products.each do |product|
+  Product.create!(user)
+end
 
