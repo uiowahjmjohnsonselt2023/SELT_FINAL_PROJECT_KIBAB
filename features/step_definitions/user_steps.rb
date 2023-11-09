@@ -1,6 +1,7 @@
 Given /the following users exist/ do |users_table|
   users_table.hashes.each do |user|
     User.create(
+      session_token: user[:session_token],
       email: user[:email],
       password_digest: user[:password_digest],
       first_name: user[:first_name],
