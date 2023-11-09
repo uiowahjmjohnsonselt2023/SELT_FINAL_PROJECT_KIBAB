@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    id = params[:id]
+    id = params[:user_id]
     if !current_user?(id)
       flash[:warning]="Can only show profile of logged-in user"
     end
