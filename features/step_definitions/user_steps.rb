@@ -1,9 +1,9 @@
 Given /the following users exist/ do |users_table|
   users_table.hashes.each do |user|
     User.create(
-      user_id: user[:user_id],
+      session_token: user[:session_token],
       email: user[:email],
-      password_hash: user[:password_hash],
+      password_digest: user[:password_digest],
       first_name: user[:first_name],
       last_name: user[:last_name],
       address: user[:address]
@@ -30,3 +30,4 @@ end
 Then /No data shall be displayed/ do
   expect(page).to have_content("Please Login to view Information")
 end
+
