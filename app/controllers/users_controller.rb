@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
+  before_action :set_current_user, only: [:show, :update, :destroy, :edit]
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :address,:password,:password_confirmation)
+  end
 
   def show
     id = params[:id]
+    if !current_user?(id)
+      flash[:warning]="Can only show profile of logged-in user"
+    end
   end
 
   def index
@@ -13,7 +21,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    redirect_to users_path
+    @user = User.create(user_params)
+    if @user.save
+      flash[:notice] = "Sign up successful! Welcome to KIBAB"
+      redirect_to users_path
+    else
+      render 'new'
+    end
+
   end
 
   def edit
