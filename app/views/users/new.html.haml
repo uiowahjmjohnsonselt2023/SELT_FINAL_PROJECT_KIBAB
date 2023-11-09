@@ -1,6 +1,7 @@
 %h1 New User
 
 = form_tag users_path, :method => 'post' do
+
   = label :user, :first_name, 'First Name'
   = text_field :first_name, 'first_name'
 
@@ -17,6 +18,6 @@
   = text_field :password, 'password'
 
   = label :user, :password_confirmation, 'Confirm Password'
-  = text_field :user, :password_confirmation, 'password_confirm'
+  = text_field :password_confirmation, 'password_confirm'
 
-  = submit_tag 'Create User'
+= submit_tag 'Create User'
