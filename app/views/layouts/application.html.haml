@@ -12,8 +12,14 @@
         %a(href=products_path) KIBAB Shop
       .nav_item_2
         %a(href=about_path_url) About
-      .nav_item_2
-        %a(href=login_path_url) Login
+      -if !@current_user
+        .nav_item_2
+          %a(href=login_path_url) Login
+        .nav_item_2
+          %a(href=new_user_path) Create Account
+      -else
+        .nav_item_2
+          %a(href='/users/') My Profile
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
