@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
   end
 
   def about
-    redirect_to products_about_path
+    # edit later
   end
 
 end

@@ -62,7 +62,22 @@ header {
     text-align: center;
 }
 
-.product_search_bar{
+.product_search_bar {
     width: auto;
+    text-align: center;
     box-sizing: border-box;
+}
+
+.new_product_button {
+    text-decoration: none;
+    padding-top: 25px;
+    font-size: 20px;
+    text-align: center;
+    color: #333
+}
+
+.new_product_button a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
 }

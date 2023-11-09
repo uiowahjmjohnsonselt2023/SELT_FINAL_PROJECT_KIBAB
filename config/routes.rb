@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   resources :products
   root :to => redirect('/products')
   resources :users
-  post '/products/about', to: 'products#about', as: '/about'
+  post '/products/about'
+  # , to: 'products#about', as: '/about'
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   # root :to => redirect('/')
