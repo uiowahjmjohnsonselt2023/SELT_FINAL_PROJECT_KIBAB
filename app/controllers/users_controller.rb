@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    id = params[:user_id]
+    id = params[:id]
     if !current_user?(id)
       flash[:warning]="Can only show profile of logged-in user"
     end
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    skip_before_filter :set_current_user
     # default: render 'new' template
   end
 

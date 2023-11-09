@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by_email(params[:session][:email])
     if user && user.authenticate(params[:session][:password])
-      session[:session_token]= user.session_token
+      session[:session_token] = user.session_token
       @current_user = user
       redirect_to user
     else
