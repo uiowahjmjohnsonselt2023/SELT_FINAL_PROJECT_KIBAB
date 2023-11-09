@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :set_current_user, only: [:new, :update, :destroy, :edit]
 
   def product_params
     params.require(:product).permit(:name,:category,:description,:price,:location,:is_sold?,:user_id,:seller_id)
