@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_current_user, only: [:show, :update, :destroy, :edit]
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :address,:password,:password_confirmation)
@@ -28,7 +27,6 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
-
   end
 
   def edit
