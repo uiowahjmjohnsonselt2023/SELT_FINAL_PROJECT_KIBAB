@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   root :to => redirect('/products')
   resources :users
+  match '/about', to: 'products#about', via: :get, :as => 'about_path'
   match '/login',  to: 'sessions#new', via: :get, :as => 'login_path'
   match '/logout', to: 'sessions#destroy', via: :delete, :as => 'logout_path'
   # Example resource route (maps HTTP verbs to controller actions automatically):

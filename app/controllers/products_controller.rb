@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
 
   def show
     id = params[:id]
+    redirect_to 'about'
   end
 
   def index
@@ -26,6 +27,10 @@ class ProductsController < ApplicationController
 
   def destroy
     # destroy product
+  end
+
+  def about
+    # edit later
   end
 
 end
