@@ -42,3 +42,9 @@ Scenario: sort product prices in increasing order of price
   And  I should see "Shower Curtain" before "Snap Back Hat"
   And  I should see "Makeup Brush" before "Paper Weight"
   And  I should see "Stapler" before "Paper Weight"
+
+Scenario: sort products location in increasing order of price
+  When I follow "location"
+  Then I should see "Shower Curtain" before "Zip-Up Hoodie"
+  And I should see "Bookshelf" before "Desk Fan"
+  And I should see "Stapler" before "Snap Back Hat"
