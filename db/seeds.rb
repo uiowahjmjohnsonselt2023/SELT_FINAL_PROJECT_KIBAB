@@ -29,4 +29,7 @@ users.each do |user|
   User.create!(user)
 end
 
+products.each do |product|
+  Product.create!(user)
+end
 
