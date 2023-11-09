@@ -1,12 +1,12 @@
 Given /the following users exist/ do |users_table|
   users_table.hashes.each do |user|
     User.create(
-      user_id: product[:user_id],
-      email: product[:email],
-      password_hash: product[:password_hash],
-      first_name: product[:first_name],
-      last_name: product[:last_name],
-      address: product[:address]
+      user_id: user[:user_id],
+      email: user[:email],
+      password_hash: user[:password_hash],
+      first_name: user[:first_name],
+      last_name: user[:last_name],
+      address: user[:address]
     )
   end
 end
