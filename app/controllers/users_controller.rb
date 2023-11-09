@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :set_current_user
+
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :address,:password,:password_confirmation)
   end
