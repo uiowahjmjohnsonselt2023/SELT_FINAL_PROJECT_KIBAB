@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  before_save {|user| user.email=user.email.downcase}
 
+
+  before_save {|user| user.email=user.email.downcase}
   has_secure_password
   #before_save :create_session_token
   validates :first_name, presence: true, length: {maximum: 50}
@@ -16,4 +17,11 @@ class User < ActiveRecord::Base
   #def create_session_token
   #  self.session_token = SecureRandom.urlsafe_base64
   #end
+  def self.view_all_users
+    all_users = User.all
+
+    all_users.each do |user|
+      puts "Item ID: #{user.user_id}, Name: #{user.name}, Email: #{user.email}"
+    end
+  end
 end

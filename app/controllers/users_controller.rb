@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :address,:password,:password_confirmation)
+  end
+
   def show
     id = params[:id]
     if !current_user?(id)
@@ -15,10 +19,15 @@ class UsersController < ApplicationController
   end
 
   def create
-    if @user.valid?
+    @user = User.create(user_params)
+    puts User.view_all_users
+    if @user.save
+      flash[:notice] = "Sign up successful! Welcome to KIBAB"
       redirect_to users_path
+    else
+      render 'new'
     end
-    redirect_to users_path
+
   end
 
   def edit

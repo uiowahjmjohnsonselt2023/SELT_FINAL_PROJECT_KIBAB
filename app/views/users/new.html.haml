@@ -3,21 +3,21 @@
 = form_tag users_path, :method => 'post' do
 
   = label :user, :first_name, 'First Name'
-  = text_field :first_name, 'first_name'
+  = text_field :user, 'first_name'
 
   = label :user, :last_name, 'Last Name'
-  = text_field :last_name, 'last_name'
+  = text_field :user, 'last_name'
 
   = label :user, :email, 'Email'
-  = text_field :email, 'email'
+  = text_field :user, 'email'
 
   = label :user, :address, 'Address'
-  = text_field :address, 'address'
+  = text_field :user, 'address'
 
   = label :user, :password, 'Password'
-  = text_field :password, 'password'
+  = text_field :user, 'password'
 
   = label :user, :password_confirmation, 'Confirm Password'
-  = text_field :password_confirmation, 'password_confirm'
+  = text_field :user, 'password_confirmation'
 
-= submit_tag 'Create User'
+  = submit_tag 'Create User'
