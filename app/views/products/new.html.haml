@@ -1,0 +1,24 @@
+%h2 New Product
+
+.new_product_form
+  = form_tag products_path, :method => 'post' do
+
+    = label :product, :name, 'Product Name'
+    = text_field :product, 'product_name'
+
+    = label :product, :category, 'Product Category'
+    = select :product, :category, ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other']
+
+    = label :product, :description, 'Product Description'
+    = select :product, :description, ['Well Worn', 'Used', 'Like New', 'New']
+
+    = label :product, :price, 'Price'
+    = text_field :product, 'price'
+
+    = label :product, :location, 'Location'
+    = text_field :product, 'location'
+
+    = submit_tag 'List Product'
+
+.return_to_home_button
+  = link_to 'Return to Home', products_path
