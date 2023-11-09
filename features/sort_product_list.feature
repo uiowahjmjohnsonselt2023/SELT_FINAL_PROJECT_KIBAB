@@ -8,19 +8,18 @@ Feature: display list of products sorted by various criteria
 #Assumed shopper is shopping in Iowa City Iowa
 
 Background: products have been added to database
-  Scenario: Test database
   Given the following products exist:
-    | user_id| name            | category       | description | price | location              | is_sold |
-    | 0      | Shower Curtain  | Home           | Used        | 15.49 | Iowa City Iowa        | False   |
-    | 1      | Bookshelf       | Home           | Like New    | 89.65 | Chicago Illinois      | False   |
-    | 2      | Zip-Up Hoodie   | Clothing       | New         | 23.42 | Denver Colorado       | False   |
-    | 3      | Face Wash       | Personal Care  | New         | 5.00  | Seattle Washington    | False   |
-    | 4      | Stapler         | Office         | Well Worn   | 7.12  | Kansas City Missouri  | False   |
-    | 5      | Makeup Brush    | Personal Care  | Like New    | 3.22  | Minneapolis Minnesota | False   |
-    | 6      | Black Socks     | Clothing       | New         | 1.50  | Iowa City Iowa        | False   |
-    | 7      | Paper Weight    | Entertainment  | Well Worn   | 8.96  | Miami Florida         | False   |
-    | 8      | Desk Fan        | Office         | Used        | 23.43 | Austin Texas          | False   |
-    | 9      | Snap Back Hat   | Clothing       | Used        | 17.44 | Los Angeles California| False   |
+    | user_id| name            | category       | description | price | location              | is_sold? |
+    | 0      | Shower Curtain  | Home           | Used        | 15.49 | Iowa City Iowa        | false   |
+    | 1      | Bookshelf       | Home           | Like New    | 89.65 | Chicago Illinois      | false   |
+    | 2      | Zip-Up Hoodie   | Clothing       | New         | 23.42 | Denver Colorado       | false   |
+    | 3      | Face Wash       | Personal Care  | New         | 5.00  | Seattle Washington    | false   |
+    | 4      | Stapler         | Office         | Well Worn   | 7.12  | Kansas City Missouri  | false   |
+    | 5      | Makeup Brush    | Personal Care  | Like New    | 3.22  | Minneapolis Minnesota | false   |
+    | 6      | Black Socks     | Clothing       | New         | 1.50  | Iowa City Iowa        | false   |
+    | 7      | Paper Weight    | Entertainment  | Well Worn   | 8.96  | Miami Florida         | false   |
+    | 8      | Desk Fan        | Office         | Used        | 23.43 | Austin Texas          | false   |
+    | 9      | Snap Back Hat   | Clothing       | Used        | 17.44 | Los Angeles California| false   |
 
   And I am on the Kibab home page
   Then 10 products should exist

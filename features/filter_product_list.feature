@@ -7,7 +7,7 @@
 #Assumed shopper is shopping in Iowa City Iowa
   Background: products have been added to database
     Given the following products exist:
-    | user_id| name            | category       | description | price | location              | is_sold |
+    | user_id| name            | category       | description | price | location              | is_sold? |
     | 0      | Shower Curtain  | Home           | Used        | 15.49 | Iowa City Iowa        | False   |
     | 1      | Bookshelf       | Home           | Like New    | 89.65 | Chicago Illinois      | False   |
     | 2      | Zip-Up Hoodie   | Clothing       | New         | 23.42 | Denver Colorado       | False   |
