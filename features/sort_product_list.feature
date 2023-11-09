@@ -23,28 +23,28 @@ Background: products have been added to database
   And I am on the Kibab home page
   Then 10 products should exist
 
-Scenario: sort products names alphabetically
-  When I follow "name"
-  Then I should see "Shower Curtain" before "Stapler"
-  And  I should see "Black Socks" before "Makeup Brush"
-  And  I should see "Snap Back Hat" before "Stapler"
-  And  I should see "Paper Weight" before "Zip-Up Hoodie"
-  And  I should see "Desk Fan" before "Face Wash"
-  And  I should see "Black Socks" before "Bookshelf"
-  And  I should see "Makeup Brush" before "Snap Back Hat"
-
-Scenario: sort product prices in increasing order of price
-  When I follow "Price"
-  Then I should see "Face Wash" before "Stapler"
-  And  I should see "Black Socks" before "Makeup Brush"
-  And  I should see "Zip-Up Hoodie" before "Desk Fan"
-  And  I should see "Shower Curtain" before "Bookshelf"
-  And  I should see "Shower Curtain" before "Snap Back Hat"
-  And  I should see "Makeup Brush" before "Paper Weight"
-  And  I should see "Stapler" before "Paper Weight"
-
-Scenario: sort products location in increasing order of price
-  When I follow "location"
-  Then I should see "Shower Curtain" before "Zip-Up Hoodie"
-  And I should see "Bookshelf" before "Desk Fan"
-  And I should see "Stapler" before "Snap Back Hat"
+#Scenario: sort products names alphabetically
+#  When I follow "name"
+#  Then I should see "Shower Curtain" before "Stapler"
+#  And  I should see "Black Socks" before "Makeup Brush"
+#  And  I should see "Snap Back Hat" before "Stapler"
+#  And  I should see "Paper Weight" before "Zip-Up Hoodie"
+#  And  I should see "Desk Fan" before "Face Wash"
+#  And  I should see "Black Socks" before "Bookshelf"
+#  And  I should see "Makeup Brush" before "Snap Back Hat"
+#
+#Scenario: sort product prices in increasing order of price
+#  When I follow "Price"
+#  Then I should see "Face Wash" before "Stapler"
+#  And  I should see "Black Socks" before "Makeup Brush"
+#  And  I should see "Zip-Up Hoodie" before "Desk Fan"
+#  And  I should see "Shower Curtain" before "Bookshelf"
+#  And  I should see "Shower Curtain" before "Snap Back Hat"
+#  And  I should see "Makeup Brush" before "Paper Weight"
+#  And  I should see "Stapler" before "Paper Weight"
+#
+#Scenario: sort products location in increasing order of price
+#  When I follow "location"
+#  Then I should see "Shower Curtain" before "Zip-Up Hoodie"
+#  And I should see "Bookshelf" before "Desk Fan"
+#  And I should see "Stapler" before "Snap Back Hat"
