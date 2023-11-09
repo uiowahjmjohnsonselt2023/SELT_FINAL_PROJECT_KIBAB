@@ -28,7 +28,6 @@
         #notice.message= flash[:notice]
       - elsif flash[:warning]
         #warning.message= flash[:warning]
-      -if @current_user
         %p.welcome You are logged in as #{@current_user.email}
         = button_to 'Log Out', logout_path_url, :method => :delete
       - else
