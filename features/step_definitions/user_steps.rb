@@ -30,3 +30,4 @@ end
 Then /No data shall be displayed/ do
   expect(page).to have_content("Please Login to view Information")
 end
+

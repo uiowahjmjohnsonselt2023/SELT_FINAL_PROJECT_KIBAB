@@ -51,7 +51,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg' #, '~>0.2' # for Heroku deployment
+  gem 'pg', '~>0.2' # for Heroku deployment
 end
 
 

@@ -3,8 +3,10 @@ require 'uri'
 require 'cgi'
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
-Given /the following products exist/ do |products_table|
+Given /the following products exist:/ do |products_table|
+  puts "start"
   products_table.hashes.each do |product|
+    puts "inside"
     Product.create(
       user_id: product[:user_id],
       name: product[:name],

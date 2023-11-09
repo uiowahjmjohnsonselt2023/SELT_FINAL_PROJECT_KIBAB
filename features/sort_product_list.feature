@@ -6,7 +6,9 @@ Feature: display list of products sorted by various criteria
 #Categories: Home, Entertainment, Clothing, Personal Care, and Office
 #Descriptions: Well Worn, Used, Like New, New
 #Assumed shopper is shopping in Iowa City Iowa
+
 Background: products have been added to database
+  Scenario: Test database
   Given the following products exist:
     | user_id| name            | category       | description | price | location              | is_sold |
     | 0      | Shower Curtain  | Home           | Used        | 15.49 | Iowa City Iowa        | False   |
