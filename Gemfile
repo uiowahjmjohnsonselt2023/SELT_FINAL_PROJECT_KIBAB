@@ -39,6 +39,7 @@ group :development, :test do
   gem 'sqlite3' #, '~>1.3.6'
   gem 'cucumber-rails', require: false
   gem 'rspec-rails'
+  gem 'capybara'
 end
 
 group :development do
@@ -52,4 +53,6 @@ end
 group :production do
   gem 'pg' #, '~>0.2' # for Heroku deployment
 end
+
+
 
