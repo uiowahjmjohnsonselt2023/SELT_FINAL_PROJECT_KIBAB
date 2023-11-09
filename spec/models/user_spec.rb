@@ -31,6 +31,38 @@ describe User do
       expect(user.address).to eq("123 WhoKnows Way, North Liberty, IA 52317")
     end
   end
+  describe "Invalid inputs during user creation" do
+    describe "Invalid password creation" do
+      it "should return false when :password does not match :password_confirmation" do
+        user = User.create({:email => "valid@email.com", :password => "password", :password_confirmation => "not_correct", :first_name => "test", :last_name => "last", :address => "123 WhoKnows Way, North Liberty, IA 52317"})
+        expect(user.valid?).to be false
+      end
+      it "should return false when :password is not at least 6 chars long" do
+        user = User.create({:email => "valid@email.com", :password => "pass", :password_confirmation => "pass", :first_name => "test", :last_name => "last", :address => "123 WhoKnows Way, North Liberty, IA 52317"})
+        expect(user.valid?).to be false
+      end
+      it "should return false when the :password is nil" do
+        user = User.create({:email => "valid@email.com", :password => nil, :password_confirmation => nil, :first_name => "test", :last_name => "last", :address => "123 WhoKnows Way, North Liberty, IA 52317"})
+        expect(user.valid?).to be false
+      end
+      it "should return false when the :password_confirmation is nil" do
+        user = User.create({:email => "valid@email.com", :password => "password", :password_confirmation => nil, :first_name => "test", :last_name => "last", :address => "123 WhoKnows Way, North Liberty, IA 52317"})
+        expect(user.valid?).to be false
+      end
+    end
+    describe "Invalid email input" do
+      it "should return false when the email is not formatted correctly" do
+        user = User.create({:email => "valid.com", :password => "password", :password_confirmation => "password", :first_name => "test", :last_name => "last", :address => "123 WhoKnows Way, North Liberty, IA 52317"})
+        expect(user.valid?).to be false
+
+        user = User.create({:email => "@hello.com", :password => "password", :password_confirmation => "password", :first_name => "test", :last_name => "last", :address => "123 WhoKnows Way, North Liberty, IA 52317"})
+        expect(user.valid?).to be false
+
+        user = User.create({:email => "hello@", :password => "password", :password_confirmation => "password", :first_name => "test", :last_name => "last", :address => "123 WhoKnows Way, North Liberty, IA 52317"})
+        expect(user.valid?).to be false
+      end
+    end
+  end
   describe "New User who hasn't created account to not have a session token" do
     let(:user) { User.new }
       specify { expect(user).to be }
