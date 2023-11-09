@@ -11,9 +11,9 @@
       .nav_item
         %a(href=products_path) KIBAB Shop
       .nav_item_2
-        %a(href='/products/about') About
+        %a(href=about_path_url) About
       .nav_item_2
-        %a(href=users_path) Login
+        %a(href=login_path_url) Login
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
