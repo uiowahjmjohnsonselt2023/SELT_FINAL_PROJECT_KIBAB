@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20231109015805) do
+ActiveRecord::Schema.define(version: 20231109161845) do
 
   create_table "products", primary_key: "product_id", force: :cascade do |t|
     t.string  "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20231109015805) do
     t.string  "location"
     t.boolean "is_sold?"
     t.integer "user_id"
+    t.integer "seller_id"
   end
 
   create_table "users", primary_key: "user_id", force: :cascade do |t|
