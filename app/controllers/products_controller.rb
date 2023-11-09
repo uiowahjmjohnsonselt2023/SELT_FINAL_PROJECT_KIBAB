@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
 
+  def product_params
+    params.require(:product).permit(:name,:category,:description,:price,:location,:is_sold?,:user_id,:seller_id)
+  end
   def show
     id = params[:id]
     redirect_to 'about'
