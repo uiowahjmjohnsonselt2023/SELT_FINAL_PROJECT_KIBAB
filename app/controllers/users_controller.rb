@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :set_current_user
+  before_action :set_current_user, only: [:show, :update, :destroy, :edit]
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :address,:password,:password_confirmation)
@@ -22,7 +22,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    puts User.view_all_users
     if @user.save
       flash[:notice] = "Sign up successful! Welcome to KIBAB"
       redirect_to users_path
