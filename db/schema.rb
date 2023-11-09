@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20231108032307) do
 
   create_table "users", primary_key: "user_id", force: :cascade do |t|
     t.string "email"
-    t.string "password_hash"
+    t.string "password_digest"
     t.string "first_name"
     t.string "last_name"
     t.string "address"
