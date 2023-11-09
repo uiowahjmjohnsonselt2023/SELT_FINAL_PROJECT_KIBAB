@@ -28,5 +28,8 @@
         #notice.message= flash[:notice]
       - elsif flash[:warning]
         #warning.message= flash[:warning]
-
-      =yield
+        %p.welcome You are logged in as #{@current_user.email}
+        = button_to 'Log Out', logout_path_url, :method => :delete
+      - else
+        %p.login= link_to 'Login to Rotten Potatoes', login_path_url
+      = yield
