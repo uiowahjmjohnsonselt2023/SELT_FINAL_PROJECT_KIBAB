@@ -8,15 +8,15 @@ Feature: display individual users information on their page
 #Assumed shopper is shopping in Iowa City Iowa
   Background: products have been added to database
     Given the following users exist:
-      | user_id| email                   | password_digest                                                      | first_name | last_name | address                                     |
-      | 0      | johnjones@gmail.com     | $2a$12$86inXQAxCAq5UzGWSPJKGuRBeXRqKdxqrPTFMxIixu1stfHR0XTEC         | John       | Jones     | 7486 West Blackburn Court Cheshire CT 06410 |
-      | 1      | iankuk@yahoo.com        | $2a$12$TT3ZOAMu.PDPQQQNrX6VqeuIU9zDj5NPORGyvgBXhUbY6oqRK5..S         | Ian        | Kuk       | 70 Meadowbrook Street Ashburn VA 20147      |
-      | 2      | brandoncano@hotmail.com | $2a$12$lSIV164uVNbxx6niQhGve.wl6NnNN1Iti.M4fll0ne19XJgFXzsB.         | Brandon    | Cano      | 101 Valley Farms Avenue New Bern NC 28560   |
-      | 3      | angelozamba@aol.com     | $2a$12$OD5qvyvKLk/3JpvShA5eDebhnQ10fOqVM9USH5vDC/D2HcAwKFC3.         | Angelo     | Zamba     | 1 Pilgrim Lane Ringgold GA 30736            |
-      | 4      | brendansuttor@yahoo.com | $2a$12$EFCOwFO1N530z55J1nguhOtPBXXCPEQ9u6qpYkkb/ooy9EBEHuZGC         | Brendan    | Suttor    | 56 Atlantic Street Muncie IN 47302          |
-      | 5      | kaileymackin@gmail.com  | $2a$12$2kr/B4mpopTF8eRyp8/np.7tDKp4CicRSttLhuWKeSWGJK/bDMx1a         | Kailey     | Mackin    | 879 East Ryan Court Nashville TN 37205      |
-      | 6      | megantaylor@yahoo.com   | $2a$12$eFYoJEDSDeKQ/N09NRPevOOwhnenydnx1xmleAbxDs8Z7JDYbo5kG         | Megan      | Taylor    | 797 Plymouth Drive Yonkers NY 10701         |
-      | 7      | jennamarbles@hotmail.com| $2a$12$Nk.RBlk3lLA3bIuxhcL0zuztUS8e0kZJparQcBVMJyyy2.ZSiImy2         | Jenna      | Marbles   | 998 Marconi Court Spring Valley NY 10977    |
+      | email                   | password_digest                                                      | first_name | last_name | address                                     |
+      | johnjones@gmail.com     | $2a$12$86inXQAxCAq5UzGWSPJKGuRBeXRqKdxqrPTFMxIixu1stfHR0XTEC         | John       | Jones     | 7486 West Blackburn Court Cheshire CT 06410 |
+      | iankuk@yahoo.com        | $2a$12$TT3ZOAMu.PDPQQQNrX6VqeuIU9zDj5NPORGyvgBXhUbY6oqRK5..S         | Ian        | Kuk       | 70 Meadowbrook Street Ashburn VA 20147      |
+      | brandoncano@hotmail.com | $2a$12$lSIV164uVNbxx6niQhGve.wl6NnNN1Iti.M4fll0ne19XJgFXzsB.         | Brandon    | Cano      | 101 Valley Farms Avenue New Bern NC 28560   |
+      | angelozamba@aol.com     | $2a$12$OD5qvyvKLk/3JpvShA5eDebhnQ10fOqVM9USH5vDC/D2HcAwKFC3.         | Angelo     | Zamba     | 1 Pilgrim Lane Ringgold GA 30736            |
+      | brendansuttor@yahoo.com | $2a$12$EFCOwFO1N530z55J1nguhOtPBXXCPEQ9u6qpYkkb/ooy9EBEHuZGC         | Brendan    | Suttor    | 56 Atlantic Street Muncie IN 47302          |
+      | kaileymackin@gmail.com  | $2a$12$2kr/B4mpopTF8eRyp8/np.7tDKp4CicRSttLhuWKeSWGJK/bDMx1a         | Kailey     | Mackin    | 879 East Ryan Court Nashville TN 37205      |
+      | megantaylor@yahoo.com   | $2a$12$eFYoJEDSDeKQ/N09NRPevOOwhnenydnx1xmleAbxDs8Z7JDYbo5kG         | Megan      | Taylor    | 797 Plymouth Drive Yonkers NY 10701         |
+      | jennamarbles@hotmail.com| $2a$12$Nk.RBlk3lLA3bIuxhcL0zuztUS8e0kZJparQcBVMJyyy2.ZSiImy2         | Jenna      | Marbles   | 998 Marconi Court Spring Valley NY 10977    |
 
     And I am on the Kibab user page
     And I am logged in as: "kaileymackin@gmail.com"
