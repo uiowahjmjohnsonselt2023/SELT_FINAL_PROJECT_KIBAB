@@ -7,6 +7,7 @@
 require 'cucumber/rails'
 require 'capybara/rails'
 
+
 # To avoid confusion on missed migrations - use Rails 4 checker to ensure
 # all migrations applied
 ActiveRecord::Migration.maintain_test_schema!
