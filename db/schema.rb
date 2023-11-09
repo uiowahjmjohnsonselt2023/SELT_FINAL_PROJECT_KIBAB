@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20231108032307) do
+ActiveRecord::Schema.define(version: 20231109015805) do
 
   create_table "products", primary_key: "product_id", force: :cascade do |t|
     t.string  "name"
@@ -25,10 +25,13 @@ ActiveRecord::Schema.define(version: 20231108032307) do
 
   create_table "users", primary_key: "user_id", force: :cascade do |t|
     t.string "email"
-    t.string "password_hash"
+    t.string "password_digest"
     t.string "first_name"
     t.string "last_name"
     t.string "address"
+    t.string "session_token"
   end
+
+  add_index "users", ["session_token"], name: "index_users_on_session_token"
 
 end
