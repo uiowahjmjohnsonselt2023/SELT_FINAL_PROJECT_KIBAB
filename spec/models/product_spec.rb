@@ -31,6 +31,13 @@ describe Product do
       expect(product.is_sold?).to eq(false)
       expect(product.user_id).to eq(0)
     end
+    it 'If user trying to tell doesnt exist in the user database' do
+      user = User.create({:email => "valid@email.com", :password => "password", :password_confirmation => "password", :first_name => "test", :last_name => "last", :address => "123 WhoKnows Way, North Liberty, IA 52317"})
+      product = Products.new({:name => "John Doe", :category => "Office", :description => "New", :price => "13.50", :location => "123 WhoKnows Way, North Liberty, IA 52317", :is_sold? => false, :user_id => user.session_token.to_i})
+      expect(User.find_by(session_token: user.session_token)).not_to be_nil
+      product.save
+      expect(product).to be_persisted
+    end
   end
   describe "Invalid Product inputs" do
     describe "Invalid price" do
@@ -97,23 +104,53 @@ describe Product do
     describe "Data not matching user database" do
       it 'If user trying to tell doesnt exist in the user database' do
         user = User.create({:email => "valid@email.com", :password => "password", :password_confirmation => "password", :first_name => "test", :last_name => "last", :address => "123 WhoKnows Way, North Liberty, IA 52317"})
-        product = Products.new({:name => "John Doe", :category => "Office!", :description => "New", :price => "13.50", :location => "123 WhoKnows Way, North Liberty, IA 52317", :is_sold? => false, :user_id => user.session_token.to_i + 1})
+        product = Products.new({:name => "John Doe", :category => "Office", :description => "New", :price => "13.50", :location => "123 WhoKnows Way, North Liberty, IA 52317", :is_sold? => false, :user_id => user.session_token.to_i + 1})
         expect(User.find_by(session_token: user.session_token)).not_to be_nil
         if product.save
           expect(product.errors[:user_id]).to include("User trying to sell must be in the user database")
         else
-          expect(entry).not_to be_persisted
+          expect(product).not_to be_persisted
         end
       end
       it 'If user trying to tell doesnt exist in the user database' do
         user = User.create({:email => "valid@email.com", :password => "password", :password_confirmation => "password", :first_name => "test", :last_name => "last", :address => "123 WhoKnows Way, North Liberty, IA 52317"})
-        product = Products.new({:name => "John Doe", :category => "Office!", :description => "New", :price => "13.50", :location => "123 WhoKnows Way, North Liberty, IA 52317", :is_sold? => false, :user_id => user.session_token})
+        product = Products.new({:name => "John Doe", :category => "Office", :description => "New", :price => "13.50", :location => "123 WhoKnows Way, North Liberty, IA 52317", :is_sold? => false, :user_id => user.session_token})
         expect(User.find_by(session_token: user.session_token)).not_to be_nil
         if product.save
           expect(product.errors[:name]).to include("User trying to sell must use the name in their account")
         else
-          expect(entry).not_to be_persisted
+          expect(product).not_to be_persisted
         end
+      end
+    end
+    describe "Address is invalid" do
+      it 'Address has no street label' do
+        product = Products.create({:name => "John Doe", :category => "Office", :description => "Like New", :price => "13.50", :location => "123 WhoKnows, North Liberty, IA 52317", :is_sold? => false, :user_id => 0})
+        expect(product.valid?).to be false
+      end
+      it 'Address has no number' do
+        product = Products.create({:name => "John Doe", :category => "Office", :description => "Like New", :price => "13.50", :location => "WhoKnows Way, North Liberty, IA 52317", :is_sold? => false, :user_id => 0})
+        expect(product.valid?).to be false
+      end
+      it 'Address has no street name' do
+        product = Products.create({:name => "John Doe", :category => "Office", :description => "Like New", :price => "13.50", :location => "123 Way, North Liberty, IA 52317", :is_sold? => false, :user_id => 0})
+        expect(product.valid?).to be false
+      end
+      it 'Address has no city' do
+        product = Products.create({:name => "John Doe", :category => "Office", :description => "Like New", :price => "13.50", :location => "123 WhoKnows Way, IA 52317", :is_sold? => false, :user_id => 0})
+        expect(product.valid?).to be false
+      end
+      it 'Address has no state' do
+        product = Products.create({:name => "John Doe", :category => "Office", :description => "Like New", :price => "13.50", :location => "123 WhoKnows Way, North Liberty, 52317", :is_sold? => false, :user_id => 0})
+        expect(product.valid?).to be false
+      end
+      it 'Address has no postal code' do
+        product = Products.create({:name => "John Doe", :category => "Office", :description => "Like New", :price => "13.50", :location => "123 WhoKnows, North Liberty, IA", :is_sold? => false, :user_id => 0})
+        expect(product.valid?).to be false
+      end
+      it 'Address isnt valid' do
+        product = Products.create({:name => "John Doe", :category => "Office", :description => "Like New", :price => "13.50", :location => "413 Joe Mama Rd, buttface, QZ 00000", :is_sold? => false, :user_id => 0})
+        expect(product.valid?).to be false
       end
     end
   end
