@@ -17,7 +17,6 @@ class UsersController < ApplicationController
   end
 
   def new
-    skip_before_filter :set_current_user
     # default: render 'new' template
   end
 
