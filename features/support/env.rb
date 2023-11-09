@@ -6,6 +6,11 @@
 
 require 'cucumber/rails'
 
+# To avoid confusion on missed migrations - use Rails 4 checker to ensure
+# all migrations applied
+ActiveRecord::Migration.maintain_test_schema!
+
+Capybara.default_selector = :css
 # frozen_string_literal: true
 
 # Capybara defaults to CSS3 selectors rather than XPath.
