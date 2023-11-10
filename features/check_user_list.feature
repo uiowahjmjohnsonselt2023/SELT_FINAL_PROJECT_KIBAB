@@ -20,20 +20,12 @@ Feature: display individual users information on their page
       | aricberryhill@yahoo.com | password | password              | Aric       | Berryhill | 7635 Fairground Avenue, Hollis NY, 11423      |
       | tiffanitatcher@aol.com  | password | password              | Tiffani    | Tatcher   | 42 Clark Street, Little Falls NJ, 07424       |
 
-    And I am on the Kibab home page
-    And I am logged in as: "kaileymackin@gmail.com"
-    Then 1 person should exist
+Scenario: I should be able to log in
+  And I am on the Kibab login page
+  And I have input email "kaileymackin@gmail.com" and password "password"
+  Then I should see the user page for "kaileymackin@gmail.com" and password "password"
 
-  Scenario: comparing user information when logged in as specific user
-    When I am on the Kibab user page
-    And I am logged in as: "iankuk@yahoo.com"
-    Then The following data shall be displayed: iankuk@yahoo.com, Ian, Kuk, 70 Meadowbrook Street Ashburn VA 20147
-  Scenario: comparing user information when logged in as specific user
-    When I am on the Kibab user page
-    And I am logged in as: "brandoncano@hotmail.com"
-    Then The following data shall be displayed: "brandoncano@yahoo.com", "Brandon", "Cano", "101 Valley Farms Avenue New Bern NC 28560"
-
-  Scenario: comparing user information when not logged in
-    When I am on the Kibab user page
-    And I am not logged in as: "anyone"
-    Then No data shall be displayed
+Scenario: I should be not be able to see other user information
+  And I am on the Kibab login page
+  And I have input email "kaileymackin@gmail.com" and password "password"
+  Then I should not see the user page for "johnjones@gmail.com" with "kaileymackin@gmail.com" and password "password"
