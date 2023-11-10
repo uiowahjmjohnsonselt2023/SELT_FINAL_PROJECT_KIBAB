@@ -1,0 +1,11 @@
+%h2 #{@current_product.name}
+%p #{@current_product.category}
+%h4 Description
+%p #{@current_product.description}
+%h4 Location
+%p #{@current_product.location}
+%h4 Price
+%p #{@current_product.price}
+
+.return_to_home_button
+  = link_to 'Return to Home', products_path

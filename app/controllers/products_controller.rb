@@ -6,11 +6,12 @@ class ProductsController < ApplicationController
   end
   def show
     id = params[:id]
-    redirect_to 'about'
+    @current_product = Product.find_by_product_id(id)
+    # redirect_to 'about'
   end
 
   def index
-    # render 'index' template
+    @products = Product.where(is_sold?: false)
   end
 
   def new
