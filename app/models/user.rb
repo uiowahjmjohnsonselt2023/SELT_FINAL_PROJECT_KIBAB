@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  # User implementation should be credited to the slides titled Slides11.ppx presented in class
+  # during week of 11/6
+
   before_save {|user| user.email=user.email.downcase}
   before_save :create_session_token
 

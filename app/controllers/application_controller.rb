@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
+  # User implementation should be credited to the slides titled "More About Sign Ups, Logins and Sessions"
+  # presented in class during week of 11/6
+
   protect_from_forgery with: :exception
   before_action :set_current_user
 

@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  # User implementation should be credited to the slides titled "More About Sign Ups, Logins and Sessions"
+  # presented in class during week of 11/6
+
   before_action :set_current_user, only: [:show, :update, :destroy, :edit]
 
   def user_params

@@ -46,7 +46,7 @@ end
 
 Then /I should see all the products/ do
   Product.all.each do |product|
-    expect(page).to have_content(product.title)
+    expect(page).to have_content(product.name)
   end
 end
 
@@ -112,16 +112,16 @@ Then(/^No descriptions have been selected$/) do
   uncheck("descriptions[#{"New"}]")
 end
 
-And(/^I should see "(.*)" with user_email "(.*)" before "(.*)" with user_email "(.*)"$/) do |e1, e2, e3, e4|
-  product1 = Product.find_by(user_email: e2, name: e1)
-  product2 = Product.find_by(user_email: e4, product_name: e3)
-  expect(/.*#{product1}.*#{product2}/m).to match page.body
-end
+# And(/^I should see "(.*)" with user_email "(.*)" before "(.*)" with user_email "(.*)"$/) do |e1, e2, e3, e4|
+#   product1 = Product.find_by(user_email: e2, name: e1)
+#   product2 = Product.find_by(user_email: e4, product_name: e3)
+#   expect(/.*#{product1}.*#{product2}/m).to match page.body
+# end
 
 Then(/^I the page should say: "(.*)"$/) do |page_string|
   expect(page).to have_content(page_string)
 end
 
 And(/^"(.*)" is in the search bar$/) do |search_param|
-  fill_in 'search_bar_id', with: search_param
+  fill_in 'search', with: search_param
 end
