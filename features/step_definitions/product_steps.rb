@@ -112,9 +112,9 @@ Then(/^No descriptions have been selected$/) do
   uncheck("descriptions[#{"New"}]")
 end
 
-And(/^I should see "(.*)" with user_id (\d+) before "(.*)" with user_id (\d+)$/) do |e1, e2, e3, e4|
-  product1 = Product.find_by(user_id: e2, name: e1)
-  product2 = Product.find_by(user_id: e4, product_name: e3)
+And(/^I should see "(.*)" with user_email "(.*)" before "(.*)" with user_email "(.*)"$/) do |e1, e2, e3, e4|
+  product1 = Product.find_by(user_email: e2, name: e1)
+  product2 = Product.find_by(user_email: e4, product_name: e3)
   expect(/.*#{product1}.*#{product2}/m).to match page.body
 end
 
