@@ -22,10 +22,14 @@ To switch your Ruby version, run 'rbenv global 2.6.6', and check with 'ruby -v'
 
 ## Testing Instructions
 Testing gems used for KIBAB-Project include cucumber-rails 2.1.0 (capybara (>= 2.12, < 4) cucumber (>= 3.0.2, < 5)), rails-rspec 4.1.2, simplecov 0.22.0
-To test and see full test coverage please first run all rspec tests using the following command:
+To test and see full test coverage first run rspec:
+
     bundle exec rspec spec/
-Then run all the cucumber features using the following command:
+    
+Then run cucumber scenarios:
+
     bundle exec cucumber features/
+    
 To see coverage, open the coverage folder and find the index.html file within. Open this file in your preferred browser to see all current coverage. SimpleCov also
 creates several images to view for seeing more in-depth coverage.
 
