@@ -1,8 +1,9 @@
 .welcome_statement
   %h1 Shop KIBAB
 .product_search_bar
-  = text_field_tag 'product_searched', nil, size: 50, :id => 'search_bar'
-  = submit_tag 'Search', :id => 'search_button'
+  = form_tag products_path, :method => 'get' do
+    = text_field_tag :search, params[:search], placeholder: 'Search Posts'
+    = submit_tag 'Search', :id => 'search_button'
 
 %table#products
   %thead
