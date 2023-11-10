@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20231109161845) do
+ActiveRecord::Schema.define(version: 20231110004906) do
 
   create_table "products", primary_key: "product_id", force: :cascade do |t|
     t.string  "name"
@@ -20,8 +20,12 @@ ActiveRecord::Schema.define(version: 20231109161845) do
     t.string  "price"
     t.string  "location"
     t.boolean "is_sold?"
+    t.string  "user_email"
+  end
+
+  create_table "products_users", id: false, force: :cascade do |t|
     t.integer "user_id"
-    t.integer "seller_id"
+    t.integer "product_id"
   end
 
   create_table "users", primary_key: "user_id", force: :cascade do |t|

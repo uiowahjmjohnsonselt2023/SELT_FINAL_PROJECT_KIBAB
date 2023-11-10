@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_current_user, only: [:new, :update, :destroy, :edit]
+  before_action :set_current_user, only: [:new, :create, :update, :destroy, :edit]
 
   def product_params
     params.require(:product).permit(:name,:category,:description,:price,:location,:is_sold?)
@@ -18,8 +18,8 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.create(product_params)
-    @product = Product.set_user_email(@current_user.email)
-    if @user.save
+    @product.set_user_email(@current_user.email)
+    if @product.save
       flash[:notice] = "Product created successfully!"
       redirect_to products_path
     else

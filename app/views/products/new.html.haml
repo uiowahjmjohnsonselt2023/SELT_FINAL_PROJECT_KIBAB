@@ -4,7 +4,7 @@
   = form_tag products_path, :method => 'post' do
 
     = label :product, :name, 'Product Name'
-    = text_field :product, 'product_name'
+    = text_field :product, 'name'
 
     = label :product, :category, 'Product Category'
     = select :product, :category, ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other']

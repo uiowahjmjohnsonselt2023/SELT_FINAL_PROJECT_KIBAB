@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   before_save {|user| user.email=user.email.downcase}
   before_save :create_session_token
 
+  has_and_belongs_to_many :products
+
   has_secure_password
   validates :first_name, presence: true, length: {maximum: 50}
   validates :last_name, presence: true, length: {maximum: 50}
