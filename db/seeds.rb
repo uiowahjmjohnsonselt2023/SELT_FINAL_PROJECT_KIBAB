@@ -30,6 +30,6 @@ users.each do |user|
 end
 
 products.each do |product|
-  Product.create!(user)
+  Product.create!([product])
 end
 
