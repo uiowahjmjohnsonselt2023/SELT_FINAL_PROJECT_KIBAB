@@ -15,23 +15,4 @@ class Product < ActiveRecord::Base
   def set_user_email(email)
     self.user_email = email
   end
-
-  # Searches database for specified product name, can return multiple products
-  def self.search_by_name(search)
-    if search.present?
-      @product = products.where("name=#{search}")
-    else
-      self
-    end
-  end
-
-  # Searches database for specifies product category, can return multiple products
-  def self.search_by_category(search)
-    if search.present?
-      @product = products.where("category=#{search}")
-    else
-      self
-    end
-  end
-
 end
