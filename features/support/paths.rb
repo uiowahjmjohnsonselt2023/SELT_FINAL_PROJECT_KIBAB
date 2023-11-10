@@ -8,7 +8,8 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /^the (Kibab)?home\s?page$/ then '/products'
+    when /^the (Kibab )?home\s?page$/ then '/products'
+    when /^the (Kibab )?login\s?page$/ then '/login'
     when /^the products page$/ then '/products'
 
     # Add more mappings here.
