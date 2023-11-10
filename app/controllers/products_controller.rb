@@ -11,7 +11,11 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.where(is_sold?: false)
+    if params[:search]
+      @products = Product.where('name LIKE ?', "%#{params[:search]}%").where(is_sold?: false)
+    else
+      @products = Product.where(is_sold?: false)
+    end
   end
 
   def new
