@@ -35,7 +35,7 @@ Feature: display products when search
     When I am on the Kibab home page
     And "Shower Curtain" is in the search bar
     And No categories have been selected
-    And No filters have been selected
+    And No descriptions have been selected
     And I press "Search"
     Then I should see the following products: Shower Curtain
     And I should see "Shower Curtain" with user_id 0 before "Shower Curtain" with user_id 11
@@ -45,7 +45,7 @@ Feature: display products when search
     When I am on the Kibab home page
     And "Shower Curtain" is in the search bar
     And No categories have been selected
-    And No filters have been selected
+    And No descriptions have been selected
     And I press "Search"
     And I follow "Price"
     Then I should see the following products: Shower Curtain
@@ -56,7 +56,7 @@ Feature: display products when search
     When I am on the Kibab home page
     And "Shower" is in the search bar
     And No categories have been selected
-    And No filters have been selected
+    And No descriptions have been selected
     And I press "Search"
     Then I should see the following products: Shower Curtain, Shower Mat
     And I should see "Shower Curtain" with user_id 0 before "Shower Curtain" with user_id 11
@@ -80,9 +80,9 @@ Feature: display products when search
     And I check the following categories: Personal Care
     And I uncheck the following descriptions: Home, Office, Clothing, Entertainment, Other
     And I press "Submit"
-    And No filters have been selected
+    And No descriptions have been selected
     And I press "Search"
-    Then I the page should say "There are no products with that name in the categories/filters selected here are some related products"
+    Then I the page should say: "There are no products with that name in the categories/filters selected here are some related products"
     And I should see the following products: Desk Fan
     And I should not see the following products: Zip-up Hoodie, Face Wash, Makeup Brush, Black Socks, Paper Weight, Snap Back Hat, Bookshelf, Stapler, Shower Curtain, Shower Mat
 
@@ -92,7 +92,7 @@ Feature: display products when search
     And I check the following categories: Personal Care
     And I uncheck the following descriptions: Home, Office, Clothing, Entertainment, Other
     And I press "Submit"
-    And No filters have been selected
+    And No descriptions have been selected
     And I press "Search"
     Then I should see the following products: Shower Mat
     And I should not see the following products: Zip-up Hoodie, Face Wash, Makeup Brush, Black Socks, Paper Weight, Snap Back Hat, Bookshelf, Stapler, Desk Fan, Shower Curtain
