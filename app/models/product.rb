@@ -10,8 +10,11 @@ class Product < ActiveRecord::Base
   validates :price, presence: true, format: {with: VALID_PRICE_REGEX} # Regex for US dollar format
   validates :location, presence: true # Formatting may be needed in the future
   validates :is_sold?, presence: true
-  validates :user_id, presence: true, :allow_nil => true # Populates when is_sold? is true
-  validates :seller_id, presence: true
+  validates :user_email, presence: true
+
+  def set_user_email(email)
+    self.user_email = email
+  end
 
   # Searches database for specified product name, can return multiple products
   def self.search_by_name(search)

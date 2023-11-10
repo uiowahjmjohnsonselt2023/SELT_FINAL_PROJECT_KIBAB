@@ -8,7 +8,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string :price
       t.string :location
       t.boolean :is_sold?
-      t.references :user, foreign_key: true
+      t.string :user_email
     end
   end
 end

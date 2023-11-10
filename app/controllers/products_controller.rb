@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_current_user, only: [:new, :update, :destroy, :edit]
 
   def product_params
-    params.require(:product).permit(:name,:category,:description,:price,:location,:is_sold?,:user_id,:seller_id)
+    params.require(:product).permit(:name,:category,:description,:price,:location,:is_sold?)
   end
   def show
     id = params[:id]
@@ -14,11 +14,17 @@ class ProductsController < ApplicationController
   end
 
   def new
-    # default: render 'new' template
   end
 
   def create
-    redirect_to products_path
+    @product = Product.create(product_params)
+    @product = Product.set_user_email(@current_user.email)
+    if @user.save
+      flash[:notice] = "Product created successfully!"
+      redirect_to products_path
+    else
+      render 'new'
+    end
   end
 
   def edit
