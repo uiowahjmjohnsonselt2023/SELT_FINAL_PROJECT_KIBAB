@@ -26,6 +26,8 @@ class UsersController < ApplicationController
       flash[:notice] = "Sign up successful! Welcome to KIBAB"
       redirect_to users_path
     else
+      errors = @user.errors.full_messages
+      puts "Validation failed with errors: #{errors.join(', ')}"
       render 'new'
     end
 

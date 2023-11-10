@@ -23,6 +23,9 @@ class ProductsController < ApplicationController
       flash[:notice] = "Product created successfully!"
       redirect_to products_path
     else
+      errors = @product.errors.full_messages
+      puts "Validation failed with errors: #{errors.join(', ')}"
+      # TODO - add warning for invalid price value - Brandon
       render 'new'
     end
   end
@@ -33,6 +36,8 @@ class ProductsController < ApplicationController
 
   def update
     # update product
+    # @product.is_sold? = true
+    # @product.update
   end
 
   def destroy

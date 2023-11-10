@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20231110004906) do
     t.string  "description"
     t.string  "price"
     t.string  "location"
-    t.boolean "is_sold?"
+    t.boolean "is_sold?",    default: false
     t.string  "user_email"
   end
 

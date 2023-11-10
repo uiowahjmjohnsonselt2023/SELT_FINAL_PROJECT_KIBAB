@@ -9,11 +9,14 @@ class Product < ActiveRecord::Base
   VALID_PRICE_REGEX = /\$\d+()|(.\d\d)/
   validates :price, presence: true, format: {with: VALID_PRICE_REGEX} # Regex for US dollar format
   validates :location, presence: true # Formatting may be needed in the future
-  validates :is_sold?, presence: true, default: false
   validates :user_email, presence: true
 
   def set_user_email(email)
     self.user_email = email
+  end
+
+  def set_product_as_sold
+    self.is_sold? = true
   end
 
   # Searches database for specified product name, can return multiple products
