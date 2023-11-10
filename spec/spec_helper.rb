@@ -34,13 +34,13 @@ RSpec.configure do |config|
       app/assets
       app/helpers
       app/mailers
-      app/views
       bin
       config
       coverage
       db
       lib
       log
+      features/support
       public
       spring
       vendor
