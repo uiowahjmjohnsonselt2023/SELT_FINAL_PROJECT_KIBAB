@@ -2,7 +2,7 @@
 Given /the following products exist:/ do |products_table|
   products_table.hashes.each do |product|
     Products.create(
-      user_id: product[:user_id],
+      user_email: product[:user_email],
       name: product[:name],
       category: product[:category],
       description: product[:description],
