@@ -7,6 +7,34 @@
 require 'cucumber/rails'
 require 'capybara/rails'
 
+require 'simplecov'
+SimpleCov.start do
+add_filter %w[
+      app/assets
+      app/helpers
+      app/mailers
+      app/views
+      bin
+      config
+      coverage
+      db
+      lib
+      log
+      public
+      spring
+      vendor
+      tmp
+      test
+      .gitignore
+      config.ru
+      Gemfile
+      Gemfile.lock
+      GRADING.json
+      Rakefile
+      README.rdoc
+  ]
+end
+
 
 # To avoid confusion on missed migrations - use Rails 4 checker to ensure
 # all migrations applied
