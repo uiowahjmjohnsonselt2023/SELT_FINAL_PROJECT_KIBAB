@@ -1,9 +1,9 @@
 Given /the following users exist/ do |users_table|
   users_table.hashes.each do |user|
     User.create(
-      session_token: user[:session_token],
       email: user[:email],
-      password_digest: user[:password_digest],
+      password: user[:password],
+      password_confirmation: user[:password_confirmation],
       first_name: user[:first_name],
       last_name: user[:last_name],
       address: user[:address]
@@ -15,10 +15,14 @@ Then(/(.*) person should exist/) do |n_users|
 end
 
 When(/^I am logged in as: "(.*)"$/) do |email|
-  #put login stuff for email here
+  @user = User.find_by_email(email)
+  expect(@user.valid?).to be true
+  expect(@user.email).to eq(email)
 end
+
 When(/^I am not logged in as: "(.*)"$/) do |email|
-  #put login stuff for email here
+  @user = User.find_by_email(email)
+  expect(@user).to be_nil
 end
 
 Then(/^The following data shall be displayed: (.*)$/) do |user_info|
