@@ -72,14 +72,14 @@ body {
     font-weight: bold;
 }
 
-.return_to_home_button {
+.link_to_button {
     text-decoration: none;
     padding-top: 25px;
     font-size: 20px;
     color: #333
 }
 
-.return_to_home_button a {
+.link_to_button a {
     text-decoration: none;
     color: #333;
     font-weight: bold;
@@ -119,4 +119,8 @@ button {
     text-decoration: none;
     color: #333;
     font-weight: bold;
+}
+
+table#products thead {
+    text-align: center;
 }
