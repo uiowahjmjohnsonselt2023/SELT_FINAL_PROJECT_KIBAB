@@ -1,7 +1,7 @@
 
 Given /the following products exist:/ do |products_table|
   products_table.hashes.each do |product|
-    Products.create(
+    Product.create(
       user_email: product[:user_email],
       name: product[:name],
       category: product[:category],
