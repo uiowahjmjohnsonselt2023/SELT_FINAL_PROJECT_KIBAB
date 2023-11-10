@@ -20,8 +20,7 @@ describe ProductsController do
   describe 'searching database' do
     it 'should call the model method that searches database by category'do
       fake_results = [double('product1'), double('product2')]
-      expect(Product).to recieve(:search_by_category).with('Home')
-        and_return(fake_results)
+      expect(Product).to receive(:search_by_category).with('Home').and_return(fake_results)
       post :search_product, {:search_terms => 'Home'}
     end
 
@@ -33,15 +32,14 @@ describe ProductsController do
 
     it 'should make product search results available to that template' do
       fake_results = [double('product1'), double('product2')]
-      expect(Product).to recieve(:search_by_category).and_return(fake_results)
+      expect(Product).to receive(:search_by_category).and_return(fake_results)
       post :search_product, {:search_terms => 'Home'}
-      expect(assigns(:products)). to eq(fake_results)
+      expect(assigns(:products)).to eq(fake_results)
     end
 
     it 'should call the model method that searches database by name'do
       fake_results = [double('product1'), double('product2')]
-      expect(Product).to recieve(:search_by_name).with('Shower Curtain')
-      and_return(fake_results)
+      expect(Product).to receive(:search_by_name).with('Shower Curtain').and_return(fake_results)
       post :search_product, {:search_terms => 'Shower Curtain'}
     end
 
@@ -53,15 +51,14 @@ describe ProductsController do
 
     it 'should make product search results available to that template' do
       fake_results = [double('product1'), double('product2')]
-      expect(Product).to recieve(:search_by_name).and_return(fake_results)
+      expect(Product).to receive(:search_by_name).and_return(fake_results)
       post :search_product, {:search_terms => 'Shower Curtain'}
-      expect(assigns(:products)). to eq(fake_results)
+      expect(assigns(:products)).to eq(fake_results)
     end
 
     it 'should call the model method that searches database by description'do
       fake_results = [double('product1'), double('product2')]
-      expect(Product).to recieve(:search_by_description).with('New')
-      and_return(fake_results)
+      expect(Product).to receive(:search_by_description).with('New').and_return(fake_results)
       post :search_product, {:search_terms => 'New'}
     end
 
@@ -73,9 +70,9 @@ describe ProductsController do
 
     it 'should make product search results available to that template' do
       fake_results = [double('product1'), double('product2')]
-      expect(Product).to recieve(:search_by_description).and_return(fake_results)
+      expect(Product).to receive(:search_by_description).and_return(fake_results)
       post :search_product, {:search_terms => 'New'}
-      expect(assigns(:products)). to eq(fake_results)
+      expect(assigns(:products)).to eq(fake_results)
     end
 
   end
