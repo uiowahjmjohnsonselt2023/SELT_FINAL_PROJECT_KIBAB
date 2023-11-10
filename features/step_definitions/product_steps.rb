@@ -92,3 +92,36 @@ end
 When /^(?:|I )uncheck (?:the\s+)?"([^"]*)"(?:\s*checkbox)?$/ do |field|
   uncheck(field)
 end
+
+Then(/^I shouldnt see anything$/) do
+  expect(page).to have_content("No products match your search try something else")
+end
+
+Then(/^No categories have been selected$/) do
+  uncheck("categories[#{"Personal Care"}]")
+  uncheck("categories[#{"Home"}]")
+  uncheck("categories[#{"Office"}]")
+  uncheck("categories[#{"Entertainment"}]")
+  uncheck("categories[#{"Other"}]")
+  uncheck("categories[#{"Clothing"}]")
+end
+Then(/^No descriptions have been selected$/) do
+  uncheck("descriptions[#{"Well Worn"}]")
+  uncheck("descriptions[#{"Used"}]")
+  uncheck("descriptions[#{"Line New"}]")
+  uncheck("descriptions[#{"New"}]")
+end
+
+And(/^I should see "(.*)" with user_id (\d+) before "(.*)" with user_id (\d+)$/) do |e1, e2, e3, e4|
+  product1 = Product.find_by(user_id: e2, name: e1)
+  product2 = Product.find_by(user_id: e4, product_name: e3)
+  expect(/.*#{product1}.*#{product2}/m).to match page.body
+end
+
+Then(/^I the page should say: "(.*)"$/) do |page_string|
+  expect(page).to have_content(page_string)
+end
+
+And(/^"(.*)" is in the search bar$/) do |search_param|
+  fill_in 'search_bar_id', with: search_param
+end
