@@ -29,6 +29,11 @@ class Product < ActiveRecord::Base
     ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'].include?(self.category)
   end
 
+  def valid_address?
+    # TODO - implement proper address validation
+    false
+  end
+
   # Searches database for specified product name, can return multiple products
   def self.search_by_name(search)
     if search.present?

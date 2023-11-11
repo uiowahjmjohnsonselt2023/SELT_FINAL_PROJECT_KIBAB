@@ -104,27 +104,27 @@ describe Product do
     describe "Address is invalid" do
       it 'Address has no street label' do
         product = Product.create({:name => "John Doe", :category => "Office", :description => "New", :price => "13.50", :location => "123 WhoKnows, North Liberty, IA 52317", :user_email => "valid@email.com"})
-        expect(product.valid?).to be false
+        expect(product.valid_address?).to be false
       end
       it 'Address has no number' do
         product = Product.create({:name => "John Doe", :category => "Office", :description => "New", :price => "13.50", :location => "WhoKnows Way, North Liberty, IA 52317", :user_email => "valid@email.com"})
-        expect(product.valid?).to be false
+        expect(product.valid_address?).to be false
       end
       it 'Address has no city' do
         product = Product.create({:name => "John Doe", :category => "Office", :description => "New", :price => "13.50", :location => "123 WhoKnows Way, IA 52317", :user_email => "valid@email.com"})
-        expect(product.valid?).to be false
+        expect(product.valid_address?).to be false
       end
       it 'Address has no state' do
         product = Product.create({:name => "John Doe", :category => "Office", :description => "New", :price => "13.50", :location => "123 WhoKnows Way, North Liberty, 52317", :user_email => "valid@email.com"})
-        expect(product.valid?).to be false
+        expect(product.valid_address?).to be false
       end
       it 'Address has no postal code' do
         product = Product.create({:name => "John Doe", :category => "Office", :description => "New", :price => "13.50", :location => "123 WhoKnows Way, North Liberty, IA", :user_email => "valid@email.com"})
-        expect(product.valid?).to be false
+        expect(product.valid_address?).to be false
       end
       it 'Address isnt valid' do
         product = Product.create({:name => "John Doe", :category => "Office", :description => "New", :price => "13.50", :location => "invalid address", :user_email => "valid@email.com"})
-        expect(product.valid?).to be false
+        expect(product.valid_address?).to be false
       end
     end
   end
