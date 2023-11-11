@@ -29,7 +29,14 @@ Feature: display products when search
     When I am on the Kibab home page
     And "HW 6 in teams" is in the search bar
     And I press "Search"
-    Then I shouldnt see anything
+    Then I should see all the products
+    #Then I shouldnt see anything
+
+  Scenario: looking up nothing
+    When I am on the Kibab home page
+    And "" is in the search bar
+    And I press "Search"
+    Then I should see all the products
 
   Scenario: looking up product with same name
     When I am on the Kibab home page

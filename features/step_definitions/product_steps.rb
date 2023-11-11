@@ -46,7 +46,7 @@ end
 
 Then /I should see all the products/ do
   Product.all.each do |product|
-    expect(page).to have_content(product.title)
+    expect(page).to have_content(product.name)
   end
 end
 
