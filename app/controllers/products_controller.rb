@@ -13,6 +13,9 @@ class ProductsController < ApplicationController
   def index
     if params[:search]
       @products = Product.where('name LIKE ?', "%#{params[:search]}%").where(is_sold?: false)
+      if @products.blank?
+        flash[:notice] = "No products match your search try something else"
+      end
     else
       @products = Product.where(is_sold?: false)
     end
