@@ -16,6 +16,15 @@ class Product < ActiveRecord::Base
     self.user_email = email
   end
 
+  def transaction()
+    price = self.price.to_i
+    if price < 10
+      commission_price = price - (0.1 * price)
+    else
+      commission_price = price - (0.15 * price)
+    end
+    self.price = commission_price.to_s
+  end
   def valid_price?
     price_regex = /\A\d+\.\d{2}\z/
     self.price.match?(price_regex)

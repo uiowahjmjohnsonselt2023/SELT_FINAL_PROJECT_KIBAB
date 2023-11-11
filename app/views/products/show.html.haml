@@ -5,7 +5,12 @@
 %h4 Location
 %p #{@current_product.location}
 %h4 Price
-%p #{@current_product.price}
+%p $#{@current_product.price}
+%h4 Is Available?
+%P #{@current_product.is_sold?}
 
-.return_to_home_button
+.link_to_button
+  = link_to 'Buy Item', transaction_path_url
+
+.link_to_button
   = link_to 'Return to Home', products_path
