@@ -50,10 +50,22 @@ class ProductsController < ApplicationController
 
   def destroy
     # destroy product
+    @current_product = Product.find_by_product_id(params[:id])
+    @current_product.destroy!
   end
 
   def about
     # edit later
+  end
+
+  def transaction
+    @current_product = Product.find_by_product_id(params[:id])
+    @current_product.save
+    Product.update(@current_product.product_id, :is_sold? => true)
+    @current_product.transaction
+    @current_product.save
+    flash[:notice] = "#{@current_product.name} was sold."
+    redirect_to products_path
   end
 
 end

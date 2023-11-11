@@ -15,4 +15,50 @@ class Product < ActiveRecord::Base
   def set_user_email(email)
     self.user_email = email
   end
+
+  def transaction()
+    price = self.price.to_i
+    if price < 10
+      commission_price = price - (0.1 * price)
+    else
+      commission_price = price - (0.15 * price)
+    end
+    self.price = commission_price.to_s
+  end
+  def valid_price?
+    price_regex = /\A\d+\.\d{2}\z/
+    self.price.match?(price_regex)
+  end
+
+  def valid_description?
+    ['Well Worn', 'Used', 'Like New', 'New'].include?(self.description)
+  end
+
+  def valid_category?
+    ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'].include?(self.category)
+  end
+
+  def valid_address?
+    # TODO - implement proper address validation
+    false
+  end
+
+  # Searches database for specified product name, can return multiple products
+  def self.search_by_name(search)
+    if search.present?
+      @product = products.where("name=#{search}")
+    else
+      self
+    end
+  end
+
+  # Searches database for specifies product category, can return multiple products
+  def self.search_by_category(search)
+    if search.present?
+      @product = products.where("category=#{search}")
+    else
+      self
+    end
+  end
+
 end
