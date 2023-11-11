@@ -11,6 +11,8 @@ module NavigationHelpers
     when /^the (Kibab )?home\s?page$/ then '/products'
     when /^the (Kibab )?login\s?page$/ then '/login'
     when /^the products page$/ then '/products'
+    when /^the (Kibab )?about page$/ then '/about'
+    when /^the Create Account page?$/ then '/users/new'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
