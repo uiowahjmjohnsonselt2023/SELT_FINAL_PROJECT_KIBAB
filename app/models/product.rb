@@ -15,4 +15,36 @@ class Product < ActiveRecord::Base
   def set_user_email(email)
     self.user_email = email
   end
+
+  def valid_price?
+    price_regex = /\A\d+\.\d{2}\z/
+    self.price.match?(price_regex)
+  end
+
+  def valid_description?
+    ['Well Worn', 'Used', 'Like New', 'New'].include?(self.description)
+  end
+
+  def valid_category?
+    ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'].include?(self.category)
+  end
+
+  # Searches database for specified product name, can return multiple products
+  def self.search_by_name(search)
+    if search.present?
+      @product = products.where("name=#{search}")
+    else
+      self
+    end
+  end
+
+  # Searches database for specifies product category, can return multiple products
+  def self.search_by_category(search)
+    if search.present?
+      @product = products.where("category=#{search}")
+    else
+      self
+    end
+  end
+
 end
