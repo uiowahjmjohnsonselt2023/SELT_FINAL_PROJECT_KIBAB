@@ -19,7 +19,7 @@
           %a(href=login_path_url) Login
       -else
         .nav_item_2
-          %a(href="/users/#{@current_user[:id]}") #{@current_user.email}'s Profile
+          %a(href="/users/#{@current_user[:id]}") #{@current_user.first_name}'s Profile
         .nav_item_2
           %a(href=login_path_url) Logout
     #main
