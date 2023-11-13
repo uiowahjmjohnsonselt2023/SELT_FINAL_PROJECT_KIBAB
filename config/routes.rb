@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   match '/products/:id/transaction', to: 'products#transaction', via: :get, :as => 'transaction_path'
   match '/login',  to: 'sessions#new', via: :get, :as => 'login_path'
   match '/logout', to: 'sessions#destroy', via: :delete, :as => 'logout_path'
+  match '/history/purchase', to: 'users#purchase', via: :get, :as => 'purchase_history_path'
+  match '/history/seller', to: 'users#seller', via: :get, :as => 'seller_history_path'
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   # root :to => redirect('/')
