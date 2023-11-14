@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20231114214825) do
+ActiveRecord::Schema.define(version: 20231114023747) do
 
   create_table "products", primary_key: "product_id", force: :cascade do |t|
     t.string  "name"
@@ -21,11 +21,6 @@ ActiveRecord::Schema.define(version: 20231114214825) do
     t.string  "location"
     t.boolean "is_sold?",    default: false
     t.string  "user_email"
-  end
-
-  create_table "products_users", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "product_id"
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -39,15 +34,12 @@ ActiveRecord::Schema.define(version: 20231114214825) do
   add_index "purchases", ["product_id"], name: "index_purchases_on_product_id"
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id"
 
-  create_table "users", primary_key: "user_id", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "address"
-    t.string "session_token"
+  create_table "users", force: :cascade do |t|
     t.string "uid"
     t.string "provider"
+    t.string "email"
+    t.string "name"
+    t.string "session_token"
   end
 
   add_index "users", ["session_token"], name: "index_users_on_session_token"
