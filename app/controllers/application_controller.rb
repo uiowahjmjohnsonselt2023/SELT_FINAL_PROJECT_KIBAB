@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user?(id)
-    @current_user.user_id.to_s == id
+    @current_user.id.to_s == id
   end
 end

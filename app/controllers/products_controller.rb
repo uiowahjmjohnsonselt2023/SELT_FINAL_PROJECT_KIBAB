@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_current_user, only: [:new, :create, :update, :destroy, :edit, :transaction]
+  before_filter :set_current_user
 
   def product_params
     params.require(:product).permit(:name,:category,:description,:price,:location,:is_sold?)
