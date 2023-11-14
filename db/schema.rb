@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 20231114023747) do
     t.string  "user_email"
   end
 
+  create_table "products_users", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "product_id"
+  end
+
   create_table "purchases", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "product_id"
