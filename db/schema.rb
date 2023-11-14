@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20231110004906) do
+ActiveRecord::Schema.define(version: 20231114023747) do
 
   create_table "products", primary_key: "product_id", force: :cascade do |t|
     t.string  "name"
@@ -23,10 +23,16 @@ ActiveRecord::Schema.define(version: 20231110004906) do
     t.string  "user_email"
   end
 
-  create_table "products_users", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "product_id"
+  create_table "purchases", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.datetime "purchase_timestamp"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
+
+  add_index "purchases", ["product_id"], name: "index_purchases_on_product_id"
+  add_index "purchases", ["user_id"], name: "index_purchases_on_user_id"
 
   create_table "users", primary_key: "user_id", force: :cascade do |t|
     t.string "email"
