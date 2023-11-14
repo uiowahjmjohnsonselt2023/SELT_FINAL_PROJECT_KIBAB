@@ -19,4 +19,13 @@ class User < ActiveRecord::Base
   def create_session_token
     self.session_token = SecureRandom.urlsafe_base64
   end
+
+  def self.create_with_omniauth(auth)
+    create! do |user|
+      user.uid = auth['uid']
+      user.provider = auth['provider']
+      user.email = auth['info']['email']
+      user.name = auth['info']['name']
+    end
+  end
 end

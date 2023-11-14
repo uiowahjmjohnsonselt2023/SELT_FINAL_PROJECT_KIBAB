@@ -51,9 +51,9 @@ purchases = [
   {:user_id => 4, :product_id => 15, :purchase_timestamp => get_random_timestamp},
 ]
 
-users.each do |user|
-  User.create!(user)
-end
+# users.each do |user|
+#   User.create!(user)
+# end
 
 products.each do |product|
    Product.create!([product])

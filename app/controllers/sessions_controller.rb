@@ -7,16 +7,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:session][:email])
-    if user && user.authenticate(params[:session][:password])
-      session[:session_token]= user.session_token
-      @current_user = user
-      flash[:notice] = "Log in successful!"
-      redirect_to user
-    else
-      flash.now[:warning] = 'Invalid email/password combination'
-      render 'new'
-    end
+    auth = request.env['omniauth']
+    user = User.find_by_provider_and_uid(auth['provider'], auth['uid']) || User.create_with_omniauth(auth)
+    session[:session_token] = user.session_token
+    redirect_to products_path
   end
 
   def destroy
@@ -25,4 +19,16 @@ class SessionsController < ApplicationController
     flash[:notice]= 'You have logged out'
     redirect_to products_path
   end
+
+  # def omniauth
+  #   auth = request.env['omniauth.auth']
+  #   user = User.find_or_create_by(:uid => auth['uid'], :provider => auth['provider']) do |u|
+  #     u.email = auth['info']['email']
+  #     u.password = SecureRandom.hex(10)
+  #   end
+  #   if user.valid?
+  #     session[:session_token]
+  #   end
+  # end
+
 end
