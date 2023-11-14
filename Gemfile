@@ -31,6 +31,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use OmniAuth for Third-Party Authentication
 gem 'omniauth-google-oauth2'
 
+# protects against CSRF attacks
+gem 'omniauth-rails_csrf_protection'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

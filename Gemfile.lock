@@ -182,6 +182,9 @@ GEM
     omniauth-oauth2 (1.8.0)
       oauth2 (>= 1.4, < 3)
       omniauth (~> 2.0)
+    omniauth-rails_csrf_protection (1.0.1)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     pg (0.21.0)
     protobuf-cucumber (3.10.8)
       activesupport (>= 3.2)
@@ -313,6 +316,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   omniauth-google-oauth2
+  omniauth-rails_csrf_protection
   pg (~> 0.2)
   rails (= 4.2.11)
   rspec-rails
