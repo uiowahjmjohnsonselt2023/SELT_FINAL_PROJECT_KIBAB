@@ -124,3 +124,14 @@ button {
 table#products thead {
     text-align: center;
 }
+
+.table-style {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-style th, .table-style td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}

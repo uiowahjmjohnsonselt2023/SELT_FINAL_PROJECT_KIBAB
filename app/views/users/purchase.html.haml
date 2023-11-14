@@ -1,1 +1,24 @@
-%h2 Purchase History
+.welcome_statement
+  %h1 Your Purchases
+
+%table#products.table-style
+  - if @user_purchases.empty?
+    %tr
+      %th You have no recorded purchases
+  - else
+    %thead
+      %tr
+        %th Product Name
+        %th Category
+        %th Price
+        %th Date Purchased
+    %tbody
+      - @user_purchases.order(purchase_timestamp: :desc).each do |purchase|
+        %tr
+          %td= purchase.product.name
+          %td= purchase.product.category
+          %td= '$' + purchase.product.price
+          %td= purchase.purchase_timestamp
+
+.link_to_button
+  = link_to 'Return to Profile', "/users/#{@current_user[:id]}"

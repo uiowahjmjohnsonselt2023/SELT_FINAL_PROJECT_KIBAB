@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # User implementation should be credited to the slides titled "More About Sign Ups, Logins and Sessions"
   # presented in class during week of 11/6
 
-  before_action :set_current_user, only: [:show, :update, :destroy, :edit]
+  before_action :set_current_user, only: [:show, :update, :destroy, :edit, :purchase]
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :address,:password,:password_confirmation)
@@ -48,4 +48,7 @@ class UsersController < ApplicationController
     # destroy user
   end
 
+  def purchase
+    @user_purchases = Purchase.where(user_id: @current_user.id)
+  end
 end
