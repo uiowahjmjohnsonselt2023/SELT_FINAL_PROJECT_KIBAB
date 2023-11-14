@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_current_user, only: [:new, :create, :update, :destroy, :edit]
+  before_action :set_current_user, only: [:new, :create, :update, :destroy, :edit, :transaction]
 
   def product_params
     params.require(:product).permit(:name,:category,:description,:price,:location,:is_sold?)
@@ -64,6 +64,7 @@ class ProductsController < ApplicationController
     Product.update(@current_product.product_id, :is_sold? => true)
     @current_product.transaction
     @current_product.save
+    @current_user.products << @current_product
     flash[:notice] = "#{@current_product.name} was sold."
     redirect_to products_path
   end

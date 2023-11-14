@@ -12,8 +12,9 @@
         %th Price
         %th Date Purchased
     %tbody
-      %tr
-        %td= @current_user.products.size
-        %td= @current_user.products.size
-        %td= @current_user.products.size
-        %td= @current_user.products.size
+      - @current_user.products.each do |product|
+        %tr
+          %td= product.name
+          %td= product.category
+          %td= '$' + product.price
+          %td= "Add Timestamp"
