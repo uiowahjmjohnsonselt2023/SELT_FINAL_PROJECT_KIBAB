@@ -1,7 +1,7 @@
 %h1 Your Purchases
 
 %table#products
-  - if @current_user.products.size == 0
+  - if @user_purchases.empty?
     %tr
       %th You have no recorded purchases
   - else

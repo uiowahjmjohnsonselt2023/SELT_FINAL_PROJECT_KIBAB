@@ -33,3 +33,9 @@ products.each do |product|
    Product.create!([product])
 end
 
+# Generate sample purchase - will add more later
+Purchase.create(
+  user_id: 3,
+  product_id: 1,
+  purchase_timestamp: Time.at(rand * (Time.now - 100.days).to_i)
+)

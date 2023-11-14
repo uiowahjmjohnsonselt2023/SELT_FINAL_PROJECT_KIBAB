@@ -65,8 +65,6 @@ class ProductsController < ApplicationController
     Product.update(@current_product.product_id, :is_sold? => true)
     @current_product.transaction
     @current_product.save
-    # add this product to the current user
-    @current_user.products << @current_product
     # add to the purchase table with the time which the product was bought
     @purchase = Purchase.create(user: @current_user, product: @current_product, purchase_timestamp: Time.now)
 
