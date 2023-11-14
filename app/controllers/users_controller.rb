@@ -49,6 +49,6 @@ class UsersController < ApplicationController
   end
 
   def purchase
-
+    @user_purchases = Purchase.where(user_id: @current_user.id)
   end
 end

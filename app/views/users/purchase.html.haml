@@ -12,9 +12,9 @@
         %th Price
         %th Date Purchased
     %tbody
-      - @current_user.products.each do |product|
+      - @user_purchases.each do |purchase|
         %tr
-          %td= product.name
-          %td= product.category
-          %td= '$' + product.price
-          %td= "Add Timestamp"
+          %td= purchase.product.name
+          %td= purchase.product.category
+          %td= '$' + purchase.product.price
+          %td= purchase.purchase_timestamp
