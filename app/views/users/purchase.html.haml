@@ -1,9 +1,19 @@
 %h1 Your Purchases
 
 %table#products
-  %thead
+  - if @current_user.products.size == 0
     %tr
-      %th Product Name
-      %th Category
-      %th Price
-      %th Date Purchased
+      %th You have no recorded purchases
+  - else
+    %thead
+      %tr
+        %th Product Name
+        %th Category
+        %th Price
+        %th Date Purchased
+    %tbody
+      %tr
+        %td= @current_user.products.size
+        %td= @current_user.products.size
+        %td= @current_user.products.size
+        %td= @current_user.products.size
