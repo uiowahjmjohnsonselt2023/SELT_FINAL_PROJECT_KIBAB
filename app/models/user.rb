@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
   # User implementation should be credited to the slides titled Slides11.ppx presented in class
-  # during week of 11/6
+  # and "Single Sign-On and Third Party Authentication"
+  # presented in class during week of 11/6
+
+  ## Additional documentation
+  # Additional tutorial for implementation: https://dev.to/anne46/google-omniauth-in-a-rails-app-36ka
+  # Additional implentation strategies: https://github.com/zquestz/omniauth-google-oauth2
 
   before_save {|user| user.email=user.email.downcase}
   before_save :create_session_token

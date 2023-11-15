@@ -2,6 +2,13 @@ class SessionsController < ApplicationController
   # User implementation should be credited to the slides titled "More About Sign Ups, Logins and Sessions"
   # presented in class during week of 11/6
 
+  # User implementation should be credited to the slides titled "Single Sign-On and Third Party Authentication"
+  # presented in class during week of 11/6
+
+  ## Additional documentation
+  # Additional tutorial for implementation: https://dev.to/anne46/google-omniauth-in-a-rails-app-36ka
+  # Additional implentation strategies: https://github.com/zquestz/omniauth-google-oauth2
+
   skip_before_filter :set_current_user
   def new
   end
@@ -19,16 +26,5 @@ class SessionsController < ApplicationController
     flash[:notice]= 'You have logged out'
     redirect_to products_path
   end
-
-  # def omniauth
-  #   auth = request.env['omniauth.auth']
-  #   user = User.find_or_create_by(:uid => auth['uid'], :provider => auth['provider']) do |u|
-  #     u.email = auth['info']['email']
-  #     u.password = SecureRandom.hex(10)
-  #   end
-  #   if user.valid?
-  #     session[:session_token]
-  #   end
-  # end
 
 end
