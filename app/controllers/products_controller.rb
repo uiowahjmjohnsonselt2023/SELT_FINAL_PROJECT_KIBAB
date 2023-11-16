@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_current_user, only: [:new, :create, :update, :destroy, :edit, :transaction]
+  before_filter :set_current_user
 
   def product_params
     params.require(:product).permit(:name,:category,:description,:price,:location,:is_sold?)
@@ -63,10 +63,10 @@ class ProductsController < ApplicationController
     @current_product = Product.find_by_product_id(params[:id])
     @current_product.save
     Product.update(@current_product.product_id, :is_sold? => true)
+    @purchase = Purchase.create(user: @current_user, product: @current_product, purchase_timestamp: Time.now)
+    # add to the purchase table with the time which the product was bought
     @current_product.transaction
     @current_product.save
-    # add to the purchase table with the time which the product was bought
-    @purchase = Purchase.create(user: @current_user, product: @current_product, purchase_timestamp: Time.now)
 
     flash[:notice] = "#{@current_product.name} was sold."
     redirect_to products_path

@@ -1,15 +1,18 @@
 %h1 Sign-in
+-#
+-# = form_tag sessions_path, :method => 'post' do
+-#
+-#   = label :session, :email, 'Email'
+-#   = text_field :session, 'email'
+-#
+-#   = label :session, :password, 'Password'
+-#   = password_field :session, 'password'
+-#
+-#   = label :session, ''
+-#   = submit_tag 'Sign in'
 
-= form_tag sessions_path, :method => 'post' do
-
-  = label :session, :email, 'Email'
-  = text_field :session, 'email'
-
-  = label :session, :password, 'Password'
-  = password_field :session, 'password'
-
-  = label :session, ''
-  = submit_tag 'Sign in'
+.create_account
+  = link_to "Sign in with Google", '/auth/google_oauth2', :method => 'post'
 
 .create_account
   = link_to 'Create Account', new_user_path

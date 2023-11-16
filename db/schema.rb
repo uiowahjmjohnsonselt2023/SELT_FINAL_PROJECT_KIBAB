@@ -34,12 +34,11 @@ ActiveRecord::Schema.define(version: 20231114023747) do
   add_index "purchases", ["product_id"], name: "index_purchases_on_product_id"
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id"
 
-  create_table "users", primary_key: "user_id", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
+    t.string "uid"
+    t.string "provider"
     t.string "email"
-    t.string "password_digest"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "address"
+    t.string "name"
     t.string "session_token"
   end
 

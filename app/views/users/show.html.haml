@@ -1,8 +1,8 @@
-%h2 #{@current_user.first_name} #{@current_user.last_name}'s Account
+%h2 #{@current_user.name}'s Account
 %h4 Email
 %p #{@current_user.email}
 %h4 Address
-%p #{@current_user.address}
+-# %p #{@current_user.address}
 
 
 = link_to 'Purchase History', purchase_history_path_url
