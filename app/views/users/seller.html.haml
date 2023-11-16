@@ -14,7 +14,11 @@
         %td= product.name
         %td= product.category
         %td= '$' + product.transaction
-        %td= "purchase_timestamp"
+        %td
+          - if product.is_sold?
+            = Purchase.where(:product_id => product.product_id).first.purchase_timestamp
+          - else
+            = "Item not yet sold"
 
 .link_to_button
   = link_to 'Return to Profile', "/users/#{@current_user[:id]}"
