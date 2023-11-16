@@ -14,14 +14,16 @@
 ActiveRecord::Schema.define(version: 20231114023747) do
 
   create_table "products", primary_key: "product_id", force: :cascade do |t|
+    t.integer "user_id"
     t.string  "name"
     t.string  "category"
     t.string  "description"
     t.string  "price"
     t.string  "location"
-    t.boolean "is_sold?",    default: false
-    t.string  "user_email"
+    t.boolean "is_sold",     default: false
   end
+
+  add_index "products", ["user_id"], name: "index_products_on_user_id"
 
   create_table "purchases", force: :cascade do |t|
     t.integer  "user_id"

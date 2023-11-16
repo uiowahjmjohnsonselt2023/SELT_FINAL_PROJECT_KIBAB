@@ -9,16 +9,11 @@
       %th Price
       %th Date Sold
   %tbody
-    - Product.where(:user_email => @current_user.email).each do |product|
+    - Product.where(:user_id => @current_user.id).each do |product|
       %tr
         %td= product.name
         %td= product.category
         %td= '$' + product.transaction
-        %td
-          - if product.is_sold?
-            = Purchase.where(:product_id => product.product_id).first.purchase_timestamp
-          - else
-            = "Item not yet sold"
 
 .link_to_button
   = link_to 'Return to Profile', "/users/#{@current_user[:id]}"

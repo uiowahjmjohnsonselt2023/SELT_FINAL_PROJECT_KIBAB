@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  has_many :product
+
   # User implementation should be credited to the slides titled Slides11.ppx presented in class
   # and "Single Sign-On and Third Party Authentication"
   # presented in class during week of 11/6
