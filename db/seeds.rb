@@ -30,8 +30,8 @@ products = [
   {:user_id => 3, :name => "Zip Up Hoodie", :category => "Clothing", :description => "Well Worn", :price => "23.32", :location => "Seattle Washington"},
   {:user_id => 3, :name => "TV", :category => "Entertainment", :description => "Like New", :price => "142.24", :location => "Iowa City Iowa"},
   # items that have already been bought
-  {:user_id => 3, :name => "Night Stand", :category => "Home", :description => "New", :price => "142.24", :location => "Iowa City Iowa", :is_sold => true},
-  {:user_id => 3, :name => "Bowl", :category => "Home", :description => "Like New", :price => "8.40", :location => "Iowa City Iowa", :is_sold => true},
+  {:user_id => 1, :name => "Night Stand", :category => "Home", :description => "New", :price => "142.24", :location => "Iowa City Iowa", :is_sold => true},
+  {:user_id => 1, :name => "Bowl", :category => "Home", :description => "Like New", :price => "8.40", :location => "Iowa City Iowa", :is_sold => true},
   {:user_id => 3, :name => "Scissors", :category => "Office", :description => "New", :price => "5.24", :location => "Iowa City Iowa", :is_sold => true},
   {:user_id => 3, :name => "Dice", :category => "Entertainment", :description => "Like New", :price => "2.00", :location => "Iowa City Iowa", :is_sold => true},
   {:user_id => 3, :name => "Cup", :category => "Home", :description => "Used", :price => "3.99", :location => "Iowa City Iowa", :is_sold => true},
