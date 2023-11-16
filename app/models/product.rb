@@ -15,7 +15,7 @@ class Product < ActiveRecord::Base
     self.user_email = email
   end
 
-  def transaction()
+  def transaction
     price = self.price.to_i
     if price < 10
       commission_price = price - (0.1 * price)

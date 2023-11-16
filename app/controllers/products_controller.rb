@@ -65,7 +65,6 @@ class ProductsController < ApplicationController
     Product.update(@current_product.product_id, :is_sold? => true)
     @purchase = Purchase.create(user: @current_user, product: @current_product, purchase_timestamp: Time.now)
     # add to the purchase table with the time which the product was bought
-    @current_product.transaction
     @current_product.save
 
     flash[:notice] = "#{@current_product.name} was sold."
