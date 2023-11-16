@@ -34,6 +34,9 @@ gem 'omniauth-google-oauth2'
 # protects against CSRF attacks
 gem 'omniauth-rails_csrf_protection'
 
+# used for image upload
+gem 'carrierwave'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

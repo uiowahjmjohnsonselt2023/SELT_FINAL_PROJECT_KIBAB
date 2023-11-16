@@ -3,6 +3,7 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products, id: false do |t|
       t.primary_key :product_id
       t.string :name
+      t.string :image
       t.string :category
       t.string :description
       t.string :price

@@ -1,10 +1,13 @@
 %h2 New Product
 
 .new_product_form
-  = form_tag products_path, :method => 'post' do
+  = form_tag products_path, :method => 'post', multipart: true do
 
     = label :product, :name, 'Product Name'
     = text_field :product, 'name'
+
+    = label :product, :image, 'Product Image'
+    = file_field :product, :image
 
     = label :product, :category, 'Product Category'
     = select :product, :category, ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other']

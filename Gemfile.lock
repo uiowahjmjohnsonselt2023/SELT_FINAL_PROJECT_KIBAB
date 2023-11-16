@@ -53,6 +53,11 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    carrierwave (1.3.4)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
+      ssrf_filter (~> 1.0, < 1.1.0)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -278,6 +283,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
+    ssrf_filter (1.0.8)
     sys-uname (1.2.3)
       ffi (~> 1.1)
     temple (0.10.3)
@@ -308,6 +314,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
   capybara
+  carrierwave
   coffee-rails (~> 4.1.0)
   cucumber-rails
   database_cleaner
