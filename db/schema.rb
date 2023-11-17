@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20231114023747) do
     t.datetime "updated_at",         null: false
   end
 
-  add_index "purchases", ["product_id"], name: "index_purchases_on_product_id"
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id"
 
   create_table "users", force: :cascade do |t|
