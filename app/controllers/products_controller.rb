@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_filter :set_current_user
 
   def product_params
-    params.require(:product).permit(:name,:category,:description,:price,:location,:is_sold?)
+    params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold?)
   end
   def show
     id = params[:id]

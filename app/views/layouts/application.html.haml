@@ -13,8 +13,8 @@
       .nav_item_2
         = link_to 'About', about_path_url
       -if !@current_user
-        .nav_item_2
-          = link_to 'Create Account', new_user_path
+        -# .nav_item_2
+        -#   = link_to 'Create Account', new_user_path
         .nav_item_2
           = link_to 'Login', login_path_url
       -else
