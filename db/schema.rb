@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20231114023747) do
 
-  create_table "products", primary_key: "product_id", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.string  "name"
     t.string  "image"
     t.string  "category"
