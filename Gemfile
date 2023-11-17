@@ -40,8 +40,6 @@ gem 'carrierwave'
 # used to upload images to cloud
 gem 'fog-google'
 
-gem 'pry-byebug', :platforms => :ruby
-
 # Use Unicorn as the app server
 # gem 'unicorn'
 
