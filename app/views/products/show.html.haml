@@ -1,8 +1,8 @@
 %h2 #{@current_product.name}
 %p #{@current_product.category}
 %h4 Product Image
--# - if @current_product.image.attached?
-= image_tag @current_product.image
+- if @current_product.image?
+  = image_tag @current_product.image
 %h4 Description
 %p #{@current_product.description}
 %h4 Location
