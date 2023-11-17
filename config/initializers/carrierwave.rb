@@ -1,4 +1,3 @@
-require 'base64'
 CarrierWave.configure do |config|
   config.fog_provider = 'fog/google'
   config.fog_credentials = {
