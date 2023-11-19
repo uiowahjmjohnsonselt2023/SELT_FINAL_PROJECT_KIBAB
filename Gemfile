@@ -34,7 +34,7 @@ gem 'omniauth-google-oauth2'
 # protects against CSRF attacks
 gem 'omniauth-rails_csrf_protection'
 
-# used for image upload
+# used for image upload and processing
 gem 'carrierwave'
 
 # used to upload images to cloud
