@@ -118,10 +118,20 @@ end
 #   expect(/.*#{product1}.*#{product2}/m).to match page.body
 # end
 
-Then(/^I the page should say: "(.*)"$/) do |page_string|
+Then(/^The page should say: "(.*)"$/) do |page_string|
   expect(page).to have_content(page_string)
 end
 
 And(/^"(.*)" is in the search bar$/) do |search_param|
   fill_in 'search', with: search_param
 end
+
+When(/^I add "([^"]*)" to my shopping cart$/) do |product|
+  within(".name", text: product) do
+    click_button "Add to Cart"
+  end
+end
+
+# And(/^I am not logged in$/) do
+#   pending
+# end
