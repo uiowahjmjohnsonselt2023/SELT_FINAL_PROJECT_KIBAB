@@ -45,22 +45,73 @@ class Product < ActiveRecord::Base
     false
   end
 
-  # Searches database for specified product name, can return multiple products
-  def self.search_by_name(search)
-    if search.present?
-      @product = products.where("name=#{search}")
+  def self.filtered_search(options = {})
+    products_list =[]
+    if options[:search].present?
+      products_list = Product.where('name LIKE ?', "%#{options[:search]}%").where(is_sold?: false)
+    elsif options[:categories].present?
+      products_list = by_categories(products_list, options[:categories])
+    elsif options[:descriptions].present?
+      products_list = by_descriptions(products_list, options[:descriptions])
+    end
+    products_list
+  end
+  # def self.search(products, param)
+  #   products.where('name LIKE ?', "%#{param}%").where(is_sold?: false)
+  # end
+
+  def self.by_categories(products, categories)
+    if categories.length >= 2
+      categories.each do |separate_categories|
+        products.where(category: separate_categories)
+      end
     else
-      self
+      products.where(category: categories)
     end
   end
 
-  # Searches database for specifies product category, can return multiple products
-  def self.search_by_category(search)
-    if search.present?
-      @product = products.where("category=#{search}")
+  def self.by_descriptions(products, descriptions)
+    if descriptions.length >= 2
+      descriptions.each do |separate_descriptions|
+        products.where(description: separate_descriptions)
+      end
     else
-      self
+      products.where(description: descriptions)
     end
   end
+  # Searches database for specified product name, can return multiple products
+  #def self.search_by_name(search)
+    # if search.present?
+    #   @products = products.where('name LIKE ?', "%#{params[:search]}%").where(is_sold?: false)
+    # else
+    #   self
+    # end
+  #end
+
+  # Searches database for specifies product category, can return multiple products
+  #def self.search_by_category(search)
+    # if search.present?
+    #   search.split(', ').each do |categories|
+    #     @product = products.where("category=#{categories}")
+    #   end
+    # else
+    #   self
+    # end
+    # if search.present?
+    #   @product = products.where("category=#{search}")
+    # else
+    #   self
+    # end
+  #end
+
+  #def self.search_by_description(search)
+    # if search.present?
+    #   search.split(', ').each do |descriptions|
+    #     @product = products.where("description=#{descriptions}")
+    #   end
+    # else
+    #   self
+    # end
+  #end
 
 end

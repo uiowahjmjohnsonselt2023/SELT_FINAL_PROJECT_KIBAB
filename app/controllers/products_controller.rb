@@ -12,14 +12,19 @@ class ProductsController < ApplicationController
   end
 
   def index
-    if params[:search]
-      @products = Product.where('name LIKE ?', "%#{params[:search]}%").where(is_sold?: false)
-      if @products.blank?
-        flash[:notice] = "No products match your search try something else"
-      end
-    else
-      @products = Product.where(is_sold?: false)
-    end
+    @products = Product.filtered_search(filter_params)
+    # if params[:search].present?
+    #   @products = Product.where('name LIKE ?', "%#{params[:search]}%").where(is_sold?: false)
+    #   if @products.blank?
+    #     flash[:notice] = "No products match your search try something else"
+    #   end
+    # else
+    #   @products = Product.where(is_sold?: false)
+    # end
+
+  end
+  def filter_params
+    params.permit(:search, categories: [], descriptions: [])
   end
 
   def new

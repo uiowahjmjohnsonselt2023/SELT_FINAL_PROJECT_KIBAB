@@ -3,14 +3,21 @@
 .product_search_bar
   = form_tag products_path, :method => 'get' do
     = text_field_tag :search, params[:search], placeholder: 'Search Products'
+    = label_tag :categories, "Filter by Category"
+    = select_tag :categories, Product.distinct.pluck(:category), {}
+    = label_tag :descriptions, "Filter by Description"
+    = select_tag :descriptions, Product.distinct.pluck(:description), {}
     = submit_tag 'Search', :id => 'search_button'
+  -# = form_tag products_path, :method => 'get' do
+  -#   = text_field_tag :search, params[:search], placeholder: 'Search Products'
+  -#   = submit_tag 'Search', :id => 'search_button'
 
 %table#products.table-style
   %thead
     %tr
       %th Product Name
       %th Category
-      -# %th Description
+      %th Description
       %th Price
       %th More Info
   %tbody
@@ -18,6 +25,7 @@
       %tr
         %td= product.name
         %td= product.category
+        %td= product.description
         %td= '$' + product.price
         %td= link_to "More about #{product.name}", product_path(product.id)
 
