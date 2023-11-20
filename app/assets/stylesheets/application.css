@@ -135,3 +135,43 @@ table#products thead {
     padding: 8px;
     text-align: left;
 }
+
+.carousel {
+    width: 100vw;
+    height: 50vh;
+    position: relative
+}
+
+.carousel-slide {
+    position: relative;
+    inset: 0;
+}
+
+.carousel-button {
+    position: absolute;
+    z-index: 2;
+    background: none;
+    border: none;
+    font-size: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.carousel-button:hover,
+.carousel-button:focus {
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.carousel-button.prev {
+    left: 1rem;
+}
+
+.carousel-button.next {
+    right: 1rem;
+}

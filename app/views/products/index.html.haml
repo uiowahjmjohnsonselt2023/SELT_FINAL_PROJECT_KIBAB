@@ -1,3 +1,9 @@
+%html
+  %head
+    %title Index Page
+    -# = javascript_include_tag 'application'
+    -# = csrf_meta_tags
+
 .welcome_statement
   %h1 Shop KIBAB
 .product_search_bar
@@ -20,6 +26,18 @@
         %td= product.category
         %td= '$' + product.price
         %td= link_to "More about #{product.name}", product_path(product.id)
+
+.carousel
+  = button_tag '&#8592;'.html_safe, class: 'carousel-button prev', :onclick => "prevImg()"
+  = button_tag '&#8594;'.html_safe, class: 'carousel-button next', :onclick => "nextImg()"
+  .carousel-slides
+  %ul.pictures
+    - @products.each_with_index do |product,id|
+      - if id.eql?(0)
+        = image_tag product.image, :width => "600", id: "carousel-button-#{id}", class: "carousel-slide active"
+      - else
+        = image_tag product.image, :width => "600", id: "carousel-button-#{id}", class: "carousel-slide"
+
 
 .new_product_button
   = link_to 'Add New Product', new_product_path

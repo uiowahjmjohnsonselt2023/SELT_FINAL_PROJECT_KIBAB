@@ -64,13 +64,17 @@ class ProductsController < ApplicationController
     # find product from db and update is_sold? to true
     @current_product = Product.find_by_id(params[:id])
     @current_product.save
-    Product.update(@current_product.id, :is_sold? => true)
+    Product.update(@current_product.id, :is_sold => true)
     @purchase = Purchase.create(user: @current_user, product: @current_product, purchase_timestamp: Time.now)
     # add to the purchase table with the time which the product was bought
     @current_product.save
 
     flash[:notice] = "#{@current_product.name} was sold."
     redirect_to products_path
+  end
+
+  def flip(id)
+    product_num = Product.select(:is_sold => false)
   end
 
 end
