@@ -44,9 +44,9 @@ purchases = [
   {:user_id => 3, :product_id => 8, :purchase_timestamp => get_random_timestamp},
   {:user_id => 3, :product_id => 9, :purchase_timestamp => get_random_timestamp},
   {:user_id => 3, :product_id => 10, :purchase_timestamp => get_random_timestamp},
-  {:user_id => 3, :product_id => 11, :purchase_timestamp => get_random_timestamp},
-  {:user_id => 2, :product_id => 12, :purchase_timestamp => get_random_timestamp},
-  {:user_id => 2, :product_id => 13, :purchase_timestamp => get_random_timestamp},
+  {:user_id => 1, :product_id => 11, :purchase_timestamp => get_random_timestamp},
+  {:user_id => 1, :product_id => 12, :purchase_timestamp => get_random_timestamp},
+  {:user_id => 1, :product_id => 13, :purchase_timestamp => get_random_timestamp},
   {:user_id => 1, :product_id => 14, :purchase_timestamp => get_random_timestamp},
   {:user_id => 4, :product_id => 15, :purchase_timestamp => get_random_timestamp},
 ]
@@ -55,10 +55,10 @@ purchases = [
 #   User.create!(user)
 # end
 
-products.each do |product|
-   Product.create!([product])
-end
+# products.each do |product|
+#    Product.create!([product])
+# end
 
-purchases.each do |purchase|
-  Purchase.create(purchase)
-end
+# purchases.each do |purchase|
+#   Purchase.create(purchase)
+# end

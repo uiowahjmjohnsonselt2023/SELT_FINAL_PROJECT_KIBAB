@@ -20,8 +20,7 @@ ActiveRecord::Schema.define(version: 20231114023747) do
     t.string  "description"
     t.string  "price"
     t.string  "location"
-    t.boolean "is_sold?",    default: false
-    t.string  "user_email"
+    t.boolean "is_sold",     default: false
   end
 
   create_table "purchases", force: :cascade do |t|
