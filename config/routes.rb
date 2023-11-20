@@ -22,7 +22,11 @@ Rails.application.routes.draw do
   match '/history/seller', to: 'users#seller', via: :get, :as => 'seller_history_path'
   get '/auth/:provider/callback', to: 'sessions#create'
   post 'products/add_shopping_cart'
-  match '/product/add_shopping_cart', to: 'products#add_shopping_cart', via: :post, :as => "shopping_cart"
+  match '/products/add_shopping_cart', to: 'products#add_shopping_cart', via: :post, :as => 'shopping_cart'
+  match '/shopping_cart/index', to: 'shopping_cart#index', via: :get, :as => 'view_shopping_cart'
+  post 'shopping_cart/check_out'
+
+  resources :shopping_cart
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   # root :to => redirect('/')

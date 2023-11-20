@@ -1,0 +1,16 @@
+= form_tag :action => 'check_out', :id => 'user_shopping_cart' do
+  %table#products.table-style
+    %thead
+      %tr
+        %th Product Name
+        %th Category
+        %th Price
+        %th More Info
+    %tbody
+      - @current_shopping_cart_list.each do |item|
+        %tr
+          %td= item.product.name
+          %td= item.product.category
+          %td= '$' + item.product.price
+          %td= link_to "More about #{item.product.name}", product_path(item.product.id)
+  = submit_tag 'Check Out', :id => 'check_out_button'
