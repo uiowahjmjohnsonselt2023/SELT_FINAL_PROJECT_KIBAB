@@ -3,14 +3,11 @@
 .product_search_bar
   = form_tag products_path, :method => 'get' do
     = text_field_tag :search, params[:search], placeholder: 'Search Products'
-    = label_tag :categories, "Filter by Category"
-    = select_tag :categories, Product.distinct.pluck(:category), {}
-    = label_tag :descriptions, "Filter by Description"
-    = select_tag :descriptions, Product.distinct.pluck(:description), {}
+    = label :product, :categories, "Filter by Category"
+    = select :product, :categories, ['None','Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other']
+    = label  :product, :descriptions, "Filter by Description"
+    = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New']
     = submit_tag 'Search', :id => 'search_button'
-  -# = form_tag products_path, :method => 'get' do
-  -#   = text_field_tag :search, params[:search], placeholder: 'Search Products'
-  -#   = submit_tag 'Search', :id => 'search_button'
 
 %table#products.table-style
   %thead
