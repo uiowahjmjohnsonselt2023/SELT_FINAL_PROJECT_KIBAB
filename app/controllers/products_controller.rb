@@ -74,7 +74,11 @@ class ProductsController < ApplicationController
   end
 
   def sorting
-    # Add logic for sorting based on price, use case statements in case of future sorting needs
+    if params[:sort] && params[:direction]
+      case params[:sort]
+        # Insert sort by price logic
+      end
+    end
   end
 
 end
