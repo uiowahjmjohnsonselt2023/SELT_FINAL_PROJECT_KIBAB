@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
     end
     if @products.present? == false
       flash[:notice] = "No products match your search try something else"
-      @products = Product.where(is_sold?: false)
+      @products = Product.where(is_sold: false)
     end
   end
 
