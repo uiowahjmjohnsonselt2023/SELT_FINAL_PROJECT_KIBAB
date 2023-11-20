@@ -55,9 +55,9 @@ purchases = [
 #   User.create!(user)
 # end
 
-# products.each do |product|
-#    Product.create!([product])
-# end
+products.each do |product|
+   Product.create!([product])
+end
 
 # purchases.each do |purchase|
 #   Purchase.create(purchase)
