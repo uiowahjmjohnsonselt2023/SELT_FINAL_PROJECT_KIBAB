@@ -10,7 +10,7 @@
       %th Commission Price
       %th Date Sold
   %tbody
-    - Product.where(:user_id => @current_user.id, :is_sold => true).each do |product|
+    - Product.where(:id => @current_user.id, :is_sold => true).each do |product|
       %tr
         %td= product.name
         %td= product.category
@@ -26,7 +26,7 @@
       %th Sale Price
       %th Status
   %tbody
-    - Product.where(:user_id => @current_user.id, :is_sold => false).each do |product|
+    - Product.where(:id => @current_user.id, :is_sold => false).each do |product|
       %tr
         %td= product.name
         %td= product.category
