@@ -29,7 +29,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.create(product_params)
-    @product.set_user_email(@current_user.email)
     if @product.save
       flash[:notice] = "Product created successfully!"
       redirect_to products_path

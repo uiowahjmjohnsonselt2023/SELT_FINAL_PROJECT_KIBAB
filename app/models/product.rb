@@ -13,10 +13,6 @@ class Product < ActiveRecord::Base
   validates :price, presence: true, format: {with: VALID_PRICE_REGEX} # Regex for US dollar format
   validates :location, presence: true # Formatting may be needed in the future
 
-  def set_user_email(email)
-    self.user_email = email
-  end
-
   def transaction
     price = self.price.to_i
     if price < 10
