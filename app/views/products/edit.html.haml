@@ -1,0 +1,28 @@
+%h2 Edit Product
+
+.new_product_form
+  = form_tag product_path(@current_product), :method => :put, multipart: true do
+
+    = label :product, :name, 'Product Name'
+    = text_field :product, 'name', placeholder: @current_product.name
+
+    = label :product, :image, 'Product Image'
+    = file_field :product, :image
+
+    = label :product, :category, 'Product Category'
+    = select :product, :category, ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other']
+
+    = label :product, :description, 'Product Description'
+    = select :product, :description, ['Well Worn', 'Used', 'Like New', 'New']
+
+    = label :product, :price, 'Price'
+    = text_field :product, 'price', placeholder: @current_product.price
+
+    = label :product, :location, 'Location'
+    = text_field :product, 'location', placeholder: @current_product.location
+
+    %p Edit Product?
+    = submit_tag 'Confirm'
+
+.link_to_button
+  = link_to 'Return to Home', products_path

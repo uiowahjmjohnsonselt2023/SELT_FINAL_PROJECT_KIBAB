@@ -6,7 +6,6 @@ class ProductsController < ApplicationController
   end
   def show
     id = params[:id]
-    # @current_product = Product.find_by_product_id(id)
     @current_product = Product.find_by_id(id)
     # redirect_to 'about'
   end
@@ -39,13 +38,16 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    # render 'edit'
+    id = params[:id]
+    @current_product = Product.find_by_id(id)
   end
 
   def update
-    # update product
-    # @product.is_sold? = true
-    # @product.update
+    id = params[:id]
+    @product = Product.find_by_id(id)
+    @product.update_attributes!(product_params)
+    flash[:notice] = "Product was updated successfully."
+    redirect_to products_path
   end
 
   def destroy
