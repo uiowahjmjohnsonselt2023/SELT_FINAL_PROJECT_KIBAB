@@ -76,7 +76,10 @@ class ProductsController < ApplicationController
   def sorting
     if params[:sort] && params[:direction]
       case params[:sort]
-        # Insert sort by price logic
+      when 'price'
+        @products = @products.sort_by { |product| product.price.to_f }
+      else
+        @products = @products.order("#{params[:sort]} #{params[:direction]}")
       end
     end
   end
