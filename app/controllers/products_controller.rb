@@ -74,13 +74,19 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  # STILL NEED TO INTEGRATE WITH SEARCH PARAM
   def sorting
     if params[:sort] && params[:direction]
+      sort_direction = params[:direction] == 'asc' ? 'desc' : 'asc'
       case params[:sort]
       when 'price'
-        @products = @products.sort_by { |product| product.price.to_f }
+        if params[:direction] == 'asc'
+          @products = @products.sort_by { |product| product.price.to_f }
+        else
+          @products = @products.sort_by { |product| product.price.to_f }.reverse
+        end
       else
-        @products = @products.order("#{params[:sort]} #{params[:direction]}")
+        @products = @products.order("#{params[:sort]} #{sort_direction}")
       end
     end
   end
