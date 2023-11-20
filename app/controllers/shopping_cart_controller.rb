@@ -14,8 +14,11 @@ class ShoppingCartController < ApplicationController
     # add later
   end
 
-  def check_out
+  def checkout
+    @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
 
+
+    flash[:notice] = "Successfully made a purchase!"
   end
 
 end
