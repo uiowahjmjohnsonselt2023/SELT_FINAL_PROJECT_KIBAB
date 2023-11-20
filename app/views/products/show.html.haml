@@ -2,7 +2,7 @@
 %p #{@current_product.category}
 %h4 Product Image
 - if @current_product.image?
-  = image_tag @current_product.image
+  = image_tag @current_product.image, :width => "600"
 %h4 Description
 %p #{@current_product.description}
 %h4 Location
@@ -14,6 +14,9 @@
 
 .link_to_button
   = link_to 'Buy Item', transaction_path_url
+
+.link_to_button
+  = link_to 'Edit Item', edit_product_path(@current_product)
 
 .link_to_button
   = link_to 'Return to Home', products_path
