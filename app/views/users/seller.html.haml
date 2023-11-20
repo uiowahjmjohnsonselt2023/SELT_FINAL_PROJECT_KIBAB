@@ -1,9 +1,37 @@
-%h2 Items Sold
+.welcome_statement
+  %h1 Items up for sale
 
+%h2 Sold Items
 %table#products.table-style
   %thead
     %tr
       %th Product Name
       %th Category
-      %th Price
+      %th Commission Price
       %th Date Sold
+  %tbody
+    - Product.where(:user_id => @current_user.id, :is_sold => true).each do |product|
+      %tr
+        %td= product.name
+        %td= product.category
+        %td= '$' + product.transaction
+        %td= Purchase.where(:product_id => product.product_id).first.purchase_timestamp
+
+%h2 Items Not Sold Yet
+%table#products.table-style
+  %thead
+    %tr
+      %th Product Name
+      %th Category
+      %th Sale Price
+      %th Status
+  %tbody
+    - Product.where(:user_id => @current_user.id, :is_sold => false).each do |product|
+      %tr
+        %td= product.name
+        %td= product.category
+        %td= '$' + product.price
+        %td= "Up for sale."
+
+.link_to_button
+  = link_to 'Return to Profile', "/users/#{@current_user[:id]}"
