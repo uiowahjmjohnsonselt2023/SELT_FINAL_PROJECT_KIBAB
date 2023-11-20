@@ -60,4 +60,9 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def self.add_to_shopping_cart(user_id, product_id)
+    shopping_cart_item = {:user_id => user_id, :product_id => product_id}
+    ShoppingCart.create!(shopping_cart_item)
+  end
+
 end

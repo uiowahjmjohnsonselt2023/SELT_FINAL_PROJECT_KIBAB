@@ -73,4 +73,16 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  def add_shopping_cart
+    if params[:products].nil?
+      flash[:notice] = "No products were selected"
+      # redirect_to products_path and return
+    end
+    params[:products].keys.each do |id|
+      Product::add_to_shopping_cart(@current_user.id, id)
+    end
+    flash[:notice] = "Products were successfully added to your shopping cart."
+    redirect_to products_path
+  end
+
 end

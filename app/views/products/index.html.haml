@@ -5,21 +5,24 @@
     = text_field_tag :search, params[:search], placeholder: 'Search Products'
     = submit_tag 'Search', :id => 'search_button'
 
-%table#products.table-style
-  %thead
-    %tr
-      %th Product Name
-      %th Category
-      -# %th Description
-      %th Price
-      %th More Info
-  %tbody
-    - @products.each do |product|
+= form_tag :action => 'add_shopping_cart', :id => 'user_shopping_cart' do
+  %table#products.table-style
+    %thead
       %tr
-        %td= product.name
-        %td= product.category
-        %td= '$' + product.price
-        %td= link_to "More about #{product.name}", product_path(product.id)
+        %th Product Name
+        %th Category
+        -# %th Description
+        %th Price
+        %th More Info
+    %tbody
+      - @products.each do |product|
+        %tr
+          %td= product.name
+          %td= product.category
+          %td= '$' + product.price
+          %td= link_to "More about #{product.name}", product_path(product.id)
+          %td= check_box_tag "products[#{product.id}]", :id => "checkbox_#{product.id}"
+  = submit_tag 'Add Selected Items to Shopping Cart', :id => 'shopping_cart_button'
 
 .new_product_button
   = link_to 'Add New Product', new_product_path
