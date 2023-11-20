@@ -11,7 +11,7 @@
       %th Product Name
       %th Category
       -# %th Description
-      %th Price
+      %th= link_to 'Price', products_path(sort: 'price', direction: 'asc')
       %th More Info
   %tbody
     - @products.each do |product|
