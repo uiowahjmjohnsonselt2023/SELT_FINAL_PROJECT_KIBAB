@@ -73,4 +73,8 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  def sorting
+    # Add logic for sorting based on price, use case statements in case of future sorting needs
+  end
+
 end
