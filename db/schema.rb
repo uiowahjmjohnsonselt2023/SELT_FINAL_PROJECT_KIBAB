@@ -23,8 +23,6 @@ ActiveRecord::Schema.define(version: 20231114023747) do
     t.boolean "is_sold",     default: false
   end
 
-  add_index "products", ["user_id"], name: "index_products_on_user_id"
-
   create_table "purchases", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "product_id"
