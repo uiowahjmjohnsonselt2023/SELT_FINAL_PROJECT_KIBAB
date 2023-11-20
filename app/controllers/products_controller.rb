@@ -13,12 +13,12 @@ class ProductsController < ApplicationController
 
   def index
     if params[:search]
-      @products = Product.where('name LIKE ?', "%#{params[:search]}%").where(is_sold?: false)
+      @products = Product.where('name LIKE ?', "%#{params[:search]}%").where(is_sold: false)
       if @products.blank?
         flash[:notice] = "No products match your search try something else"
       end
     else
-      @products = Product.where(is_sold?: false)
+      @products = Product.where(is_sold: false)
     end
   end
 
@@ -27,7 +27,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.create(product_params)
-    @product.set_user_email(@current_user.email)
     if @product.save
       flash[:notice] = "Product created successfully!"
       redirect_to products_path
@@ -66,7 +65,6 @@ class ProductsController < ApplicationController
     Product.update(@current_product.id, :is_sold? => true)
     @purchase = Purchase.create(user: @current_user, product: @current_product, purchase_timestamp: Time.now)
     # add to the purchase table with the time which the product was bought
-    @current_product.transaction
     @current_product.save
 
     flash[:notice] = "#{@current_product.name} was sold."

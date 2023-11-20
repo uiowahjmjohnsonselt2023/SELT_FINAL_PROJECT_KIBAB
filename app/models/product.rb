@@ -2,7 +2,7 @@
 
 class Product < ActiveRecord::Base
 
-  mount_uploader :image, ImageUploader
+  belongs_to :user
 
   validates :name, presence: true, length: {maximum: 50}
   # validates :image, presence: true
@@ -12,20 +12,15 @@ class Product < ActiveRecord::Base
   VALID_PRICE_REGEX = /\d+()|(.\d\d)/
   validates :price, presence: true, format: {with: VALID_PRICE_REGEX} # Regex for US dollar format
   validates :location, presence: true # Formatting may be needed in the future
-  validates :user_email, presence: true
 
-  def set_user_email(email)
-    self.user_email = email
-  end
-
-  def transaction()
+  def transaction
     price = self.price.to_i
     if price < 10
       commission_price = price - (0.1 * price)
     else
       commission_price = price - (0.15 * price)
     end
-    self.price = commission_price.to_s
+    commission_price.to_s
   end
   def valid_price?
     price_regex = /\A\d+\.\d{2}\z/
