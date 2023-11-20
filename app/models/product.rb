@@ -41,22 +41,22 @@ class Product < ActiveRecord::Base
     false
   end
 
-  # Searches database for specified product name, can return multiple products
-  def self.search_by_name(search)
-    if search.present?
-      @product = products.where("name=#{search}")
-    else
-      self
+  def self.filtered_search(search,category,description)
+    if search.present? && category.present? && description.present? && category != 'None'  && description != 'None' &&  search != ''
+      products = Product.where('name LIKE ?', "%#{search}%").where(category: category).where(description: description)
+    elsif  search == '' && category.present? && description == 'None'
+      products = Product.where(category: category)
+    elsif search == '' && category== 'None' && description.present?
+      products = Product.where(description: description)
+    elsif search == '' && category.present? && description.present?
+      products = Product.where(description: description).where(category: category)
+    elsif search.present? && category== 'None' && description== 'None'
+      products = Product.where('name LIKE ?', "%#{search}%")
+    elsif search.present? && category== 'None' && description.present?
+      products = Product.where('name LIKE ?', "%#{search}%").where(description: description)
+    elsif search.present? && category.present? && description== 'None'
+      products = Product.where('name LIKE ?', "%#{search}%").where(category: category)
     end
+    products
   end
-
-  # Searches database for specifies product category, can return multiple products
-  def self.search_by_category(search)
-    if search.present?
-      @product = products.where("category=#{search}")
-    else
-      self
-    end
-  end
-
 end

@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_filter :set_current_user
 
   def product_params
-    params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold?)
+    params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold)
   end
   def show
     id = params[:id]
@@ -11,15 +11,17 @@ class ProductsController < ApplicationController
   end
 
   def index
-    if params[:search]
-      @products = Product.where('name LIKE ?', "%#{params[:search]}%").where(is_sold: false)
-      if @products.blank?
-        flash[:notice] = "No products match your search try something else"
-      end
-    else
+    if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:descriptions].present?
+      @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:descriptions])
+    elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:descriptions].present?
+      @products = Product.filtered_search('',params[:product][:categories], params[:product][:descriptions])
+    end
+    if @products.present? == false
+      flash[:notice] = "No products match your search try something else"
       @products = Product.where(is_sold: false)
     end
   end
+
 
   def new
   end
