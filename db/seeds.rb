@@ -21,24 +21,24 @@ users = [
   {:email => "jennamarbles@hotmail.com", :password => "password", :password_confirmation => "password", :first_name => "Jenna", :last_name => "Marbles", :address => "998 Marconi Court Spring Valley NY 10977"},
 ]
 
-products = [
-  {:user_id => 1, :name => "Bookshelf", :category => "Home", :description => "Like New", :price => "89.65", :location => "Iowa City Iowa"},
-  {:user_id => 1, :name => "Shower Curtain", :category => "Home", :description => "Used", :price => "15.49", :location => "Iowa City Iowa"},
-  {:user_id => 3, :name => "Face Wash", :category => "Personal Care", :description => "New", :price => "5.00", :location => "Denver Colorado"},
-  {:user_id => 3, :name => "Stapler", :category => "Office", :description => "New", :price => "7.12", :location => "Kansas City Missouri"},
-  {:user_id => 3, :name => "Makeup Brush", :category => "Personal Care", :description => "Like New", :price => "3.15", :location => "Iowa City Iowa"},
-  {:user_id => 3, :name => "Zip Up Hoodie", :category => "Clothing", :description => "Well Worn", :price => "23.32", :location => "Seattle Washington"},
-  {:user_id => 3, :name => "TV", :category => "Entertainment", :description => "Like New", :price => "142.24", :location => "Iowa City Iowa"},
-  # items that have already been bought
-  {:user_id => 1, :name => "Night Stand", :category => "Home", :description => "New", :price => "142.24", :location => "Iowa City Iowa", :is_sold => true},
-  {:user_id => 1, :name => "Bowl", :category => "Home", :description => "Like New", :price => "8.40", :location => "Iowa City Iowa", :is_sold => true},
-  {:user_id => 3, :name => "Scissors", :category => "Office", :description => "New", :price => "5.24", :location => "Iowa City Iowa", :is_sold => true},
-  {:user_id => 3, :name => "Dice", :category => "Entertainment", :description => "Like New", :price => "2.00", :location => "Iowa City Iowa", :is_sold => true},
-  {:user_id => 3, :name => "Cup", :category => "Home", :description => "Used", :price => "3.99", :location => "Iowa City Iowa", :is_sold => true},
-  {:user_id => 3, :name => "Charger", :category => "Home", :description => "Like New", :price => "8.99", :location => "Iowa City Iowa", :is_sold => true},
-  {:user_id => 3, :name => "Monitor", :category => "Office", :description => "Like New", :price => "120.50", :location => "Iowa City Iowa", :is_sold => true},
-  {:user_id => 3, :name => "Headphones", :category => "Office", :description => "Like New", :price => "50.00", :location => "Iowa City Iowa", :is_sold => true},
-]
+# products = [
+#   {:name => "Bookshelf", :category => "Home", :description => "Like New", :price => "89.65", :location => "Iowa City Iowa", :user_email => "johnjones@gmail.com"},
+#   {:name => "Shower Curtain", :category => "Home", :description => "Used", :price => "15.49", :location => "Iowa City Iowa", :user_email => "johnjones@gmail.com"},
+#   {:name => "Face Wash", :category => "Personal Care", :description => "New", :price => "5.00", :location => "Denver Colorado", :user_email => "johnjones@gmail.com"},
+#   {:name => "Stapler", :category => "Office", :description => "New", :price => "7.12", :location => "Kansas City Missouri", :user_email => "johnjones@gmail.com"},
+#   {:name => "Makeup Brush", :category => "Personal Care", :description => "Like New", :price => "3.15", :location => "Iowa City Iowa", :user_email => "johnjones@gmail.com"},
+#   {:name => "Zip Up Hoodie", :category => "Clothing", :description => "Well Worn", :price => "23.32", :location => "Seattle Washington", :user_email => "johnjones@gmail.com"},
+#   {:name => "TV", :category => "Entertainment", :description => "Like New", :price => "142.24", :location => "Iowa City Iowa", :user_email => "johnjones@gmail.com"},
+#   # items that have already been bought
+#   {:name => "Night Stand", :category => "Home", :description => "New", :price => "142.24", :location => "Iowa City Iowa", :is_sold? => true, :user_email => "johnjones@gmail.com"},
+#   {:name => "Bowl", :category => "Home", :description => "Like New", :price => "8.40", :location => "Iowa City Iowa", :is_sold? => true, :user_email => "johnjones@gmail.com"},
+#   {:name => "Scissors", :category => "Office", :description => "New", :price => "5.24", :location => "Iowa City Iowa", :is_sold? => true, :user_email => "johnjones@gmail.com"},
+#   {:name => "Dice", :category => "Entertainment", :description => "Like New", :price => "2.00", :location => "Iowa City Iowa", :is_sold? => true, :user_email => "johnjones@gmail.com"},
+#   {:name => "Cup", :category => "Home", :description => "Used", :price => "3.99", :location => "Iowa City Iowa", :is_sold? => true, :user_email => "johnjones@gmail.com"},
+#   {:name => "Charger", :category => "Home", :description => "Like New", :price => "8.99", :location => "Iowa City Iowa", :is_sold? => true, :user_email => "johnjones@gmail.com"},
+#   {:name => "Monitor", :category => "Office", :description => "Like New", :price => "120.50", :location => "Iowa City Iowa", :is_sold? => true, :user_email => "johnjones@gmail.com"},
+#   {:name => "Headphones", :category => "Office", :description => "Like New", :price => "50.00", :location => "Iowa City Iowa", :is_sold? => true, :user_email => "johnjones@gmail.com"},
+# ]
 
 purchases = [
   {:user_id => 3, :product_id => 8, :purchase_timestamp => get_random_timestamp},

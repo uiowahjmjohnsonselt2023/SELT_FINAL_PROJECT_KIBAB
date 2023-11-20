@@ -1,9 +1,9 @@
 class CreateProducts < ActiveRecord::Migration
   def change
-    create_table :products, id: false do |t|
-      t.primary_key :product_id
-      t.references :user, index: true, foreign_key: true
+    create_table :products do |t|
+      # t.primary_key :product_id
       t.string :name
+      t.string :image
       t.string :category
       t.string :description
       t.string :price

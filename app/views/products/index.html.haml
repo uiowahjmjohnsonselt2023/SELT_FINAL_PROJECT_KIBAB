@@ -19,7 +19,7 @@
         %td= product.name
         %td= product.category
         %td= '$' + product.price
-        %td= link_to "More about #{product.name}", product_path(product.product_id)
+        %td= link_to "More about #{product.name}", product_path(product.id)
 
 .new_product_button
   = link_to 'Add New Product', new_product_path

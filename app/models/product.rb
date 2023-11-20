@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
   belongs_to :user
 
   validates :name, presence: true, length: {maximum: 50}
+  # validates :image, presence: true
   validates :category, presence: true, length: {maximum: 50}
   validates :description, presence: true
   #TODO: Fix regex expression controlling price, add validation location, description, and categories
