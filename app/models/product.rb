@@ -68,4 +68,9 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def set_sold_true
+    self.is_sold = true
+    self.save
+  end
+
 end

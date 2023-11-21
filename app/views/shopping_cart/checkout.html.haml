@@ -1,5 +1,5 @@
 .new_product_form
-  = form_tag products_path, :method => 'get' do
+= form_tag confirm_purchase_path do
     %h2 Shipping Address
     = label :address, :street_address, 'Street Address'
     = text_field :address, 'stree_address'
@@ -29,4 +29,4 @@
 
 
     %p Sell Product?
-    = submit_tag 'Purchase'
+    = submit_tag 'Purchase', :id => 'confirm_purchase_button'

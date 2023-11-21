@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   match '/products/add_shopping_cart', to: 'products#add_shopping_cart', via: :post, :as => 'shopping_cart'
   match '/shopping_cart/index', to: 'shopping_cart#index', via: :get, :as => 'view_shopping_cart'
   match '/shopping_cart/checkout', to: 'shopping_cart#checkout', via: :post, :as => 'checkout'
+  match '/shopping_cart/checkout/confirm_purchase', to: 'shopping_cart#confirm_purchase', via: :post, :as => 'confirm_purchase'
+
 
   resources :shopping_cart
   # Example resource route (maps HTTP verbs to controller actions automatically):
