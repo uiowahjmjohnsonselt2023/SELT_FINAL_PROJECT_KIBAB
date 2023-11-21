@@ -3,6 +3,10 @@
 .product_search_bar
   = form_tag products_path, :method => 'get' do
     = text_field_tag :search, params[:search], placeholder: 'Search Products'
+    = label :product, :categories, "Filter by Category"
+    = select :product, :categories, ['None','Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other']
+    = label  :product, :descriptions, "Filter by Description"
+    = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New']
     = submit_tag 'Search', :id => 'search_button'
 
 = form_tag :action => 'add_shopping_cart', :id => 'user_shopping_cart' do
@@ -11,6 +15,7 @@
       %tr
         %th Product Name
         %th Category
+        %th Description
         %th Price
         %th More Info
         %th Select Item
@@ -19,6 +24,7 @@
         %tr
           %td= product.name
           %td= product.category
+          %td= product.description
           %td= '$' + product.price
           %td= link_to "More about #{product.name}", product_path(product.id)
           %td= check_box_tag "products[#{product.id}]", :id => "checkbox_#{product.id}"

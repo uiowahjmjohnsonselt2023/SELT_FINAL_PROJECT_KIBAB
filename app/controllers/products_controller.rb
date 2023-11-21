@@ -4,25 +4,26 @@ class ProductsController < ApplicationController
   #test
 
   def product_params
-    params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold?)
+    params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold)
   end
   def show
     id = params[:id]
-    # @current_product = Product.find_by_product_id(id)
     @current_product = Product.find_by_id(id)
     # redirect_to 'about'
   end
 
   def index
-    if params[:search]
-      @products = Product.where('name LIKE ?', "%#{params[:search]}%").where(is_sold: false)
-      if @products.blank?
-        flash[:notice] = "No products match your search try something else"
-      end
-    else
+    if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:descriptions].present?
+      @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:descriptions])
+    elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:descriptions].present?
+      @products = Product.filtered_search('',params[:product][:categories], params[:product][:descriptions])
+    end
+    if @products.present? == false
+      # flash[:notice] = "No products match your search try something else"
       @products = Product.where(is_sold: false)
     end
   end
+
 
   def new
   end
@@ -41,13 +42,16 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    # render 'edit'
+    id = params[:id]
+    @current_product = Product.find_by_id(id)
   end
 
   def update
-    # update product
-    # @product.is_sold? = true
-    # @product.update
+    id = params[:id]
+    @product = Product.find_by_id(id)
+    @product.update_attributes!(product_params)
+    flash[:notice] = "Product was updated successfully."
+    redirect_to products_path
   end
 
   def destroy
