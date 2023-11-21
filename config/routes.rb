@@ -10,10 +10,12 @@ Rails.application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  match '/products/search',to: 'products#search', via: :get, :as => 'search_path'
   resources :products
   resources :sessions, only: [:new, :create, :destroy]
   root :to => redirect('/products')
   resources :users
+
   match '/about', to: 'products#about', via: :get, :as => 'about_path'
   match '/products/:id/transaction', to: 'products#transaction', via: :get, :as => 'transaction_path'
   match '/login',  to: 'sessions#new', via: :get, :as => 'login_path'
