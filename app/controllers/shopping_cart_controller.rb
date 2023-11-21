@@ -10,10 +10,6 @@ class ShoppingCartController < ApplicationController
     # add later
   end
 
-  def destroy
-    # add later
-  end
-
   def checkout
   end
 
