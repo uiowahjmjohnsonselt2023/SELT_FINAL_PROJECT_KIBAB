@@ -59,6 +59,6 @@ products.each do |product|
    Product.create!([product])
 end
 
-# purchases.each do |purchase|
-#   Purchase.create(purchase)
-# end
+purchases.each do |purchase|
+  Purchase.create(purchase)
+end
