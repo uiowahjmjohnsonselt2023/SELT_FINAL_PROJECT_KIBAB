@@ -59,4 +59,26 @@ class Product < ActiveRecord::Base
     end
     products
   end
+
+  # Searches database for specifies product category, can return multiple products
+  def self.search_by_category(search)
+    if search.present?
+      @product = products.where("category=#{search}")
+    else
+      self
+    end
+  end
+
+  def self.add_to_shopping_cart(user_id, product_id)
+    var = ShoppingCart.where(user_id: user_id).where(product_id: product_id).present?
+    if !var.present?
+      shopping_cart_item = {:user_id => user_id, :product_id => product_id}
+      ShoppingCart.create!(shopping_cart_item)
+    end
+  end
+
+  def set_sold_true
+    self.is_sold = true
+    self.save
+  end
 end
