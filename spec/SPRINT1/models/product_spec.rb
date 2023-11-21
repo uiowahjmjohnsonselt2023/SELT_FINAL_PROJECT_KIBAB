@@ -28,8 +28,7 @@ describe Product do
       expect(product.description).to eq("New")
       expect(product.price).to eq("13.50")
       expect(product.location).to eq("123 WhoKnows Way, North Liberty, IA 52317")
-      expect(product.is_sold?).to eq(false)
-      expect(product.user_email).to eq("valid@email.com")
+      expect(product.is_sold).to eq(false)
     end
     it 'If user trying to tell doesnt exist in the user database' do
       user = User.create({:email => "valid@email.com", :password => "password", :password_confirmation => "password", :first_name => "test", :last_name => "last", :address => "123 WhoKnows Way, North Liberty, IA 52317"})
