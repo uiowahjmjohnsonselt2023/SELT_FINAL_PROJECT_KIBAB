@@ -18,3 +18,5 @@
             %td= '$' + item.product.price
             %td= link_to "More about #{item.product.name}", product_path(item.product.id)
     = submit_tag 'Check Out', :id => 'check_out_button'
+
+%h4= link_to "Return to products page", products_path
