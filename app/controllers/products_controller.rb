@@ -14,9 +14,9 @@ class ProductsController < ApplicationController
 
   def index
     if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:descriptions].present?
-      @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:descriptions])
+      @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
     elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:descriptions].present?
-      @products = Product.filtered_search('',params[:product][:categories], params[:product][:descriptions])
+      @products = Product.filtered_search('',params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
     end
     if @products.present? == false
       # flash[:notice] = "No products match your search try something else"
