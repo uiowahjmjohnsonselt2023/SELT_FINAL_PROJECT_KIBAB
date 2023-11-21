@@ -61,15 +61,9 @@ class ProductsController < ApplicationController
   end
 
   def transaction
-    # find product from db and update is_sold? to true
     @current_product = Product.find_by_id(params[:id])
-    @current_product.save
-    Product.update(@current_product.product_id, :is_sold? => true)
-    @purchase = Purchase.create(user: @current_user, product: @current_product, purchase_timestamp: Time.now)
-    # add to the purchase table with the time which the product was bought
-    @current_product.save
-
-    flash[:notice] = "#{@current_product.name} was sold."
+    Product::add_to_shopping_cart(@current_user.id, @current_product.id)
+    flash[:notice] = "#{@current_product.name} was added to your shopping cart."
     redirect_to products_path
   end
 
