@@ -20,8 +20,8 @@ function prevImg() {
     if (newIndex < 0) newIndex = slides.length - 1
     if (newIndex >= slides.length) newIndex = 0
 
-    slidesContainer.style.transform = 'translateX(' + -newIndex*width + 'px)'
-    console.log("translate")
+    slidesContainer.style.transform = 'translateX(' + -newIndex*400 + 'px)'
+    console.log(width)
 
     activeSlide.classList.remove("active")
     slides[newIndex].classList.add("active")
@@ -48,8 +48,8 @@ function nextImg() {
     if (newIndex < 0) newIndex = slides.length - 1
     if (newIndex >= slides.length) newIndex = 0
 
-    slidesContainer.style.transform = 'translateX(' + -newIndex*width + 'px)'
-    console.log("translate")
+    slidesContainer.style.transform = 'translateX(' + -newIndex*400 + 'px)'
+    console.log(width)
 
     activeSlide.classList.remove("active")
     slides[newIndex].classList.add("active")
