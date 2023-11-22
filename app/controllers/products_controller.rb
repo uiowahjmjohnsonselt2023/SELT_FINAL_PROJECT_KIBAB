@@ -1,8 +1,6 @@
 class ProductsController < ApplicationController
   before_filter :set_current_user
 
-  #test
-
   def product_params
     params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold)
   end
@@ -39,7 +37,6 @@ class ProductsController < ApplicationController
     else
       errors = @product.errors.full_messages
       puts "Validation failed with errors: #{errors.join(', ')}"
-      # TODO - add warning for invalid price value - Brandon
       render 'new'
     end
   end
