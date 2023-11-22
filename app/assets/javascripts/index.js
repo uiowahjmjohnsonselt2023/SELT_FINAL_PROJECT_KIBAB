@@ -17,7 +17,7 @@ function prevImg() {
     );
 
     if (newIndex < 0) newIndex = slides.length - 1
-    if (newIndex >= slides.length-1) newIndex = 0
+    if (newIndex >= slides.length) newIndex = 0
 
     slidesContainer.style.transform = 'translateX(' + 0.9*(-newIndex*(size / slides.length) ) + 'px)'
     console.log("translate")
