@@ -137,9 +137,16 @@ table#products thead {
 }
 
 .carousel {
-    width: 100vw;
-    height: 50vh;
-    position: relative
+    width: 80%;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-slides {
+    display: flex;
+    height: 400px;
+    width: 100%;
 }
 
 .carousel-slide {

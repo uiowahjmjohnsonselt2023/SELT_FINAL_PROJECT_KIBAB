@@ -36,17 +36,15 @@
           %td= check_box_tag "products[#{product.id}]", :id => "checkbox_#{product.id}"
   = submit_tag 'Add Selected Items to Shopping Cart', :id => 'shopping_cart_button'
 
+.new_product_button
+  = link_to 'Add New Product', new_product_path
+
 .carousel
-  = button_tag '&#8592;'.html_safe, class: 'carousel-button prev', :onclick => "prevImg()"
-  = button_tag '&#8594;'.html_safe, class: 'carousel-button next', :onclick => "nextImg()"
   .carousel-slides
-  %ul.pictures
     - @products.select {|product| product.image?}.each_with_index do |product,id|
       - if id.eql?(0)
         = image_tag product.image, :width => "600", id: "carousel-slide-#{id}", class: "carousel-slide active"
-      -else
+      - else
         = image_tag product.image, :width => "600", id: "carousel-slide-#{id}", class: "carousel-slide"
-
-
-.new_product_button
-  = link_to 'Add New Product', new_product_path
+  = button_tag '&#8592;'.html_safe, class: 'carousel-button prev', :onclick => "prevImg()"
+  = button_tag '&#8594;'.html_safe, class: 'carousel-button next', :onclick => "nextImg()"
