@@ -43,8 +43,8 @@
   .carousel-slides
     - @products.select {|product| product.image?}.each_with_index do |product,id|
       - if id.eql?(0)
-        = image_tag product.image, :width => "600", id: "carousel-slide-#{id}", class: "carousel-slide active"
+        = link_to image_tag(product.image, :width => "600"), product_path(product.id), id: "carousel-slide-#{id}", class: "carousel-slide active"
       - else
-        = image_tag product.image, :width => "600", id: "carousel-slide-#{id}", class: "carousel-slide"
+        = link_to image_tag(product.image, :width => "600"), product_path(product.id), id: "carousel-slide-#{id}", class: "carousel-slide"
   = button_tag '&#8592;'.html_safe, class: 'carousel-button prev', :onclick => "prevImg()"
   = button_tag '&#8594;'.html_safe, class: 'carousel-button next', :onclick => "nextImg()"
