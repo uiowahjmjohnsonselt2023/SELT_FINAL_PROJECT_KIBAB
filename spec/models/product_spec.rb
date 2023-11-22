@@ -83,6 +83,13 @@ describe Product do
     end
   end
 
+  describe 'Transaction Price' do
+    let(:product) { described_class.new(name: 'Test Product', category: 'Home', description: 'Used', price: "9.00") }
+    it 'calculates transaction price when 10 or higher' do
+      expect(product.transaction).to eq('8.1')
+    end
+  end
+
   describe 'Class methods' do
     # Add tests for class methods like filtered_search, search_by_category, etc.
     # Test the functionality of these methods based on various scenarios
