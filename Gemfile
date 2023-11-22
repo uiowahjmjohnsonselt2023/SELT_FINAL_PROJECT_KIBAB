@@ -57,6 +57,8 @@ group :development, :test do
   gem 'database_cleaner'
   # Use dotenv to protect private keys/ids (aka our money)
   gem 'dotenv-rails'
+  # this is for model testing
+  gem 'shoulda-matchers'
 end
 
 group :development do
