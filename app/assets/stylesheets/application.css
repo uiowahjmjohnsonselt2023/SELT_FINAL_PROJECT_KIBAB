@@ -138,6 +138,7 @@ table#products thead {
 
 .carousel {
     width: 80%;
+    height: 80%;
     margin: auto;
     position: relative;
     overflow: hidden;
@@ -145,6 +146,7 @@ table#products thead {
 
 .carousel-slides {
     display: flex;
+    object-fit: contain;
     height: 400px;
     width: 100%;
 }
@@ -152,6 +154,8 @@ table#products thead {
 .carousel-slide {
     position: relative;
     inset: 0;
+    object-fit: contain;
+    max-height: 400px;
 }
 
 .carousel-button {
