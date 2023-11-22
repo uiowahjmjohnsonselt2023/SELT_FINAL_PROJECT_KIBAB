@@ -11,6 +11,7 @@ class ShoppingCartController < ApplicationController
   end
 
   def checkout
+    # left empty
   end
 
   def confirm_purchase
@@ -23,5 +24,4 @@ class ShoppingCartController < ApplicationController
     flash[:notice] = "Purchased successfully!"
     redirect_to products_path
   end
-
 end
