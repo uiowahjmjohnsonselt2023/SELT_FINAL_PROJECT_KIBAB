@@ -15,7 +15,7 @@
         %td= product.name
         %td= product.category
         %td= '$' + product.transaction
-        %td= Purchase.where(:product_id => product.product_id).first.purchase_timestamp
+        %td= Purchase.where(:product_id => product.id).first.purchase_timestamp
 
 %h2 Items Not Sold Yet
 %table#products.table-style
