@@ -6,22 +6,21 @@ function prevImg() {
     offset = -1
     let newIndex = 0;
     let activeSlide;
-    let width;
+    size = allImageSizes();
     slides.forEach(
         function(node, index) {
             if (node.classList.contains("active")) {
                 newIndex = index + offset;
                 activeSlide = node;
-                width = activeSlide.clientWidth;
             }
         }
     );
 
     if (newIndex < 0) newIndex = slides.length - 1
-    if (newIndex >= slides.length) newIndex = 0
+    if (newIndex >= slides.length-1) newIndex = 0
 
-    slidesContainer.style.transform = 'translateX(' + -newIndex*400 + 'px)'
-    console.log(width)
+    slidesContainer.style.transform = 'translateX(' + 0.9*(-newIndex*(size / slides.length) ) + 'px)'
+    console.log("translate")
 
     activeSlide.classList.remove("active")
     slides[newIndex].classList.add("active")
@@ -34,23 +33,34 @@ function nextImg() {
     console.log(slides)
     offset = 1
     let activeSlide;
-    let width;
+    size = allImageSizes();
     slides.forEach(
         function(node, index) {
             if (node.classList.contains("active")) {
                 newIndex = index + offset;
                 activeSlide = node;
-                width = activeSlide.clientWidth;
             }
         }
     );
 
     if (newIndex < 0) newIndex = slides.length - 1
-    if (newIndex >= slides.length) newIndex = 0
+    if (newIndex >= slides.length-1) newIndex = 0
 
-    slidesContainer.style.transform = 'translateX(' + -newIndex*400 + 'px)'
-    console.log(width)
+    slidesContainer.style.transform = 'translateX(' + 0.9*(-newIndex*(size / slides.length) )+ 'px)'
+    console.log("translate")
 
     activeSlide.classList.remove("active")
     slides[newIndex].classList.add("active")
 }
+
+function allImageSizes() {
+    const slides = document.querySelectorAll(".carousel-slide");
+    size = 0;
+    slides.forEach(
+        function(node) {
+            size = size + node.clientWidth;
+        }
+    );
+    return size;
+}
+
