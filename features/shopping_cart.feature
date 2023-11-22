@@ -7,7 +7,7 @@ Feature: Have a page that stores all products a customer may want to buy
 #Assumed shopper is shopping in Iowa City Iowa
   Background: products have been added to database
     Given the following products exist:
-      | user_email               | name            | category       | description | price | location              | is_sold? |
+      | user_email               | name            | category       | description | price | location              | is_sold |
       | johnjones@gmail.com      | Shower Curtain  | Home           | Used        | 15.49 | Iowa City Iowa        | false   |
       | johnjones@gmail.com      | Bookshelf       | Home           | Like New    | 89.65 | Chicago Illinois      | false   |
       | johnjones@gmail.com      | Zip-Up Hoodie   | Clothing       | New         | 23.42 | Denver Colorado       | false   |

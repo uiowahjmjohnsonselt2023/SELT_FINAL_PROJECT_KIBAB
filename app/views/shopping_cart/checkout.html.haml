@@ -1,0 +1,32 @@
+.new_product_form
+= form_tag confirm_purchase_path do
+    %h2 Shipping Address
+    = label :address, :street_address, 'Street Address'
+    = text_field :address, 'stree_address'
+
+    = label :address, :state, 'State'
+    = text_field :address, 'state'
+
+    = label :address, :city, 'City'
+    = text_field :address, 'city'
+
+    = label :address, :zip, 'Zip'
+    = text_field :address, 'zip'
+
+    %h2 Credit Card Information
+
+    = label :credit_card, :credit_card_name, 'Name'
+    = text_field :credit_card, 'credit_card_name'
+
+    = label :credit_card, :credit_card_number, 'Credit Card Number'
+    = text_field :credit_card, 'credit_card_number'
+
+    = label :credit_card, :credit_card_security_num, 'CVV'
+    = text_field :credit_card, 'credit_card_security_num'
+
+    = label :credit_card, :credit_card_expiration, 'Expiration Date'
+    = text_field :credit_card, 'credit_card_expiration'
+
+
+    %p Sell Product?
+    = submit_tag 'Purchase', :id => 'confirm_purchase_button'

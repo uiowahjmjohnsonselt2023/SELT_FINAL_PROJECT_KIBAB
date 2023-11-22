@@ -8,7 +8,7 @@ Given /the following products exist:/ do |products_table|
       description: product[:description],
       price: product[:price],
       location: product[:location],
-      is_sold?: product[:is_sold?]
+      is_sold: product[:is_sold]
     )
   end
 end
