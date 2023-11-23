@@ -22,22 +22,22 @@ users = [
 ]
 
 products = [
-  {:name => "Bookshelf", :category => "Home", :description => "Like New", :price => "89.65", :location => "Iowa City Iowa"},
-  {:name => "Shower Curtain", :category => "Home", :description => "Used", :price => "15.49", :location => "Iowa City Iowa"},
-  {:name => "Face Wash", :category => "Personal Care", :description => "New", :price => "5.00", :location => "Denver Colorado"},
-  {:name => "Stapler", :category => "Office", :description => "New", :price => "7.12", :location => "Kansas City Missouri"},
-  {:name => "Makeup Brush", :category => "Personal Care", :description => "Like New", :price => "3.15", :location => "Iowa City Iowa"},
-  {:name => "Zip Up Hoodie", :category => "Clothing", :description => "Well Worn", :price => "23.32", :location => "Seattle Washington"},
-  {:name => "TV", :category => "Entertainment", :description => "Like New", :price => "142.24", :location => "Iowa City Iowa"},
+  {:user_id => 1, :name => "Bookshelf", :category => "Home", :description => "Like New", :price => "89.65", :location => "Iowa City Iowa"},
+  {:user_id => 1, :name => "Shower Curtain", :category => "Home", :description => "Used", :price => "15.49", :location => "Iowa City Iowa"},
+  {:user_id => 2, :name => "Face Wash", :category => "Personal Care", :description => "New", :price => "5.00", :location => "Denver Colorado"},
+  {:user_id => 2, :name => "Stapler", :category => "Office", :description => "New", :price => "7.12", :location => "Kansas City Missouri"},
+  {:user_id => 3, :name => "Makeup Brush", :category => "Personal Care", :description => "Like New", :price => "3.15", :location => "Iowa City Iowa"},
+  {:user_id => 4, :name => "Zip Up Hoodie", :category => "Clothing", :description => "Well Worn", :price => "23.32", :location => "Seattle Washington"},
+  {:user_id => 4, :name => "TV", :category => "Entertainment", :description => "Like New", :price => "142.24", :location => "Iowa City Iowa"},
   # items that have already been bought
-  {:name => "Night Stand", :category => "Home", :description => "New", :price => "142.24", :location => "Iowa City Iowa", :is_sold => true},
-  {:name => "Bowl", :category => "Home", :description => "Like New", :price => "8.40", :location => "Iowa City Iowa", :is_sold => true},
-  {:name => "Scissors", :category => "Office", :description => "New", :price => "5.24", :location => "Iowa City Iowa", :is_sold => true},
-  {:name => "Dice", :category => "Entertainment", :description => "Like New", :price => "2.00", :location => "Iowa City Iowa", :is_sold => true},
-  {:name => "Cup", :category => "Home", :description => "Used", :price => "3.99", :location => "Iowa City Iowa", :is_sold => true},
-  {:name => "Charger", :category => "Home", :description => "Like New", :price => "8.99", :location => "Iowa City Iowa", :is_sold => true},
-  {:name => "Monitor", :category => "Office", :description => "Like New", :price => "120.50", :location => "Iowa City Iowa", :is_sold => true},
-  {:name => "Headphones", :category => "Office", :description => "Like New", :price => "50.00", :location => "Iowa City Iowa", :is_sold => true},
+  {:user_id => 2, :name => "Night Stand", :category => "Home", :description => "New", :price => "142.24", :location => "Iowa City Iowa", :is_sold => true},
+  {:user_id => 4, :name => "Bowl", :category => "Home", :description => "Like New", :price => "8.40", :location => "Iowa City Iowa", :is_sold => true},
+  {:user_id => 1, :name => "Scissors", :category => "Office", :description => "New", :price => "5.24", :location => "Iowa City Iowa", :is_sold => true},
+  {:user_id => 3, :name => "Dice", :category => "Entertainment", :description => "Like New", :price => "2.00", :location => "Iowa City Iowa", :is_sold => true},
+  {:user_id => 1, :name => "Cup", :category => "Home", :description => "Used", :price => "3.99", :location => "Iowa City Iowa", :is_sold => true},
+  {:user_id => 3, :name => "Charger", :category => "Home", :description => "Like New", :price => "8.99", :location => "Iowa City Iowa", :is_sold => true},
+  {:user_id => 4, :name => "Monitor", :category => "Office", :description => "Like New", :price => "120.50", :location => "Iowa City Iowa", :is_sold => true},
+  {:user_id => 5, :name => "Headphones", :category => "Office", :description => "Like New", :price => "50.00", :location => "Iowa City Iowa", :is_sold => true},
 ]
 
 purchases = [

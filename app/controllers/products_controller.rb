@@ -31,6 +31,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.create(product_params)
+    @product.user_id = @current_user.id
     if @product.save
       flash[:notice] = "Product created successfully!"
       redirect_to products_path
@@ -43,7 +44,13 @@ class ProductsController < ApplicationController
 
   def edit
     id = params[:id]
-    @current_product = Product.find_by_id(id)
+    product = Product.find_by_id(id)
+    if @current_user.id.eql?(product.user_id)
+      @current_product = product
+    else
+      flash[:notice] = "This is not a product you are selling"
+      redirect_to product_path(id)
+    end
   end
 
   def update

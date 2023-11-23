@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20231120215050) do
 
   create_table "products", force: :cascade do |t|
+    t.integer "user_id"
     t.string  "name"
     t.string  "image"
     t.string  "category"
