@@ -7,7 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 def get_random_timestamp
-  Time.at(rand * (Time.now - 100.days).to_i)
+  now = Time.now.to_i
+  Time.at(rand((Time.now - 100.days).to_i..Time.now.to_i))
 end
 
 users = [
@@ -37,7 +38,7 @@ products = [
   {:user_id => 1, :name => "Cup", :category => "Home", :description => "Used", :price => "3.99", :location => "Iowa City Iowa", :is_sold => true},
   {:user_id => 3, :name => "Charger", :category => "Home", :description => "Like New", :price => "8.99", :location => "Iowa City Iowa", :is_sold => true},
   {:user_id => 4, :name => "Monitor", :category => "Office", :description => "Like New", :price => "120.50", :location => "Iowa City Iowa", :is_sold => true},
-  {:user_id => 5, :name => "Headphones", :category => "Office", :description => "Like New", :price => "50.00", :location => "Iowa City Iowa", :is_sold => true},
+  {:user_id => 4, :name => "Headphones", :category => "Office", :description => "Like New", :price => "50.00", :location => "Iowa City Iowa", :is_sold => true},
 ]
 
 purchases = [
