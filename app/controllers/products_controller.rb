@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-     @products = Product.where(is_sold: false)
+     @products = Product.where(is_sold: false).where.not(user_id: @current_user.id)
   end
 
   def search
