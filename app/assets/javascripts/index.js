@@ -1,7 +1,7 @@
 function prevImg() {
     console.log("prev")
-    const slides = document.querySelectorAll(".carousel-slide")
-    const slidesContainer = document.querySelector(".carousel-slides")
+    let slides = document.querySelectorAll(".carousel-slide")
+    let slidesContainer = document.querySelector(".carousel-slides")
     console.log(slides)
     offset = -1
     let newIndex = 0;
