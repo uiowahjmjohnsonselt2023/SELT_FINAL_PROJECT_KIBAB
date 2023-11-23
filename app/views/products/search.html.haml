@@ -29,6 +29,3 @@
           %td= link_to "More about #{product.name}", product_path(product.id)
           %td= check_box_tag "products[#{product.id}]", :id => "checkbox_#{product.id}"
   = submit_tag 'Add Selected Items to Shopping Cart', :id => 'shopping_cart_button'
-
-.new_product_button
-  = link_to 'Add New Product', new_product_path
