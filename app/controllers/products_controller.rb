@@ -79,11 +79,7 @@ class ProductsController < ApplicationController
       sort_direction = params[:direction] == 'asc' ? 'desc' : 'asc'
       case params[:sort]
       when 'price'
-        if params[:direction] == 'asc'
-          @products = @products.order('CAST(price AS float) ASC')
-        else
-          @products = @products.order('CAST(price AS float) DESC')
-        end
+        @products = @products.order("CAST(price AS float) #{sort_direction}")
       else
         @products = @products.order("#{params[:sort]} #{sort_direction}")
       end
