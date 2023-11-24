@@ -8,7 +8,7 @@
 %table#products.table-style
   %thead
     %tr
-      %th Product Name
+      %th= link_to 'Product Name', products_path(sort: 'product_name', direction: toggle_direction('product_name'), search: params[:search])
       %th Category
       -# %th Description
       %th= link_to 'Price', products_path(sort: 'price', direction: toggle_direction('price'), search: params[:search])
