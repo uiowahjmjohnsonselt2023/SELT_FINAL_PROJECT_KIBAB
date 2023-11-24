@@ -1,5 +1,5 @@
 .welcome_statement
-  %h1 Shop KIBAB
+  %h4 Shop KIBAB - Search Results
 .product_search_bar
   = form_tag search_path_path, :method => 'get' do
     = text_field_tag :search, params[:search], placeholder: 'Search Products'
@@ -29,3 +29,15 @@
           %td= link_to "More about #{product.name}", product_path(product.id)
           %td= check_box_tag "products[#{product.id}]", :id => "checkbox_#{product.id}"
   = submit_tag 'Add Selected Items to Shopping Cart', :id => 'shopping_cart_button'
+-if  @products.select {|product| product.image?}.length > 0 && !@products.nil? && !@products.empty?
+  .carousel
+    .carousel-slides
+      - @products.select {|product| product.image?}.each_with_index do |product,id|
+        - if id.eql?(0)
+          = link_to image_tag(product.image, :height => "400"), product_path(product.id), id: "carousel-slide-#{id}", class: "carousel-slide active"
+        - else
+          = link_to image_tag(product.image, :height => "400"), product_path(product.id), id: "carousel-slide-#{id}", class: "carousel-slide"
+    = button_tag '&#8592;'.html_safe, class: 'carousel-button prev', :onclick => "prevImg()"
+    = button_tag '&#8594;'.html_safe, class: 'carousel-button next', :onclick => "nextImg()"
+.link_to_button
+  = link_to 'Reset Search', products_path
