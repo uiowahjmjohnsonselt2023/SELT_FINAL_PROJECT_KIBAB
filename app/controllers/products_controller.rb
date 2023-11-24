@@ -36,8 +36,10 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.create(product_params)
-    @product.user_id = @current_user.id
+    product_parameters = product_params.to_h
+    product_parameters[:user_id] = @current_user.id
+    @product = Product.create(product_parameters)
+    # @product.user_id = @current_user.id
     if @product.save
       flash[:notice] = "Product created successfully!"
       redirect_to products_path
