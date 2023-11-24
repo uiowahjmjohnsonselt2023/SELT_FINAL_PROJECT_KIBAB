@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
 
   def index
      @products = Product.where(is_sold: false).where.not(user_id: @current_user.id)
+    sorting
   end
 
   def search
@@ -27,8 +28,8 @@ class ProductsController < ApplicationController
         flash[:notice] = "No products match your search here are some close results"
         @products = Product.filtered_search(params[:search],"None", "None").where(is_sold: false)
       end
-
     end
+    sorting
   end
 
   def new
@@ -93,6 +94,23 @@ class ProductsController < ApplicationController
       flash[:warning] = "No products were selected"
     end
     redirect_to products_path
+  end
+
+  def sorting
+    if params[:sort] && params[:direction]
+      sort_direction = params[:direction] == 'asc' ? 'desc' : 'asc'
+      case params[:sort]
+      when 'product_name'
+        @products = @products.order("name #{sort_direction}")
+      when 'price'
+        @products = @products.order("CAST(price AS float) #{sort_direction}")
+      else
+        @products = @products.order("#{params[:sort]} #{sort_direction}")
+      end
+    end
+    if params[:search]
+      @products = @products.where('name LIKE ?', "%#{params[:search]}%")
+    end
   end
 
 end

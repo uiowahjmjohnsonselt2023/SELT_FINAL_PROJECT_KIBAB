@@ -16,14 +16,15 @@
     = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New']
     = submit_tag 'Search', :id => 'search_button'
 
+
 = form_tag :action => 'add_shopping_cart', :id => 'user_shopping_cart' do
   %table#products.table-style
     %thead
       %tr
-        %th Product Name
+        %th= link_to 'Product Name', products_path(sort: 'product_name', direction: toggle_direction('product_name'), search: params[:search])
         %th Category
         %th Description
-        %th Price
+        %th= link_to 'Price', products_path(sort: 'price', direction: toggle_direction('price'), search: params[:search])
         %th More Info
         %th Select Item
     %tbody
