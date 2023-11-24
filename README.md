@@ -30,4 +30,5 @@ To see coverage, open the coverage folder and find the index.html file within. O
 creates several images to view for seeing more in-depth coverage.
 
 ## Heroku App
-[KIBAB App](https://glacial-depths-15499-48fc4ab6a25b.herokuapp.com/)
+[KIBAB App Sprint 1](https://glacial-depths-15499-48fc4ab6a25b.herokuapp.com/)
+[KIBAB App Sprint 2](https://shielded-tundra-14985-98ad5af16458.herokuapp.com/)

@@ -1,12 +1,12 @@
 %html
   %head
-    %title Index Page
+    %title Search Page
     = javascript_include_tag "index"
     -# = javascript_include_tag 'application'
     -# = csrf_meta_tags
 
 .welcome_statement
-  %h1 Shop KIBAB
+  %h4 Shop KIBAB - Search Results
 .product_search_bar
   = form_tag search_path_path, :method => 'get' do
     = text_field_tag :search, params[:search], placeholder: 'Search Products'
@@ -16,15 +16,14 @@
     = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New']
     = submit_tag 'Search', :id => 'search_button'
 
-
 = form_tag :action => 'add_shopping_cart', :id => 'user_shopping_cart' do
   %table#products.table-style
     %thead
       %tr
-        %th= link_to 'Product Name', products_path(sort: 'product_name', direction: toggle_direction('product_name'), search: params[:search])
+        %th Product Name
         %th Category
         %th Description
-        %th= link_to 'Price', products_path(sort: 'price', direction: toggle_direction('price'), search: params[:search])
+        %th Price
         %th More Info
         %th Select Item
     %tbody
@@ -37,7 +36,6 @@
           %td= link_to "More about #{product.name}", product_path(product.id)
           %td= check_box_tag "products[#{product.id}]", :id => "checkbox_#{product.id}"
   = submit_tag 'Add Selected Items to Shopping Cart', :id => 'shopping_cart_button'
-
 -if  @products.select {|product| product.image?}.length > 0 && !@products.nil? && !@products.empty?
   .carousel
     .carousel-slides
@@ -48,3 +46,5 @@
           = link_to image_tag(product.image, :height => "400"), product_path(product.id), id: "carousel-slide-#{id}", class: "carousel-slide"
     = button_tag '&#8592;'.html_safe, class: 'carousel-button prev', :onclick => "prevImg()"
     = button_tag '&#8594;'.html_safe, class: 'carousel-button next', :onclick => "nextImg()"
+.link_to_button
+  = link_to 'Reset Search', products_path

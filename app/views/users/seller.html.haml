@@ -15,7 +15,7 @@
         %td= product.name
         %td= product.category
         %td= '$' + product.transaction
-        %td= Purchase.where(:product_id => product.product_id).first.purchase_timestamp
+        %td= Purchase.where(:product_id => product.id).first.purchase_timestamp
 
 %h2 Items Not Sold Yet
 %table#products.table-style
@@ -32,6 +32,7 @@
         %td= product.category
         %td= '$' + product.price
         %td= "Up for sale."
+        %td= link_to "View product #{product.name}", product_path(product.id)
 
 .link_to_button
   = link_to 'Return to Profile', "/users/#{@current_user[:id]}"

@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_filter :set_current_user
 
   def product_params
-    params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold?)
+    params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold)
   end
   def show
     id = params[:id]
@@ -11,15 +11,25 @@ class ProductsController < ApplicationController
   end
 
   def index
-    if params[:search]
-      @products = Product.where('name LIKE ?', "%#{params[:search]}%").where(is_sold: false)
-    else
-      @products = Product.where(is_sold: false)
+     @products = Product.where(is_sold: false).where.not(user_id: @current_user.id)
+    sorting
+  end
+
+  def search
+    if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:descriptions].present?
+      @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
+    elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:descriptions].present?
+      @products = Product.filtered_search('',params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
+    end
+    if @products.empty?
+      if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:descriptions]=='None'
+        @products = Product.where(is_sold: false)
+      else
+        flash[:notice] = "No products match your search here are some close results"
+        @products = Product.filtered_search(params[:search],"None", "None").where(is_sold: false)
+      end
     end
     sorting
-    if @products.blank?
-      flash[:notice] = "No products match your search try something else"
-    end
   end
 
   def new
@@ -27,20 +37,26 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.create(product_params)
+    @product.user_id = @current_user.id
     if @product.save
       flash[:notice] = "Product created successfully!"
       redirect_to products_path
     else
       errors = @product.errors.full_messages
       puts "Validation failed with errors: #{errors.join(', ')}"
-      # TODO - add warning for invalid price value - Brandon
       render 'new'
     end
   end
 
   def edit
     id = params[:id]
-    @current_product = Product.find_by_id(id)
+    product = Product.find_by_id(id)
+    if @current_user.id.eql?(product.user_id)
+      @current_product = product
+    else
+      flash[:notice] = "This is not a product you are selling"
+      redirect_to product_path(id)
+    end
   end
 
   def update
@@ -62,15 +78,21 @@ class ProductsController < ApplicationController
   end
 
   def transaction
-    # find product from db and update is_sold? to true
     @current_product = Product.find_by_id(params[:id])
-    @current_product.save
-    Product.update(@current_product.id, :is_sold? => true)
-    @purchase = Purchase.create(user: @current_user, product: @current_product, purchase_timestamp: Time.now)
-    # add to the purchase table with the time which the product was bought
-    @current_product.save
+    Product::add_to_shopping_cart(@current_user.id, @current_product.id)
+    flash[:notice] = "#{@current_product.name} was added to your shopping cart."
+    redirect_to products_path
+  end
 
-    flash[:notice] = "#{@current_product.name} was sold."
+  def add_shopping_cart
+    if params[:products] != nil
+      params[:products].keys.each do |id|
+        Product::add_to_shopping_cart(@current_user.id, id)
+      end
+      flash[:notice] = "Product(s) were successfully added to your shopping cart."
+    else
+      flash[:warning] = "No products were selected"
+    end
     redirect_to products_path
   end
 

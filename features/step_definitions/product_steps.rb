@@ -2,13 +2,13 @@
 Given /the following products exist:/ do |products_table|
   products_table.hashes.each do |product|
     Product.create(
-      user_email: product[:user_email],
+      user_id: product[:user_id],
       name: product[:name],
       category: product[:category],
       description: product[:description],
       price: product[:price],
       location: product[:location],
-      is_sold?: product[:is_sold?]
+      is_sold: product[:is_sold]
     )
   end
 end
@@ -134,4 +134,51 @@ end
 
 # And(/^I am not logged in$/) do
 #   pending
+# end
+
+# When(/^I select the product with user_id "([^"]*)"$/) do |user_id|
+#   product = Product.find_by(user_id: user_id)
+#   @product_id = product.id
+#   check("checkbox_#{@product_id}")
+# end
+
+When(/^I select "([^"]*)"$/) do |arg|
+  product = Product.find_by(name: arg)
+  @product_id = product.id
+  check("checkbox_#{@product_id}")
+
+end
+
+
+When(/^"([^"]*)" is selected in description dropdown$/) do |selected_description|
+  description_dropdown = find("select[name='product[descriptions]']")
+
+  # Check if the specified description is selected
+  expect(description_dropdown).to have_select(selected_description, selected: true)
+end
+
+# Given(/^I am logged in with Google$/) do
+#   OmniAuth.config.test_mode = true
+#   auth_hash = OmniAuth::AuthHash.new({
+#   provider: 'google',
+#   uid:'12345',
+#   info: {
+#     email: 'iankuk02@gmail.com',
+#     name: 'Ian Kuk'
+#
+#   },
+#   credentials: {
+#     token: 'mock_token',
+#     expires_at: 1.hour.from_now.to_i,
+#     refresh_token: 'mock_refresh_token'
+#   }
+#   })
+#   user = User.create_with_omniauth(auth_hash)
+#   visit "/auth/google_oauth2/callback"
+#
+#   # Customize the following line based on your session handling logic
+#   post "/login", params: { user_id: user }
+#
+#   # Assuming you have a redirect to the products_path in your session controller
+#   visit products_path
 # end

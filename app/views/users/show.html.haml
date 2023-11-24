@@ -5,5 +5,11 @@
 -# %p #{@current_user.address}
 
 
-= link_to 'Purchase History', purchase_history_path_url
-= link_to 'Seller History', seller_history_path_url
+.link_to_button
+  = link_to 'Add a New Product to Sell?', new_product_path
+
+.link_to_button
+  = link_to 'Purchase History', purchase_history_path_url
+
+.link_to_button
+  = link_to 'Seller History', seller_history_path_url

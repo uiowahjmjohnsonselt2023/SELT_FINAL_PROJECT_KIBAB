@@ -41,13 +41,23 @@ class Product < ActiveRecord::Base
     false
   end
 
-  # Searches database for specified product name, can return multiple products
-  def self.search_by_name(search)
-    if search.present?
-      @product = products.where("name=#{search}")
-    else
-      self
+  def self.filtered_search(search,category,description)
+    if search.present? && category.present? && description.present? && category != 'None'  && description != 'None' &&  search != ''
+      products = Product.where('name LIKE ?', "%#{search}%").where(category: category).where(description: description)
+    elsif  search == '' && category.present? && description == 'None'
+      products = Product.where(category: category)
+    elsif search == '' && category== 'None' && description.present?
+      products = Product.where(description: description)
+    elsif search == '' && category.present? && description.present?
+      products = Product.where(description: description).where(category: category)
+    elsif search.present? && category== 'None' && description== 'None'
+      products = Product.where('name LIKE ?', "%#{search}%")
+    elsif search.present? && category== 'None' && description.present?
+      products = Product.where('name LIKE ?', "%#{search}%").where(description: description)
+    elsif search.present? && category.present? && description== 'None'
+      products = Product.where('name LIKE ?', "%#{search}%").where(category: category)
     end
+    products
   end
 
   # Searches database for specifies product category, can return multiple products
@@ -59,4 +69,16 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def self.add_to_shopping_cart(user_id, product_id)
+    var = ShoppingCart.where(user_id: user_id).where(product_id: product_id).present?
+    if !var.present?
+      shopping_cart_item = {:user_id => user_id, :product_id => product_id}
+      ShoppingCart.create!(shopping_cart_item)
+    end
+  end
+
+  def set_sold_true
+    self.is_sold = true
+    self.save
+  end
 end
