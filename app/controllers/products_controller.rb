@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-     @products = Product.where(is_sold: false).where.not(user_id: @current_user.id)
+    @products = Product.where(is_sold: false).where.not(user_id: @current_user.id)
     sorting
   end
 
@@ -111,6 +111,13 @@ class ProductsController < ApplicationController
     if params[:search]
       @products = @products.where('name LIKE ?', "%#{params[:search]}%")
     end
+    if params[:product] && params[:product][:categories].present? && params[:product][:categories] != 'None'
+      @products = @products.where(category: params[:product][:categories])
+    end
+    if params[:product] && params[:product][:descriptions].present? && params[:product][:descriptions] != 'None'
+      @products = @products.where(description: params[:product][:descriptions])
+    end
+    @products = @products.where(is_sold: false).where.not(user_id: @current_user.id)
   end
 
 end
