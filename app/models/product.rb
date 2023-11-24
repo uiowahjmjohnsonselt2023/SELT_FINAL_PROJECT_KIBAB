@@ -21,7 +21,7 @@ class Product < ActiveRecord::Base
     else
       commission_price = price - (0.15 * price)
     end
-    commission_price.to_s
+    commission_to_return = "%.2f" % [commission_price]
   end
   def valid_price?
     price_regex = /\A\d+\.\d{2}\z/
