@@ -21,8 +21,13 @@ class ProductsController < ApplicationController
       @products = Product.filtered_search('',params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
     end
     if @products.empty?
-      flash[:notice] = "No products match your search here are some close results"
-      @products = Product.filtered_search(params[:search],"None", "None").where(is_sold: false)
+      if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:descriptions]=='None'
+        @products = Product.where(is_sold: false)
+      else
+        flash[:notice] = "No products match your search here are some close results"
+        @products = Product.filtered_search(params[:search],"None", "None").where(is_sold: false)
+      end
+
     end
   end
 
