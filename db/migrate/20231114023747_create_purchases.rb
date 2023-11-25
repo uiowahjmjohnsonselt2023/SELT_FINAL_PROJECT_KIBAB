@@ -1,4 +1,4 @@
-class CreatePurchases < ActiveRecord::Migration
+class CreatePurchases < ActiveRecord::Migration[7.1]
   def change
     create_table :purchases do |t|
       t.references :user, index: true, foreign_key: true

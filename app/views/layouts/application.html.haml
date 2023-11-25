@@ -3,7 +3,7 @@
   %head
     %title KIBAB Shop
     = stylesheet_link_tag 'application', 'media' => 'all'
-    = javascript_include_tag 'application'
+    = javascript_include_tag 'manifest'
     = csrf_meta_tags
 
   %body
@@ -13,8 +13,6 @@
       .nav_item_2
         = link_to 'About', about_path_url
       -if !@current_user
-        -# .nav_item_2
-        -#   = link_to 'Create Account', new_user_path
         .nav_item_2
           = link_to 'Login', login_path_url
       -else
