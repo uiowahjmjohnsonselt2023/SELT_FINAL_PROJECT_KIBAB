@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :set_current_user
+  before_action :set_current_user
 
   def product_params
     params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold)
@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
   def update
     id = params[:id]
     @product = Product.find_by_id(id)
-    @product.update_attributes!(product_params)
+    @product.update(product_params)
     flash[:notice] = "Product was updated successfully."
     redirect_to products_path
   end

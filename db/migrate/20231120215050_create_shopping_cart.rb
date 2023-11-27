@@ -1,4 +1,4 @@
-class CreateShoppingCart < ActiveRecord::Migration
+class CreateShoppingCart < ActiveRecord::Migration[7.1]
   def change
     create_table :shopping_carts do |t|
       t.references :user, index: true, foreign_key: true

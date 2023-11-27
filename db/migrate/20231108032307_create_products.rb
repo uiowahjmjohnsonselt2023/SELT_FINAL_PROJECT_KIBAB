@@ -1,4 +1,4 @@
-class CreateProducts < ActiveRecord::Migration
+class CreateProducts < ActiveRecord::Migration[7.1]
   def change
     create_table :products do |t|
       # t.primary_key :product_id

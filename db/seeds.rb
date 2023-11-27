@@ -1,11 +1,12 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# This file should ensure the existence of records required to run the application in every environment (production,
+# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
+# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
-# Examples:
+# Example:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
+#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
+#     MovieGenre.find_or_create_by!(name: genre_name)
+#   end
 def get_random_timestamp
   now = Time.now.to_i
   Time.at(rand((Time.now - 100.days).to_i..Time.now.to_i))
@@ -57,7 +58,7 @@ purchases = [
 # end
 
 products.each do |product|
-   Product.create!([product])
+  Product.create!([product])
 end
 
 purchases.each do |purchase|
