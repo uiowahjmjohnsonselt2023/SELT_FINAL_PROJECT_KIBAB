@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_20_215050) do
     t.string "provider"
     t.string "email"
     t.string "name"
+    t.float "wallet", default: 100.0
     t.string "session_token"
     t.index ["session_token"], name: "index_users_on_session_token"
   end

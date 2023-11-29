@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.string :provider
       t.string :email
       t.string :name
+      t.float :wallet, default: 100.0
     end
   end
 end

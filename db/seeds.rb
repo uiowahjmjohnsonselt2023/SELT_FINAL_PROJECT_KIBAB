@@ -1,3 +1,4 @@
+require 'faker'
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -8,19 +9,18 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 def get_random_timestamp
-  now = Time.now.to_i
   Time.at(rand((Time.now - 100.days).to_i..Time.now.to_i))
 end
 
 users = [
-  {:email => "johnjones@gmail.com", :password => "password", :password_confirmation => "password", :first_name => "John", :last_name => "Jones", :address => "7486 West Blackburn Court Cheshire CT 06410"},
-  {:email => "iankuk@yahoo.com", :password => "password", :password_confirmation => "password", :first_name => "Ian", :last_name => "Kuk", :address => "70 Meadowbrook Street Ashburn VA 20147"},
-  {:email => "brandoncano@hotmail.com", :password => "password", :password_confirmation => "password", :first_name => "Brandon", :last_name => "Cano", :address => "101 Valley Farms Avenue New Bern NC 28560"},
-  {:email => "angelozamba@aol.com", :password => "password", :password_confirmation => "password", :first_name => "Angelo", :last_name => "Zamba", :address => "1  Pilgrim Lane Ringgold GA 30736"},
-  {:email => "brendansuter@yahoo.com", :password => "password", :password_confirmation => "password", :first_name => "Brendan", :last_name => "Suter", :address => "56 Atlantic Street Muncie IN 47302"},
-  {:email => "kaileymackin@gmail.com", :password => "password", :password_confirmation => "password", :first_name => "Kailey", :last_name => "Mackin", :address => "879 East Ryan Court Nashville TN 37205"},
-  {:email => "megantaylor@yahoo.com", :password => "password", :password_confirmation => "password", :first_name => :"Megan", :last_name => "Taylor", :address => "797 Plymouth Drive Yonkers NY 10701"},
-  {:email => "jennamarbles@hotmail.com", :password => "password", :password_confirmation => "password", :first_name => "Jenna", :last_name => "Marbles", :address => "998 Marconi Court Spring Valley NY 10977"},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
 ]
 
 products = [
@@ -53,9 +53,9 @@ purchases = [
   {:user_id => 4, :product_id => 15, :purchase_timestamp => get_random_timestamp},
 ]
 
-# users.each do |user|
-#   User.create!(user)
-# end
+users.each do |user|
+  User.create!(user)
+end
 
 products.each do |product|
   Product.create!([product])
