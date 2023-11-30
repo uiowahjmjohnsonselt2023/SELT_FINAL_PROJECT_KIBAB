@@ -19,5 +19,6 @@
           %td= item.product.category
           %td= '$' + item.product.price.to_s
           %td= link_to "More about #{item.product.name}", product_path(item.product.id)
+          %td= button_to "Delete Bookmark?", delete_one_bookmark_path(item.id), method: :post
 
 %h4= link_to "Return to products page", products_path

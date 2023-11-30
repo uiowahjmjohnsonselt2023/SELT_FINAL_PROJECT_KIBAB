@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   match '/products/:id/bookmark', to: 'products#bookmark_from_product', via: :get, :as => 'bookmark_from_product'
   match '/products/add_bookmarks', to: 'products#add_bookmarks', via: :post, :as => 'bookmark'
   match '/bookmarks/index', to: 'bookmarks#index', via: :get, :as => 'view_bookmarks'
-  match 'bookmarks/delete', to:'bookmarks#destroy', via: :post, :as => 'delete_all_bookmarks'
+  match '/bookmarks/delete', to:'bookmarks#destroy', via: :post, :as => 'delete_all_bookmarks'
+  match '/bookmarks/:id/delete_one', to:'bookmarks#delete_one', via: :post, :as => "delete_one_bookmark"
 
 
   resources :shopping_cart
