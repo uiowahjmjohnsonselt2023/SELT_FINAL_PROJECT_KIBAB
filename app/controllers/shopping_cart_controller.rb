@@ -64,4 +64,15 @@ class ShoppingCartController < ApplicationController
     flash[:notice] = "Purchased successfully!"
     redirect_to products_path
   end
+
+  # def delete_one
+  #   if bookmark_params[:id].present?
+  #     @shopping_cart_item = shopping_cart_params[:id]
+  #     ShoppingCart.destroy(@shopping_cart_item)
+  #     flash[:notice] = "Item deleted from shopping cart."
+  #     redirect_to view_shopping_cart_path
+  #   else
+  #     flash[:notice] = "Could not delete #{@shopping_cart_item.product.name}."
+  #   end
+  # end
 end
