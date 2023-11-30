@@ -2,6 +2,10 @@ class ShoppingCartController < ApplicationController
 
   before_action :set_current_user
 
+  def shopping_cart_params
+    params.permit(:id, :use_wallet_balance, :user_id, :product_id)
+  end
+
   def index
     ShoppingCart.where(user_id: @current_user.id).each do |item|
       if item.product.is_sold.eql? true
@@ -24,7 +28,7 @@ class ShoppingCartController < ApplicationController
     @current_shopping_cart_list.each do |item|
       @total_price += item.product.price.to_f
     end
-    if params[:use_wallet_balance] == 'on'
+    if shopping_cart_params[:use_wallet_balance] == 'on'
       if current_wallet > @total_price
         @total_price = 0
       else
@@ -48,7 +52,7 @@ class ShoppingCartController < ApplicationController
       ShoppingCart.destroy(item.id)
     end
 
-    if params[:use_wallet_balance] == 'on'
+    if shopping_cart_params[:use_wallet_balance] == 'on'
       if current_wallet.wallet > total_price
         current_wallet.wallet = current_wallet.wallet - total_price
       else
