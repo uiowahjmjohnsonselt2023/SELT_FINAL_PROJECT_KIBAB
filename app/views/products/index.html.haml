@@ -26,7 +26,8 @@
         %th Description
         %th= link_to 'Price', products_path(sort: 'price', direction: toggle_direction('price'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) })
         %th More Info
-        %th Select Item
+        %th Bookmark Item
+        %th Add to Cart
     %tbody
       - @products.each do |product|
         %tr
@@ -35,6 +36,7 @@
           %td= product.description
           %td= '$' + product.price
           %td= link_to "More about #{product.name}", product_path(product.id)
+          %td= link_to 'Bookmark', bookmark_from_product_path(product.id)
           %td= check_box_tag "products[#{product.id}]", :id => "checkbox_#{product.id}"
   = submit_tag 'Add Selected Items to Shopping Cart', :id => 'shopping_cart_button'
 
