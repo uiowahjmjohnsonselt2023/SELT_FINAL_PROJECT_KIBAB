@@ -4,6 +4,7 @@ class ShoppingCartController < ApplicationController
 
   def index
     @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
+    @wallet = Wallet.where(user_id: @current_user.id).first
   end
 
   def edit
@@ -11,21 +12,45 @@ class ShoppingCartController < ApplicationController
   end
 
   def checkout
-    # left empty
+    @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
+    current_wallet = Wallet.find_by_user_id(@current_user.id).wallet
+    @total_price = 0
+    @current_shopping_cart_list.each do |item|
+      @total_price += item.product.price.to_f
+    end
+    if params[:use_wallet_balance] == 'on'
+      if current_wallet > @total_price
+        @total_price = 0
+      else
+        @total_price = @total_price - current_wallet
+      end
+    end
+    @total_price
   end
 
   def confirm_purchase
-    current_wallet = @current_user.wallet
+    current_wallet = Wallet.find_by_user_id(@current_user.id)
+    total_price = 0
     @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
     @current_shopping_cart_list.each do |item|
       item.product.set_sold_true
       Purchase.create!(user_id: @current_user.id, product_id: item.product.id, purchase_timestamp: Time.now)
-      current_wallet = current_wallet - item.product.price.to_f
+      total_price += item.product.price.to_f
       user_selling = User.where(id: item.product.user_id).first
-      user_selling.update(wallet: user_selling.wallet + item.product.price.transaction.to_f)
+      user_wallet = Wallet.find_by_user_id(user_selling.id)
+      user_wallet.update(wallet: user_wallet.wallet + item.product.transaction.to_f)
       ShoppingCart.destroy(item.id)
     end
-    @current_user.update(wallet: current_wallet)
+
+    if params[:use_wallet_balance] == 'on'
+      if current_wallet.wallet > total_price
+        current_wallet.wallet = current_wallet.wallet - total_price
+      else
+        current_wallet.wallet = 0
+      end
+      current_wallet.save
+    end
+
     flash[:notice] = "Purchased successfully!"
     redirect_to products_path
   end

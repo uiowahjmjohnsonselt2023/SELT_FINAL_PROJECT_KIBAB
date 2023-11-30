@@ -13,14 +13,14 @@ def get_random_timestamp
 end
 
 users = [
-  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
-  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
-  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
-  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
-  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
-  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
-  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
-  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name, wallet: rand(100.0..1000.0)},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name},
+  {uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name},
 ]
 
 products = [
@@ -53,6 +53,17 @@ purchases = [
   {:user_id => 4, :product_id => 15, :purchase_timestamp => get_random_timestamp},
 ]
 
+wallets = [
+  {:user_id => 1, wallet: rand(100.0..1000.0)},
+  {:user_id => 2, wallet: rand(100.0..1000.0)},
+  {:user_id => 3, wallet: rand(100.0..1000.0)},
+  {:user_id => 4, wallet: rand(100.0..1000.0)},
+  {:user_id => 5, wallet: rand(100.0..1000.0)},
+  {:user_id => 6, wallet: rand(100.0..1000.0)},
+  {:user_id => 7, wallet: rand(100.0..1000.0)},
+  {:user_id => 8, wallet: rand(100.0..1000.0)},
+]
+
 users.each do |user|
   User.create!(user)
 end
@@ -63,4 +74,8 @@ end
 
 purchases.each do |purchase|
   Purchase.create(purchase)
+end
+
+wallets.each do |wallet|
+  Wallet.create(wallet)
 end
