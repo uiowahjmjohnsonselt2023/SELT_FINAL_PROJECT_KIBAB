@@ -122,4 +122,23 @@ class ProductsController < ApplicationController
     @products = @products.where(is_sold: false).where.not(user_id: @current_user.id)
   end
 
+  def add_bookmarks
+    if params[:products] != nil
+      params[:products].keys.each do |id|
+        Product::add_to_bookmarks(@current_user.id, id)
+      end
+      flash[:notice] = "Product(s) were successfully added to bookmarks."
+    else
+      flash[:warning] = "No products were selected"
+    end
+    redirect_to products_path
+  end
+
+  def bookmark_from_product
+    @current_product = Product.find_by_id(params[:id])
+    Product::add_to_bookmarks(@current_user.id, @current_product.id)
+    flash[:notice] = "#{@current_product.name} was added to your shopping cart."
+    redirect_to products_path
+  end
+
 end

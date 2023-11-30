@@ -1,0 +1,23 @@
+%h2 Bookmarks
+- if @current_bookmarks.nil? || @current_bookmarks.empty?
+  %h4 You have no items in your bookmarks
+- else
+  =link_to "Delete All Bookmarks", bookmarks_
+
+  %table#products.table-style
+    %thead
+      %tr
+        %th Product Name
+        %th Category
+        %th Price
+        %th More Info
+    %tbody
+      - total_price = 0
+      - @current_bookmarks.each do |item|
+        %tr
+          %td= item.product.name
+          %td= item.product.category
+          %td= '$' + item.product.price.to_s
+          %td= link_to "More about #{item.product.name}", product_path(item.product.id)
+
+%h4= link_to "Return to products page", products_path
