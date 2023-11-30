@@ -11,12 +11,17 @@
           %th Price
           %th More Info
       %tbody
+        - total_price = 0
         - @current_shopping_cart_list.each do |item|
           %tr
             %td= item.product.name
             %td= item.product.category
-            %td= '$' + item.product.price
+            %td= '$' + item.product.price.to_s
             %td= link_to "More about #{item.product.name}", product_path(item.product.id)
+            - total_price += item.product.price.to_f
+
+    %h4 Total Price: $#{'%.2f' % total_price}
+
     = submit_tag 'Check Out', :id => 'check_out_button'
 
 %h4= link_to "Return to products page", products_path
