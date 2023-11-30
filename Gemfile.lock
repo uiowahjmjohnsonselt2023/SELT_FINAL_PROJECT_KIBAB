@@ -116,6 +116,8 @@ GEM
     error_highlight (0.5.1)
     erubi (1.12.0)
     excon (0.104.0)
+    faker (3.2.2)
+      i18n (>= 1.8.11, < 2)
     faraday (2.7.12)
       base64
       faraday-net_http (>= 2.0, < 3.1)
@@ -381,6 +383,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   error_highlight (>= 0.4.0)
+  faker
   fog-google
   haml
   importmap-rails
