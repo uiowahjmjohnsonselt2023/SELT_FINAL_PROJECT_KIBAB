@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_30_032437) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_30_175118) do
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "product_id"
+    t.index ["product_id"], name: "index_bookmarks_on_product_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
@@ -55,6 +62,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_032437) do
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
+  add_foreign_key "bookmarks", "products"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "products", "users"
   add_foreign_key "purchases", "products"
   add_foreign_key "purchases", "users"

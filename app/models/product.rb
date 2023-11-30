@@ -77,6 +77,14 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def self.add_to_bookmarks(user_id, product_id)
+    var = Bookmark.where(user_id: user_id).where(product_id: product_id).present?
+    if !var.present?
+      bookmark = {:user_id => user_id, :product_id => product_id}
+      Bookmark.create!(bookmark)
+    end
+  end
+
   def set_sold_true
     self.is_sold = true
     self.save

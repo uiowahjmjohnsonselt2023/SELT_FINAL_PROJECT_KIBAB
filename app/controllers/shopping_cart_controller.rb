@@ -2,7 +2,17 @@ class ShoppingCartController < ApplicationController
 
   before_action :set_current_user
 
+  def shopping_cart_params
+    params.permit(:id, :use_wallet_balance, :user_id, :product_id)
+  end
+
   def index
+    ShoppingCart.where(user_id: @current_user.id).each do |item|
+      if item.product.is_sold.eql? true
+          flash[:notice] = "#{item.product.name} was sold."
+          ShoppingCart.destroy(item)
+      end
+    end
     @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
     @wallet = Wallet.where(user_id: @current_user.id).first
   end
@@ -18,7 +28,7 @@ class ShoppingCartController < ApplicationController
     @current_shopping_cart_list.each do |item|
       @total_price += item.product.price.to_f
     end
-    if params[:use_wallet_balance] == 'on'
+    if shopping_cart_params[:use_wallet_balance] == 'on'
       if current_wallet > @total_price
         @total_price = 0
       else
@@ -42,7 +52,7 @@ class ShoppingCartController < ApplicationController
       ShoppingCart.destroy(item.id)
     end
 
-    if params[:use_wallet_balance] == 'on'
+    if shopping_cart_params[:use_wallet_balance] == 'on'
       if current_wallet.wallet > total_price
         current_wallet.wallet = current_wallet.wallet - total_price
       else
@@ -54,4 +64,15 @@ class ShoppingCartController < ApplicationController
     flash[:notice] = "Purchased successfully!"
     redirect_to products_path
   end
+
+  # def delete_one
+  #   if bookmark_params[:id].present?
+  #     @shopping_cart_item = shopping_cart_params[:id]
+  #     ShoppingCart.destroy(@shopping_cart_item)
+  #     flash[:notice] = "Item deleted from shopping cart."
+  #     redirect_to view_shopping_cart_path
+  #   else
+  #     flash[:notice] = "Could not delete #{@shopping_cart_item.product.name}."
+  #   end
+  # end
 end

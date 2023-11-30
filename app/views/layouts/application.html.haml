@@ -20,6 +20,8 @@
           = link_to "#{@current_user.name}'s Profile", "/users/#{@current_user[:id]}"
         .nav_item_2
           = link_to 'Shopping Cart', view_shopping_cart_path
+        .nav_item_2
+          = link_to 'Bookmarks', view_bookmarks_path
         -# .nav_item_2
         = button_to "Logout",logout_path_path, method: :delete
     #main
