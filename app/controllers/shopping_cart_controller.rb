@@ -3,6 +3,12 @@ class ShoppingCartController < ApplicationController
   before_action :set_current_user
 
   def index
+    ShoppingCart.where(user_id: @current_user.id).each do |item|
+      if item.product.is_sold.eql? true
+          flash[:notice] = "#{item.product.name} was sold."
+          ShoppingCart.destroy(item)
+      end
+    end
     @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
     @wallet = Wallet.where(user_id: @current_user.id).first
   end
