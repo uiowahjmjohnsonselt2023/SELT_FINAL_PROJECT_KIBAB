@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @wallet = Wallet.find_by_user_id(@current_user.id)
     id = params[:id]
     unless current_user?(id)
       flash[:warning] = "Can only show profile of logged-in user"
