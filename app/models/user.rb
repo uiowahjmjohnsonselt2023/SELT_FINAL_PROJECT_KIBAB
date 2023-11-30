@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   has_many :product
+  has_one :wallet
 
   # User implementation should be credited to the slides titled Slides11.ppx presented in class
   # and "Single Sign-On and Third Party Authentication"
@@ -34,6 +35,8 @@ class User < ActiveRecord::Base
       user.provider = auth['provider']
       user.email = auth['info']['email']
       user.name = auth['info']['name']
+      # default is set to 100 right now for testing purposes
+      user.build_wallet(wallet: 100.0)
     end
   end
 end

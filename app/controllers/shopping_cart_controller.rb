@@ -4,7 +4,7 @@ class ShoppingCartController < ApplicationController
 
   def index
     @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
-    @wallet = Wallet.find_by_user_id(@current_user.id)
+    @wallet = Wallet.where(user_id: @current_user.id).first
   end
 
   def edit
@@ -29,7 +29,7 @@ class ShoppingCartController < ApplicationController
   end
 
   def confirm_purchase
-    current_wallet = Wallet.find_by_user_id(@current_user.id).wallet
+    current_wallet = Wallet.find_by_user_id(@current_user.id)
     total_price = 0
     @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
     @current_shopping_cart_list.each do |item|
@@ -38,15 +38,15 @@ class ShoppingCartController < ApplicationController
       total_price += item.product.price.to_f
       user_selling = User.where(id: item.product.user_id).first
       user_wallet = Wallet.find_by_user_id(user_selling.id)
-      user_selling.update(wallet: user_wallet.wallet + item.product.transaction.to_f)
+      user_wallet.update(wallet: user_wallet.wallet + item.product.transaction.to_f)
       ShoppingCart.destroy(item.id)
     end
 
     if params[:use_wallet_balance] == 'on'
-      if current_wallet > total_price
-        current_wallet = current_wallet - total_price
+      if current_wallet.wallet > total_price
+        current_wallet.wallet = current_wallet.wallet - total_price
       else
-        current_wallet = 0
+        current_wallet.wallet = 0
       end
       current_wallet.save
     end
