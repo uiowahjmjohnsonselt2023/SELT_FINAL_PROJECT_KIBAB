@@ -105,7 +105,7 @@ class ProductsController < ApplicationController
       when 'product_name'
         @products = @products.order("name #{sort_direction}")
       when 'price'
-        @products = @products.order("CAST(price AS float) #{sort_direction}")
+        @products = @products.order(Arel.sql("CAST(price AS float) #{sort_direction}"))
       else
         @products = @products.order("#{params[:sort]} #{sort_direction}")
       end
