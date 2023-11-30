@@ -11,7 +11,7 @@ class ShoppingCartController < ApplicationController
   end
 
   def checkout
-    # left empty
+    @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
   end
 
   def confirm_purchase

@@ -4,7 +4,7 @@
 -# %h4 Address
 -# %p #{@current_user.address}
 %h4 In-store credit
-%p $#{@current_user.wallet}
+%p $#{'%.2f' % @current_user.wallet}
 
 .link_to_button
   = link_to 'Add a New Product to Sell?', new_product_path
