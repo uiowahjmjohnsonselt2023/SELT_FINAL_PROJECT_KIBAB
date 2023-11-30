@@ -29,4 +29,5 @@
     %h4 Total Price: $#{@total_price}
 
     %p Buy Product?
+    = hidden_field_tag :use_wallet_balance, params[:use_wallet_balance]
     = submit_tag 'Purchase', :id => 'confirm_purchase_button'
