@@ -26,13 +26,7 @@
     = label :credit_card, :credit_card_expiration, 'Expiration Date'
     = text_field :credit_card, 'credit_card_expiration'
 
+    %h4 Total Price: $#{@total_price}
 
-    %h4 Use Wallet Balance? $#{'%.2f' % @current_user.wallet}
-    = check_box_tag :use_wallet_balance
-    - total_price = 0
-    - @current_shopping_cart_list.each do |item|
-        - total_price += item.product.price.to_f
-    %h4 Total Price: $#{'%.2f' % total_price}
-
-    %p Sell Product?
+    %p Buy Product?
     = submit_tag 'Purchase', :id => 'confirm_purchase_button'
