@@ -37,7 +37,7 @@ class Product < ActiveRecord::Base
   end
 
   def valid_address?
-    # TODO - implement proper address validation
+    look
     false
   end
 

@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_current_user
 
   def product_params
-    params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold,:seller_review,:review_id)
+    params.require(:product).permit(:name,:image,:category,:description,:price,:street_address,:state,:city,:zip,:is_sold,:seller_review,:review_id)
   end
   def show
     id = params[:id]
@@ -152,7 +152,12 @@ class ProductsController < ApplicationController
     end
   end
 
-  #def check_address
+  def check_address
+    if params[:location] != nil
+      @lookup = valid_address?(:location)
+      client = SmartyStreetsConfig.client
+      client.send_lookup(@lookup)
+    end
 
-  #end
+  end
 end
