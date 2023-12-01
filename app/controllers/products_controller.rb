@@ -151,4 +151,8 @@ class ProductsController < ApplicationController
       render new_seller_review_path
     end
   end
+
+  #def check_address
+
+  #end
 end
