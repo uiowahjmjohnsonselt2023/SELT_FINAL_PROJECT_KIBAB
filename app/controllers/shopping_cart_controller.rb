@@ -3,7 +3,7 @@ class ShoppingCartController < ApplicationController
   before_action :set_current_user
 
   def shopping_cart_params
-    params.permit(:id, :use_wallet_balance, :user_id, :product_id,:address )
+    params.permit(:id, :use_wallet_balance, :user_id, :product_id,address: [:city,:state,:zip,:street_address])
   end
 
   def index
@@ -39,7 +39,7 @@ class ShoppingCartController < ApplicationController
   end
 
   def confirm_purchase
-    if shopping_cart_params[:address][:city] != nil && shopping_cart_params[:address][:state]!= nil &&shopping_cart_params[:address][:street_address]!= nil &&shopping_cart_params[:address][:zip]!= nil
+    if !shopping_cart_params[:address][:city].empty? && !shopping_cart_params[:address][:state].empty? &&!shopping_cart_params[:address][:street_address].empty? &&!shopping_cart_params[:address][:zip].empty?
       @lookup = Purchase.valid_address(params[:address][:city],params[:address][:state],params[:address][:street_address],params[:address][:zip])
       if @lookup == true
         current_wallet = Wallet.find_by_user_id(@current_user.id)
