@@ -16,19 +16,31 @@ class ProductsController < ApplicationController
   end
 
   def search
-    if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:descriptions].present?
-      @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
-    elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:descriptions].present?
-      @products = Product.filtered_search('',params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
-    end
+    # if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:descriptions].present?
+    #   @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
+    # elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:descriptions].present?
+    #   @products = Product.filtered_search('',params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
+    # end
+    # if @products.empty?
+    #   if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:descriptions]=='None'
+    #     @products = Product.where(is_sold: false)
+    #   else
+    #     flash[:notice] = "No products match your search here are some close results"
+    #     @products = Product.filtered_search(params[:search],"None", "None").where(is_sold: false)
+    #   end
+    # end
+    # sorting
+    search = product_params[:search].presence || ''
+    categories = product_params[:product][:categories].presence || 'None'
+    descriptions = product_params[:product][:descriptions].presence || 'None'
+
+    @products = Product.filtered_search(search, categories, descriptions).where(is_sold: false)
+
     if @products.empty?
-      if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:descriptions]=='None'
-        @products = Product.where(is_sold: false)
-      else
-        flash[:notice] = "No products match your search here are some close results"
-        @products = Product.filtered_search(params[:search],"None", "None").where(is_sold: false)
-      end
+      flash[:notice] = "No products match your search; here are some close results"
+      @products = Product.filtered_search(search, "None", "None").where(is_sold: false) unless categories == 'None' && descriptions == 'None'
     end
+
     sorting
   end
 
@@ -38,7 +50,7 @@ class ProductsController < ApplicationController
   def create
     product_parameters = product_params.to_h
     product_parameters[:user_id] = @current_user.id
-    if check_address == true
+    if @lookup
       @product = Product.create(product_parameters)
       # @product.user_id = @current_user.id
       if @product.save
@@ -164,13 +176,13 @@ class ProductsController < ApplicationController
   def check_address
     if product_params[:city] != nil && product_params[:state] != nil && product_params[:street_address] != nil && product_params[:zip] != nil
       @lookup = Product.valid_address(product_params[:city],product_params[:state],product_params[:street_address],product_params[:zip])
-      if @lookup.is_a?(String)
-        return @lookup
-      elsif @lookup == true
-        return true
-      else
-        false
-      end
+      # if @lookup.is_a?(String)
+      #   return @lookup
+      # elsif @lookup == true
+      #   return true
+      # else
+      #   false
+      # end
     else
       render new_products_path
     end
