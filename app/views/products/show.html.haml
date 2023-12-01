@@ -22,16 +22,17 @@
 .link_to_button
   = link_to 'Return to Home', products_path
 
-%h4 Reviews of the Seller
-%table#products.table-style
-  %thead
-    %tr
-      %th Name of Reviewer
-      %th Review
-      %th Rating
-    %tbody
-      - @seller_reviews.each do |r|
-        %tr
-          %td= r.name
-          %td= r.review
-          %td= r.rating
+- if !@seller_reviews.empty? && !@seller_reviews.nil?
+  %h4 Reviews of the Seller
+  %table#products.table-style
+    %thead
+      %tr
+        %th Name of Reviewer
+        %th Review
+        %th Rating
+      %tbody
+        - @seller_reviews.each do |r|
+          %tr
+            %td= r.name
+            %td= r.review
+            %td= r.rating
