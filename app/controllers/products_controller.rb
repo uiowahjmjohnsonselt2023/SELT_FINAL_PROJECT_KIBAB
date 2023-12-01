@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
   def create
     product_parameters = product_params.to_h
     product_parameters[:user_id] = @current_user.id
-    if self.check_address
+    if check_address == true
       @product = Product.create(product_parameters)
       # @product.user_id = @current_user.id
       if @product.save
@@ -50,8 +50,7 @@ class ProductsController < ApplicationController
         render 'new'
       end
     else
-      errors = @product.errors.full_messages
-      puts "Address validation failed error"
+      flash[:notice]= "Address validation failed error"
       render 'new'
     end
 
@@ -161,11 +160,11 @@ class ProductsController < ApplicationController
 
   def check_address
     if product_params[:city] != nil && product_params[:state] != nil && product_params[:street_address] != nil && product_params[:zip] != nil
-      @lookup = valid_address?(product_params[:city],product_params[:state],product_params[:street_address],product_params[:zip])
+      @lookup = Product.valid_address(product_params[:city],product_params[:state],product_params[:street_address],product_params[:zip])
       if @lookup == true
         return true
       else
-        return false
+        false
       end
     else
       render new_products_path
