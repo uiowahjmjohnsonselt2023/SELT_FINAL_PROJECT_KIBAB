@@ -64,6 +64,10 @@ wallets = [
   {:user_id => 8, wallet: rand(100.0..1000.0)},
 ]
 
+seller_reviews = [
+  {:user_id => 1, :name => "Brandon", :review => "Good product", :rating => 5.0},
+]
+
 users.each do |user|
   User.create!(user)
 end
@@ -78,4 +82,8 @@ end
 
 wallets.each do |wallet|
   Wallet.create(wallet)
+end
+
+seller_reviews.each do |review|
+  SellerReview.create!(review)
 end
