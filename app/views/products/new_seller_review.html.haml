@@ -1,0 +1,6 @@
+= form_tag add_review_path :method => 'post' do
+  %h2 Write a Review
+  = text_area :seller_review, :review, rows: 5
+  %p
+  = select :seller_review, :rating, [1, 2, 3, 4, 5]
+  = submit_tag 'Add Seller Review', :id => 'new_seller_review'
