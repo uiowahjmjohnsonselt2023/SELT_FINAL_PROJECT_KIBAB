@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_current_user
 
   def product_params
-    params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold,:seller_review,:review_id)
+    params.require(:product).permit(:name,:image,:category,:description,:price,:street_address,:state,:city,:zip,:is_sold,:seller_review,:review_id)
   end
   def show
     id = params[:id]
@@ -38,16 +38,25 @@ class ProductsController < ApplicationController
   def create
     product_parameters = product_params.to_h
     product_parameters[:user_id] = @current_user.id
-    @product = Product.create(product_parameters)
-    # @product.user_id = @current_user.id
-    if @product.save
-      flash[:notice] = "Product created successfully!"
-      redirect_to products_path
+    if check_address == true
+      @product = Product.create(product_parameters)
+      # @product.user_id = @current_user.id
+      if @product.save
+        flash[:notice] = "Product created successfully!"
+        redirect_to products_path
+      else
+        errors = @product.errors.full_messages
+        puts "Validation failed with errors: #{errors.join(', ')}"
+        render 'new'
+      end
+    elsif @lookup.is_a?(String)
+      flash[:notice]= "Error " + @lookup
+      render 'new'
     else
-      errors = @product.errors.full_messages
-      puts "Validation failed with errors: #{errors.join(', ')}"
+      flash[:notice]= "Address validation failed error"
       render 'new'
     end
+
   end
 
   def edit
@@ -150,5 +159,21 @@ class ProductsController < ApplicationController
       flash[:notice] = "Missing required field"
       render new_seller_review_path
     end
+  end
+
+  def check_address
+    if product_params[:city] != nil && product_params[:state] != nil && product_params[:street_address] != nil && product_params[:zip] != nil
+      @lookup = Product.valid_address(product_params[:city],product_params[:state],product_params[:street_address],product_params[:zip])
+      if @lookup.is_a?(String)
+        return @lookup
+      elsif @lookup == true
+        return true
+      else
+        false
+      end
+    else
+      render new_products_path
+    end
+
   end
 end

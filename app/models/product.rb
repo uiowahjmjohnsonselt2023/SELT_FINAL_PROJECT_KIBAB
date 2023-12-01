@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 class Product < ActiveRecord::Base
 
@@ -12,7 +11,7 @@ class Product < ActiveRecord::Base
   #TODO: Fix regex expression controlling price, add validation location, description, and categories
   VALID_PRICE_REGEX = /\d+()|(.\d\d)/
   validates :price, presence: true, format: {with: VALID_PRICE_REGEX} # Regex for US dollar format
-  validates :location, presence: true # Formatting may be needed in the future
+  #validates :location, presence: true # Formatting may be needed in the future
 
   def transaction
     price = self.price.to_i
@@ -36,9 +35,27 @@ class Product < ActiveRecord::Base
     ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'].include?(self.category)
   end
 
-  def valid_address?
-    # TODO - implement proper address validation
-    false
+  def self.valid_address(city,state,address,zip)
+    # client = SmartyStreetsConfig.client
+    # lookup = SmartyStreets::USStreet::Lookup.new
+    # lookup.street = address
+    # lookup.state = state
+    # lookup.city = city
+    # lookup.zipcode = zip
+    # lookup.candidates = 3
+    # lookup.match = SmartyStreets::USStreet::MatchType::STRICT
+    # begin
+    #   client.send_lookup(lookup)
+    # rescue SmartyStreets::SmartyError => err
+    #   result = "Got the error" + err.to_s
+    #   return result
+    # end
+    # if lookup.result.empty?
+    #   false
+    # else
+    #   true
+    #end
+    true
   end
 
   def self.filtered_search(search,category,description)

@@ -25,7 +25,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_005930) do
     t.string "category"
     t.string "description"
     t.string "price"
-    t.string "location"
+    t.string "city"
+    t.string "state"
+    t.string "street_address"
+    t.string "zip"
     t.boolean "is_sold", default: false
     t.index ["user_id"], name: "index_products_on_user_id"
   end
