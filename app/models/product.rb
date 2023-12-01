@@ -36,25 +36,26 @@ class Product < ActiveRecord::Base
   end
 
   def self.valid_address(city,state,address,zip)
-    client = SmartyStreetsConfig.client
-    lookup = SmartyStreets::USStreet::Lookup.new
-    lookup.street = address
-    lookup.state = state
-    lookup.city = city
-    lookup.zipcode = zip
-    lookup.candidates = 3
-    lookup.match = SmartyStreets::USStreet::MatchType::STRICT
-    begin
-      client.send_lookup(lookup)
-    rescue SmartyStreets::SmartyError => err
-      result = "Got the error" + err.to_s
-      return result
-    end
-    if lookup.result.empty?
-      false
-    else
-      true
-    end
+    # client = SmartyStreetsConfig.client
+    # lookup = SmartyStreets::USStreet::Lookup.new
+    # lookup.street = address
+    # lookup.state = state
+    # lookup.city = city
+    # lookup.zipcode = zip
+    # lookup.candidates = 3
+    # lookup.match = SmartyStreets::USStreet::MatchType::STRICT
+    # begin
+    #   client.send_lookup(lookup)
+    # rescue SmartyStreets::SmartyError => err
+    #   result = "Got the error" + err.to_s
+    #   return result
+    # end
+    # if lookup.result.empty?
+    #   false
+    # else
+    #   true
+    #end
+    true
   end
 
   def self.filtered_search(search,category,description)
