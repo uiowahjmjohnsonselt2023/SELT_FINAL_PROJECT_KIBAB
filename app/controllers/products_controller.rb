@@ -49,6 +49,9 @@ class ProductsController < ApplicationController
         puts "Validation failed with errors: #{errors.join(', ')}"
         render 'new'
       end
+    elsif @lookup.is_a?(String)
+      flash[:notice]= "Error " + @lookup
+      render 'new'
     else
       flash[:notice]= "Address validation failed error"
       render 'new'
@@ -161,7 +164,9 @@ class ProductsController < ApplicationController
   def check_address
     if product_params[:city] != nil && product_params[:state] != nil && product_params[:street_address] != nil && product_params[:zip] != nil
       @lookup = Product.valid_address(product_params[:city],product_params[:state],product_params[:street_address],product_params[:zip])
-      if @lookup == true
+      if @lookup.is_a?(String)
+        return @lookup
+      elsif @lookup == true
         return true
       else
         false
