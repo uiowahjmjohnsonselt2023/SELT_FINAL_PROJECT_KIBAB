@@ -66,6 +66,9 @@ class ShoppingCartController < ApplicationController
 
         flash[:notice] = "Purchased successfully!"
         redirect_to products_path
+      elsif @lookup.is_a?(String)
+        flash[:notice] = 'Error' + @lookup
+        render checkout_path
       else
         flash[:notice] = 'Not a valid address'
         render checkout_path
