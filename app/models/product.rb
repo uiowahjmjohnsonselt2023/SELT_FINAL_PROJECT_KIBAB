@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 class Product < ActiveRecord::Base
 
@@ -36,8 +35,10 @@ class Product < ActiveRecord::Base
     ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'].include?(self.category)
   end
 
-  def valid_address?
-    look
+  def valid_address(city,state,address,zip)
+    client = SmartyStreetsConfig.client
+    lookup = SmartyStreets::USStreet::Lookup.new
+    lookup.
     false
   end
 

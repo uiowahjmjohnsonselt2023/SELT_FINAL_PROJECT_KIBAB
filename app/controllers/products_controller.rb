@@ -153,10 +153,15 @@ class ProductsController < ApplicationController
   end
 
   def check_address
-    if params[:location] != nil
-      @lookup = valid_address?(:location)
-      client = SmartyStreetsConfig.client
-      client.send_lookup(@lookup)
+    if product_params[:city] != nil && product_params[:state] != nil && product_params[:street_address] != nil && product_params[:zip] != nil
+      @lookup = valid_address?(product_params[:city],product_params[:state],product_params[:street_address],product_params[:zip])
+      if @lookup == true
+
+      else
+
+      end
+    else
+      render new_products_path
     end
 
   end

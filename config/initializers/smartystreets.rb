@@ -1,8 +1,3 @@
-require '../lib/smartystreets_ruby_sdk/static_credentials'
-require '../lib/smartystreets_ruby_sdk/shared_credentials'
-require '../lib/smartystreets_ruby_sdk/client_builder'
-require '../lib/smartystreets_ruby_sdk/us_street/lookup'
-require '../lib/smartystreets_ruby_sdk/us_street/match_type'
 
 SmartyStreetsConfig = OpenStruct.new(
   key: ENV['SMARTY_CLIENT_KEY'],
