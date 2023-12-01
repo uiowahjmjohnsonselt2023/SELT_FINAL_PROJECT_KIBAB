@@ -20,7 +20,8 @@
           %td= purchase.product.category
           %td= '$' + purchase.product.price
           %td= purchase.purchase_timestamp
-          %td= link_to "Add Review?", new_seller_review_path
+          %td= link_to "Add Review?", new_seller_review_path(review_id: purchase.product.user_id)
+          -# = hidden_field_tag :review_id, purchase.product.user_id
 
 .link_to_button
   = link_to 'Return to Profile', "/users/#{@current_user[:id]}"

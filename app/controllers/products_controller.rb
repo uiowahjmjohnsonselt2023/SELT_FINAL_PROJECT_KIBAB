@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_current_user
 
   def product_params
-    params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold)
+    params.require(:product).permit(:name,:image,:category,:description,:price,:location,:is_sold,:seller_review,:review_id)
   end
   def show
     id = params[:id]
@@ -142,7 +142,13 @@ class ProductsController < ApplicationController
   end
 
   def add_review
-  
+    if params[:seller_review] != nil
+      SellerReview.create!(user_id: params[:review_id], name: @current_user.name, review: params[:seller_review][:review], rating: params[:seller_review][:rating])
+      flash[:notice] = "Review successfully added"
+      redirect_to purchase_history_path_path
+    else
+      flash[:notice] = "Missing required field"
+      render new_seller_review_path
+    end
   end
-
 end

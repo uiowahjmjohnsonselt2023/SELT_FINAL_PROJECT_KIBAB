@@ -3,4 +3,5 @@
   = text_area :seller_review, :review, rows: 5
   %p
   = select :seller_review, :rating, [1, 2, 3, 4, 5]
+  = hidden_field_tag :review_id, params[:review_id]
   = submit_tag 'Add Seller Review', :id => 'new_seller_review'
