@@ -65,7 +65,14 @@ wallets = [
 ]
 
 seller_reviews = [
-  {:user_id => 1, :name => "Brandon", :review => "Good product", :rating => 5.0},
+  {:user_id => 1, :name => Faker::Name.name, :review => "Good product", :rating => 5.0},
+  {:user_id => 1, :name => Faker::Name.name, :review => "Good product", :rating => 4.0},
+  {:user_id => 1, :name => Faker::Name.name, :review => "Good product", :rating => 3.0},
+  {:user_id => 3, :name => Faker::Name.name, :review => "Good product", :rating => 5.0},
+  {:user_id => 4, :name => Faker::Name.name, :review => "Good product", :rating => 3.0},
+  {:user_id => 3, :name => Faker::Name.name, :review => "Good product", :rating => 3.0},
+  {:user_id => 3, :name => Faker::Name.name, :review => "Good product", :rating => 1.0},
+  {:user_id => 1, :name => Faker::Name.name, :review => "Good product", :rating => 4.0},
 ]
 
 users.each do |user|
