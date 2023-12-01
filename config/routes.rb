@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   match '/bookmarks/delete', to:'bookmarks#destroy', via: :post, :as => 'delete_all_bookmarks'
   match '/bookmarks/:id/delete_one', to:'bookmarks#delete_one', via: :post, :as => "delete_one_bookmark"
 
+  # Seller Reviews
+  match '/review', to: 'products#new_seller_review', via: :get, :as => 'new_seller_review'
+  match '/review/new', to: 'products#add_review', via: :post, :as => 'add_review'
 
   resources :shopping_cart
   # Defines the root path route ("/")
