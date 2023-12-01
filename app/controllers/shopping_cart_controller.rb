@@ -41,28 +41,29 @@ class ShoppingCartController < ApplicationController
   def confirm_purchase
     if !shopping_cart_params[:address][:city].empty? && !shopping_cart_params[:address][:state].empty? &&!shopping_cart_params[:address][:street_address].empty? &&!shopping_cart_params[:address][:zip].empty?
       @lookup = Purchase.valid_address(params[:address][:city],params[:address][:state],params[:address][:street_address],params[:address][:zip])
-      if @lookup == true
-        current_wallet = Wallet.find_by_user_id(@current_user.id)
-        total_price = 0
-        @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
-        @current_shopping_cart_list.each do |item|
-          item.product.set_sold_true
-          Purchase.create!(user_id: @current_user.id, product_id: item.product.id, purchase_timestamp: Time.now)
-          total_price += item.product.price.to_f
-          user_selling = User.where(id: item.product.user_id).first
-          user_wallet = Wallet.find_by_user_id(user_selling.id)
-          user_wallet.update(wallet: user_wallet.wallet + item.product.transaction.to_f)
-          ShoppingCart.destroy(item.id)
-        end
-
-        if shopping_cart_params[:use_wallet_balance] == 'on'
-          if current_wallet.wallet > total_price
-            current_wallet.wallet = current_wallet.wallet - total_price
-          else
-            current_wallet.wallet = 0
-          end
-          current_wallet.save
-        end
+      if @lookup
+        @current_shopping_cart_list = ShoppingCart.purchase_confirm(@current_user.id,shopping_cart_params[:use_wallet_balance])
+        # current_wallet = Wallet.find_by_user_id(@current_user.id)
+        # total_price = 0
+        # @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
+        # @current_shopping_cart_list.each do |item|
+        #   item.product.set_sold_true
+        #   Purchase.create!(user_id: @current_user.id, product_id: item.product.id, purchase_timestamp: Time.now)
+        #   total_price += item.product.price.to_f
+        #   user_selling = User.where(id: item.product.user_id).first
+        #   user_wallet = Wallet.find_by_user_id(user_selling.id)
+        #   user_wallet.update(wallet: user_wallet.wallet + item.product.transaction.to_f)
+        #   ShoppingCart.destroy(item.id)
+        # end
+        #
+        # if shopping_cart_params[:use_wallet_balance] == 'on'
+        #   if current_wallet.wallet > total_price
+        #     current_wallet.wallet = current_wallet.wallet - total_price
+        #   else
+        #     current_wallet.wallet = 0
+        #   end
+        #   current_wallet.save
+        # end
 
         flash[:notice] = "Purchased successfully!"
         redirect_to products_path
