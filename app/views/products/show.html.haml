@@ -10,8 +10,6 @@
 %h4 Price
 %p $#{@current_product.price}
 
-
-
 -if (@current_user.id.eql?(@current_product.user_id))
   .link_to_button
     = link_to 'Edit Item', edit_product_path(@current_product)
@@ -23,3 +21,18 @@
 
 .link_to_button
   = link_to 'Return to Home', products_path
+
+- if !@seller_reviews.empty? && !@seller_reviews.nil?
+  %h4 Reviews of the Seller
+  %table#products.table-style
+    %thead
+      %tr
+        %th Name of Reviewer
+        %th Review
+        %th Rating
+      %tbody
+        - @seller_reviews.each do |r|
+          %tr
+            %td= r.name
+            %td= r.review
+            %td= r.rating
