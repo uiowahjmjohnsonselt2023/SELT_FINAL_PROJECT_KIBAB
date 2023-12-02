@@ -41,8 +41,8 @@ class ShoppingCartController < ApplicationController
   def confirm_purchase
     if !shopping_cart_params[:address][:city].empty? && !shopping_cart_params[:address][:state].empty? &&!shopping_cart_params[:address][:street_address].empty? &&!shopping_cart_params[:address][:zip].empty?
       @lookup = Purchase.valid_address(shopping_cart_params[:address][:city],shopping_cart_params[:address][:state],shopping_cart_params[:address][:street_address],shopping_cart_params[:address][:zip])
-      @name = Wallet.check_name(name)
-      if @lookup == true
+      @valid_card = Wallet.check_credit(shopping_cart_params[:credit_card][:credit_card_name],shopping_cart_params[:credit_card][:credit_card_number],shopping_cart_params[:credit_card][:credit_card_security_num],shopping_cart_params[:credit_card][:credit_card_expiration])
+      if @lookup && @valid_card
         current_wallet = Wallet.find_by_user_id(@current_user.id)
         total_price = 0
         @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
