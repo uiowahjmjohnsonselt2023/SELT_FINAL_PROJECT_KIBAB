@@ -1,7 +1,7 @@
 class ShoppingCart < ActiveRecord::Base
   belongs_to :user
   belongs_to :product
-  def purchase_confirm(user_id,wallet_params)
+  def self.purchase_confirm(user_id,wallet_params)
     current_wallet = Wallet.find_by_user_id(user_id)
     total_price = 0
     cart_list = ShoppingCart.where(user_id: user_id)
@@ -23,5 +23,22 @@ class ShoppingCart < ActiveRecord::Base
       current_wallet.save
     end
     cart_list
+  end
+
+  def self.total_price(user_id,params)
+    cart_list = ShoppingCart.where(user_id: user_id)
+    current_wallet = Wallet.find_by_user_id(user_id).wallet
+    total_price = 0
+    cart_list.each do |item|
+      total_price += item.product.price.to_f
+    end
+    if params == 'on'
+      if current_wallet > total_price
+        total_price = 0
+      else
+        total_price = @total_price - current_wallet
+      end
+    end
+    total_price
   end
 end

@@ -22,20 +22,21 @@ class ShoppingCartController < ApplicationController
   end
 
   def checkout
-    @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
-    current_wallet = Wallet.find_by_user_id(@current_user.id).wallet
-    @total_price = 0
-    @current_shopping_cart_list.each do |item|
-      @total_price += item.product.price.to_f
-    end
-    if shopping_cart_params[:use_wallet_balance] == 'on'
-      if current_wallet > @total_price
-        @total_price = 0
-      else
-        @total_price = @total_price - current_wallet
-      end
-    end
-    @total_price
+    @total_price = ShoppingCart.total_price(@current_user.id,shopping_cart_params[:use_wallet_balance])
+    # @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
+    # current_wallet = Wallet.find_by_user_id(@current_user.id).wallet
+    # @total_price = 0
+    # @current_shopping_cart_list.each do |item|
+    #   @total_price += item.product.price.to_f
+    # end
+    # if shopping_cart_params[:use_wallet_balance] == 'on'
+    #   if current_wallet > @total_price
+    #     @total_price = 0
+    #   else
+    #     @total_price = @total_price - current_wallet
+    #   end
+    # end
+    # @total_price
   end
 
   def confirm_purchase
