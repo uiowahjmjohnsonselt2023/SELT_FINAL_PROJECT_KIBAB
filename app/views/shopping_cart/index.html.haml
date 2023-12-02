@@ -2,6 +2,7 @@
 = form_tag checkout_path, :id => 'user_shopping_cart' do
   - if @current_shopping_cart_list.nil? || @current_shopping_cart_list.empty?
     %h4 You have no items in your shopping cart
+    %h4 Wallet Balance: $#{'%.2f' % @wallet.wallet}
   - else
     %table#products.table-style
       %thead
