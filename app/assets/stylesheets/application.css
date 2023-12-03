@@ -198,11 +198,12 @@ table#products thead {
 }
 
 .product_card {
+    text-align: center;
     align-items: center;
     margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #0086b3;
     padding: 20px;
     width: 300px;
     font-family: "Verdana", sans-serif;
@@ -213,6 +214,7 @@ table#products thead {
     width: 100%;
     height: 200px;
     margin-bottom: 10px;
+    border: 1px solid #0086b3;
 }
 
 .card-img img {
@@ -226,20 +228,23 @@ table#products thead {
     text-align: center;
 }
 
-.product_card card-button {
+.card-button {
     background: none;
-    border: none;
-    top: 50%;
-    color: rgba(255,255,255,0.5);
-    cursor: pointer;
-    background-color: rgba(0,0,0,0.1);
+    color: white;
+    background-color: rgba(0,0,0,0.6);
     text-align: center;
-    cursor: pointer;
+    padding: 10px 10px;
+    text-decoration: none;
     width: 100%;
     font-size: 18px;
 }
 
-.product_card card-button:hover {
+.card-text {
+    color: #0086b3;
+    font-size: 15px;
+}
+
+.card-button:hover {
     color: white;
     background-color: rgba(0,0,0,0.5);
 }
