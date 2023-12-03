@@ -18,7 +18,7 @@
     .product_alignment_fields
       = label  :product, :descriptions, "Description:", class: "card-text"
       = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
-    = submit_tag 'Search', :id => 'search_button'
+    = submit_tag 'Search', :id => 'search_button', class: "search_button"
 
 = form_tag :action => 'add_shopping_cart', :id => 'user_shopping_cart' do
   %table#products.table-style

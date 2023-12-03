@@ -14,11 +14,11 @@
 
     .product_alignment_fields
       = label :product, :categories, "Category:", class: "card-text"
-      = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :descriptions), :class => "product_select_field"
+      = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :descriptions)
     .product_alignment_fields
       = label  :product, :descriptions, "Description:", class: "card-text"
-      = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], class: "product_select_field", selected: params.dig(:product, :categories)
-    = submit_tag 'Search', :id => 'search_button'
+      = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
+    = submit_tag 'Search', :id => 'search_button', class: "search_button"
 
 
 -# = form_tag :action => 'add_shopping_cart', :id => 'user_shopping_cart' do

@@ -62,6 +62,22 @@ body {
     text-align: center;
 }
 
+.search_button {
+    background-color: #0086b3;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.search_button:hover {
+    color: white;
+    background-color: darkslategray;
+}
+
 .product_search_field {
     align-self: center;
     display: inline-block;
@@ -259,7 +275,7 @@ table#products thead {
     border-radius: 5px;
     background: none;
     color: white;
-    background-color: rgba(0,0,0,0.6);
+    background-color: #0086b3;
     text-align: center;
     padding: 10px 10px;
     text-decoration: none;
@@ -276,5 +292,5 @@ table#products thead {
 
 .card-button:hover {
     color: white;
-    background-color: rgba(0,0,0,0.5);
+    background-color: darkslategray;
 }
