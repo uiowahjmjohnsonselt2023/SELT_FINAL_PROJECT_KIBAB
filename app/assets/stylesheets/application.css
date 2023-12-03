@@ -297,7 +297,6 @@ table#products thead {
 }
 
 .product_listing_display {
-    display: flex;
     overflow: auto;
     width: 90%;
 }
