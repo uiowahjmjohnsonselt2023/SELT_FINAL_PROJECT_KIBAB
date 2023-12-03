@@ -1,5 +1,6 @@
 %h2 #{@current_product.name}
-%p #{@current_product.category}
+%h4 Category: #{@current_product.category}
+%h4 Quality: #{@current_product.quality}
 %h4 Product Image
 = image_tag @current_product.image.url, :width => "600"
 %h4 Description
