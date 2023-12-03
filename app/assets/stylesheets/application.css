@@ -213,7 +213,7 @@ table#products thead {
     object-fit: contain;
     width: 100%;
     height: 200px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border: 1px solid #0086b3;
 }
 
@@ -224,7 +224,7 @@ table#products thead {
 
 .card-price {
     color: grey;
-    font-size: 22px;
+    font-size: 20px;
     text-align: center;
 }
 
@@ -242,6 +242,7 @@ table#products thead {
 .card-text {
     color: #0086b3;
     font-size: 15px;
+    margin: 5px;
 }
 
 .card-button:hover {
