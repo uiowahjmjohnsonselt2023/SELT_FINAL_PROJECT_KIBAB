@@ -10,11 +10,14 @@
 
 .product_search_bar
   = form_tag search_path_path, :method => 'get' do
-    = text_field_tag :search, params[:search], size: "100px", placeholder: 'Search Products &#x26B2;'.html_safe, class: "product_search_field"
-    = label :product, :categories, "Filter by Category"
-    = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
-    = label  :product, :descriptions, "Filter by Description"
-    = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :descriptions)
+    = text_field_tag :search, params[:search], placeholder: 'Search Products &#x26B2;'.html_safe, class: "product_search_field"
+
+    .product_alignment_fields
+      = label :product, :categories, "Category:", class: "card-text"
+      = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :descriptions)
+    .product_alignment_fields
+      = label  :product, :descriptions, "Description:", class: "card-text"
+      = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
     = submit_tag 'Search', :id => 'search_button'
 
 = form_tag :action => 'add_shopping_cart', :id => 'user_shopping_cart' do
