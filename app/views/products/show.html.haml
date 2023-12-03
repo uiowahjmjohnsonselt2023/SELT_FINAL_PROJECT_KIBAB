@@ -1,12 +1,11 @@
 %h2 #{@current_product.name}
 %p #{@current_product.category}
 %h4 Product Image
-- if @current_product.image?
-  = image_tag @current_product.image.url, :width => "600"
+= image_tag @current_product.image.url, :width => "600"
 %h4 Description
 %p #{@current_product.description}
-%h4 Location
-%p #{@current_product.location}
+-# %h4 Location
+-# %p #{@current_product.location}
 %h4 Price
 %p $#{@current_product.price}
 

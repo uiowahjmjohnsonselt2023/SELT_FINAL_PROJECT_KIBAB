@@ -185,3 +185,69 @@ table#products thead {
 .carousel-button.next {
     right: 1rem;
 }
+
+.product_card_display {
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.product_card {
+    text-align: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #0086b3;
+    padding: 20px;
+    width: 300px;
+    font-family: "Verdana", sans-serif;
+}
+
+.card-img {
+    object-fit: contain;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+    border: 1px solid #0086b3;
+}
+
+.card-img img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card-price {
+    color: grey;
+    font-size: 20px;
+    text-align: center;
+    font-family: "Verdana", sans-serif;
+}
+
+.card-button {
+    background: none;
+    color: white;
+    background-color: rgba(0,0,0,0.6);
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    width: 100%;
+    font-size: 18px;
+    font-family: "Verdana", sans-serif;
+}
+
+.card-text {
+    color: #0086b3;
+    font-size: 15px;
+    margin: 5px;
+}
+
+.card-button:hover {
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+}
