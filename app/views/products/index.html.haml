@@ -14,9 +14,9 @@
 
     .product_alignment_fields
       = label :product, :categories, "Category:", class: "card-text"
-      = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :descriptions)
+      = select :product, :quality, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :quality)
     .product_alignment_fields
-      = label  :product, :descriptions, "Description:", class: "card-text"
+      = label  :product, :quality, "Quality:", class: "card-text"
       = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
     = submit_tag 'Search', :id => 'search_button', class: "search_button"
 
@@ -63,7 +63,7 @@
       %p.card-text= product.name
       %p.card-price= "$" + product.price
       %p.card-text= product.category
-      %p.card-text= product.description
+      %p.card-text= product.quality
       %p
       = link_to 'Add to shopping cart', transaction_path_url(product.id), class: "card-button"
 
