@@ -67,6 +67,7 @@ body {
     border: none;
     color: white;
     padding: 10px 10px;
+    margin: 5px;
     text-align: center;
     display: inline-block;
     border-radius: 5px;
@@ -293,4 +294,14 @@ table#products thead {
 .card-button:hover {
     color: white;
     background-color: darkslategray;
+}
+
+.product_listing_display {
+    display: flex;
+    overflow: auto;
+    width: 90%;
+}
+
+.listing_img {
+    display: inline-block;
 }
