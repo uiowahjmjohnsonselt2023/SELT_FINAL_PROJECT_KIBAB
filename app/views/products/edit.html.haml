@@ -10,10 +10,10 @@
     = file_field :product, :image
 
     = label :product, :category, 'Product Category'
-    = select :product, :category, ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], value: @current_product.category
+    = select :product, :category, options_for_select(['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], @current_product.category)
 
     = label :product, :quality, 'Product Description'
-    = select :product, :quality, ['New', 'Like New', 'Used', 'Well Worn'], value: @current_product.quality
+    = select :product, :quality, options_for_select(['New', 'Like New', 'Used', 'Well Worn'], @current_product.quality)
 
     = label :product, :description, 'Product Description'
     = text_area :product, :description, cols: "40", rows: "5", maxlength: "100", value: @current_product.description
