@@ -294,3 +294,9 @@ table#products thead {
     color: white;
     background-color: darkslategray;
 }
+
+.link-flex-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
