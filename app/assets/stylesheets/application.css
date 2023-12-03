@@ -226,6 +226,7 @@ table#products thead {
     color: grey;
     font-size: 20px;
     text-align: center;
+    font-family: "Verdana", sans-serif;
 }
 
 .card-button {
@@ -237,6 +238,7 @@ table#products thead {
     text-decoration: none;
     width: 100%;
     font-size: 18px;
+    font-family: "Verdana", sans-serif;
 }
 
 .card-text {
