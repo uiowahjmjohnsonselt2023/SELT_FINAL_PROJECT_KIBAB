@@ -2,7 +2,7 @@
 - if @current_bookmarks.nil? || @current_bookmarks.empty?
   %h4 You have no items in your bookmarks
 - else
-  = button_to "Delete All Bookmarks", delete_all_bookmarks_path, method: :post
+  = button_to "Delete All Bookmarks", delete_all_bookmarks_path, method: :post, class: "search_button"
 
 %table
   %tbody
@@ -16,24 +16,7 @@
           %p.card-text= item.product.name
           %p.card-text= item.product.category
           %p.card-text= '$' + item.product.price.to_s
-          %p= link_to "More about #{item.product.name}", product_path(item.product.id), class: "search_button"
+          %p= link_to "More about #{item.product.name}", product_path(item.product.id), class: "card-button"
           %p= button_to "Delete Bookmark?", delete_one_bookmark_path(item.id), method: :post, class: "search_button"
-
-  %table#products.table-style
-    %thead
-      %tr
-        %th Product Name
-        %th Category
-        %th Price
-        %th More Info
-        %th Delete Bookmark
-    %tbody
-      - @current_bookmarks.each do |item|
-        %tr
-          %td= item.product.name
-          %td= item.product.category
-          %td= '$' + item.product.price.to_s
-          %td= link_to "More about #{item.product.name}", product_path(item.product.id)
-          %td= button_to "Delete Bookmark?", delete_one_bookmark_path(item.id), method: :post
 
 %h4= link_to "Return to products page", products_path
