@@ -18,6 +18,7 @@
       -else
         .nav_item_2
           = link_to "#{@current_user.name}'s Profile", "/users/#{@current_user[:id]}"
+          = image_tag @current_user.pfp
         .nav_item_2
           = link_to 'Shopping Cart', view_shopping_cart_path
         .nav_item_2
