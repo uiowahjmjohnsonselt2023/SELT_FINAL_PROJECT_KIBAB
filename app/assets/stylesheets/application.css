@@ -297,8 +297,7 @@ table#products thead {
 }
 
 .product_listing {
-    width: 80%;
-    height: 80%;
+    width: 70%;
     margin: auto;
     position: relative;
     align-content: center;
@@ -306,12 +305,13 @@ table#products thead {
 }
 
 .product_listing_display {
-    padding: 5px;
-    margin: 5px;
     overflow: auto;
     width: 100%;
     border-collapse:separate;
+    padding: 10px;
     border-spacing:0 15px;
+    border-radius: 5px;
+    border: 1px solid #0086b3;
 }
 
 .product_listing_row {
@@ -327,6 +327,12 @@ table#products thead {
 .listing_img img {
     width: 100%;
     height: 100%;
+}
+
+.listing-buttons.right{
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
 }
 
 .listing-text {
