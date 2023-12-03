@@ -53,26 +53,13 @@ body {
 
 .product_search_bar {
     overflow: hidden;
+    position: relative;
     display: inline-block;
     box-sizing: border-box;
     align-self: center;
     width: 100%;
     padding: 15px;
     text-align: center;
-}
-
-.product_search_field {
-    align-self: center;
-    display: inline-block;
-    border-radius: 5px;
-    width: 50%;
-    height: 30px;
-    font-family: "Verdana", sans-serif;
-    color: #0086b3;
-    padding:10px;
-    margin:10px 0;
-    font-size: 20px;
-    border: 2px solid #0086b3;
 }
 
 .product_search_field {
