@@ -12,8 +12,11 @@
     = label :product, :category, 'Product Category'
     = select :product, :category, ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other']
 
+    = label :product, :quality, 'Product Quality'
+    = select :product, :quality, ['New', 'Like New', 'Used', 'Well Worn']
+
     = label :product, :description, 'Product Description'
-    = select :product, :description, ['Well Worn', 'Used', 'Like New', 'New']
+    = textarea :product, :description, cols: "40", rows: "5", maxlength: "100"
 
     = label :product, :price, 'Price'
     = text_field :product, 'price'
