@@ -53,9 +53,22 @@ body {
 
 .product_search_bar {
     align-self: center;
-    width: 80%;
+    width: 100%;
     text-align: center;
     box-sizing: border-box;
+}
+
+.product_search_field {
+    align-self: center;
+    width: 70%;
+    height: 30px;
+    font-family: "Verdana", sans-serif;
+    color: #0086b3;
+    padding:10px;
+    margin:10px 0;
+    font-size: 20px;
+    border: 2px solid #0086b3;
+    max-width: 100%;
 }
 
 .new_product_button {
