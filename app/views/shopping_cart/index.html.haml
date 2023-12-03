@@ -8,7 +8,7 @@
     .product_listing
       %table.product_listing_display
         - @current_shopping_cart_list.each do |item|
-          %tr
+          %tr.product_listing_row
             %td.product_listing_row
               .listing_img
                 = link_to image_tag(item.product.image.url, :height => "400", :class => "card-img"), product_path(item.product.id)
@@ -16,8 +16,10 @@
                 %p.listing-text= "Name: " + item.product.name
                 %p.listing-text= "Category: " + item.product.category
                 %p.listing-text= 'Listing Price: $' + item.product.price.to_s
+            %td
+              .product_listing.right
                 %p= link_to "More about #{item.product.name}", product_path(item.product.id), class: "card-button"
-                - total_price += item.product.price.to_f
+            - total_price += item.product.price.to_f
 
     %h4 Total Price: $#{'%.2f' % total_price}
     %h4 Use Wallet Balance?
