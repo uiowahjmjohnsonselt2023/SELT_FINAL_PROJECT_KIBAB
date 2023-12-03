@@ -297,12 +297,16 @@ table#products thead {
 }
 
 .product_listing_display {
+    padding: 5px;
+    align-self: center;
+    margin: 5px;
     overflow: auto;
-    width: 90%;
+    width: 100%;
 }
 
 .product_listing_row {
     border-radius: 5px;
+    width: 70%;
     border: 1px solid #0086b3;
 }
 

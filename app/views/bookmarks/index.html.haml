@@ -4,8 +4,8 @@
 - else
   = button_to "Delete All Bookmarks", delete_all_bookmarks_path, method: :post, class: "search_button"
 
+
 %table
-  .product_listing_display
   - @current_bookmarks.each do |item|
     %tr
       %td.product_listing_row
