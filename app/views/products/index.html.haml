@@ -59,8 +59,7 @@
 .product_card_display
   - @products.each do |product|
     .product_card
-      - if product.image?
-        = link_to image_tag(product.image.url, :height => "400", :class => "card-img"), product_path(product.id)
+      = link_to image_tag(product.image.url, :height => "400", :class => "card-img"), product_path(product.id)
       %p.card-text= product.name
       %p.card-price= "$" + product.price
       %p.card-text= product.category
