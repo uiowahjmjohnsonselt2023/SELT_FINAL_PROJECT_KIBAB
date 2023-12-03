@@ -296,17 +296,26 @@ table#products thead {
     background-color: darkslategray;
 }
 
+.product_listing {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    position: relative;
+    align-content: center;
+    overflow: hidden;
+}
+
 .product_listing_display {
     padding: 5px;
-    align-self: center;
     margin: 5px;
     overflow: auto;
     width: 100%;
+    border-collapse:separate;
+    border-spacing:0 15px;
 }
 
 .product_listing_row {
     border-radius: 5px;
-    width: 70%;
     border: 1px solid #0086b3;
 }
 
