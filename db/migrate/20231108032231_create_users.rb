@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.string :provider
       t.string :email
       t.string :name
+      t.string :pfp
     end
   end
 end
