@@ -9,7 +9,7 @@
   %h4 Shop KIBAB - Search Results
 .product_search_bar
   = form_tag search_path_path, :method => 'get' do
-    = text_field_tag :search, params[:search], placeholder: 'Search Products'
+    = text_field_tag :search, params[:search], placeholder: 'Search Products &#x26B2;'.html_safe
     = label :product, :categories, "Filter by Category"
     = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
     = label  :product, :descriptions, "Filter by Description"
