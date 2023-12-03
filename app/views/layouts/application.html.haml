@@ -19,7 +19,7 @@
         .nav_item_2
           = link_to "/users/#{@current_user[:id]}" do
             = image_tag @current_user.pfp, :width => "50", style: 'border-radius: 50%'
-              #{@current_user.name}'s Profile
+            #{@current_user.name}'s Profile
         .nav_item_2
           = link_to 'Shopping Cart', view_shopping_cart_path
         .nav_item_2
