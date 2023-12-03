@@ -301,6 +301,23 @@ table#products thead {
     width: 90%;
 }
 
+.product_listing_row {
+    border-radius: 5px;
+    border: 1px solid #0086b3;
+}
+
 .listing_img {
+    margin: 10px;
     display: inline-block;
+}
+
+.listing_img img {
+    width: 100%;
+    height: 100%;
+}
+
+.listing-text {
+    color: #0086b3;
+    font-size: 20px;
+    margin: 5px;
 }
