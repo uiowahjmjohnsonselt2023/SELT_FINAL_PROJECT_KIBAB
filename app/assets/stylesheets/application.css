@@ -52,15 +52,19 @@ body {
 }
 
 .product_search_bar {
+    overflow: hidden;
+    display: inline-block;
+    box-sizing: border-box;
     align-self: center;
     width: 100%;
     text-align: center;
-    box-sizing: border-box;
 }
 
 .product_search_field {
     align-self: center;
-    width: 70%;
+    display: inline-block;
+    border-radius: 5px;
+    width: 50%;
     height: 30px;
     font-family: "Verdana", sans-serif;
     color: #0086b3;
@@ -68,7 +72,25 @@ body {
     margin:10px 0;
     font-size: 20px;
     border: 2px solid #0086b3;
-    max-width: 100%;
+}
+
+.product_search_field {
+    align-self: center;
+    display: inline-block;
+    border-radius: 5px;
+    width: 50%;
+    height: 30px;
+    font-family: "Verdana", sans-serif;
+    color: #0086b3;
+    padding:10px;
+    margin:10px 0;
+    font-size: 20px;
+    border: 2px solid #0086b3;
+}
+
+.product_alignment_fields {
+    display: inline-block;
+    vertical-align: top;
 }
 
 .new_product_button {

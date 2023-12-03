@@ -8,16 +8,16 @@
 .welcome_statement
   %h1 Shop KIBAB
 
-.product_search_bar
-  = form_tag search_path_path, :method => 'get' do
+= form_tag search_path_path, :method => 'get' do
+  .product_search_bar
     = text_field_tag :search, params[:search], placeholder: 'Search Products &#x26B2;'.html_safe, class: "product_search_field"
 
-    = label :product, :categories, "Filter by Category"
-    = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
+    .product_alignment_fields
+      = label :product, :categories, "Filter by Category"
+      = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
 
-    = label  :product, :descriptions, "Filter by Description"
-    = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :descriptions)
-
+      = label  :product, :descriptions, "Filter by Description"
+      = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :descriptions)
     = submit_tag 'Search', :id => 'search_button'
 
 
