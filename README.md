@@ -31,4 +31,5 @@ creates several images to view for seeing more in-depth coverage.
 
 ## Heroku App
 [KIBAB App Sprint 1](https://glacial-depths-15499-48fc4ab6a25b.herokuapp.com/) \
-[KIBAB App Sprint 2](https://shielded-tundra-14985-98ad5af16458.herokuapp.com/)
+[KIBAB App Sprint 2](https://shielded-tundra-14985-98ad5af16458.herokuapp.com/) \
+[KIBAB App Sprint 3](https://guarded-bastion-27063-9c4658f71190.herokuapp.com)
