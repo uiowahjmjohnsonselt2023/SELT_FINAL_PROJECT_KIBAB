@@ -60,5 +60,5 @@
       %p= product.description
       - if product.image?
         = link_to image_tag(product.image.url, :height => "400", :class => "card-img"), product_path(product.id)
-      = button_to 'Add to shopping cart', transaction_path_url(product.id), class: "card-button"
+      = link_to 'Add to shopping cart', transaction_path_url(product.id), class: "card-button"
 

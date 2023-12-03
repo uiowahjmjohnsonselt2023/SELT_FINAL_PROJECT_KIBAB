@@ -187,10 +187,11 @@ table#products thead {
 }
 
 .product_card_display {
+    align-self: center;
     display: flex;
     flex-direction: row;
-    width: 80%;
-    height: 80%;
+    flex-wrap: wrap;
+    width: 90%;
     margin: auto;
     position: relative;
     overflow: hidden;
@@ -198,8 +199,11 @@ table#products thead {
 
 .product_card {
     align-items: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 20px;
     width: 300px;
     font-family: "Verdana", sans-serif;
 }
