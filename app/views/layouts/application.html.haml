@@ -10,12 +10,12 @@
     %nav.navbar
       .nav_item
         = link_to 'KIBAB Shop', products_path
-      .nav_item_2
-        = link_to 'About', about_path_url
+      -# .nav_item
+      -#   = link_to 'About', about_path_url
       -if @current_user
-        .nav_item_2
+        .nav_item
           = link_to 'Shopping Cart', view_shopping_cart_path
-        .nav_item_2
+        .nav_item
           = link_to 'Bookmarks', view_bookmarks_path
         .nav_item_2.profile-dropdown{ style: 'position: relative;' }
           %a.dropdown-toggle{ id: 'profile-link', href: '#', onclick: 'toggleDropdownMenu(event)', style: 'display: block; border-radius: 50%;' }
