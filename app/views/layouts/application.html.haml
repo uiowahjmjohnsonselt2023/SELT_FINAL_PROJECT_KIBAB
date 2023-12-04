@@ -25,9 +25,9 @@
           %a.dropdown-toggle{ href: '#', onclick: 'toggleDropdownMenu(event)' }
             = image_tag @current_user.pfp, width: "50", style: 'border-radius: 50%; display: inline-block; vertical-align: middle;'
           .dropdown-menu{ style: 'display: none;' }
-            %a{ href: user_path(@current_user) }
+            %a{ href: user_path(@current_user), style: 'display: block; padding: 10px;' }
               Profile
-            %a{ href: "#", onclick: 'handleLogout(event)' }
+            %a{ href: '#', onclick: 'handleLogout(event)', style: 'display: block; padding: 10px;' }
               Logout
     #main
       - if flash[:notice]
