@@ -23,9 +23,8 @@
         = button_to "Logout",logout_path_path, method: :delete
         .nav_item_2
           = link_to "/users/#{@current_user[:id]}" do
-            .link-flex-container
-              = image_tag @current_user.pfp, :width => "50", style: 'border-radius: 50%; display: inline-block; vertical-align: middle;'
-              #{@current_user.name}'s Profile
+            = image_tag @current_user.pfp, :width => "50", style: 'border-radius: 50%; display: inline-block; vertical-align: middle;'
+            #{@current_user.name}'s Profile
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
