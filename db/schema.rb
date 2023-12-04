@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_005930) do
     t.string "name"
     t.string "image"
     t.string "category"
+    t.string "quality"
     t.string "description"
     t.string "price"
     t.string "city"
@@ -65,6 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_005930) do
     t.string "provider"
     t.string "email"
     t.string "name"
+    t.string "pfp"
     t.string "session_token"
     t.index ["session_token"], name: "index_users_on_session_token"
   end

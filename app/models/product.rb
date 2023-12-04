@@ -7,8 +7,9 @@ class Product < ActiveRecord::Base
 
   validates :name, presence: true, length: {maximum: 50}
   validates :category, presence: true, length: {maximum: 50}
-  validates :description, presence: true
-  #TODO: Fix regex expression controlling price, add validation location, description, and categories
+  validates :quality, presence: true
+  validates :description, presence: true, length: {maximum: 100}
+  #TODO: Fix regex expression controlling price, add validation location, quality, and categories
   VALID_PRICE_REGEX = /\d+()|(.\d\d)/
   validates :price, presence: true, format: {with: VALID_PRICE_REGEX} # Regex for US dollar format
   #validates :location, presence: true # Formatting may be needed in the future
@@ -27,8 +28,8 @@ class Product < ActiveRecord::Base
     self.price.match?(price_regex)
   end
 
-  def valid_description?
-    ['Well Worn', 'Used', 'Like New', 'New'].include?(self.description)
+  def valid_quality?
+    ['Well Worn', 'Used', 'Like New', 'New'].include?(self.quality)
   end
 
   def valid_category?
@@ -36,42 +37,46 @@ class Product < ActiveRecord::Base
   end
 
   def self.valid_address(city,state,address,zip)
-    # client = SmartyStreetsConfig.client
-    # lookup = SmartyStreets::USStreet::Lookup.new
-    # lookup.street = address
-    # lookup.state = state
-    # lookup.city = city
-    # lookup.zipcode = zip
-    # lookup.candidates = 3
-    # lookup.match = SmartyStreets::USStreet::MatchType::STRICT
-    # begin
-    #   client.send_lookup(lookup)
-    # rescue SmartyStreets::SmartyError => err
-    #   result = "Got the error" + err.to_s
-    #   return result
-    # end
-    # if lookup.result.empty?
-    #   false
-    # else
-    #   true
-    #end
-    true
+    run_it = false
+    if run_it
+      client = SmartyStreetsConfig.client
+      lookup = SmartyStreets::USStreet::Lookup.new
+      lookup.street = address
+      lookup.state = state
+      lookup.city = city
+      lookup.zipcode = zip
+      lookup.candidates = 3
+      lookup.match = SmartyStreets::USStreet::MatchType::STRICT
+      begin
+        client.send_lookup(lookup)
+      rescue SmartyStreets::SmartyError => err
+        result = "Got the error" + err.to_s
+        return result
+      end
+      if lookup.result.empty?
+        false
+      else
+        true
+      end
+    else
+      true
+    end
   end
 
-  def self.filtered_search(search,category,description)
-    if search.present? && category.present? && description.present? && category != 'None'  && description != 'None' &&  search != ''
-      products = Product.where('name LIKE ?', "%#{search}%").where(category: category).where(description: description)
-    elsif  search == '' && category.present? && description == 'None'
+  def self.filtered_search(search,category,quality)
+    if search.present? && category.present? && quality.present? && category != 'None'  && quality != 'None' &&  search != ''
+      products = Product.where('name LIKE ?', "%#{search}%").where(category: category).where(quality: quality)
+    elsif  search == '' && category.present? && quality == 'None'
       products = Product.where(category: category)
-    elsif search == '' && category== 'None' && description.present?
-      products = Product.where(description: description)
-    elsif search == '' && category.present? && description.present?
-      products = Product.where(description: description).where(category: category)
-    elsif search.present? && category== 'None' && description== 'None'
+    elsif search == '' && category== 'None' && quality.present?
+      products = Product.where(quality: quality)
+    elsif search == '' && category.present? && quality.present?
+      products = Product.where(quality: quality).where(category: category)
+    elsif search.present? && category== 'None' && quality== 'None'
       products = Product.where('name LIKE ?', "%#{search}%")
-    elsif search.present? && category== 'None' && description.present?
-      products = Product.where('name LIKE ?', "%#{search}%").where(description: description)
-    elsif search.present? && category.present? && description== 'None'
+    elsif search.present? && category== 'None' && quality.present?
+      products = Product.where('name LIKE ?', "%#{search}%").where(quality: quality)
+    elsif search.present? && category.present? && quality== 'None'
       products = Product.where('name LIKE ?', "%#{search}%").where(category: category)
     end
     products

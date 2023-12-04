@@ -7,38 +7,42 @@
 
 .welcome_statement
   %h1 Shop KIBAB
-.product_search_bar
-  = form_tag search_path_path, :method => 'get' do
-    = text_field_tag :search, params[:search], placeholder: 'Search Products'
-    = label :product, :categories, "Filter by Category"
-    = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
-    = label  :product, :descriptions, "Filter by Description"
-    = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :descriptions)
-    = submit_tag 'Search', :id => 'search_button'
+
+= form_tag search_path_path, :method => 'get' do
+  .product_search_bar
+    = text_field_tag :search, params[:search], placeholder: 'Search Products &#x26B2;'.html_safe, class: "product_search_field"
+
+    .product_alignment_fields
+      = label :product, :categories, "Category:", class: "card-text"
+      = select :product, :quality, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :quality)
+    .product_alignment_fields
+      = label  :product, :quality, "Quality:", class: "card-text"
+      = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
+    = submit_tag 'Search', :id => 'search_button', class: "search_button"
 
 
-= form_tag :action => 'add_shopping_cart', :id => 'user_shopping_cart' do
-  %table#products.table-style
-    %thead
-      %tr
-        %th= link_to 'Product Name', products_path(sort: 'product_name', direction: toggle_direction('product_name'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) })
-        %th Category
-        %th Description
-        %th= link_to 'Price', products_path(sort: 'price', direction: toggle_direction('price'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) })
-        %th More Info
-        %th Bookmark Item
-        %th Add to Cart
-    %tbody
-      - @products.each do |product|
-        %tr
-          %td= product.name
-          %td= product.category
-          %td= product.description
-          %td= '$' + product.price
-          %td= link_to "More about #{product.name}", product_path(product.id)
-          %td= link_to 'Bookmark', bookmark_from_product_path(product.id)
-          %td= check_box_tag "products[#{product.id}]", :id => "checkbox_#{product.id}"
-  = submit_tag 'Add Selected Items to Shopping Cart', :id => 'shopping_cart_button'
+-# = form_tag :action => 'add_shopping_cart', :id => 'user_shopping_cart' do
+-#   %table#products.table-style
+-#     %thead
+-#       %tr
+-#         %th= link_to 'Product Name', products_path(sort: 'product_name', direction: toggle_direction('product_name'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) })
+-#         %th Category
+-#         %th Description
+-#         %th= link_to 'Price', products_path(sort: 'price', direction: toggle_direction('price'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) })
+-#         %th More Info
+-#         %th Bookmark Item
+-#         %th Add to Cart
+-#     %tbody
+-#       - @products.each do |product|
+-#         %tr
+-#           %td= product.name
+-#           %td= product.category
+-#           %td= product.description
+-#           %td= '$' + product.price
+-#           %td= link_to "More about #{product.name}", product_path(product.id)
+-#           %td= link_to 'Bookmark', bookmark_from_product_path(product.id)
+-#           %td= check_box_tag "products[#{product.id}]", :id => "checkbox_#{product.id}"
+-#   = submit_tag 'Add Selected Items to Shopping Cart', :id => 'shopping_cart_button'
 
 -if  @products.select {|product| product.image?}.length > 0 && !@products.nil? && !@products.empty?
   .carousel
@@ -50,3 +54,17 @@
           = link_to image_tag(product.image.url, :height => "400"), product_path(product.id), id: "carousel-slide-#{id}", class: "carousel-slide"
     = button_tag '&#8592;'.html_safe, class: 'carousel-button prev', :onclick => "prevImg()"
     = button_tag '&#8594;'.html_safe, class: 'carousel-button next', :onclick => "nextImg()"
+
+
+.product_card_display
+  - @products.each do |product|
+    .product_card
+      = link_to image_tag(product.image.url, :height => "400", :class => "card-img"), product_path(product.id)
+      %p.card-text= product.name
+      %p.card-price= "$" + product.price
+      %p.card-text= product.category
+      %p.card-text= product.quality
+      %p
+      = link_to 'Add to shopping cart', transaction_path_url(product.id), class: "card-button"
+
+      = link_to '&starf;'.html_safe, bookmark_from_product_path(product.id), class: "card-button"

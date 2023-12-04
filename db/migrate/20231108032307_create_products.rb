@@ -6,6 +6,7 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.string :name
       t.string :image
       t.string :category
+      t.string :quality
       t.string :description
       t.string :price
       t.string :city

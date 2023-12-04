@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_current_user
 
   def product_params
-    params.require(:product).permit(:name,:image,:category,:description,:price,:street_address,:state,:city,:zip,:is_sold,:seller_review,:review_id)
+    params.require(:product).permit(:name,:image,:category,:quality,:description,:price,:street_address,:state,:city,:zip,:is_sold,:seller_review,:review_id)
   end
   def show
     id = params[:id]
@@ -16,13 +16,13 @@ class ProductsController < ApplicationController
   end
 
   def search
-    if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:descriptions].present?
-      @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
-    elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:descriptions].present?
-      @products = Product.filtered_search('',params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
+    if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:quality].present?
+      @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:quality]).where(is_sold: false)
+    elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:quality].present?
+      @products = Product.filtered_search('',params[:product][:categories], params[:product][:quality]).where(is_sold: false)
     end
     if @products.empty?
-      if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:descriptions]=='None'
+      if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:quality]=='None'
         @products = Product.where(is_sold: false)
       else
         flash[:notice] = "No products match your search here are some close results"
@@ -125,8 +125,8 @@ class ProductsController < ApplicationController
     if params[:product] && params[:product][:categories].present? && params[:product][:categories] != 'None'
       @products = @products.where(category: params[:product][:categories])
     end
-    if params[:product] && params[:product][:descriptions].present? && params[:product][:descriptions] != 'None'
-      @products = @products.where(description: params[:product][:descriptions])
+    if params[:product] && params[:product][:quality].present? && params[:product][:quality] != 'None'
+      @products = @products.where(quality: params[:product][:quality])
     end
     @products = @products.where(is_sold: false).where.not(user_id: @current_user.id)
   end
