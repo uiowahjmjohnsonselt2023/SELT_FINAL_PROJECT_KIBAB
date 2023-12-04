@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     # elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:quality].present?
     #   @products = Product.filtered_search('',params[:product][:categories], params[:product][:quality]).where(is_sold: false)
     # end
-    # if !@products.present?
+    # if @products.nil? || @products.empty?
     #   if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:quality]=='None'
     #     @products = Product.where(is_sold: false)
     #   else
@@ -30,6 +30,15 @@ class ProductsController < ApplicationController
     #   end
     # end
     # sorting
+    search_query = params[:search].presence || ''
+    category = params[:product] ? params[:product][:categories].presence || 'None' : 'None'
+    quality = params[:product] ? params[:product][:quality].presence || 'None' : 'None'
+    @products = Product.filtered_search(search_query, category, quality).where(is_sold: false)
+    if @products.empty?
+      flash[:notice] = "No products match your search; here are some close results"
+      @products = Product.filtered_search(search_query, 'None', 'None').where(is_sold: false)
+    end
+    sorting
   end
 
   def new
