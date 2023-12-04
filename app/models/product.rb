@@ -47,6 +47,7 @@ class Product < ActiveRecord::Base
       lookup.zipcode = zip
       lookup.candidates = 1
       lookup.match = SmartyStreets::USStreet::MatchType::STRICT
+      puts "here1"
       begin
         client.send_lookup(lookup)
       rescue SmartyStreets::SmartyError => err
@@ -54,12 +55,14 @@ class Product < ActiveRecord::Base
         return result
       end
       result = lookup.result
-      if lookup.result.empty?
+      if result.empty?
         false
       else
-        lat = result["metadata"]["latitude"]
-        long = result["metadata"]["longitude"]
-        maps_hash = { :lat => lat, :long => long}
+        lat = result[0].metadata.latitude
+        long = result[0].metadata.longitude
+        maps_hash = {:lat => lat, :long => long}
+        puts "!!!!!!!!!!!!!1"
+        puts maps_hash
         return maps_hash
       end
     else
