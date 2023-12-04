@@ -14,9 +14,9 @@
 
     .product_alignment_fields
       = label :product, :categories, "Category:", class: "card-text"
-      = select :product, :descriptions, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :descriptions)
+      = select :product, :quality, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :quality)
     .product_alignment_fields
-      = label  :product, :descriptions, "Description:", class: "card-text"
+      = label  :product, :quality, "Description:", class: "card-text"
       = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
     = submit_tag 'Search', :id => 'search_button', class: "search_button"
 
@@ -24,10 +24,10 @@
   %table#products.table-style
     %thead
       %tr
-        %th= link_to 'Product Name', products_path(sort: 'product_name', direction: toggle_direction('product_name'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) })
+        %th= link_to 'Product Name', products_path(sort: 'product_name', direction: toggle_direction('product_name'), search: params[:search], product: { categories: params.dig(:product, :categories), quality: params.dig(:product, :quality) })
         %th Category
         %th Description
-        %th= link_to 'Price', products_path(sort: 'price', direction: toggle_direction('price'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) })
+        %th= link_to 'Price', products_path(sort: 'price', direction: toggle_direction('price'), search: params[:search], product: { categories: params.dig(:product, :categories), quality: params.dig(:product, :quality) })
         %th More Info
         %th Select Item
     %tbody

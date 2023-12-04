@@ -80,25 +80,12 @@ class Product < ActiveRecord::Base
     #   products = Product.where('name LIKE ?', "%#{search}%").where(category: category)
     # end
     # products
-    # products = Product.all
-    # products = products.where('name LIKE ?', "%#{search}%") if search.present?
-    # products = products.where(quality: quality) if quality.present? && quality != 'None'
-    # products = products.where(category: category) if category.present? && category != 'None'
-    #
-    # products
     products = Product.all
+    products = products.where('name LIKE ?', "%#{search}%") if search.present?
+    products = products.where(quality: quality) if quality.present? && quality != 'None'
+    products = products.where(category: category) if category.present? && category != 'None'
 
-      products = products.where('name LIKE ?', "%#{search}%") if search.present?
-
-      if quality.present? && quality != 'None'
-        products = products.where(quality: quality)
-      end
-
-      if category.present? && category != 'None'
-        products = products.where(category: category)
-      end
-
-      products
+    products
   end
 
   # Searches database for specifies product category, can return multiple products
