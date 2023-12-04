@@ -17,10 +17,10 @@
           = link_to 'Shopping Cart', view_shopping_cart_path
         .nav_item_2
           = link_to 'Bookmarks', view_bookmarks_path
-        .profile-dropdown{ style: 'position: relative;' }
-          %a.dropdown-toggle{ href: '#', onclick: 'toggleDropdownMenu(event)', style: 'display: inline-block;' }
-            = image_tag @current_user.pfp, width: "50", style: 'border-radius: 50%;'
-          .dropdown-menu{ style: 'display: none; position: absolute; right: 0; top: 58px; background-color: #333; padding: 10px 0; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); z-index: 1000;' }
+        .nav_item_2.profile-dropdown{ style: 'position: relative;' }
+          %a.dropdown-toggle{ id: 'profile-link', href: '#', onclick: 'toggleDropdownMenu(event)', style: 'display: block; border-radius: 50%;' }
+            = image_tag @current_user.pfp, style: 'display: block; max-width: 50px; height: auto; border-radius: 50%;'
+          .dropdown-menu{ style: 'display: none; position: absolute; left: 50%; top: 58px; transform: translateX(-50%); background-color: #333; padding: 10px 0; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); z-index: 1000;' }
             %a{ href: user_path(@current_user), style: 'color: white; padding: 12px 16px; text-decoration: none; display: block; text-align: center;' }
               Profile
             %a{ href: '#', onclick: 'handleLogout(event)', style: 'color: white; padding: 12px 16px; text-decoration: none; display: block; text-align: center;' }
