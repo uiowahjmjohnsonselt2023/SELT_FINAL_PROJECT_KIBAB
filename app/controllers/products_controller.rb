@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
   def create
     product_parameters = product_params.to_h
     product_parameters[:user_id] = @current_user.id
-    if check_address == true
+    if @lookup == true
       @product = Product.create(product_parameters)
       # @product.user_id = @current_user.id
       if @product.save
@@ -164,13 +164,13 @@ class ProductsController < ApplicationController
   def check_address
     if product_params[:city] != nil && product_params[:state] != nil && product_params[:street_address] != nil && product_params[:zip] != nil
       @lookup = Product.valid_address(product_params[:city],product_params[:state],product_params[:street_address],product_params[:zip])
-      if @lookup.is_a?(String)
-        return @lookup
-      elsif @lookup == true
-        return true
-      else
-        false
-      end
+      # if @lookup.is_a?(String)
+      #   return @lookup
+      # elsif @lookup == true
+      #   return true
+      # else
+      #   false
+      # end
     else
       render new_products_path
     end
