@@ -5,7 +5,7 @@ class Wallet < ActiveRecord::Base
     name_regex = /^[A-Za-z\s'-]+$/
     number_regex = /\b(?:\d[ -]*?){13,16}\b/
     cvv_regex = /\A\d{3,4}\z/
-    date_regex = /\A(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}\z/
+    date_regex = /^(0[1-9]|1[0-2])\/\d{4}$/
     if !name.match?(name_regex) && !problem_flag
       problem = 'There was a problem with you name, please only use letters'
       problem_flag = true
