@@ -27,7 +27,7 @@
           .dropdown-menu{ style: 'display: none;' }
             %a{ href: user_path(@current_user) }
               Profile
-            %a{ href: '#', onclick: 'handleLogout(event)' }
+            %a{ href: "#", onclick: 'handleLogout(event)' }
               Logout
     #main
       - if flash[:notice]
@@ -46,8 +46,22 @@
     function handleLogout(event) {
       event.preventDefault();
       var form = document.createElement('form');
-      form.method = 'POST';
+      form.style.display = 'none';
+      form.method = 'post';
       form.action = '#{logout_path_path}';
+      // Rails expects a '_method' input with the value 'delete' to simulate DELETE request
+      var methodInput = document.createElement('input');
+      methodInput.setAttribute('type', 'hidden');
+      methodInput.setAttribute('name', '_method');
+      methodInput.setAttribute('value', 'delete');
+      form.appendChild(methodInput);
+      // CSRF Token setup
+      var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      var csrfInput = document.createElement('input');
+      csrfInput.setAttribute('type', 'hidden');
+      csrfInput.setAttribute('name', 'authenticity_token');
+      csrfInput.setAttribute('value', csrfToken);
+      form.appendChild(csrfInput);
       // Add the form to the body and submit it
       document.body.appendChild(form);
       form.submit();
