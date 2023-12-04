@@ -15,19 +15,40 @@
       -if !@current_user
         .nav_item_2
           = link_to 'Login', login_path_url
-      -else
+      - else
         .nav_item_2
           = link_to 'Shopping Cart', view_shopping_cart_path
         .nav_item_2
           = link_to 'Bookmarks', view_bookmarks_path
-        = button_to "Logout",logout_path_path, method: :delete
-        .nav_item_2
-          = link_to "/users/#{@current_user[:id]}" do
-            = image_tag @current_user.pfp, :width => "50", style: 'border-radius: 50%; display: inline-block; vertical-align: middle;'
-            #{@current_user.name}'s Profile
+
+        .nav_item_2.profile-dropdown
+          %a.dropdown-toggle{ href: '#', onclick: 'toggleDropdownMenu(event)' }
+            = image_tag @current_user.pfp, width: "50", style: 'border-radius: 50%; display: inline-block; vertical-align: middle;'
+          .dropdown-menu{ style: 'display: none;' }
+            %a{ href: user_path(@current_user) }
+              Profile
+            %a{ href: '#', onclick: 'handleLogout(event)' }
+              Logout
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
       - elsif flash[:warning]
         #warning.message= flash[:warning]
       = yield
+
+  :javascript
+    function toggleDropdownMenu(event) {
+      event.preventDefault();
+      var dropdown = document.querySelector('.dropdown-menu');
+      dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function handleLogout(event) {
+      event.preventDefault();
+      var form = document.createElement('form');
+      form.method = 'POST';
+      form.action = '#{logout_path_path}';
+      // Add the form to the body and submit it
+      document.body.appendChild(form);
+      form.submit();
+    }
