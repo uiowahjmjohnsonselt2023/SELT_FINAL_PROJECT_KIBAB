@@ -24,6 +24,8 @@ class Purchase < ActiveRecord::Base
       else
         true
       end
+    else
+      true
     end
    end
 end
