@@ -146,7 +146,7 @@ class ProductsController < ApplicationController
   def bookmark_from_product
     @current_product = Product.find_by_id(params[:id])
     Product::add_to_bookmarks(@current_user.id, @current_product.id)
-    flash[:notice] = "#{@current_product.name} was added to your shopping cart."
+    flash[:notice] = "#{@current_product.name} was added to your bookmarks."
     redirect_to products_path
   end
 
