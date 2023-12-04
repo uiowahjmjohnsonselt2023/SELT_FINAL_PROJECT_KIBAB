@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:quality].present?
       @products = Product.filtered_search('',params[:product][:categories], params[:product][:quality]).where(is_sold: false)
     end
-    if @products.empty?
+    if !@products.present?
       if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:quality]=='None'
         @products = Product.where(is_sold: false)
       else
