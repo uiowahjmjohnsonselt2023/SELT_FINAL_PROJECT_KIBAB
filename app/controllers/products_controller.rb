@@ -47,8 +47,10 @@ class ProductsController < ApplicationController
   def create
     product_parameters = product_params.to_h
     product_parameters[:user_id] = @current_user.id
-    if @lookup == true
-      @product = Product.create(product_parameters)
+    if @lookup.is_a?(Hash)
+      product_hash = product_parameters.to_h
+      product_hash.merge(@lookup)
+      @product = Product.create(product_hash)
       # @product.user_id = @current_user.id
       if @product.save
         flash[:notice] = "Product created successfully!"
