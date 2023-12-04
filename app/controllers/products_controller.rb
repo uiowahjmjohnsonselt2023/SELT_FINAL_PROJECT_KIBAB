@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
   def create
     product_parameters = product_params.to_h
     product_parameters[:user_id] = @current_user.id
-    if check_address == true
+    if @lookup == true
       @product = Product.create(product_parameters)
       # @product.user_id = @current_user.id
       if @product.save
