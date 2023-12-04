@@ -17,7 +17,7 @@ class Wallet < ActiveRecord::Base
       problem_flag = true
     elsif date.present?
       if !date.match?(date_regex) && !problem_flag
-        problem = 'Make sure the sure the data follow mm/dd/yyyy format'
+        problem = 'Make sure the sure the data follow mm/yyyy format'
         problem_flag = true
       elsif Date.parse(date) <= Date.today  && !problem_flag
         problem = 'Your card cannot be expired'
