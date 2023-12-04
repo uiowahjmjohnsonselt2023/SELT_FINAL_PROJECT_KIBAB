@@ -35,29 +35,29 @@ class ProductsController < ApplicationController
   def new
   end
 
-  # def create
-  #   product_parameters = product_params.to_h
-  #   product_parameters[:user_id] = @current_user.id
-  #   if check_address == true
-  #     @product = Product.create(product_parameters)
-  #     # @product.user_id = @current_user.id
-  #     if @product.save
-  #       flash[:notice] = "Product created successfully!"
-  #       redirect_to products_path
-  #     else
-  #       errors = @product.errors.full_messages
-  #       puts "Validation failed with errors: #{errors.join(', ')}"
-  #       render 'new'
-  #     end
-  #   elsif @lookup.is_a?(String)
-  #     flash[:notice]= "Error " + @lookup
-  #     render 'new'
-  #   else
-  #     flash[:notice]= "Address validation failed error"
-  #     render 'new'
-  #   end
-  #
-  # end
+  def create
+    product_parameters = product_params.to_h
+    product_parameters[:user_id] = @current_user.id
+    if check_address == true
+      @product = Product.create(product_parameters)
+      # @product.user_id = @current_user.id
+      if @product.save
+        flash[:notice] = "Product created successfully!"
+        redirect_to products_path
+      else
+        errors = @product.errors.full_messages
+        puts "Validation failed with errors: #{errors.join(', ')}"
+        render 'new'
+      end
+    elsif @lookup.is_a?(String)
+      flash[:notice]= "Error " + @lookup
+      render 'new'
+    else
+      flash[:notice]= "Address validation failed error"
+      render 'new'
+    end
+
+  end
 
   def edit
     id = params[:id]
