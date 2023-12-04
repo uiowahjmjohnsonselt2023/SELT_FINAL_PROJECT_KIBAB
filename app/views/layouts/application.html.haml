@@ -20,14 +20,13 @@
           = link_to 'Shopping Cart', view_shopping_cart_path
         .nav_item_2
           = link_to 'Bookmarks', view_bookmarks_path
-
-        .nav_item_2.profile-dropdown
-          %a.dropdown-toggle{ href: '#', onclick: 'toggleDropdownMenu(event)' }
-            = image_tag @current_user.pfp, width: "50", style: 'border-radius: 50%; display: inline-block; vertical-align: middle;'
-          .dropdown-menu{ style: 'display: none;' }
-            %a{ href: user_path(@current_user), style: 'display: block; padding: 10px;' }
+        .profile-dropdown{ style: 'position: relative; display: inline-block;' }
+          %a.dropdown-toggle{ id: 'profile-link', href: '#', onclick: 'toggleDropdownMenu(event)', style: 'height: 50px; width: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center;' }
+            = image_tag @current_user.pfp, style: 'border-radius: 50%;'
+          .dropdown-menu{ style: 'display: none; position: absolute; left: 50%; top: 100%; transform: translateX(-50%); background-color: #333; padding: 10px 0; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); z-index: 1;' }
+            %a{ href: user_path(@current_user), style: 'color: white; padding: 12px 16px; text-decoration: none; display: block; text-align: center;' }
               Profile
-            %a{ href: '#', onclick: 'handleLogout(event)', style: 'display: block; padding: 10px;' }
+            %a{ href: '#', onclick: 'handleLogout(event)', style: 'color: white; padding: 12px 16px; text-decoration: none; display: block; text-align: center;' }
               Logout
     #main
       - if flash[:notice]
