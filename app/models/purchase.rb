@@ -3,7 +3,7 @@ class Purchase < ActiveRecord::Base
   belongs_to :product
 
   def self.valid_address(city,state,address,zip)
-    run_it = true
+    run_it = false
     if run_it
       client = SmartyStreetsConfig.client
       lookup = SmartyStreets::USStreet::Lookup.new
