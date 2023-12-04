@@ -61,8 +61,6 @@ class Product < ActiveRecord::Base
         lat = result[0].metadata.latitude
         long = result[0].metadata.longitude
         maps_hash = {:lat => lat, :long => long}
-        puts "!!!!!!!!!!!!!1"
-        puts maps_hash
         return maps_hash
       end
     else
