@@ -37,7 +37,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.valid_address(city,state,address,zip)
-    run_it = false
+    run_it = true
     if run_it
       client = SmartyStreetsConfig.client
       lookup = SmartyStreets::USStreet::Lookup.new
@@ -45,7 +45,7 @@ class Product < ActiveRecord::Base
       lookup.state = state
       lookup.city = city
       lookup.zipcode = zip
-      lookup.candidates = 3
+      lookup.candidates = 1
       lookup.match = SmartyStreets::USStreet::MatchType::STRICT
       begin
         client.send_lookup(lookup)
@@ -53,10 +53,14 @@ class Product < ActiveRecord::Base
         result = "Got the error" + err.to_s
         return result
       end
+      result = lookup.result
       if lookup.result.empty?
         false
       else
-        true
+        lat = result["metadata"]["latitude"]
+        long = result["metadata"]["longitude"]
+        maps_hash = { :lat => lat, :long => long}
+        return maps_hash
       end
     else
       true
