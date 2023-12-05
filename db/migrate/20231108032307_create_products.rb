@@ -13,6 +13,8 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.string :state
       t.string :street_address
       t.string :zip
+      t.string :lat
+      t.string :long
       t.boolean :is_sold, default: false
     end
   end

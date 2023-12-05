@@ -2,32 +2,42 @@ class ProductsController < ApplicationController
   before_action :set_current_user
 
   def product_params
-    params.require(:product).permit(:name,:image,:category,:quality,:description,:price,:street_address,:state,:city,:zip,:is_sold,:seller_review,:review_id)
+    params.require(:product).permit(:name,:image,:category,:quality,:description,:price,:street_address,:state,:city,:zip,:is_sold,:seller_review,:review_id, :lat, :long)
   end
   def show
     id = params[:id]
     @current_product = Product.find_by_id(id)
+    @current_product.increment!(:product_traffic)
     @seller_reviews = SellerReview.where(user_id: @current_product.user_id)
   end
 
   def index
-    @products = Product.where(is_sold: false).where.not(user_id: @current_user.id)
+    @products = Product.where(is_sold: false).where.not(user_id: @current_user.id).order("product_traffic desc")
     sorting
   end
 
   def search
-    if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:quality].present?
-      @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:quality]).where(is_sold: false)
-    elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:quality].present?
-      @products = Product.filtered_search('',params[:product][:categories], params[:product][:quality]).where(is_sold: false)
-    end
-    if !@products.present?
-      if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:quality]=='None'
-        @products = Product.where(is_sold: false)
-      else
-        flash[:notice] = "No products match your search here are some close results"
-        @products = Product.filtered_search(params[:search],"None", "None").where(is_sold: false)
-      end
+    # if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:quality].present?
+    #   @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:quality]).where(is_sold: false)
+    # elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:quality].present?
+    #   @products = Product.filtered_search('',params[:product][:categories], params[:product][:quality]).where(is_sold: false)
+    # end
+    # if @products.nil? || @products.empty?
+    #   if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:quality]=='None'
+    #     @products = Product.where(is_sold: false)
+    #   else
+    #     flash[:notice] = "No products match your search here are some close results"
+    #     @products = Product.filtered_search(params[:search],"None", "None").where(is_sold: false)
+    #   end
+    # end
+    # sorting
+    search_query = params[:search].presence || ''
+    category = params[:product] ? params[:product][:categories].presence || 'None' : 'None'
+    quality = params[:product] ? params[:product][:quality].presence || 'None' : 'None'
+    @products = Product.filtered_search(search_query, category, quality).where(is_sold: false).order("product_traffic desc")
+    if @products.empty?
+      flash[:notice] = "No products match your search; here are some close results"
+      @products = Product.filtered_search(search_query, 'None', 'None').where(is_sold: false).order("product_traffic desc")
     end
     sorting
   end
@@ -38,7 +48,9 @@ class ProductsController < ApplicationController
   def create
     product_parameters = product_params.to_h
     product_parameters[:user_id] = @current_user.id
-    if check_address == true
+    @lookup = check_address
+    if @lookup.is_a?(Hash)
+      product_parameters = product_parameters.merge(@lookup)
       @product = Product.create(product_parameters)
       # @product.user_id = @current_user.id
       if @product.save
@@ -164,13 +176,14 @@ class ProductsController < ApplicationController
   def check_address
     if product_params[:city] != nil && product_params[:state] != nil && product_params[:street_address] != nil && product_params[:zip] != nil
       @lookup = Product.valid_address(product_params[:city],product_params[:state],product_params[:street_address],product_params[:zip])
-      if @lookup.is_a?(String)
-        return @lookup
-      elsif @lookup == true
-        return true
-      else
-        false
-      end
+      return @lookup
+      # if @lookup.is_a?(String)
+      #   return @lookup
+      # elsif @lookup == true
+      #   return true
+      # else
+      #   false
+      # end
     else
       render new_products_path
     end

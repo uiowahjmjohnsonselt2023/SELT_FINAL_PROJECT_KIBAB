@@ -37,7 +37,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.valid_address(city,state,address,zip)
-    run_it = false
+    run_it = true
     if run_it
       client = SmartyStreetsConfig.client
       lookup = SmartyStreets::USStreet::Lookup.new
@@ -45,18 +45,23 @@ class Product < ActiveRecord::Base
       lookup.state = state
       lookup.city = city
       lookup.zipcode = zip
-      lookup.candidates = 3
+      lookup.candidates = 1
       lookup.match = SmartyStreets::USStreet::MatchType::STRICT
+      puts "here1"
       begin
         client.send_lookup(lookup)
       rescue SmartyStreets::SmartyError => err
         result = "Got the error" + err.to_s
         return result
       end
-      if lookup.result.empty?
+      result = lookup.result
+      if result.empty?
         false
       else
-        true
+        lat = result[0].metadata.latitude
+        long = result[0].metadata.longitude
+        maps_hash = {:lat => lat, :long => long}
+        return maps_hash
       end
     else
       true
@@ -64,21 +69,27 @@ class Product < ActiveRecord::Base
   end
 
   def self.filtered_search(search,category,quality)
-    if search.present? && category.present? && quality.present? && category != 'None'  && quality != 'None' &&  search != ''
-      products = Product.where('name LIKE ?', "%#{search}%").where(category: category).where(quality: quality)
-    elsif  search == '' && category.present? && quality == 'None'
-      products = Product.where(category: category)
-    elsif search == '' && category== 'None' && quality.present?
-      products = Product.where(quality: quality)
-    elsif search == '' && category.present? && quality.present?
-      products = Product.where(quality: quality).where(category: category)
-    elsif search.present? && category== 'None' && quality== 'None'
-      products = Product.where('name LIKE ?', "%#{search}%")
-    elsif search.present? && category== 'None' && quality.present?
-      products = Product.where('name LIKE ?', "%#{search}%").where(quality: quality)
-    elsif search.present? && category.present? && quality== 'None'
-      products = Product.where('name LIKE ?', "%#{search}%").where(category: category)
-    end
+    # if search.present? && category.present? && quality.present? && category != 'None'  && quality != 'None' &&  search != ''
+    #   products = Product.where('name LIKE ?', "%#{search}%").where(category: category).where(quality: quality)
+    # elsif  search == '' && category.present? && quality == 'None'
+    #   products = Product.where(category: category)
+    # elsif search == '' && category== 'None' && quality.present?
+    #   products = Product.where(quality: quality)
+    # elsif search == '' && category.present? && quality.present?
+    #   products = Product.where(quality: quality).where(category: category)
+    # elsif search.present? && category== 'None' && quality== 'None'
+    #   products = Product.where('name LIKE ?', "%#{search}%")
+    # elsif search.present? && category== 'None' && quality.present?
+    #   products = Product.where('name LIKE ?', "%#{search}%").where(quality: quality)
+    # elsif search.present? && category.present? && quality== 'None'
+    #   products = Product.where('name LIKE ?', "%#{search}%").where(category: category)
+    # end
+    # products
+    products = Product.all
+    products = products.where('name LIKE ?', "%#{search}%") if search.present?
+    products = products.where(quality: quality) if quality.present? && quality != 'None'
+    products = products.where(category: category) if category.present? && category != 'None'
+
     products
   end
 

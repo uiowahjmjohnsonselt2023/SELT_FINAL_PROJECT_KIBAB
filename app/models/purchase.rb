@@ -3,7 +3,7 @@ class Purchase < ActiveRecord::Base
   belongs_to :product
 
   def self.valid_address(city,state,address,zip)
-    run_it = false
+    run_it = true
     if run_it
       client = SmartyStreetsConfig.client
       lookup = SmartyStreets::USStreet::Lookup.new
@@ -19,10 +19,14 @@ class Purchase < ActiveRecord::Base
         result = "Got the error" + err.to_s
         return result
       end
+      result = lookup.result
       if lookup.result.empty?
         false
       else
-        true
+        lat = result["metadata"]["latitude"]
+        long = result["metadata"]["longitude"]
+        maps_hash = { :lat => lat, :long => long}
+        return maps_hash
       end
     else
       true
