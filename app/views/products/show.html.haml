@@ -2,6 +2,8 @@
   %head
     %title Index Page
     = javascript_include_tag "map"
+    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}&callback=initMap",
+    defer: true
 
 %h2 #{@current_product.name}
 %h4 Category: #{@current_product.category}
@@ -16,11 +18,10 @@
 %p $#{@current_product.price}
 
 .map-container
-  #product_map{ "data-latitude" => @product.lat, "data-longitude" => @product.long }
-  %h2 #{@product.name} Location:
-  %p.product-location{ "data-latitude" => @product.lat, "data-longitude" => @product.long }
-  %h4= product.name
-  %p= product.description
+  %h2 #{@current_product.name} Location:
+  #product_map{ "data-latitude" => @current_product.lat.to_f, "data-longitude" => @current_product.long.to_f }
+  %p#product_location.product-location{ "data-latitude" => @current_product.lat, "data-longitude" => @current_product.long }
+  %h4= @current_product.name
 
 -if (@current_user.id.eql?(@current_product.user_id))
   .link_to_button
