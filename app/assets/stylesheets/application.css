@@ -343,3 +343,11 @@ table#products thead {
     font-size: 20px;
     margin: 5px;
 }
+
+.product_map {
+    height: 300px
+}
+
+.product_map body {
+    height: 100%
+}
