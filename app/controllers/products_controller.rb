@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.where(is_sold: false).where.not(user_id: @current_user.id)
+    @products = Product.where(is_sold: false).where.not(user_id: @current_user.id).order("product_traffic desc")
     sorting
   end
 
