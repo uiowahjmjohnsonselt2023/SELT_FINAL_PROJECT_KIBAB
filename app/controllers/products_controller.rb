@@ -34,10 +34,10 @@ class ProductsController < ApplicationController
     search_query = params[:search].presence || ''
     category = params[:product] ? params[:product][:categories].presence || 'None' : 'None'
     quality = params[:product] ? params[:product][:quality].presence || 'None' : 'None'
-    @products = Product.filtered_search(search_query, category, quality).where(is_sold: false)
+    @products = Product.filtered_search(search_query, category, quality).where(is_sold: false).order("product_traffic desc")
     if @products.empty?
       flash[:notice] = "No products match your search; here are some close results"
-      @products = Product.filtered_search(search_query, 'None', 'None').where(is_sold: false)
+      @products = Product.filtered_search(search_query, 'None', 'None').where(is_sold: false).order("product_traffic desc")
     end
     sorting
   end
