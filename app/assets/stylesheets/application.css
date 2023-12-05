@@ -345,9 +345,12 @@ table#products thead {
 }
 
 .product_map {
-    height: 300px
+    height: 500px;
+    width: 500px;
+    align-self: center;
 }
 
 .product_map body {
-    height: 100%
+    height: 100%;
+    align-self: center;
 }
