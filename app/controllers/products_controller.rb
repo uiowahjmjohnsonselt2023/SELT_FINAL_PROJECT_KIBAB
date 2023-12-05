@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
   def show
     id = params[:id]
     @current_product = Product.find_by_id(id)
+    @current_product.increment!(:product_traffic)
     @seller_reviews = SellerReview.where(user_id: @current_product.user_id)
   end
 
