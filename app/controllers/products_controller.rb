@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_current_user
 
   def product_params
-    params.require(:product).permit(:name,:image,:category,:quality,:description,:price,:street_address,:state,:city,:zip,:is_sold,:seller_review,:review_id)
+    params.require(:product).permit(:name,:image,:category,:quality,:description,:price,:street_address,:state,:city,:zip,:is_sold,:seller_review,:review_id, :lat, :long)
   end
   def show
     id = params[:id]
@@ -48,7 +48,9 @@ class ProductsController < ApplicationController
   def create
     product_parameters = product_params.to_h
     product_parameters[:user_id] = @current_user.id
-    if @lookup == true
+    @lookup = check_address
+    if @lookup.is_a?(Hash)
+      product_parameters = product_parameters.merge(@lookup)
       @product = Product.create(product_parameters)
       # @product.user_id = @current_user.id
       if @product.save
@@ -174,6 +176,7 @@ class ProductsController < ApplicationController
   def check_address
     if product_params[:city] != nil && product_params[:state] != nil && product_params[:street_address] != nil && product_params[:zip] != nil
       @lookup = Product.valid_address(product_params[:city],product_params[:state],product_params[:street_address],product_params[:zip])
+      return @lookup
       # if @lookup.is_a?(String)
       #   return @lookup
       # elsif @lookup == true
