@@ -1,3 +1,8 @@
+%html
+  %head
+    %title Index Page
+    = javascript_include_tag "map"
+
 %h2 #{@current_product.name}
 %h4 Category: #{@current_product.category}
 %h4 Quality: #{@current_product.quality}
@@ -9,6 +14,13 @@
 -# %p #{@current_product.location}
 %h4 Price
 %p $#{@current_product.price}
+
+.map-container
+  #product_map{ "data-latitude" => @product.lat, "data-longitude" => @product.long }
+  %h2 #{@product.name} Location:
+  %p.product-location{ "data-latitude" => @product.lat, "data-longitude" => @product.long }
+  %h4= product.name
+  %p= product.description
 
 -if (@current_user.id.eql?(@current_product.user_id))
   .link_to_button
