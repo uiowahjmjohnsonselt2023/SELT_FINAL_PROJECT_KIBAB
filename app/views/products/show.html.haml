@@ -19,9 +19,8 @@
 
 .map-container
   %h2 #{@current_product.name} Location:
-  #product_map{ "data-latitude" => @current_product.lat.to_f, "data-longitude" => @current_product.long.to_f }
-  %p#product_location.product-location{ "data-latitude" => @current_product.lat, "data-longitude" => @current_product.long }
-  %h4= @current_product.name
+  #product_map.product_map{ "data-latitude" => @current_product.lat.to_f, "data-longitude" => @current_product.long.to_f}
+  %p#product_location{ "data-latitude" => @current_product.lat, "data-longitude" => @current_product.long }
 
 -if (@current_user.id.eql?(@current_product.user_id))
   .link_to_button

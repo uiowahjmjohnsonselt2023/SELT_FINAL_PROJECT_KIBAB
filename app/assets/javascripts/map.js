@@ -1,7 +1,5 @@
 function initMap() {
     const coords = document.getElementById("product_location");
-    console.log(coords.getAttribute("data-latitude"))
-    console.log(coords.getAttribute("data-longitude"))
 
     const product = {
         lat: parseFloat(coords.getAttribute("data-latitude")),
