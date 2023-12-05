@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_235743) do
     t.string "street_address"
     t.string "zip"
     t.boolean "is_sold", default: false
-    t.integer "product_traffic"
+    t.integer "product_traffic", default: 0
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
