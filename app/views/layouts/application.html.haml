@@ -10,8 +10,6 @@
     %nav.navbar
       .nav_item
         = link_to 'KIBAB Shop', products_path
-      -# .nav_item
-      -#   = link_to 'About', about_path_url
       -if @current_user
         .nav_item
           = link_to 'Shopping Cart', view_shopping_cart_path
@@ -31,6 +29,8 @@
       - elsif flash[:warning]
         #warning.message= flash[:warning]
       = yield
+    %footer.footer
+      = link_to 'About', about_path_url, class: 'about-link'
 
   :javascript
     function toggleDropdownMenu(event) {
