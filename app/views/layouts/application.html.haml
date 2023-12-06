@@ -11,8 +11,12 @@
       .nav_item
         = link_to 'KIBAB Shop', products_path
       -if @current_user
-        .nav_item
-          = link_to 'Shopping Cart', view_shopping_cart_path
+        -if !@current_shopping_cart_list.nil?
+          .nav_item
+            = link_to "Shopping Cart (#{@current_shopping_cart_list.size})", view_shopping_cart_path
+        -else
+          .nav_item
+            = link_to "Shopping Cart (0)", view_shopping_cart_path
         .nav_item_2.profile-dropdown{ style: 'position: relative;' }
           %a.dropdown-toggle{ id: 'profile-link', href: '#', style: 'display: block; border-radius: 50%;' }
             = image_tag @current_user.pfp, style: 'display: block; max-width: 50px; height: auto; border-radius: 50%;'
