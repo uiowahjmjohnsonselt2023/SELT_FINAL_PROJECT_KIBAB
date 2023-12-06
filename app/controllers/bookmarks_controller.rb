@@ -13,7 +13,7 @@ class BookmarksController < ApplicationController
     Bookmark.where(user_id: @current_user.id).each do |item|
       if item.product.is_sold.eql? true
         flash[:notice] = "#{item.product.name} was sold."
-        Bookmark.destroy(item)
+        Bookmark.destroy(item.id)
       end
     end
     @current_bookmarks = Bookmark.where(user_id: @current_user.id)

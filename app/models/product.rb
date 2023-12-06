@@ -37,7 +37,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.valid_address(city,state,address,zip)
-    run_it = true
+    run_it = false
     if run_it
       client = SmartyStreetsConfig.client
       lookup = SmartyStreets::USStreet::Lookup.new
@@ -64,7 +64,8 @@ class Product < ActiveRecord::Base
         return maps_hash
       end
     else
-      true
+      maps_hash = {:lat => 0.0, :long => 0.0}
+      return maps_hash
     end
   end
 

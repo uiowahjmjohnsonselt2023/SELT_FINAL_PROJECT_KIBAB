@@ -154,17 +154,24 @@ button {
 }
 
 .create_account {
-    text-decoration: none;
-    padding-top: 25px;
-    font-size: 20px;
-    /*text-align: center;*/
-    color: #333
+    text-align: center;
+    margin-top: 50px; /* Adjust as needed */
 }
 
 .create_account a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0086b3;
+    color: white;
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.create_account a:hover {
+    color: white;
+    background-color: darkslategray;
 }
 
 table#products thead {
@@ -357,4 +364,30 @@ table#products thead {
 
 .product_map body {
     height: 100%;
+}
+
+.profile_button {
+    text-align: center;
+    margin-top: 50px; /* Adjust as needed */
+}
+
+.profile_button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0086b3;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.profile_button a:hover {
+    color: white;
+    background-color: darkslategray;
+}
+
+.links-container {
+    text-align: center;
+    margin-top: 20px;
 }
