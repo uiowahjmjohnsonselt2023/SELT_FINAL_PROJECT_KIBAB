@@ -91,8 +91,6 @@ describe Product do
   end
 
   describe 'Class methods' do
-    # Add tests for class methods like filtered_search, search_by_category, etc.
-    # Test the functionality of these methods based on various scenarios
     describe '.filtered_search' do
       it 'returns products based on search, category, and description' do
         products = described_class.filtered_search('Bookshelf', 'Home', 'New')
@@ -121,6 +119,14 @@ describe Product do
       it 'returns products based on search and category' do
         products = described_class.filtered_search('Bookshelf', 'Home', 'None')
         expect(products).to be_an(ActiveRecord::Relation)
+      end
+      it 'search by a category' do
+        products = described_class.search_by_category('Home')
+        expect(products).to be_an(ActiveRecord::Relation)
+      end
+      it 'search by a category nil for code coverage' do
+        products = described_class.search_by_category(nil)
+        expect(products).to eq(described_class)
       end
     end
 
