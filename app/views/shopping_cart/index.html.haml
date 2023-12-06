@@ -16,7 +16,7 @@
                 %p.listing-text= "Name: " + item.product.name
                 %p.listing-text= "Category: " + item.product.category
                 %p.listing-text= 'Listing Price: $' + item.product.price.to_s
-                = button_to "Remove from Cart", shopping_cart_path(item), method: :delete, class: "card-button"
+                = button_to "Remove from Cart", shopping_cart_path(item), method: :delete, class: "card-button", form: { authenticity_token: true }
             %td
               .product_listing.right
                 %p= link_to "More about #{item.product.name}", product_path(item.product.id), class: "card-button"
