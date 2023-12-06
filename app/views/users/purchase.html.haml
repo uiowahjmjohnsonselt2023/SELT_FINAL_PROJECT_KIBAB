@@ -16,6 +16,7 @@
               %p.listing-text= "Name: " + item.product.name
               %p.listing-text= "Category: " + item.product.category
               %p.listing-text= 'Listing Price: $' + item.product.price.to_s
+              %p.listing-text= Purchase.where(:product_id => item.product.id).first.purchase_timestamp
           %td
             .product_listing.right
               %p= link_to "More about #{item.product.name}", product_path(item.product.id), class: "card-button"
