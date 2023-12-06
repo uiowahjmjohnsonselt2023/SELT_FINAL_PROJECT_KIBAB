@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
   # Additional implentation strategies: https://github.com/zquestz/omniauth-google-oauth2
 
   skip_before_action :set_current_user
+  skip_before_action :set_current_shopping_cart
   def new
   end
 

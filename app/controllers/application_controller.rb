@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   before_action :set_current_user
+  before_action :set_current_shopping_cart
 
   protected
   def set_current_user
@@ -13,6 +14,11 @@ class ApplicationController < ActionController::Base
 
   def current_user?(id)
     @current_user.id.to_s == id
+  end
+
+  def set_current_shopping_cart
+    @current_shopping_cart ||= ShoppingCart.where(user_id: @current_user.id)
+    redirect_to login_path_url unless @current_shopping_cart
   end
 
 end

@@ -1,6 +1,7 @@
 class ShoppingCartController < ApplicationController
 
   before_action :set_current_user
+  before_action :set_current_shopping_cart
 
   def shopping_cart_params
     params.permit(:id, :use_wallet_balance, :user_id, :product_id,address: [:city,:state,:zip,:street_address], credit_card: [:credit_card_name,:credit_card_number,:credit_card_security_num,:credit_card_expiration])

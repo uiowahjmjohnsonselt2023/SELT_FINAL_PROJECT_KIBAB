@@ -11,9 +11,9 @@
       .nav_item
         = link_to 'KIBAB Shop', products_path
       -if @current_user
-        -if !@current_shopping_cart_list.nil?
+        -if !@current_shopping_cart.nil?
           .nav_item
-            = link_to "Shopping Cart (#{@current_shopping_cart_list.size})", view_shopping_cart_path
+            = link_to "Shopping Cart (#{@current_shopping_cart.size})", view_shopping_cart_path
         -else
           .nav_item
             = link_to "Shopping Cart (0)", view_shopping_cart_path

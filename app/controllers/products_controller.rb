@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_current_user
+  before_action :set_current_shopping_cart
 
   def product_params
     params.require(:product).permit(:name,:image,:category,:quality,:description,:price,:street_address,:state,:city,:zip,:is_sold,:seller_review,:review_id, :lat, :long)
