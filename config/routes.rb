@@ -38,9 +38,7 @@ Rails.application.routes.draw do
   match '/review', to: 'products#new_seller_review', via: :get, :as => 'new_seller_review'
   match '/review/new', to: 'products#add_review', via: :post, :as => 'add_review'
 
-  resources :shopping_cart do
-    delete :destroy_one, on: :member
-  end
+  resources :shopping_cart
   # Defines the root path route ("/")
   # root "posts#index"
 end
