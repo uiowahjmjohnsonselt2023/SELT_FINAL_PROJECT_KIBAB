@@ -16,8 +16,9 @@
                 %p.listing-text= "Name: " + item.product.name
                 %p.listing-text= "Category: " + item.product.category
                 %p.listing-text= 'Listing Price: $' + item.product.price.to_s
-                = form_with(url: destroy_one_shopping_cart_path(id: item.id, product_id: item.product.id), method: :delete, class: 'd-inline') do
+                = form_with(url: destroy_one_shopping_cart_path(id: item.id, product_id: item.product_id), method: :delete, class: 'd-inline') do
                   = hidden_field_tag :authenticity_token, form_authenticity_token
+                  = hidden_field_tag :product_id, item.product_id
                   = submit_tag 'Remove', class: "card-button", data: { confirm: 'Are you sure?' }
             %td
               .product_listing.right
