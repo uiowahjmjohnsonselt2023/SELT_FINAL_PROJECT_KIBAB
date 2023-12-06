@@ -1,7 +1,6 @@
 class ShoppingCartController < ApplicationController
 
   before_action :set_current_user
-  skip_before_action :verify_authenticity_token, only: [:destroy]
 
 
   def shopping_cart_params
@@ -86,26 +85,19 @@ class ShoppingCartController < ApplicationController
 
   end
 
-  def delete_one
-    if bookmark_params[:id].present?
-      @shopping_cart_item = shopping_cart_params[:id]
-      ShoppingCart.destroy(@shopping_cart_item)
-      flash[:notice] = "Item deleted from shopping cart."
-      redirect_to view_shopping_cart_path
-    else
-      flash[:notice] = "Could not delete #{@shopping_cart_item.product.name}."
-    end
-  end
-
   def destroy
-    item = ShoppingCart.find(params[:id])
-
-    if item.destroy
-      flash[:notice] = "#{item.product.name} removed from the shopping cart."
+    pid = params[:product_id]
+    if pid.positive?
+      cart_item = ShoppingCart.find_by(user_id: @current_user.id, product_id: pid)
+      if cart_item
+        cart_item.destroy
+        flash[:notice] = "Item removed from shopping cart."
+      else
+        flash[:notice] = "Could not remove item from the shopping cart."
+      end
     else
-      flash[:error] = "Error removing #{item.product.name} from the shopping cart."
+      flash[:notice] = "Error: invalid product ID."
     end
-
-    redirect_to checkout_path
+    redirect_to view_shopping_cart_path
   end
 end
