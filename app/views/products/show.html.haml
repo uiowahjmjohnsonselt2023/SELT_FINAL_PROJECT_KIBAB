@@ -37,16 +37,10 @@
 - if !@seller_reviews.empty? && !@seller_reviews.nil?
   .review_card_display
     %h4 Reviews of the Seller
-    .review_card
     %table
-      %tr
-        -stars = []
-        %td
-          - @seller_reviews.each do |r|
-            %p= 'Name: ' + r.name
-            -stars.append(r.rating)
-            %p= "Review: " + r.review
-        %td
-          -stars.each do |num|
-            %p=((('&starf;'.html_safe) + ' ')  * num)
+      - @seller_reviews.each do |r|
+        %tr.review_card
+          %td
+            %p.card-text=(('&starf;'.html_safe + ' ')  * r.rating) + " Reviewer: " + r.name
+            %p.card-text= '&lsquo;'.html_safe + r.review + '&rsquo;'.html_safe
 
