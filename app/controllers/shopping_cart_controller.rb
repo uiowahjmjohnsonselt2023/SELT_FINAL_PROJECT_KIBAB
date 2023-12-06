@@ -94,4 +94,16 @@ class ShoppingCartController < ApplicationController
       flash[:notice] = "Could not delete #{@shopping_cart_item.product.name}."
     end
   end
+
+  def destroy
+    item = ShoppingCart.find(params[:id])
+
+    if item.destroy
+      flash[:notice] = "#{item.product.name} removed from the shopping cart."
+    else
+      flash[:error] = "Error removing #{item.product.name} from the shopping cart."
+    end
+
+    redirect_to checkout_path
+  end
 end
