@@ -1,4 +1,5 @@
-%h2 Shopping Cart
+.welcome_statement
+  %h2 Shopping Cart
 = form_tag checkout_path, :id => 'user_shopping_cart' do
   - if @current_shopping_cart_list.nil? || @current_shopping_cart_list.empty?
     %h4 You have no items in your shopping cart
@@ -20,12 +21,12 @@
               .product_listing.right
                 %p= link_to "More about #{item.product.name}", product_path(item.product.id), class: "card-button"
             - total_price += item.product.price.to_f
+    .welcome_statement
+      %h6 Total Price: $#{'%.2f' % total_price}
+      %h6 Use Wallet Balance?
+      = label_tag :use_wallet_balance, "Balance: $#{'%.2f' % @wallet.wallet}"
+      = check_box_tag :use_wallet_balance, nil, false, id: 'use_wallet_balance'
 
-    %h4 Total Price: $#{'%.2f' % total_price}
-    %h4 Use Wallet Balance?
-    = label_tag :use_wallet_balance, "Balance: $#{'%.2f' % @wallet.wallet}"
-    = check_box_tag :use_wallet_balance, nil, false, id: 'use_wallet_balance'
-
-    = submit_tag 'Check Out', :id => 'check_out_button'
-
-%h4= link_to "Return to products page", products_path
+      = submit_tag 'Check Out', :id => 'check_out_button'
+.profile_button
+  = link_to "Return to products page", products_path
