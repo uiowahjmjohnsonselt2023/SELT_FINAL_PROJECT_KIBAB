@@ -142,7 +142,8 @@ describe Product do
       it 'adds a product to the shopping cart for a user' do
         user_id = 1
         product_id = 1
-        expect(ShoppingCart).to receive(:create!).with(user_id: user_id, product_id: product_id)
+        shopping_cart_item = { :user_id => user_id, :product_id => product_id }
+        expect(ShoppingCart).to receive(:create!).with(shopping_cart_item)
         described_class.add_to_shopping_cart(user_id, product_id)
       end
     end
