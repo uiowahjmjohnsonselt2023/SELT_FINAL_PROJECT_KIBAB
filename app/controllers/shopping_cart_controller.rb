@@ -1,6 +1,7 @@
 class ShoppingCartController < ApplicationController
 
   before_action :set_current_user
+  before_action :set_current_shopping_cart
 
 
   def shopping_cart_params
