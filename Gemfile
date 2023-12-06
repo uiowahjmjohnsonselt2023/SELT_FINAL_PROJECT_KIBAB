@@ -85,6 +85,7 @@ group :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
 end
 
 group :production do
