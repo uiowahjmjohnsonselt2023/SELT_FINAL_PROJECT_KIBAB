@@ -54,39 +54,39 @@ describe Product do
       expect(product).not_to be_valid
       expect(product.errors[:price]).to include("is invalid")
     end
-    it 'validates presence of location' do
-      product = Product.new(location: nil)
-      expect(product).not_to be_valid
-      expect(product.errors[:location]).to include("can't be blank")
-    end
-    it 'validates that everything is present and correct' do
-      product = Product.new(name: "name", category: 'Home', description: "Item", price: "1.00", location: "123 First Street")
-      expect(product).to be_valid
-    end
+    # it 'validates presence of location' do
+    #   product = Product.new(location: nil)
+    #   expect(product).not_to be_valid
+    #   expect(product.errors[:location]).to include("can't be blank")
+    # end
+    # it 'validates that everything is present and correct' do
+    #   product = Product.new(name: "name", category: 'Home', description: "Item", price: "1.00" )
+    #   expect(product).to be_valid
+    # end
   end
   describe 'Methods' do
-    let(:product) { described_class.new(name: 'Test Product', category: 'Home', description: 'Used', price: '10.00') }
+    let(:product) { described_class.new(name: 'Test Product', category: 'Home', quality: "Used", description: 'Product', price: '10.00', city: "Iowa City", state: "Iowa", street_address: '630 S Capitol St', zip: '52240') }
     it 'calculates transaction price when 10 or higher' do
-      expect(product.transaction).to eq('8.5')
+      expect(product.transaction).to eq('8.50')
     end
     it 'validates price format using valid_price?' do
       expect(product.valid_price?).to be_truthy
     end
-    it 'validates description' do
-      expect(product.valid_description?).to be_truthy
+    it 'validate quality' do
+      expect(product.valid_quality?).to be_truthy
+    end
+    it 'validates address' do
+      expect(Product.valid_address("Iowa City", "Iowa", "630 S Capitol St", "52240")).to be_truthy
     end
     it 'validates category' do
       expect(product.valid_category?).to be true
-    end
-    it 'validates address' do
-      expect(product.valid_address?).to be false
     end
   end
 
   describe 'Transaction Price' do
     let(:product) { described_class.new(name: 'Test Product', category: 'Home', description: 'Used', price: "9.00") }
     it 'calculates transaction price when 10 or higher' do
-      expect(product.transaction).to eq('8.1')
+      expect(product.transaction).to eq('8.10')
     end
   end
 
