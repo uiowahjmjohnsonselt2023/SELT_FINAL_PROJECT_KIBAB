@@ -96,7 +96,7 @@ class Product < ActiveRecord::Base
   # Searches database for specifies product category, can return multiple products
   def self.search_by_category(search)
     if search.present?
-      @product = products.where("category=#{search}")
+      @product = Product.where("category=#{search}")
     else
       self
     end
@@ -104,16 +104,16 @@ class Product < ActiveRecord::Base
 
   def self.add_to_shopping_cart(user_id, product_id)
     var = ShoppingCart.where(user_id: user_id).where(product_id: product_id).present?
-    if !var.present?
-      shopping_cart_item = {:user_id => user_id, :product_id => product_id}
+    unless var.present?
+      shopping_cart_item = { :user_id => user_id, :product_id => product_id }
       ShoppingCart.create!(shopping_cart_item)
     end
   end
 
   def self.add_to_bookmarks(user_id, product_id)
     var = Bookmark.where(user_id: user_id).where(product_id: product_id).present?
-    if !var.present?
-      bookmark = {:user_id => user_id, :product_id => product_id}
+    unless var.present?
+      bookmark = { :user_id => user_id, :product_id => product_id }
       Bookmark.create!(bookmark)
     end
   end
