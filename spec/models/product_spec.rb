@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'rails_helper'
+require 'faker'
 
 if RUBY_VERSION>='2.6.0'
   if Rails.version < '5'
@@ -127,6 +128,13 @@ describe Product do
       it 'search by a category nil for code coverage' do
         products = described_class.search_by_category(nil)
         expect(products).to eq(described_class)
+      end
+      it 'create bookmark' do
+        user = User.create!({uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name})
+        user2 = User.create!({uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name})
+        product = Product.create!({:user_id => user2.id, :name => "Face Wash", :category => "Personal Care", :quality => "New", :description => "Bought a new one need to get rid of it", :price => "5.00", :street_address => "732 Orland Square Dr", :city => "Orland Park", :state => "IL", :zip => "60462", :product_traffic => 0})
+        products = described_class.add_to_bookmarks(user.id, product.id)
+        expect(products).to eq(Bookmark.where(user_id: user.id).first)
       end
     end
 
