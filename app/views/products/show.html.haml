@@ -35,16 +35,13 @@
   = link_to 'Return to Home', products_path
 
 - if !@seller_reviews.empty? && !@seller_reviews.nil?
-  %h4 Reviews of the Seller
-  %table#products.table-style
-    %thead
+  .review_card_display
+    %h4 Reviews of the Seller
+    .review_card
+    %table
       %tr
-        %th Name of Reviewer
-        %th Review
-        %th Rating
-      %tbody
-        - @seller_reviews.each do |r|
-          %tr
-            %td= r.name
-            %td= r.review
-            %td= r.rating
+        %ul
+          - @seller_reviews.each do |r|
+            %li= 'Name: ' + r.name
+            %li=((('&starf;'.html_safe) + ' ')  * r.rating)
+            %li= "Review: " + r.review
