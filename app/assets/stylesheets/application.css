@@ -336,6 +336,42 @@ table#products thead {
     border: 1px solid #0086b3;
 }
 
+.review_card_display {
+    width: 90%;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #0086b3;
+}
+
+.review_table {
+    padding: 5px;
+    width: 90%;
+    border-collapse:separate;
+}
+
+.review_row {
+    display: block;
+    border-spacing:0 15px;
+    border-radius: 5px;
+    border: 1px solid #0086b3;
+
+}
+
+.review_column {
+    text-align: left;
+    width: 75%;
+}
+
+.spacing {
+    padding: 10px;
+}
+
+.review_stars {
+    width: 25%;
+    text-align: right;
+}
+
 .product_listing_row {
     border-radius: 5px;
     border: 1px solid #0086b3;
