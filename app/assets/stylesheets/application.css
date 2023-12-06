@@ -375,3 +375,29 @@ table#products thead {
 .product_map body {
     height: 100%;
 }
+
+.profile_button {
+    text-align: center;
+    margin-top: 50px; /* Adjust as needed */
+}
+
+.profile_button a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0086b3;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.profile_button a:hover {
+    color: white;
+    background-color: darkslategray;
+}
+
+.links-container {
+    text-align: center;
+    margin-top: 20px;
+}
