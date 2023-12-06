@@ -2,6 +2,7 @@ class ShoppingCartController < ApplicationController
 
   before_action :set_current_user
 
+
   def shopping_cart_params
     params.permit(:id, :use_wallet_balance, :user_id, :product_id,address: [:city,:state,:zip,:street_address], credit_card: [:credit_card_name,:credit_card_number,:credit_card_security_num,:credit_card_expiration])
   end
@@ -84,14 +85,19 @@ class ShoppingCartController < ApplicationController
 
   end
 
-  # def delete_one
-  #   if bookmark_params[:id].present?
-  #     @shopping_cart_item = shopping_cart_params[:id]
-  #     ShoppingCart.destroy(@shopping_cart_item)
-  #     flash[:notice] = "Item deleted from shopping cart."
-  #     redirect_to view_shopping_cart_path
-  #   else
-  #     flash[:notice] = "Could not delete #{@shopping_cart_item.product.name}."
-  #   end
-  # end
+  def destroy
+    pid = params[:product_id].to_i
+    if pid.positive?
+      cart_item = ShoppingCart.find_by(user_id: @current_user.id, product_id: pid)
+      if cart_item
+        cart_item.destroy
+        flash[:notice] = "Item removed from shopping cart."
+      else
+        flash[:notice] = "Could not remove item from the shopping cart."
+      end
+    else
+      flash[:notice] = "Error: invalid product ID."
+    end
+    redirect_to view_shopping_cart_path
+  end
 end
