@@ -86,7 +86,7 @@ class ShoppingCartController < ApplicationController
   end
 
   def destroy
-    pid = params[:product_id]
+    pid = params[:product_id].to_i
     if pid.positive?
       cart_item = ShoppingCart.find_by(user_id: @current_user.id, product_id: pid)
       if cart_item
