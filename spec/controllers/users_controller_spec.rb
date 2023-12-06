@@ -36,14 +36,13 @@ describe UsersController do
         allow(request.env['omniauth.auth']).to receive(:[]).with('uid').and_return('123456')
         allow(request.env['omniauth.auth']).to receive(:[]).with('info').and_return({ 'email' => 'user@example.com', 'name' => 'Example User' })
         session[:user_id] = user.id # Simulate setting the user ID in the session after authentication
-        get :index, { :action=>"/products", :controller => "products" }
+        get :index
         expect(response).to redirect_to(login_path_path)
       end
     end
-
     context 'when the user is not logged in' do
       it 'redirects to the login page' do
-        get :new, { :action=>"/login", :controller => "sessions" }
+        get :new
         expect(response).to redirect_to(login_path_path)
       end
     end
