@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   match '/shopping_cart/index', to: 'shopping_cart#index', via: :get, :as => 'view_shopping_cart'
   match '/shopping_cart/checkout', to: 'shopping_cart#checkout', via: :post, :as => 'checkout'
   match '/shopping_cart/checkout/confirm_purchase', to: 'shopping_cart#confirm_purchase', via: :post, :as => 'confirm_purchase'
-  # match '/shopping_cart/:id/delete_one', to:'shopping_cart#delete_one', via: :post, :as => "delete_one_shopping_cart"
+  match '/shopping_cart/:id/delete_one', to:'shopping_cart#delete_one', via: :post, :as => "delete_one_shopping_cart"
 
   # Bookmarks
   match '/products/:id/bookmark', to: 'products#bookmark_from_product', via: :get, :as => 'bookmark_from_product'
