@@ -180,7 +180,8 @@ button {
 }
 
 .create_account a:hover {
-    background-color: #357ae8;
+    color: white;
+    background-color: darkslategray;
 }
 
 table#products thead {
