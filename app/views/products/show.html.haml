@@ -40,8 +40,13 @@
     .review_card
     %table
       %tr
-        %ul
+        -stars = []
+        %td
           - @seller_reviews.each do |r|
-            %li= 'Name: ' + r.name
-            %li=((('&starf;'.html_safe) + ' ')  * r.rating)
-            %li= "Review: " + r.review
+            %p= 'Name: ' + r.name
+            -stars.append(r.rating)
+            %p= "Review: " + r.review
+        %td
+          -stars.each do |num|
+            %p=((('&starf;'.html_safe) + ' ')  * num)
+
