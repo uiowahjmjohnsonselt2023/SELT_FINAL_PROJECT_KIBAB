@@ -364,6 +364,7 @@ table#products thead {
     border-radius: 5px;
     border: 1px solid #0086b3;
     margin: 5px;
+    padding: 5px;
 }
 
 .review_column {
