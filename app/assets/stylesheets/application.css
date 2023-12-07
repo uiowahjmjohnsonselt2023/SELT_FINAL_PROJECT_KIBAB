@@ -486,3 +486,20 @@ table#products thead {
     color: #0086b3;
     text-align: center;
 }
+
+.basic_link_button {
+    border-radius: 5px;
+    background: none;
+    color: white;
+    background-color: #0086b3;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    width: 100%;
+    font-size: 10px;
+    font-family: "Verdana", sans-serif;
+}
+
+.spacing {
+    height: 20px;
+}
