@@ -1,6 +1,5 @@
 .welcome_statement
   %h2 Shopping Cart
-  = button_to 'Clear Shopping Cart', destroy_all_shopping_cart_path, method: :delete, data: { confirm: 'Are you sure you want to clear your shopping cart?' }, class: "clear-cart-button"
 
 = form_tag checkout_path, :id => 'user_shopping_cart' do
   - if @current_shopping_cart_list.nil? || @current_shopping_cart_list.empty?
@@ -31,4 +30,5 @@
 
       = submit_tag 'Check Out', :id => 'check_out_button'
 .profile_button
+  = button_to 'Clear Shopping Cart', destroy_all_shopping_cart_path, method: :delete, data: { confirm: 'Are you sure you want to clear your shopping cart?' }, class: "clear-cart-button"
   = link_to "Return to products page", products_path
