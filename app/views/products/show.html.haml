@@ -6,16 +6,19 @@
     defer: true
 
 %h2 #{@current_product.name}
-%h4 Category: #{@current_product.category}
-%h4 Quality: #{@current_product.quality}
-%h4 Product Image
-= image_tag @current_product.image.url, :width => "600"
-%h4 Description
-%p #{@current_product.description}
--# %h4 Location
--# %p #{@current_product.location}
-%h4 Price
-%p $#{@current_product.price}
+.product_show_display
+  %table.product_img_description
+    %tr
+      %td
+        = image_tag @current_product.image.url, :width => "300"
+      %td
+        %p Category: #{@current_product.category}
+        %p Quality: #{@current_product.quality}
+        %p $#{@current_product.price}
+
+.product_description
+  %h4 Description
+  %p #{@current_product.description}
 
 .map-container
   %h2 #{@current_product.name} Location:
