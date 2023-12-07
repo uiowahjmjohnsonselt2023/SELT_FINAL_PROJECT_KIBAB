@@ -30,6 +30,7 @@ class ShoppingCartController < ApplicationController
     @current_shopping_cart_list.each do |item|
       @total_price += item.product.price.to_f
     end
+    @total_price = sprintf("%.2f", @total_price)
     if shopping_cart_params[:use_wallet_balance] == 'on'
       if current_wallet > @total_price
         @total_price = 0
