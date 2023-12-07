@@ -92,6 +92,11 @@ describe ProductsController, type: :controller do
         expect {
           post :create, params: { product: { name: 'New Product', price: 19.99 , category: 'None', quality: 'None', description: 'none'} }
         }.to change(Product, :count).by(1)
+      end
+      it 'redirects to the products index page' do
+        allow(controller).to receive(:render)
+        allow_any_instance_of(ProductsController).to receive(:check_address).and_return({ lat: 0.0, long: 0.0 })
+        post :create, params: { product: { name: 'New Product', price: 19.99 , category: 'None', quality: 'None', description: 'none'} }
         expect(response).to redirect_to(products_path)
       end
     end
