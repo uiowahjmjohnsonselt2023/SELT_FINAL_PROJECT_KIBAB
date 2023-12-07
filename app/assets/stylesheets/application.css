@@ -517,11 +517,15 @@ table#products thead {
 .generic_fields {
     align-self: center;
     border-radius: 5px;
-    width: 50%;
+    width: 100%;
     height: 30px;
     color: #0086b3;
-    padding:10px;
-    margin:10px 0;
+    padding:5px;
+    margin:5px 0;
     font-size: 15px;
     border: 2px solid #0086b3;
+}
+
+.edit_body {
+    padding: 5px;
 }
