@@ -463,6 +463,11 @@ table#products thead {
     color: #0086b3;
 }
 
+.product_subtext {
+    font-size: 12px;
+    color: #0086b3;
+}
+
 .product_row_body {
     width: 400px;
 }

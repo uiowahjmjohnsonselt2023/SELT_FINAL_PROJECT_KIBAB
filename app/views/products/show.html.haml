@@ -23,6 +23,7 @@
         -else
           = link_to 'Add to shopping cart', transaction_path_url, class: "basic_link_button"
           = link_to 'Bookmark', bookmark_from_product_path, class: "basic_link_button"
+        %p.product_subtext #{@current_product.product_traffic} people have viewed this item
 
 .product_description
   %h2.header_text Description
