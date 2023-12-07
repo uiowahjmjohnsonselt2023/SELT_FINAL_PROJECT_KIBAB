@@ -39,6 +39,21 @@ describe ProductsController, type: :controller do
       get :search, params: { search: '', product: {categories: 'SomeCategory', quality: ''} }
       expect(Product).to have_received(:filtered_search).with('', 'SomeCategory', 'None')
     end
+    it 'calls filtered_search with only quality filled' do
+      allow(Product).to receive(:filtered_search).and_return(Product.none)
+      get :search, params: { search: '', product: {categories: '', quality: 'SomeQuality'} }
+      expect(Product).to have_received(:filtered_search).with('', 'None', 'SomeQuality')
+    end
+    it 'calls filtered_search with only search filled' do
+      allow(Product).to receive(:filtered_search).and_return(Product.none)
+      get :search, params: { search: 'test', product: {categories: '', quality: ''} }
+      expect(Product).to have_received(:filtered_search).twice.with('test', 'None', 'None')
+    end
+    it 'should select the search results template for rendering' do
+          allow(Product).to receive(:filtered_search)
+          post :search, params: { search: 'test', product: {categories: 'SomeCategory', quality: 'SomeQuality'} }
+          expect(response).to render_template('search_product')
+    end
   end
 end
 
