@@ -68,4 +68,10 @@ describe ProductsController, type: :controller do
       expect(response).to be_successful
     end
   end
+  describe 'GET #new' do
+    it 'returns a successful response' do
+      get :new
+      expect(response).to be_successful
+    end
+  end
 end
