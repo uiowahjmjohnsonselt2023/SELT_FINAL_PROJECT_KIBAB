@@ -56,16 +56,10 @@ describe ProductsController, type: :controller do
       #expect(response).to render_template('layouts/application')
     end
     it 'calls filtered_search with correct parameters' do
-      products = double('products_relation')
-      allow(products).to receive(:where).and_return(products)
-      allow(products).to receive(:order).and_return(products)
-      allow(products).to receive(:empty?).and_return(false)
-      allow(Product).to receive(:filtered_search).and_return(products)
-
-
-      get :search, params: { search: 'test', product: {categories: 'SomeCategory', quality: 'SomeQuality'} }
-
-      expect(assigns(:products)).to eq(products)
+      product1 = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality')
+      allow(Product).to receive(:filtered_search).and_return(Product.where(id: product1.id))
+      get :search, params: { search: 'test', product: { categories: 'SomeCategory', quality: 'SomeQuality' } }
+      expect(assigns(:products).to_a).to eq(Product.where(id: product1.id).to_a)
     end
 
   end
