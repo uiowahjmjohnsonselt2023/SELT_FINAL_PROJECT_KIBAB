@@ -20,7 +20,7 @@
                 %p.listing-text= 'Listing Price: $' + item.product.price.to_s
             %td
               .product_listing.right
-                %p= link_to "More about #{item.product.name}", product_path(item.product.id), class: "card-button"
+                %p= link_to "More Info", product_path(item.product.id), class: "card-button"
             - total_price += item.product.price.to_f
     .welcome_statement
       %h6 Total Price: $#{'%.2f' % total_price}

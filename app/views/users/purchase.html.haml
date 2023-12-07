@@ -19,7 +19,7 @@
               %p.listing-text= Purchase.where(:product_id => item.product.id).first.purchase_timestamp
           %td
             .product_listing.right
-              %p= link_to "More about #{item.product.name}", product_path(item.product.id), class: "card-button"
+              %p= link_to "More Info", product_path(item.product.id), class: "card-button"
               %p= link_to "Add Seller Review", new_seller_review_path(review_id: item.product.user_id), class: "card-button"
 
 .profile_button
