@@ -18,20 +18,6 @@ class ProductsController < ApplicationController
   end
 
   def search
-    # if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:quality].present?
-    #   @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:quality]).where(is_sold: false)
-    # elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:quality].present?
-    #   @products = Product.filtered_search('',params[:product][:categories], params[:product][:quality]).where(is_sold: false)
-    # end
-    # if @products.nil? || @products.empty?
-    #   if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:quality]=='None'
-    #     @products = Product.where(is_sold: false)
-    #   else
-    #     flash[:notice] = "No products match your search here are some close results"
-    #     @products = Product.filtered_search(params[:search],"None", "None").where(is_sold: false)
-    #   end
-    # end
-    # sorting
     search_query = params[:search].presence || ''
     category = params[:product] ? params[:product][:categories].presence || 'None' : 'None'
     quality = params[:product] ? params[:product][:quality].presence || 'None' : 'None'
@@ -178,16 +164,13 @@ class ProductsController < ApplicationController
     if product_params[:city] != nil && product_params[:state] != nil && product_params[:street_address] != nil && product_params[:zip] != nil
       @lookup = Product.valid_address(product_params[:city],product_params[:state],product_params[:street_address],product_params[:zip])
       return @lookup
-      # if @lookup.is_a?(String)
-      #   return @lookup
-      # elsif @lookup == true
-      #   return true
-      # else
-      #   false
-      # end
     else
-      render new_products_path
+      render new_product_path
     end
 
+  end
+  private
+  def current_user
+    @current_user #||= current_user
   end
 end
