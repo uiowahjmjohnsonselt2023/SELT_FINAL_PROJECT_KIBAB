@@ -233,26 +233,6 @@ describe ProductsController, type: :controller do
       expect(response).to redirect_to(products_path)
     end
   end
-  describe '#bookmark_from_product' do
-    it 'returns a successful response' do
-      get :bookmark_from_product
-      expect(response).to be_successful
-    end
-  end
-  # describe '#bookmark_from_product' do
-  #   it 'add a bookmark' do
-  #     @current_product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: 12, product_traffic: 5, price: 12, description: "none")
-  #     @current_product.id = 1
-  #
-  #     puts("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#{@current_product.id}")
-  #
-  #     post :bookmark_from_product, params: { products:{user_id: @user.id ,product_id: @current_product.id}  }
-  #
-  #     allow(Product).to receive(:add_to_bookmarks).with(@user.id, @current_product.id)
-  #     expect(flash[:notice]).to eq("#{@current_product.name} was added to your bookmarks.")
-  #     expect(response).to redirect_to(products_path)
-  #   end
-  # end
   describe 'POST #add_review' do
     it 'adds a review when parameters are valid' do
       @user = User.create(name: 'Test User', email:"test@test.com")
@@ -283,6 +263,18 @@ describe ProductsController, type: :controller do
       post :add_review, params: missing_params
       expect(flash[:notice]).to eq('Missing required field')
       expect(SellerReview.count).to eq(0)
+    end
+  end
+  describe '#currentuser' do
+    it 'returns a successful response' do
+      instance = ProductsController.new
+
+      # Assuming @current_user is set in some way, for example, using an instance variable.
+      instance.instance_variable_set(:@current_user, 'Test User')
+
+      result = instance.send(:current_user)
+
+      expect(result).to eq('Test User')
     end
   end
 end

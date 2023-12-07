@@ -70,22 +70,6 @@ class Product < ActiveRecord::Base
   end
 
   def self.filtered_search(search,category,quality)
-    # if search.present? && category.present? && quality.present? && category != 'None'  && quality != 'None' &&  search != ''
-    #   products = Product.where('name LIKE ?', "%#{search}%").where(category: category).where(quality: quality)
-    # elsif  search == '' && category.present? && quality == 'None'
-    #   products = Product.where(category: category)
-    # elsif search == '' && category== 'None' && quality.present?
-    #   products = Product.where(quality: quality)
-    # elsif search == '' && category.present? && quality.present?
-    #   products = Product.where(quality: quality).where(category: category)
-    # elsif search.present? && category== 'None' && quality== 'None'
-    #   products = Product.where('name LIKE ?', "%#{search}%")
-    # elsif search.present? && category== 'None' && quality.present?
-    #   products = Product.where('name LIKE ?', "%#{search}%").where(quality: quality)
-    # elsif search.present? && category.present? && quality== 'None'
-    #   products = Product.where('name LIKE ?', "%#{search}%").where(category: category)
-    # end
-    # products
     products = Product.all
     products = products.where('name LIKE ?', "%#{search}%") if search.present?
     products = products.where(quality: quality) if quality.present? && quality != 'None'

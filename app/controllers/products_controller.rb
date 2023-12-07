@@ -164,13 +164,6 @@ class ProductsController < ApplicationController
     if product_params[:city] != nil && product_params[:state] != nil && product_params[:street_address] != nil && product_params[:zip] != nil
       @lookup = Product.valid_address(product_params[:city],product_params[:state],product_params[:street_address],product_params[:zip])
       return @lookup
-      # if @lookup.is_a?(String)
-      #   return @lookup
-      # elsif @lookup == true
-      #   return true
-      # else
-      #   false
-      # end
     else
       render new_product_path
     end
