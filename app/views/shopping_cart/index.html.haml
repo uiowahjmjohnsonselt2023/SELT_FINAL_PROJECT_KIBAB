@@ -1,5 +1,7 @@
 .welcome_statement
   %h2 Shopping Cart
+  = button_to 'Clear Shopping Cart', destroy_all_shopping_cart_path, method: :delete, data: { confirm: 'Are you sure you want to clear your shopping cart?' }, class: "clear-cart-button"
+
 = form_tag checkout_path, :id => 'user_shopping_cart' do
   - if @current_shopping_cart_list.nil? || @current_shopping_cart_list.empty?
     %h4 You have no items in your shopping cart
@@ -17,10 +19,6 @@
                 %p.listing-text= "Name: " + item.product.name
                 %p.listing-text= "Category: " + item.product.category
                 %p.listing-text= 'Listing Price: $' + item.product.price.to_s
-                = form_with(url: destroy_one_shopping_cart_path(id: item.id, product_id: item.product_id), method: :delete, class: 'd-inline') do
-                  = hidden_field_tag :authenticity_token, form_authenticity_token
-                  = hidden_field_tag :product_id, item.product_id
-                  = submit_tag 'Remove', class: "card-button"
             %td
               .product_listing.right
                 %p= link_to "More about #{item.product.name}", product_path(item.product.id), class: "card-button"
