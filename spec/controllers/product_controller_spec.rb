@@ -201,4 +201,20 @@ describe ProductsController, type: :controller do
       expect(response).to redirect_to(products_path)
     end
   end
+  describe '#add_shopping_cart' do
+    it'adds items to cart if there are items' do
+      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: @user.id, product_traffic: 5)
+      product.id = 1
+      expect(Product).to receive(:add_to_shopping_cart).with(@user.id,'user_id')
+      post :add_shopping_cart, params:{products:{user_id: @user.id}}
+      expect(flash[:notice]).to eq("Product(s) were successfully added to your shopping cart.")
+      expect(response).to redirect_to(products_path)
+    end
+    it'wont add anything to cart' do
+      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: @user.id, product_traffic: 5, price:12,description:"none")
+      expect(product).to be_valid
+      post :add_shopping_cart, params: nil
+      expect(response).to redirect_to(products_path)
+    end
+  end
 end
