@@ -196,8 +196,8 @@ describe ProductsController, type: :controller do
       product.id = 1
       allow(Product).to receive(:find_by_id).with(product.id.to_s).and_return(product)
       allow(Product).to receive(:add_to_shopping_cart).with(@user.id, product.id)
-      get :transaction
-      expect(flash[:notice]).to eq("#{product.name} was added to your shopping cart")
+      get :transaction,  params: {id: product.id}
+      expect(flash[:notice]).to eq("#{product.name} was added to your shopping cart.")
       expect(response).to redirect_to(products_path)
     end
   end
