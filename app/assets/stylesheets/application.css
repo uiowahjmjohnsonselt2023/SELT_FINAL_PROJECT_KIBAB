@@ -419,6 +419,7 @@ table#products thead {
 .product_map {
     height: 500px;
     width: 500px;
+    margin: auto;
 }
 
 .product_map body {
@@ -449,4 +450,110 @@ table#products thead {
 .links-container {
     text-align: center;
     margin-top: 20px;
+}
+
+.product_show_display {
+    text-align: center;
+    width: 800px;
+    margin: auto;
+}
+
+.product_text {
+    font-size: 20px;
+    color: #0086b3;
+}
+
+.product_subtext {
+    font-size: 14px;
+    color: #0086b3;
+}
+
+.product_row_body {
+    width: 400px;
+}
+
+.main-product-img {
+    border-radius: 5px;
+    object-fit: contain;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #0086b3;
+}
+
+.product_description {
+    text-align: center;
+    color: #0086b3;
+    font-size: large;
+}
+
+.header_text {
+    font-size: 20px;
+    color: #0086b3;
+    text-align: center;
+}
+
+.basic_link_button {
+    border-radius: 5px;
+    background: none;
+    color: white;
+    background-color: #0086b3;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    width: 100%;
+    font-size: 10px;
+    font-family: "Verdana", sans-serif;
+}
+
+.basic_link_button:hover {
+    color: white;
+    background-color: darkslategray;
+}
+
+.spacing {
+    height: 20px;
+}
+
+.generic_fields {
+    align-self: center;
+    border-radius: 5px;
+    width: 90%;
+    height: 30px;
+    color: #0086b3;
+    padding:5px;
+    margin:5px 0;
+    font-size: 15px;
+    border: 2px solid #0086b3;
+}
+
+.edit_body {
+    padding: 5px;
+    width: 150px;
+}
+
+.edit_field_body {
+    padding: 5px;
+    text-align: left;
+}
+
+.edit_product_form {
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+
+.table_center {
+    text-align: center;
+    min-width: 100%;
+}
+
+.general_button {
+    background-color: #0086b3;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
 }
