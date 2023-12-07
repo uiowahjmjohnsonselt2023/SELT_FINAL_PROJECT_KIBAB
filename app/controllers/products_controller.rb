@@ -186,7 +186,7 @@ class ProductsController < ApplicationController
       #   false
       # end
     else
-      render new_products_path
+      render new_product_path
     end
 
   end

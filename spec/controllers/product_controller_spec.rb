@@ -78,4 +78,16 @@ describe ProductsController, type: :controller do
       expect(response).to be_successful
     end
   end
+  describe 'POST #create' do
+    context 'with valid parameters' do
+      it 'creates a new product' do
+        allow(Product).to receive(:valid_address).and_return({ lat: 0.0, long: 0.0 })
+
+        post :create, params: { product: { name: 'New Product', price: 19.99 } }
+
+        expect(response).to redirect_to(products_path)
+        expect(flash[:notice]).to eq("Product created successfully!")
+      end
+    end
+  end
 end
