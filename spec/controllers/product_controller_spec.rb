@@ -233,4 +233,56 @@ describe ProductsController, type: :controller do
       expect(response).to redirect_to(products_path)
     end
   end
+  describe '#bookmark_from_product' do
+    it 'returns a successful response' do
+      get :bookmark_from_product
+      expect(response).to be_successful
+    end
+  end
+  # describe '#bookmark_from_product' do
+  #   it 'add a bookmark' do
+  #     @current_product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: 12, product_traffic: 5, price: 12, description: "none")
+  #     @current_product.id = 1
+  #
+  #     puts("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#{@current_product.id}")
+  #
+  #     post :bookmark_from_product, params: { products:{user_id: @user.id ,product_id: @current_product.id}  }
+  #
+  #     allow(Product).to receive(:add_to_bookmarks).with(@user.id, @current_product.id)
+  #     expect(flash[:notice]).to eq("#{@current_product.name} was added to your bookmarks.")
+  #     expect(response).to redirect_to(products_path)
+  #   end
+  # end
+  describe 'POST #add_review' do
+    it 'adds a review when parameters are valid' do
+      @user = User.create(name: 'Test User', email:"test@test.com")
+      valid_params = {
+        review_id: @user.id,
+        seller_review: {
+          name: @user.name,
+          review: 'test',
+          rating: 5
+        }
+      }
+
+      post :add_review, params: valid_params
+      expect(response).to redirect_to(purchase_history_path_path)
+      expect(flash[:notice]).to eq('Review successfully added')
+      expect(SellerReview.count).to eq(1)
+      expect(SellerReview.first.user_id).to eq(valid_params[:review_id])
+      expect(SellerReview.first.name).to eq(@user.name)
+      expect(SellerReview.first.review).to eq(valid_params[:seller_review][:review])
+      expect(SellerReview.first.rating).to eq(valid_params[:seller_review][:rating])
+    end
+
+    it 'renders new_seller_review_path when parameters are missing' do
+      @user = User.create(name: 'Test User', email:"test@test.com")
+      missing_params = {
+      }
+
+      post :add_review, params: missing_params
+      expect(flash[:notice]).to eq('Missing required field')
+      expect(SellerReview.count).to eq(0)
+    end
+  end
 end
