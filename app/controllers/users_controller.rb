@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def show
     @wallet = Wallet.where(user_id: @current_user.id).first
+    @seller_reviews = SellerReview.where(user_id: @current_user.id)
     id = params[:id]
     unless current_user?(id)
       flash[:warning] = "Can only show profile of logged-in user"

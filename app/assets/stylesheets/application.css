@@ -336,6 +336,55 @@ table#products thead {
     border: 1px solid #0086b3;
 }
 
+.review_card_display {
+    width: 800px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #0086b3;
+    text-align: center;
+    color: #0086b3;
+    border-radius: 5px;
+}
+
+.review_table {
+    padding: 5px;
+    width: 800px;
+    border-collapse:separate;
+}
+
+.review_text {
+    color: #0086b3;
+    font-size: 15px;
+    margin: 2px;
+}
+
+.review_row {
+    display: block;
+    border-radius: 5px;
+    border: 1px solid #0086b3;
+    margin: 5px;
+    padding: 5px;
+}
+
+.review_column {
+    text-align: left;
+    width: 650px;
+    height: 100%;
+}
+
+.review_stars {
+    min-width: 25%;
+    width: 150px;
+    height: 100%;
+}
+
+.review_name {
+    font-size: 10px;
+    color: #444444;
+    text-align: right;
+}
+
 .product_listing_row {
     border-radius: 5px;
     border: 1px solid #0086b3;
