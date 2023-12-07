@@ -1,42 +1,41 @@
-%h2 Edit Product
+%p.spacing
+= link_to '&lt;'.html_safe, product_path(@current_product.id), class: "basic_link_button"
 
-.new_product_form
-  = form_tag product_path(@current_product), :method => :put, multipart: true do
-    %table
+%h2.header_text Edit Product
+
+= form_tag product_path(@current_product), :method => :put, multipart: true do
+  .edit_product_form
+    %table.table_center
       %tr
         %td.edit_body
           = label :product, :name, 'Product Name', class: "product_subtext"
-        %td
+        %td.edit_field_body
           = text_field :product, 'name', value: @current_product.name, class: "generic_fields"
       %tr
         %td.edit_body
           = label :product, :image, 'Product Image', class: "product_subtext"
-        %td
+        %td.edit_field_body
           = file_field :product, :image
       %tr
         %td.edit_body
           = label :product, :category, 'Product Category', class: "product_subtext"
-        %td
+        %td.edit_field_body
           = select :product, :category, options_for_select(['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], @current_product.category)
       %tr
         %td.edit_body
           = label :product, :quality, 'Product Quality', class: "product_subtext"
-        %td
+        %td.edit_field_body
           = select :product, :quality, options_for_select(['New', 'Like New', 'Used', 'Well Worn'], @current_product.quality)
       %tr
         %td.edit_body
           = label :product, :description, 'Product Description', class: "product_subtext"
-        %td
+        %td.edit_field_body
           = text_area :product, :description, cols: "40", rows: "5", maxlength: "100", value: @current_product.description, class: "generic_fields"
       %tr
         %td.edit_body
           = label :product, :price, 'Price', class: "product_subtext"
           %p.product_subtext *include shipping price
-        %td
+        %td.edit_field_body
           = text_field :product, 'price', value: @current_product.price, class: "generic_fields"
 
-    %p.listing-text Edit Product?
-    = submit_tag 'Confirm', class: "search_button"
-
-.link_to_button
-  = link_to 'Return to Home', products_path
+    = submit_tag 'Confirm', class: "general_button"

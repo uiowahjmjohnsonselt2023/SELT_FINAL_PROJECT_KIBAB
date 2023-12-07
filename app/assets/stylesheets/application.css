@@ -464,7 +464,7 @@ table#products thead {
 }
 
 .product_subtext {
-    font-size: 12px;
+    font-size: 14px;
     color: #0086b3;
 }
 
@@ -517,7 +517,7 @@ table#products thead {
 .generic_fields {
     align-self: center;
     border-radius: 5px;
-    width: 100%;
+    width: 90%;
     height: 30px;
     color: #0086b3;
     padding:5px;
@@ -528,4 +528,32 @@ table#products thead {
 
 .edit_body {
     padding: 5px;
+    width: 150px;
+}
+
+.edit_field_body {
+    padding: 5px;
+    text-align: left;
+}
+
+.edit_product_form {
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+
+.table_center {
+    text-align: center;
+    min-width: 100%;
+}
+
+.general_button {
+    background-color: #0086b3;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
 }
