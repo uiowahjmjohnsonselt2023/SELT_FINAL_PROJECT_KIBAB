@@ -169,4 +169,15 @@ describe ProductsController, type: :controller do
       expect(response).to redirect_to(product_path(product5.id))
     end
   end
+  describe '#update' do
+    it 'Sets product updates and send flash' do
+      product6 = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: @user.id, product_traffic: 5)
+      product6.id = 1
+      allow(Product).to receive(:find_by_id).with(product6.id.to_s).and_return(product6)
+      allow(product6).to receive(:update).and_return(true)
+      get :update, params: { id: product6.id, product: { name: 'New Name', category: 'New Category' } }
+      expect(flash[:notice]).to eq("Product was updated successfully.")
+      expect(response).to redirect_to(products_path)
+    end
+  end
 end
