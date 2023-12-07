@@ -86,19 +86,9 @@ class ShoppingCartController < ApplicationController
 
   end
 
-  def destroy
-    pid = params[:product_id].to_i
-    if pid.positive?
-      cart_item = ShoppingCart.find_by(user_id: @current_user.id, product_id: pid)
-      if cart_item
-        cart_item.destroy
-        flash[:notice] = "Item removed from shopping cart."
-      else
-        flash[:notice] = "Could not remove item from the shopping cart."
-      end
-    else
-      flash[:notice] = "Error: invalid product ID."
-    end
+  def destroy_all
+    ShoppingCart.where(user_id: @current_user.id).destroy_all
+    flash[:notice] = "Shopping Cart Cleared!"
     redirect_to view_shopping_cart_path
   end
 end

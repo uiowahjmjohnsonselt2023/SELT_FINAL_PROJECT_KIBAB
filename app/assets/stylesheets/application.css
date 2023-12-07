@@ -308,6 +308,19 @@ table#products thead {
     font-family: "Verdana", sans-serif;
 }
 
+.clear-cart-button {
+    border-radius: 5px;
+    background: none;
+    color: white;
+    background-color: #0086b3;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    width: 100%;
+    font-size: 18px;
+    font-family: "Verdana", sans-serif;
+}
+
 .card-text {
     color: #0086b3;
     font-size: 15px;
