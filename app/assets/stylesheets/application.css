@@ -505,6 +505,11 @@ table#products thead {
     font-family: "Verdana", sans-serif;
 }
 
+.basic_link_button:hover {
+    color: white;
+    background-color: darkslategray;
+}
+
 .spacing {
     height: 20px;
 }

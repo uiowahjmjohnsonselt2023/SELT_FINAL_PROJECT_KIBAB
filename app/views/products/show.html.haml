@@ -34,6 +34,8 @@
   #product_map.product_map{ "data-latitude" => @current_product.lat.to_f, "data-longitude" => @current_product.long.to_f}
   %p#product_location{ "data-latitude" => @current_product.lat, "data-longitude" => @current_product.long, "data-name" => @current_product.name }
 
+%p.spacing
+
 - if !@seller_reviews.empty? && !@seller_reviews.nil?
   .review_card_display
     %h4 Seller Reviews
