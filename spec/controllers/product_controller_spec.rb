@@ -21,7 +21,7 @@ describe ProductsController do
     it 'should call the model method that searches database by category'do
       fake_results = [double('product1')]
       expect(Product).to receive(:search_by_category).with('Home').and_return(fake_results)
-      post :search_product, {:search_terms => 'Home'}
+      post :search, {:search_terms => 'Home'}
     end
 
     it 'should select the search results template for rendering' do
