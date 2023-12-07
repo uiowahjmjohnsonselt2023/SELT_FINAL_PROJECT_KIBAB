@@ -24,6 +24,10 @@ describe ProductsController, type: :controller do
   end
 
   describe 'GET #search' do
+    it 'returns a successful response' do
+      get :search
+      expect(response).to be_successful
+    end
     it 'calls filtered_search with correct parameters' do
       allow(Product).to receive(:filtered_search).and_return(Product.none)
       get :search, params: { search: 'test', product: {categories: 'SomeCategory', quality: 'SomeQuality'} }
