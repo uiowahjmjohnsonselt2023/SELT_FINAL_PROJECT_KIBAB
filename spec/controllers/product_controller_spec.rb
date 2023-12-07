@@ -62,4 +62,10 @@ describe ProductsController, type: :controller do
       expect(assigns(:products).to_a).to eq(Product.where(id: product1.id).to_a)
     end
   end
+  describe 'GET #index' do
+    it 'returns a successful response' do
+      get :index
+      expect(response).to be_successful
+    end
+  end
 end
