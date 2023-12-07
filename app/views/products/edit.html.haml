@@ -2,39 +2,60 @@
 
 .new_product_form
   = form_tag product_path(@current_product), :method => :put, multipart: true do
+    %table
+      %tr
+        %td
+          = label :product, :name, 'Product Name', class: "listing-text"
+        %td
+          = text_field :product, 'name', value: @current_product.name, class: "generic_fields"
+      %tr
+        %td
+          = label :product, :image, 'Product Image', class: "listing-text"
+        %td
+          = file_field :product, :image
+      %tr
+        %td
+          = label :product, :category, 'Product Category', class: "listing-text"
+        %td
+          = select :product, :category, options_for_select(['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], @current_product.category)
+      %tr
+        %td
+          = label :product, :quality, 'Product Quality', class: "listing-text"
+        %td
+          = select :product, :quality, options_for_select(['New', 'Like New', 'Used', 'Well Worn'], @current_product.quality)
+      %tr
+        %td
+          = label :product, :description, 'Product Description', class: "listing-text"
+        %td
+          = text_area :product, :description, cols: "40", rows: "5", maxlength: "100", value: @current_product.description, class: "generic_fields"
+      %tr
+        %td
+          = label :product, :price, 'Price (please include shipping price)', class: "listing-text"
+        %td
+          = text_field :product, 'price', value: @current_product.price, class: "generic_fields"
+      %tr
+        %td
+          = label :product, :street_address, 'Street Address', class: "listing-text"
+        %td
+          = text_field :product, 'street_address', value: @current_product.street_address, class: "generic_fields"
+      %tr
+        %td
+          = label :product, :state, 'State', class: "listing-text"
+        %td
+          = text_field :product, 'state', value: @current_product.state, class: "generic_fields"
+      %tr
+        %td
+          = label :product, :city, 'City', class: "listing-text"
+        %td
+          = text_field :product, 'city', value: @current_product.city, class: "generic_fields"
+      %tr
+        %td
+          = label :product, :zip, 'Zip', class: "listing-text"
+        %td
+          = text_field :product, 'zip', value: @current_product.zip, class: "generic_fields"
 
-    = label :product, :name, 'Product Name'
-    = text_field :product, 'name', value: @current_product.name
-
-    = label :product, :image, 'Product Image'
-    = file_field :product, :image
-
-    = label :product, :category, 'Product Category'
-    = select :product, :category, options_for_select(['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], @current_product.category)
-
-    = label :product, :quality, 'Product Description'
-    = select :product, :quality, options_for_select(['New', 'Like New', 'Used', 'Well Worn'], @current_product.quality)
-
-    = label :product, :description, 'Product Description'
-    = text_area :product, :description, cols: "40", rows: "5", maxlength: "100", value: @current_product.description
-
-    = label :product, :price, 'Price'
-    = text_field :product, 'price', value: @current_product.price
-
-    = label :product, :street_address, 'Street Address'
-    = text_field :product, 'street_address', value: @current_product.street_address
-
-    = label :product, :state, 'State'
-    = text_field :product, 'state', value: @current_product.state
-
-    = label :product, :city, 'City'
-    = text_field :product, 'city', value: @current_product.city
-
-    = label :product, :zip, 'Zip'
-    = text_field :product, 'zip', value: @current_product.zip
-
-    %p Edit Product?
-    = submit_tag 'Confirm'
+    %p.listing-text Edit Product?
+    = submit_tag 'Confirm', class: "search_button"
 
 .link_to_button
   = link_to 'Return to Home', products_path

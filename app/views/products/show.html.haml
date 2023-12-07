@@ -19,7 +19,7 @@
         %p.product_text Quality: #{@current_product.quality}
         %p.product_text $#{@current_product.price}
         -if @current_user.id.eql?(@current_product.user_id)
-          = link_to 'Edit Item', edit_product_path(@current_product)
+          = link_to 'Edit Item', edit_product_path(@current_product), class: "basic_link_button"
         -else
           = link_to 'Add to shopping cart', transaction_path_url, class: "basic_link_button"
           = link_to 'Bookmark', bookmark_from_product_path, class: "basic_link_button"

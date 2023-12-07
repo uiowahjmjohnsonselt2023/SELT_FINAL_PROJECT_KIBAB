@@ -513,3 +513,15 @@ table#products thead {
 .spacing {
     height: 20px;
 }
+
+.generic_fields {
+    align-self: center;
+    border-radius: 5px;
+    width: 50%;
+    height: 30px;
+    color: #0086b3;
+    padding:10px;
+    margin:10px 0;
+    font-size: 15px;
+    border: 2px solid #0086b3;
+}
