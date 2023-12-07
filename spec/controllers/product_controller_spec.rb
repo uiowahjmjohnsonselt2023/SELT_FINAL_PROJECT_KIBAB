@@ -87,18 +87,11 @@ describe ProductsController, type: :controller do
     context 'with valid parameters' do
       it 'creates a new product' do
         allow(controller).to receive(:render)
-
         allow_any_instance_of(ProductsController).to receive(:check_address).and_return({ lat: 0.0, long: 0.0 })
         allow(Product).to receive(:valid_address).and_return(true)
-        puts "Product count after request: #{Product.count}"
-
         expect {
-          post :create, params: { product: { name: 'New Product', price: 19.99 } }
+          post :create, params: { product: { name: 'New Product', price: 19.99 , category: 'None', quality: 'None', description: 'none'} }
         }.to change(Product, :count).by(1)
-
-        # Add debugging information before the expectation
-        puts "Product count after request: #{Product.count}"
-
         expect(response).to redirect_to(products_path)
       end
     end
