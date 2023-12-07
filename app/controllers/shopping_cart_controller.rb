@@ -23,10 +23,6 @@ class ShoppingCartController < ApplicationController
     # add later
   end
 
-  def show
-    # add later
-  end
-
   def checkout
     @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
     current_wallet = Wallet.find_by_user_id(@current_user.id).wallet
@@ -92,7 +88,7 @@ class ShoppingCartController < ApplicationController
 
   def destroy_all
     ShoppingCart.where(user_id: @current_user.id).destroy_all
-    flash[:notice] = "Shopping cart cleared successfully!"
+    flash[:notice] = "Shopping Cart Cleared!"
     redirect_to view_shopping_cart_path
   end
 end
