@@ -9,12 +9,12 @@
 .product_show_display
   %table.product_img_description
     %tr
-      %td
-        = image_tag @current_product.image.url, :width => "300"
-      %td
-        %p Category: #{@current_product.category}
-        %p Quality: #{@current_product.quality}
-        %p $#{@current_product.price}
+      %td.product_row_body
+        = image_tag @current_product.image.url, :width => "400", :class => "main-product-img"
+      %td.product_row_body
+        %p.product_text Category: #{@current_product.category}
+        %p.product_text Quality: #{@current_product.quality}
+        %p.product_text $#{@current_product.price}
 
 .product_description
   %h4 Description

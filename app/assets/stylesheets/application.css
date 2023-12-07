@@ -450,3 +450,32 @@ table#products thead {
     text-align: center;
     margin-top: 20px;
 }
+
+.product_show_display {
+    text-align: center;
+    width: 800px;
+    margin: auto;
+}
+
+.product_text {
+    font-size: 30px;
+    color: #0086b3;
+}
+
+.product_row_body {
+    width: 400px;
+}
+
+.main-product-img {
+    border-radius: 5px;
+    object-fit: contain;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #0086b3;
+}
+
+.product_description {
+    text-align: center;
+    color: #0086b3;
+    font-size: large;
+}
