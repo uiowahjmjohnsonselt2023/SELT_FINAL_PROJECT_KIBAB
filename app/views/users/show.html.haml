@@ -7,6 +7,16 @@
   %h4 In-store credit
   %p $#{'%.2f' % @wallet.wallet}
 
+.profile_button
+  = link_to 'Add a New Product to Sell?', new_product_path
+
+.profile_button
+  = link_to 'View Purchase History', purchase_history_path_url
+
+.profile_button
+  = link_to 'View Seller History', seller_history_path_url
+%p
+
 - if !@seller_reviews.nil?
   .review_card_display
     %h4 Your Reviews:
@@ -18,12 +28,3 @@
             %p.review_text= '&ldquo;'.html_safe + r.review + '&rdquo;'.html_safe
           %td.review_stars
             %p.review_name= "Reviewer: " + r.name
-
-.profile_button
-  = link_to 'Add a New Product to Sell?', new_product_path
-
-.profile_button
-  = link_to 'View Purchase History', purchase_history_path_url
-
-.profile_button
-  = link_to 'View Seller History', seller_history_path_url
