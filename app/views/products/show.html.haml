@@ -18,12 +18,13 @@
         %p.product_text Category: #{@current_product.category}
         %p.product_text Quality: #{@current_product.quality}
         %p.product_text $#{@current_product.price}
-        -if @current_user.id.eql?(@current_product.user_id)
-          = link_to 'Edit Item', edit_product_path(@current_product), class: "basic_link_button"
-        -else
-          = link_to 'Add to shopping cart', transaction_path_url, class: "basic_link_button"
-          = link_to 'Bookmark', bookmark_from_product_path, class: "basic_link_button"
-        %p.product_subtext #{@current_product.product_traffic} people have viewed this item
+        -if @current_product.is_sold == false
+          -if @current_user.id.eql?(@current_product.user_id)
+            = link_to 'Edit Item', edit_product_path(@current_product), class: "basic_link_button"
+          -else
+            = link_to 'Add to shopping cart', transaction_path_url, class: "basic_link_button"
+            = link_to 'Bookmark', bookmark_from_product_path, class: "basic_link_button"
+          %p.product_subtext #{@current_product.product_traffic} people have viewed this item
 
 .product_description
   %h2.header_text Description

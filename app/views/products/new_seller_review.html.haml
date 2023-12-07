@@ -1,7 +1,11 @@
 = form_tag add_review_path :method => 'post' do
-  %h2 Write a Review
-  = text_area :seller_review, :review, rows: 5
-  %p
-  = select :seller_review, :rating, [1, 2, 3, 4, 5]
-  = hidden_field_tag :review_id, params[:review_id]
-  = submit_tag 'Add Seller Review', :id => 'new_seller_review'
+  %h2.header_text Write a Review
+  .edit_product_form
+    %table.table_center
+      %tr
+        %td.edit_field_body
+          = text_area :seller_review, :review, rows: 5, class: "generic_fields"
+    %p
+    = select :seller_review, :rating, [1, 2, 3, 4, 5]
+    = hidden_field_tag :review_id, params[:review_id]
+    = submit_tag 'Add Seller Review', :id => 'new_seller_review', class: "general_button"
