@@ -55,21 +55,22 @@ describe ProductsController, type: :controller do
       expect(response).to render_template('products/search')
       #expect(response).to render_template('layouts/application')
     end
+    it 'calls filtered_search with correct parameters' do
+      products = double('products_relation')
+      allow(products).to receive(:where).and_return(products)
+      allow(products).to receive(:order).and_return(products)
+      allow(products).to receive(:empty?).and_return(false)
+      allow(Product).to receive(:filtered_search).and_return(products)
+
+
+      get :search, params: { search: 'test', product: {categories: 'SomeCategory', quality: 'SomeQuality'} }
+
+      expect(assigns(:products)).to eq(products)
+    end
+
   end
 end
 
-
-  #   it 'should call the model method that searches database by name'do
-  #     fake_results = [double('product1'), double('product2')]
-  #     expect(Product).to receive(:search_by_name).with('Shower Curtain').and_return(fake_results)
-  #     post :search_product, {:search_terms => 'Shower Curtain'}
-  #   end
-  #
-  #   it 'should select the search results template for rendering' do
-  #     allow(Product).to receive(:search_by_name)
-  #     post :search_product, {:search_terms => 'Shower Curtain'}
-  #     expect(response).to render_template('search_product')
-  #   end
   #
   #   it 'should make product search results available to that template' do
   #     fake_results = [double('product1'), double('product2')]
