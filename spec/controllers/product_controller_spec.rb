@@ -50,33 +50,15 @@ describe ProductsController, type: :controller do
       expect(Product).to have_received(:filtered_search).twice.with('test', 'None', 'None')
     end
     it 'should select the search results template for rendering' do
-          allow(Product).to receive(:filtered_search)
-          post :search, params: { search: 'test', product: {categories: 'SomeCategory', quality: 'SomeQuality'} }
-          expect(response).to render_template('search_product')
+      allow(Product).to receive(:filtered_search).and_return(Product.none)
+      post :search, params: { search: 'test', product: {categories: 'SomeCategory', quality: 'SomeQuality'} }
+      expect(response).to render_template('products/search')
+      #expect(response).to render_template('layouts/application')
     end
   end
 end
 
-  # describe 'searching database' do
-  #   it 'should call the model method that searches database by category'do
-  #     fake_results = [double('product1')]
-  #     post :search, params: {search: 'Book', product: {category: 'Home', quality: 'None'} }
-  #     expect(Product).to receive(:filtered_search).with('Book','Home','None').and_return(fake_results)
-  #   end
-  #
-  #   it 'should select the search results template for rendering' do
-  #     allow(Product).to receive(:search_by_category)
-  #     post :search_product, {:search_terms => 'Home'}
-  #     expect(response).to render_template('search_product')
-  #   end
-  #
-  #   it 'should make product search results available to that template' do
-  #     fake_results = [double('product1'), double('product2')]
-  #     expect(Product).to receive(:search_by_category).and_return(fake_results)
-  #     post :search_product, {:search_terms => 'Home'}
-  #     expect(assigns(:products)).to eq(fake_results)
-  #   end
-  #
+
   #   it 'should call the model method that searches database by name'do
   #     fake_results = [double('product1'), double('product2')]
   #     expect(Product).to receive(:search_by_name).with('Shower Curtain').and_return(fake_results)
