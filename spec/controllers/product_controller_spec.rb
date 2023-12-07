@@ -150,9 +150,23 @@ describe ProductsController, type: :controller do
       expect(assigns(:current_product)).to eq(product3)
       expect(assigns(:seller_reviews)).to eq(SellerReview.none)
     end
-
-
-
-
+  end
+  describe '#edit' do
+    it 'sets current product' do
+      product4 = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality',is_sold: false, user_id: 1, product_traffic: 5)
+      product4.id = 1
+      @user.id = 1
+      allow(Product).to receive(:find_by_id).with(product4.id.to_s).and_return(product4)
+      get :edit, params: { id: product4.id }
+      expect(assigns(:current_product)).to eq(product4)
+    end
+    it 'sends flash and redirects' do
+      product5 = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality',is_sold: false, user_id: User.create(email: 'test@example.com', name: 'Test User', session_token: 'your_session_token').id, product_traffic: 5)
+      product5.id = 1
+      allow(Product).to receive(:find_by_id).with(product5.id.to_s).and_return(product5)
+      get :edit, params: { id: product5.id }
+      expect(flash[:notice]).to eq("This is not a product you are selling")
+      expect(response).to redirect_to(product_path(product5.id))
+    end
   end
 end
