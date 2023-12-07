@@ -7,6 +7,18 @@
   %h4 In-store credit
   %p $#{'%.2f' % @wallet.wallet}
 
+- if !@seller_reviews.nil?
+  .review_card_display
+    %h4 Your Reviews:
+    %table.review_table
+      - @seller_reviews.each do |r|
+        %tr.review_row
+          %td.review_column
+            %p.review_text=((('&starf;'.html_safe) + ' ')  * r.rating)
+            %p.review_text= '&ldquo;'.html_safe + r.review + '&rdquo;'.html_safe
+          %td.review_stars
+            %p.review_name= "Reviewer: " + r.name
+
 .profile_button
   = link_to 'Add a New Product to Sell?', new_product_path
 
