@@ -344,6 +344,7 @@ table#products thead {
     border: 1px solid #0086b3;
     text-align: center;
     color: #0086b3;
+    border-radius: 5px;
 }
 
 .review_table {
