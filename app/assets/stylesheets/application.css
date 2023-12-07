@@ -419,6 +419,7 @@ table#products thead {
 .product_map {
     height: 500px;
     width: 500px;
+    margin: auto;
 }
 
 .product_map body {
