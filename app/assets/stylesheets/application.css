@@ -480,3 +480,9 @@ table#products thead {
     color: #0086b3;
     font-size: large;
 }
+
+.header_text {
+    font-size: 20px;
+    color: #0086b3;
+    text-align: center;
+}
