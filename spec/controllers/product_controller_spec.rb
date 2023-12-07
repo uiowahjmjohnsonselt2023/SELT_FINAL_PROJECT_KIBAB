@@ -18,7 +18,6 @@ end
 
 describe ProductsController, type: :controller do
   before do
-    # Create a user instance and set the session token
     @user = User.create(email: 'test@example.com', name: 'Test User', session_token: 'your_session_token')
     allow(controller).to receive(:current_user).and_return(@user)
     session[:session_token] = @user.session_token
@@ -29,6 +28,16 @@ describe ProductsController, type: :controller do
       allow(Product).to receive(:filtered_search).and_return(Product.none)
       get :search, params: { search: 'test', product: {categories: 'SomeCategory', quality: 'SomeQuality'} }
       expect(Product).to have_received(:filtered_search).with('test', 'SomeCategory', 'SomeQuality')
+    end
+    it 'calls filtered_search nothing in search' do
+      allow(Product).to receive(:filtered_search).and_return(Product.none)
+      get :search, params: { search: ' ', product: {categories: ' ', quality: ' '} }
+      expect(Product).to have_received(:filtered_search).twice.with('', 'None', 'None')
+    end
+    it 'calls filtered_search with only category filled' do
+      allow(Product).to receive(:filtered_search).and_return(Product.none)
+      get :search, params: { search: '', product: {categories: 'SomeCategory', quality: ''} }
+      expect(Product).to have_received(:filtered_search).with('', 'SomeCategory', 'None')
     end
   end
 end
