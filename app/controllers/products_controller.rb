@@ -190,7 +190,8 @@ class ProductsController < ApplicationController
     end
 
   end
+  private
   def current_user
-    @current_user ||= current_user
+    @current_user #||= current_user
   end
 end
