@@ -342,6 +342,8 @@ table#products thead {
     position: relative;
     overflow: hidden;
     border: 1px solid #0086b3;
+    text-align: center;
+    color: #0086b3;
 }
 
 .review_table {
