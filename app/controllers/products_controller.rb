@@ -18,20 +18,6 @@ class ProductsController < ApplicationController
   end
 
   def search
-    # if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:quality].present?
-    #   @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:quality]).where(is_sold: false)
-    # elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:quality].present?
-    #   @products = Product.filtered_search('',params[:product][:categories], params[:product][:quality]).where(is_sold: false)
-    # end
-    # if @products.nil? || @products.empty?
-    #   if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:quality]=='None'
-    #     @products = Product.where(is_sold: false)
-    #   else
-    #     flash[:notice] = "No products match your search here are some close results"
-    #     @products = Product.filtered_search(params[:search],"None", "None").where(is_sold: false)
-    #   end
-    # end
-    # sorting
     search_query = params[:search].presence || ''
     category = params[:product] ? params[:product][:categories].presence || 'None' : 'None'
     quality = params[:product] ? params[:product][:quality].presence || 'None' : 'None'

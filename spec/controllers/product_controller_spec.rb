@@ -23,7 +23,7 @@ describe ProductsController, type: :controller do
     session[:session_token] = @user.session_token
   end
 
-  describe 'GET #search' do
+  describe '#search' do
     it 'returns a successful response' do
       get :search
       expect(response).to be_successful
@@ -66,24 +66,28 @@ describe ProductsController, type: :controller do
       expect(assigns(:products).to_a).to eq(Product.where(id: product1.id).to_a)
     end
   end
-  describe 'GET #index' do
+  describe '#index' do
     it 'returns a successful response' do
       get :index
       expect(response).to be_successful
     end
+    it 'gets values' do
+      product2 = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality',is_sold: false, user_id: @user.id, product_traffic: 5)
+      get :index
+      expect(assigns(:products).to_a).to eq(Product.where(id: product2.id).to_a)
+    end
+    it 'calls sorting' do
+      expect(controller).to receive(:sorting)
+      get :index
+    end
   end
-  describe 'GET #new' do
+  describe '#new' do
     it 'returns a successful response' do
       get :new
       expect(response).to be_successful
     end
   end
-  before do
-    @user = User.create(email: 'test@example.com', name: 'Test User', session_token: 'your_session_token')
-    allow(controller).to receive(:current_user).and_return(@user)
-    session[:session_token] = @user.session_token
-  end
-  describe 'POST #create' do
+  describe '#create' do
     context 'with valid parameters' do
       it 'creates a new product' do
         allow(controller).to receive(:render)
@@ -102,22 +106,53 @@ describe ProductsController, type: :controller do
     end
     context 'with invalid parameters' do
       it 'does not create a new product' do
+        allow(controller).to receive(:render)
+        allow_any_instance_of(ProductsController).to receive(:check_address).and_return({ lat: 0.0, long: 0.0 })
         expect {
-          post :create, params: { product: { name: nil, price: 19.99 } }
+          post :create, params: { product: { name: nil, price: 19.99 , category: 'None', quality: 'None', description: 'none'} }
         }.to_not change(Product, :count)
       end
 
       it 'renders the new template' do
+        allow(controller).to receive(:render)
+        allow_any_instance_of(ProductsController).to receive(:check_address).and_return({ lat: 0.0, long: 0.0 })
+        post :create, params: { product: { name: nil, price: 19.99 , category: 'None'} }
+        expect(response).to render_template(nil)
+      end
+      it 'Error from smarty streets' do
+        allow(controller).to receive(:render)
+        allow_any_instance_of(ProductsController).to receive(:check_address).and_return("Test")
         post :create, params: { product: { name: nil, price: 19.99 } }
-        expect(response).to render_template(:new)
+        expect(flash[:notice]).to eq("Error Test")
+        expect(response).to render_template(nil)
       end
       it 'Address validation error' do
         allow(controller).to receive(:render)
-        allow_any_instance_of(ProductsController).to receive(:check_address).and_return("Test")
-
-          post :create, params: { product: { name: nil, price: 19.99 } }
-        expect(flash[:notice]).to eq("")
+        allow_any_instance_of(ProductsController).to receive(:check_address).and_return(false)
+        post :create, params: { product: { name: nil, price: 19.99 } }
+        expect(flash[:notice]).to eq("Address validation failed error")
+        expect(response).to render_template(nil)
       end
     end
+  end
+  describe '#show' do
+    it 'Sets current product increments traffic, and sets user review' do
+      product3 = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality',is_sold: false, user_id: @user.id, product_traffic: 5)
+      product3.id = 1
+      allow(Product).to receive(:find_by_id).with(product3.id.to_s).and_return(product3)
+      expect(product3).to receive(:increment!).with(:product_traffic)
+
+      # Stub the where method on SellerReview to return an empty relation
+      allow(SellerReview).to receive(:where).and_return(SellerReview.none)
+
+      get :show, params: { id: product3.id }
+
+      expect(assigns(:current_product)).to eq(product3)
+      expect(assigns(:seller_reviews)).to eq(SellerReview.none)
+    end
+
+
+
+
   end
 end
