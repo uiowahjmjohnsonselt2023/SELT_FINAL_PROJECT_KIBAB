@@ -217,4 +217,20 @@ describe ProductsController, type: :controller do
       expect(response).to redirect_to(products_path)
     end
   end
+  describe '#add_bookmarks' do
+    it'adds items to cart if there are items' do
+      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: @user.id, product_traffic: 5)
+      product.id = 1
+      expect(Product).to receive(:add_to_bookmarks).with(@user.id,'user_id')
+      post :add_bookmarks, params:{products:{user_id: @user.id}}
+      expect(flash[:notice]).to eq("Product(s) were successfully added to bookmarks.")
+      expect(response).to redirect_to(products_path)
+    end
+    it'wont add anything to cart' do
+      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: @user.id, product_traffic: 5, price:12,description:"none")
+      expect(product).to be_valid
+      post :add_bookmarks, params: nil
+      expect(response).to redirect_to(products_path)
+    end
+  end
 end
