@@ -185,9 +185,20 @@ describe ProductsController, type: :controller do
       product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: @user.id, product_traffic: 5)
       product.id = 1
       allow(Product).to receive(:find_by_id).with(product.id.to_s).and_return(product)
-      allow(product).to receive(:destroy!).and_return(true)
-      expect(assigns(:current_product)).to eq(nil)
+      expect(product).to receive(:destroy!)
+      delete :destroy, params: {id: product.id}
+      expect(response).to have_http_status(:no_content)
     end
-
+  end
+  describe '#transaction' do
+    it 'finds the current product and adds to shopping cart' do
+      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: @user.id, product_traffic: 5)
+      product.id = 1
+      allow(Product).to receive(:find_by_id).with(product.id.to_s).and_return(product)
+      allow(Product).to receive(:add_to_shopping_cart).with(@user.id, product.id)
+      get :transaction
+      expect(flash[:notice]).to eq("#{product.name} was added to your shopping cart")
+      expect(response).to redirect_to(products_path)
+    end
   end
 end
