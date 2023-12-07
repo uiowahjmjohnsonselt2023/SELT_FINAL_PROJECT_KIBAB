@@ -100,5 +100,24 @@ describe ProductsController, type: :controller do
         expect(response).to redirect_to(products_path)
       end
     end
+    context 'with invalid parameters' do
+      it 'does not create a new product' do
+        expect {
+          post :create, params: { product: { name: nil, price: 19.99 } }
+        }.to_not change(Product, :count)
+      end
+
+      it 'renders the new template' do
+        post :create, params: { product: { name: nil, price: 19.99 } }
+        expect(response).to render_template(:new)
+      end
+      it 'Address validation error' do
+        allow(controller).to receive(:render)
+        allow_any_instance_of(ProductsController).to receive(:check_address).and_return("Test")
+
+          post :create, params: { product: { name: nil, price: 19.99 } }
+        expect(flash[:notice]).to eq("")
+      end
+    end
   end
 end
