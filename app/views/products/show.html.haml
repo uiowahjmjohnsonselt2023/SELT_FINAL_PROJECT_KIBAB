@@ -8,13 +8,13 @@
 %p.spacing
   = link_to 'Return to Home', products_path, class: "basic_link_button"
 
-%h2.header_text #{@current_product.name}
 .product_show_display
   %table.product_img_description
     %tr
       %td.product_row_body
         = image_tag @current_product.image.url, :width => "400", :class => "main-product-img"
       %td.product_row_body
+        %h2.header_text #{@current_product.name}
         %p.product_text Category: #{@current_product.category}
         %p.product_text Quality: #{@current_product.quality}
         %p.product_text $#{@current_product.price}
