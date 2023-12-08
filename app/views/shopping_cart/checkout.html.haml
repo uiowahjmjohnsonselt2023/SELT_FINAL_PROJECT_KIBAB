@@ -48,7 +48,7 @@
                 %td.edit_field_body
                     = text_field :credit_card, 'credit_card_expiration', class: "generic_fields"
 
-        %h4.header_text Total Price: $#{@total_price}
+        %h4.header_text Total Price: $#{'%.2f' %@total_price}
 
         %p.header_text Buy Product?
         = hidden_field_tag :use_wallet_balance, params[:use_wallet_balance]
