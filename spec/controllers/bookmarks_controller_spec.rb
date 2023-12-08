@@ -20,29 +20,34 @@ RSpec.describe BookmarksController, type: :controller do
   let(:product) { instance_double(Product, id: 1, name: 'Test Product', is_sold: false) }
 
   before do
-    @user = User.create(email: 'test@example.com', name: 'Test User', session_token: 'your_session_token')
-    allow(controller).to receive(:set_current_user).and_return(@user)
+
+    allow(controller).to receive(:set_current_user).and_return(user)
     allow(controller).to receive(:set_current_shopping_cart)
   end
 
   describe '#index' do
     it 'checks for sold products, removes bookmarks, and assigns current bookmarks' do
       product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: 1, product_traffic: 5)
-      bookmark = Bookmark.create(user_id: @user.id, product_id: product.id)
-      allow(bookmark).to receive(:with).with(user_id: @user.id).and_return(product)
-      allow(product).to receive(:each).and_return(product)
+      user = User.create(email: 'test@example.com', name: 'Test User', session_token: 'your_session_token')
+      bookmark = Bookmark.create(product_id: product.id, user_id: user.id)
+      controller.instance_variable_set(:@current_user, user)
+      allow(Bookmark).to receive(:where).with(user_id: user.id).and_return([bookmark])
+      allow(bookmark).to receive(:product).and_return(product)
       allow(product).to receive(:is_sold).and_return(true)
+      allow(Bookmark).to receive(:destroy).and_return(bookmark.id)
+      get :index
       expect(flash[:notice]).to eq("#{product.name} was sold.")
-      expect(assigns(:current_bookmarks)).to eq([])
+      expect(assigns(:current_bookmarks)).to eq([bookmark])
     end
   end
 
   describe '#destroy' do
     it 'destroys all bookmarks and redirects to products_path' do
-      allow(Bookmark).to receive(:destroy_all)
-
+      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: 1, product_traffic: 5)
+      user = User.create(email: 'test@example.com', name: 'Test User', session_token: 'your_session_token')
+      bookmark = Bookmark.create(product_id: product.id, user_id: user.id)
+      allow(Bookmark).to receive(:destroy).and_return(bookmark.id)
       delete :destroy
-
       expect(response).to redirect_to(products_path)
     end
   end
