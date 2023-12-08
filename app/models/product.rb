@@ -9,10 +9,12 @@ class Product < ActiveRecord::Base
   validates :category, presence: true, length: {maximum: 50}
   validates :quality, presence: true
   validates :description, presence: true, length: {maximum: 100}
-  #TODO: Fix regex expression controlling price, add validation location, quality, and categories
   VALID_PRICE_REGEX = /\d+()|(.\d\d)/
   validates :price, presence: true, format: {with: VALID_PRICE_REGEX} # Regex for US dollar format
-  #validates :location, presence: true # Formatting may be needed in the future
+  validates :street_address, presence: true
+  validates :state, presence: true
+  validates :city, presence: true
+  validates :zip, presence: true
 
   def transaction
     price = self.price.to_i
