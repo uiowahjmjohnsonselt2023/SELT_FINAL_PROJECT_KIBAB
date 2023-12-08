@@ -49,14 +49,10 @@ RSpec.describe SessionsController, type: :controller do
       end
     end
   end
-
   describe '#destroy' do
     it 'clears the session_token, sets current_user to nil, flashes a notice, and redirects to products_path' do
       session[:session_token] = 'fake_session_token'
-      allow(controller).to receive(:current_user).and_return(user)
-
       delete :destroy
-
       expect(session[:session_token]).to be_nil
       expect(controller.instance_variable_get(:@current_user)).to be_nil
       expect(flash[:notice]).to eq('You have logged out')

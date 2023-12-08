@@ -27,10 +27,10 @@
           null,
           null,
           1,
-          0,
-          0,
-          0,
-          0,
+          1,
+          1,
+          1,
+          1,
           null,
           null,
           null
@@ -820,7 +820,7 @@
         }
       }
     },
-    "timestamp": 1702006229
+    "timestamp": 1702006434
   },
   "Cucumber Features": {
     "coverage": {
