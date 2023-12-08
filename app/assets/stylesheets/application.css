@@ -577,18 +577,29 @@ table#products thead {
     background-color: darkslategray;
 }
 
-.cart-button-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    min_width: 100%;
-    margin: auto;
-}
-
 #use_wallet_balance {
-    margin-right: 5px; /* Adjust the margin as needed */
+    margin-right: 5px;
 }
 
 #use_wallet_balance + label {
+    display: inline-block;
+}
+
+#shopping_cart_top_buttons {
+    width: 100%;
+    table-layout: fixed;
+    padding: 5px;
+}
+
+.shopping-cart-home-button {
+    text-align: left;
+}
+
+.shopping-cart-clear-button {
+    text-align: right;
+}
+
+.clear-cart-button,
+.return-to-products-button {
     display: inline-block;
 }
