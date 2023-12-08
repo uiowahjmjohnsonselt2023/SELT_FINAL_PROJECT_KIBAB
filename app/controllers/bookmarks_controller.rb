@@ -3,6 +3,7 @@
 class BookmarksController < ApplicationController
 
   before_action :set_current_user
+  before_action :set_current_shopping_cart
 
   def bookmark_params
     params.permit(:id)
@@ -12,7 +13,7 @@ class BookmarksController < ApplicationController
     Bookmark.where(user_id: @current_user.id).each do |item|
       if item.product.is_sold.eql? true
         flash[:notice] = "#{item.product.name} was sold."
-        Bookmark.destroy(item)
+        Bookmark.destroy(item.id)
       end
     end
     @current_bookmarks = Bookmark.where(user_id: @current_user.id)

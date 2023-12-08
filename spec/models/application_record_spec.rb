@@ -16,12 +16,13 @@ if RUBY_VERSION>='2.6.0'
   end
 end
 
-describe Purchase do
-  describe 'Associations' do
-    it { should belong_to(:user) }
-    it { should belong_to(:product) }
+describe ApplicationRecord do
+  it 'is an abstract class' do
+    expect(ApplicationRecord.abstract_class).to be(true)
   end
-  it 'valid address' do
-    expect(Purchase.valid_address("Iowa City", "Iowa", "630 S Capitol St", "52240")).to be_truthy
+
+  it 'has a .primary_key method defined' do
+    expect(ApplicationRecord).to respond_to(:primary_key)
   end
 end
+

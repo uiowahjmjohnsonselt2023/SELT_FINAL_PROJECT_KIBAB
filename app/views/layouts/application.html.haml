@@ -10,23 +10,81 @@
     %nav.navbar
       .nav_item
         = link_to 'KIBAB Shop', products_path
-      .nav_item_2
-        = link_to 'About', about_path_url
-      -if !@current_user
-        .nav_item_2
-          = link_to 'Login', login_path_url
-      -else
-        .nav_item_2
-          = link_to "#{@current_user.name}'s Profile", "/users/#{@current_user[:id]}"
-        .nav_item_2
-          = link_to 'Shopping Cart', view_shopping_cart_path
-        .nav_item_2
-          = link_to 'Bookmarks', view_bookmarks_path
-        -# .nav_item_2
-        = button_to "Logout",logout_path_path, method: :delete
+      -if @current_user
+        -if !@current_shopping_cart.nil?
+          .nav_item
+            = link_to "Shopping Cart (#{@current_shopping_cart.size})", view_shopping_cart_path
+        -else
+          .nav_item
+            = link_to "Shopping Cart (0)", view_shopping_cart_path
+        .nav_item_2.profile-dropdown{ style: 'position: relative;' }
+          %a.dropdown-toggle{ id: 'profile-link', href: '#', style: 'display: block; border-radius: 50%;' }
+            = image_tag @current_user.pfp, style: 'display: block; max-width: 50px; height: auto; border-radius: 50%;'
+          .dropdown-menu{ id: 'dropdown-menu', style: 'display: none; position: absolute; left: 50%; top: 58px; transform: translateX(-50%); background-color: #333; padding: 10px 0; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); z-index: 1000;' }
+            %a{ href: user_path(@current_user), style: 'color: white; padding: 12px 16px; text-decoration: none; display: block; text-align: center;' }
+              Profile
+            %a{ href: view_bookmarks_path, style: 'color: white; padding: 12px 16px; text-decoration: none; display: block; text-align: center;' }
+              Bookmarks
+            %a{ href: '#', onclick: 'handleLogout(event)', style: 'color: white; padding: 12px 16px; text-decoration: none; display: block; text-align: center;' }
+              Logout
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
       - elsif flash[:warning]
         #warning.message= flash[:warning]
       = yield
+    %footer.footer
+      = link_to 'About', about_path_url, class: 'about-link'
+
+:javascript
+  document.addEventListener('DOMContentLoaded', function() {
+    var profileLink = document.getElementById('profile-link');
+    var dropdownMenu = document.getElementById('dropdown-menu');
+
+    if (profileLink && dropdownMenu) {
+      profileLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        showDropdownMenu(dropdownMenu);
+      });
+
+      profileLink.addEventListener('mouseover', function() {
+        showDropdownMenu(dropdownMenu);
+      });
+
+      dropdownMenu.addEventListener('mouseleave', function() {
+        hideDropdownMenu(dropdownMenu);
+      });
+    }
+    });
+
+    function showDropdownMenu(dropdown) {
+      dropdown.style.display = 'block';
+    }
+
+    function hideDropdownMenu(dropdown) {
+      dropdown.style.display = 'none';
+    }
+
+    function handleLogout(event) {
+      event.preventDefault();
+      var form = document.createElement('form');
+      form.style.display = 'none';
+      form.method = 'post';
+      form.action = '#{logout_path_path}';
+      // simulate DELETE request
+      var methodInput = document.createElement('input');
+      methodInput.setAttribute('type', 'hidden');
+      methodInput.setAttribute('name', '_method');
+      methodInput.setAttribute('value', 'delete');
+      form.appendChild(methodInput);
+      // CSRF Token setup
+      var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      var csrfInput = document.createElement('input');
+      csrfInput.setAttribute('type', 'hidden');
+      csrfInput.setAttribute('name', 'authenticity_token');
+      csrfInput.setAttribute('value', csrfToken);
+      form.appendChild(csrfInput);
+      // Add the form to the body and submit it
+      document.body.appendChild(form);
+      form.submit();
+    }

@@ -16,12 +16,8 @@ if RUBY_VERSION>='2.6.0'
   end
 end
 
-describe Purchase do
+describe SellerReview do
   describe 'Associations' do
     it { should belong_to(:user) }
-    it { should belong_to(:product) }
-  end
-  it 'valid address' do
-    expect(Purchase.valid_address("Iowa City", "Iowa", "630 S Capitol St", "52240")).to be_truthy
   end
 end

@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   # Additional implentation strategies: https://github.com/zquestz/omniauth-google-oauth2
 
   before_action :set_current_user
+  before_action :set_current_shopping_cart
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :address,:password,:password_confirmation)
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
 
   def show
     @wallet = Wallet.where(user_id: @current_user.id).first
+    @seller_reviews = SellerReview.where(user_id: @current_user.id)
     id = params[:id]
     unless current_user?(id)
       flash[:warning] = "Can only show profile of logged-in user"

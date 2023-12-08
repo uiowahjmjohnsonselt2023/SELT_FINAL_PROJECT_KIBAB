@@ -38,6 +38,8 @@ gem 'fog-google'
 
 gem 'smartystreets_ruby_sdk'
 
+# gem 'webpacker'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -80,6 +82,10 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'rspec-rails'
+  gem 'simplecov'
+  gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
 end
 
 group :production do

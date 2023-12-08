@@ -6,12 +6,15 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.string :name
       t.string :image
       t.string :category
+      t.string :quality
       t.string :description
       t.string :price
       t.string :city
       t.string :state
       t.string :street_address
       t.string :zip
+      t.string :lat
+      t.string :long
       t.boolean :is_sold, default: false
     end
   end

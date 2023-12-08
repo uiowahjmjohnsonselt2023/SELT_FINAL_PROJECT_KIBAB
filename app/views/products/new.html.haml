@@ -1,37 +1,61 @@
-%h2 New Product
+%p.spacing
+= link_to '&lt;'.html_safe, products_path,class: "basic_link_button"
 
-.new_product_form
-  = form_tag products_path, :method => 'post', multipart: true do
+%h2.header_text New Product
 
-    = label :product, :name, 'Product Name'
-    = text_field :product, 'name'
+= form_tag products_path, :method => 'post', multipart: true do
+  .edit_product_form
+    %table.table_center
+      %tr
+        %td.edit_body
+          = label :product, :name, 'Product Name', class: "product_subtext"
+        %td.edit_field_body
+          = text_field :product, 'name', class: "generic_fields"
+      %tr
+        %td.edit_body
+          = label :product, :image, 'Product Image', class: "product_subtext"
+        %td.edit_field_body
+          = file_field :product, :image
+      %tr
+        %td.edit_body
+          = label :product, :category, 'Product Category', class: "product_subtext"
+        %td.edit_field_body
+          = select :product, :category, ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other']
+      %tr
+        %td.edit_body
+          = label :product, :quality, 'Product Quality', class: "product_subtext"
+        %td.edit_field_body
+          = select :product, :quality, ['New', 'Like New', 'Used', 'Well Worn']
+      %tr
+        %td.edit_body
+          = label :product, :description, 'Product Description', class: "product_subtext"
+        %td.edit_field_body
+          = text_area :product, :description, cols: "40", rows: "5", maxlength: "100", class: "generic_fields"
+      %tr
+        %td.edit_body
+          = label :product, :price, 'Price', class: "product_subtext"
+          %p.product_subtext *include shipping price
+        %td.edit_field_body
+          = text_field :product, 'price', class: "generic_fields"
+      %tr
+        %td.edit_body
+          = label :product, :street_address, 'Street Address', class: "product_subtext"
+        %td.edit_field_body
+          = text_field :product, 'street_address', class: "generic_fields"
+      %tr
+        %td.edit_body
+          = label :product, :state, 'State', class: "product_subtext"
+        %td.edit_field_body
+          = text_field :product, 'state', class: "generic_fields"
+      %tr
+        %td.edit_body
+          = label :product, :city, 'City', class: "product_subtext"
+        %td.edit_field_body
+          = text_field :product, 'city', class: "generic_fields"
+      %tr
+        %td.edit_body
+          = label :product, :zip, 'Zip', class: "product_subtext"
+        %td.edit_field_body
+          = text_field :product, 'zip', class: "generic_fields"
 
-    = label :product, :image, 'Product Image'
-    = file_field :product, :image
-
-    = label :product, :category, 'Product Category'
-    = select :product, :category, ['Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other']
-
-    = label :product, :description, 'Product Description'
-    = select :product, :description, ['Well Worn', 'Used', 'Like New', 'New']
-
-    = label :product, :price, 'Price'
-    = text_field :product, 'price'
-
-    = label :product, :street_address, 'Street Address'
-    = text_field :product, 'street_address'
-
-    = label :product, :state, 'State'
-    = text_field :product, 'state'
-
-    = label :product, :city, 'City'
-    = text_field :product, 'city'
-
-    = label :product, :zip, 'Zip'
-    = text_field :product, 'zip'
-
-    %p Sell Product?
-    = submit_tag 'Confirm'
-
-.link_to_button
-  = link_to 'Return to Home', products_path
+    = submit_tag 'Confirm', class: "general_button"

@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
       user.provider = auth['provider']
       user.email = auth['info']['email']
       user.name = auth['info']['name']
+      user.pfp = auth['info']['image']
       # default is set to 100 right now for testing purposes
       user.build_wallet(wallet: 100.0)
     end

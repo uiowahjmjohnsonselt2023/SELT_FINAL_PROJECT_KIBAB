@@ -1,46 +1,31 @@
 class ProductsController < ApplicationController
   before_action :set_current_user
+  before_action :set_current_shopping_cart
 
   def product_params
-    params.require(:product).permit(:name,:image,:category,:description,:price,:street_address,:state,:city,:zip,:is_sold,:seller_review,:review_id)
+    params.require(:product).permit(:name,:image,:category,:quality,:description,:price,:street_address,:state,:city,:zip,:is_sold,:seller_review,:review_id, :lat, :long)
   end
   def show
     id = params[:id]
     @current_product = Product.find_by_id(id)
+    @current_product.increment!(:product_traffic)
     @seller_reviews = SellerReview.where(user_id: @current_product.user_id)
   end
 
   def index
-    @products = Product.where(is_sold: false).where.not(user_id: @current_user.id)
+    @products = Product.where(is_sold: false).where.not(user_id: @current_user.id).order("product_traffic desc")
     sorting
   end
 
   def search
-    # if params[:search].present? && !params[:search].blank? && params[:product][:categories].present? && params[:product][:descriptions].present?
-    #   @products = Product.filtered_search(params[:search],params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
-    # elsif params[:search] == "" && params[:product][:categories].present? && params[:product][:descriptions].present?
-    #   @products = Product.filtered_search('',params[:product][:categories], params[:product][:descriptions]).where(is_sold: false)
-    # end
-    # if @products.empty?
-    #   if params[:search] == "" && params[:product][:categories]== 'None'&& params[:product][:descriptions]=='None'
-    #     @products = Product.where(is_sold: false)
-    #   else
-    #     flash[:notice] = "No products match your search here are some close results"
-    #     @products = Product.filtered_search(params[:search],"None", "None").where(is_sold: false)
-    #   end
-    # end
-    # sorting
-    search = product_params[:search].presence || ''
-    categories = product_params[:product][:categories].presence || 'None'
-    descriptions = product_params[:product][:descriptions].presence || 'None'
-
-    @products = Product.filtered_search(search, categories, descriptions).where(is_sold: false)
-
+    search_query = params[:search].presence || ''
+    category = params[:product] ? params[:product][:categories].presence || 'None' : 'None'
+    quality = params[:product] ? params[:product][:quality].presence || 'None' : 'None'
+    @products = Product.filtered_search(search_query, category, quality).where(is_sold: false).order("product_traffic desc")
     if @products.empty?
       flash[:notice] = "No products match your search; here are some close results"
-      @products = Product.filtered_search(search, "None", "None").where(is_sold: false) unless categories == 'None' && descriptions == 'None'
+      @products = Product.filtered_search(search_query, 'None', 'None').where(is_sold: false).order("product_traffic desc")
     end
-
     sorting
   end
 
@@ -50,7 +35,9 @@ class ProductsController < ApplicationController
   def create
     product_parameters = product_params.to_h
     product_parameters[:user_id] = @current_user.id
-    if @lookup
+    @lookup = check_address
+    if @lookup.is_a?(Hash)
+      product_parameters = product_parameters.merge(@lookup)
       @product = Product.create(product_parameters)
       # @product.user_id = @current_user.id
       if @product.save
@@ -137,8 +124,8 @@ class ProductsController < ApplicationController
     if params[:product] && params[:product][:categories].present? && params[:product][:categories] != 'None'
       @products = @products.where(category: params[:product][:categories])
     end
-    if params[:product] && params[:product][:descriptions].present? && params[:product][:descriptions] != 'None'
-      @products = @products.where(description: params[:product][:descriptions])
+    if params[:product] && params[:product][:quality].present? && params[:product][:quality] != 'None'
+      @products = @products.where(quality: params[:product][:quality])
     end
     @products = @products.where(is_sold: false).where.not(user_id: @current_user.id)
   end
@@ -158,7 +145,7 @@ class ProductsController < ApplicationController
   def bookmark_from_product
     @current_product = Product.find_by_id(params[:id])
     Product::add_to_bookmarks(@current_user.id, @current_product.id)
-    flash[:notice] = "#{@current_product.name} was added to your shopping cart."
+    flash[:notice] = "#{@current_product.name} was added to your bookmarks."
     redirect_to products_path
   end
 
@@ -176,16 +163,14 @@ class ProductsController < ApplicationController
   def check_address
     if product_params[:city] != nil && product_params[:state] != nil && product_params[:street_address] != nil && product_params[:zip] != nil
       @lookup = Product.valid_address(product_params[:city],product_params[:state],product_params[:street_address],product_params[:zip])
-      # if @lookup.is_a?(String)
-      #   return @lookup
-      # elsif @lookup == true
-      #   return true
-      # else
-      #   false
-      # end
+      return @lookup
     else
-      render new_products_path
+      render new_product_path
     end
 
+  end
+  private
+  def current_user
+    @current_user #||= current_user
   end
 end
