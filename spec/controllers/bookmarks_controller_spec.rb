@@ -47,6 +47,7 @@ RSpec.describe BookmarksController, type: :controller do
       user = User.create(email: 'test@example.com', name: 'Test User', session_token: 'your_session_token')
       bookmark = Bookmark.create(product_id: product.id, user_id: user.id)
       allow(Bookmark).to receive(:destroy).and_return(bookmark.id)
+      controller.instance_variable_set(:@current_user, user)
       delete :destroy
       expect(response).to redirect_to(products_path)
     end
@@ -55,7 +56,7 @@ RSpec.describe BookmarksController, type: :controller do
   describe '#delete_one' do
     it 'destroys a specific bookmark and redirects to view_bookmarks_path' do
       bookmark_id = '1'
-      allow(bookmark_id).to receive(:permit).with(:id).and_return('id' => '1')
+      controller.instance_variable_set(:@current_bookmark, bookmark_id)
       allow(Bookmark).to receive(:destroy)
 
       delete :delete_one, params: { id: bookmark_id }
@@ -65,10 +66,13 @@ RSpec.describe BookmarksController, type: :controller do
     end
 
     it 'handles the case when bookmark_params[:id] is not present' do
-      allow(bookmark_params).to receive(:permit).with(:id).and_return({})
+      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: 1, product_traffic: 5)
+      user = User.create(email: 'test@example.com', name: 'Test User', session_token: 'your_session_token')
+      bookmark = Bookmark.create(product_id: product.id, user_id: user.id)
+      controller.instance_variable_set(:@current_bookmark, bookmark)
       allow(Bookmark).to receive(:destroy)
-
-      delete :delete_one
+      allow(bookmark).to receive(:product).and_return(product)
+      delete :delete_one, params: {}
 
       expect(flash[:notice]).to eq('Could not delete .')
       expect(response).to redirect_to(view_bookmarks_path)
