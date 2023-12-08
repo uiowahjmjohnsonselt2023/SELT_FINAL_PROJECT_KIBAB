@@ -316,7 +316,8 @@ table#products thead {
     text-align: center;
     padding: 10px 10px;
     text-decoration: none;
-    width: 100%;
+    width: auto;
+    margin: auto;
     font-size: 18px;
     font-family: "Verdana", sans-serif;
 }
