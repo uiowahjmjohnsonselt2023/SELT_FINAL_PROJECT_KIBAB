@@ -34,8 +34,9 @@
       - elsif flash[:warning]
         #warning.message= flash[:warning]
       = yield
-    %footer.footer
-      = link_to 'About', about_path_url, class: 'about-link'
+
+  %footer.footer
+    = link_to 'About', about_path_url, class: 'about-link'
 
 :javascript
   document.addEventListener('DOMContentLoaded', function() {
