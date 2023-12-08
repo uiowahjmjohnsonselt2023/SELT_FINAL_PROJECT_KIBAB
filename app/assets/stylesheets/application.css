@@ -316,9 +316,10 @@ table#products thead {
     text-align: center;
     padding: 10px 10px;
     text-decoration: none;
-    width: 100%;
+    width: auto;
     font-size: 18px;
     font-family: "Verdana", sans-serif;
+    border: none;
 }
 
 .card-text {
@@ -569,4 +570,37 @@ table#products thead {
     text-align: center;
     border-radius: 5px;
     font-size: 15px;
+}
+
+.clear-cart-button:hover {
+    color: white;
+    background-color: darkslategray;
+}
+
+#use_wallet_balance {
+    transform: scale(1.8);
+    margin-right: 5px;
+}
+
+#use_wallet_balance + label {
+    display: inline-block;
+}
+
+#shopping_cart_top_buttons {
+    width: 100%;
+    table-layout: fixed;
+    padding: 5px;
+}
+
+.shopping-cart-home-button {
+    text-align: left;
+}
+
+.shopping-cart-clear-button {
+    text-align: right;
+}
+
+.clear-cart-button,
+.return-to-products-button {
+    display: inline-block;
 }
