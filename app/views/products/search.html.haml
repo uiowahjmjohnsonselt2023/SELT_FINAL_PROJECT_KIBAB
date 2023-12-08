@@ -8,8 +8,8 @@
 .welcome_statement
   %h4 Shop KIBAB - Search Results
 
-.product_search_bar
-  = form_tag search_path_path, :method => 'get' do
+= form_tag search_path_path, :method => 'get', :class => "product-search-form" do
+  .product_search_bar
     = text_field_tag :search, params[:search], placeholder: 'Search Products &#x26B2;'.html_safe, class: "product_search_field"
 
     .product_alignment_fields
@@ -31,6 +31,7 @@
     = button_tag '&#8592;'.html_safe, class: 'carousel-button prev', :onclick => "prevImg()"
     = button_tag '&#8594;'.html_safe, class: 'carousel-button next', :onclick => "nextImg()"
 
+%p.spacing
 .product_card_display
   - @products.each do |product|
     .product_card
