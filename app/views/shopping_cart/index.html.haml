@@ -1,10 +1,9 @@
 .profile_button
   .cart-button-container
     = link_to "Return Home", products_path
+    .welcome_statement
+      %h2 Shopping Cart
     = button_to 'Clear Shopping Cart', destroy_all_shopping_cart_path, method: :delete, data: { confirm: 'Are you sure you want to clear your shopping cart?' }, class: "clear-cart-button"
-
-.welcome_statement
-  %h2 Shopping Cart
 
 = form_tag checkout_path, :id => 'user_shopping_cart' do
   - if @current_shopping_cart_list.nil? || @current_shopping_cart_list.empty?
