@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:session_token]=nil
     @current_user=nil
-    flash[:notice]= 'You have logged out'
+    flash[:notice]= 'You Have Logged Out'
     redirect_to products_path
   end
 

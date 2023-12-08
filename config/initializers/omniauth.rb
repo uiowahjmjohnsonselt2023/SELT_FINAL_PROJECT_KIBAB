@@ -11,4 +11,3 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     image_size: 50
   }
 end
-# OmniAuth.config.allowed_request_methods = %i[get]
