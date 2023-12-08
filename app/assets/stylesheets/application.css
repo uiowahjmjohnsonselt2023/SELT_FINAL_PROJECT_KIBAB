@@ -576,3 +576,11 @@ table#products thead {
     color: white;
     background-color: darkslategray;
 }
+
+.cart-button-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: auto;
+    margin: auto;
+}
