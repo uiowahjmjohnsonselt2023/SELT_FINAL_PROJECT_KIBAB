@@ -578,6 +578,7 @@ table#products thead {
 }
 
 #use_wallet_balance {
+    transform: scale(1.8);
     margin-right: 5px;
 }
 
