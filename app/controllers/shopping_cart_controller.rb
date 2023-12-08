@@ -32,7 +32,7 @@ class ShoppingCartController < ApplicationController
     end
     @total_price = sprintf("%.2f", @total_price)
     if shopping_cart_params[:use_wallet_balance] == 'on'
-      if current_wallet > @total_price
+      if current_wallet > @total_price.to_f
         @total_price = 0
       else
         @total_price = @total_price - current_wallet
