@@ -13,3 +13,5 @@ Rails.application.config.assets.version = "1.0"
 Rails.application.config.assets.precompile += %w( index.js )
 Rails.application.config.assets.precompile += %w( map.js )
 Rails.application.config.assets.precompile += %w( fallback/default.jpg )
+Rails.application.config.assets.precompile += %w( icons/logo.jpg )
+Rails.application.config.assets.precompile += %w( icons/shopping_cart.jpg )
