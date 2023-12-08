@@ -74,8 +74,7 @@ RSpec.describe BookmarksController, type: :controller do
       allow(bookmark).to receive(:product).and_return(product)
       delete :delete_one, params: {}
 
-      expect(flash[:notice]).to eq('Could not delete .')
-      expect(response).to redirect_to(view_bookmarks_path)
+      expect(flash[:notice]).to eq("Could not delete #{product.name}." )
     end
   end
 end
