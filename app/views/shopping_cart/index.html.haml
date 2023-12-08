@@ -33,4 +33,4 @@
 .profile_button
   .cart-button-container
     = button_to 'Clear Shopping Cart', destroy_all_shopping_cart_path, method: :delete, data: { confirm: 'Are you sure you want to clear your shopping cart?' }, class: "clear-cart-button"
-    = link_to "Return to products page", products_path
+    = link_to "Return Home", products_path
