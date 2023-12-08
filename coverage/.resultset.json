@@ -1,6 +1,41 @@
 {
   "RSpec": {
     "coverage": {
+      "/mnt/c/Users/ianku/SELT_REPO/SELT_FINAL_PROJECT_KIBAB/app/controllers/sessions_controller.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
       "/mnt/c/Users/ianku/SELT_REPO/SELT_FINAL_PROJECT_KIBAB/app/controllers/application_controller.rb": {
         "lines": [
           1,
@@ -13,8 +48,8 @@
           null,
           1,
           1,
-          1,
-          1,
+          0,
+          0,
           null,
           null,
           1,
@@ -319,43 +354,6 @@
           0,
           0,
           0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/mnt/c/Users/ianku/SELT_REPO/SELT_FINAL_PROJECT_KIBAB/app/controllers/sessions_controller.rb": {
-        "lines": [
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
           0
         ],
         "branches": {
@@ -822,7 +820,7 @@
         }
       }
     },
-    "timestamp": 1702005808
+    "timestamp": 1702006229
   },
   "Cucumber Features": {
     "coverage": {
