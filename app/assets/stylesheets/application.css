@@ -316,7 +316,7 @@ table#products thead {
     text-align: center;
     padding: 10px 10px;
     text-decoration: none;
-    width: 100%;
+    width: auto;
     font-size: 18px;
     font-family: "Verdana", sans-serif;
     border: none;
@@ -583,4 +583,12 @@ table#products thead {
     align-items: center;
     width: auto;
     margin: auto;
+}
+
+#use_wallet_balance {
+    margin-right: 5px; /* Adjust the margin as needed */
+}
+
+#use_wallet_balance + label {
+    display: inline-block;
 }
