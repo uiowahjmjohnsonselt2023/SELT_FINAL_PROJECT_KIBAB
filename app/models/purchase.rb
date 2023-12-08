@@ -13,7 +13,6 @@ class Purchase < ActiveRecord::Base
       lookup.zipcode = zip
       lookup.candidates = 1
       lookup.match = SmartyStreets::USStreet::MatchType::STRICT
-      puts "here1"
       begin
         client.send_lookup(lookup)
       rescue SmartyStreets::SmartyError => err
