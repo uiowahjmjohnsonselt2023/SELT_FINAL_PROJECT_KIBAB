@@ -35,7 +35,7 @@ class ShoppingCartController < ApplicationController
       if current_wallet > @total_price.to_f
         @total_price = 0
       else
-        @total_price = @total_price - current_wallet
+        @total_price = @total_price.to_f - current_wallet
       end
     end
     @total_price
