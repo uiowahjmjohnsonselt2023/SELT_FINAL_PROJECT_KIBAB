@@ -40,6 +40,11 @@ body {
     font-size: 35px;
 }
 
+.nav_item.icon_text {
+    font-size: 15px;
+}
+
+
 .nav_item a {
     text-decoration: none;
     color: white;
