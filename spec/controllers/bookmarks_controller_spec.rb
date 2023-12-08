@@ -29,8 +29,8 @@ RSpec.describe BookmarksController, type: :controller do
     it 'checks for sold products, removes bookmarks, and assigns current bookmarks' do
       product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: 1, product_traffic: 5)
       bookmark = Bookmark.create(user_id: @user.id, product_id: product.id)
-      allow(bookmark).to receive(:with).with(user_id: @user.id).and_return(bookmark)
-      allow(bookmark).to receive(:each).and_return(product)
+      allow(bookmark).to receive(:with).with(user_id: @user.id).and_return(product)
+      allow(product).to receive(:each).and_return(product)
       allow(product).to receive(:is_sold).and_return(true)
       expect(flash[:notice]).to eq("#{product.name} was sold.")
       expect(assigns(:current_bookmarks)).to eq([])
