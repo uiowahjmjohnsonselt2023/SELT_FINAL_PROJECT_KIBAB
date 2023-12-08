@@ -9,10 +9,12 @@ class Product < ActiveRecord::Base
   validates :category, presence: true, length: {maximum: 50}
   validates :quality, presence: true
   validates :description, presence: true, length: {maximum: 100}
-  #TODO: Fix regex expression controlling price, add validation location, quality, and categories
   VALID_PRICE_REGEX = /\d+()|(.\d\d)/
   validates :price, presence: true, format: {with: VALID_PRICE_REGEX} # Regex for US dollar format
-  #validates :location, presence: true # Formatting may be needed in the future
+  validates :street_address, presence: true
+  validates :state, presence: true
+  validates :city, presence: true
+  validates :zip, presence: true
 
   def transaction
     price = self.price.to_i
@@ -37,7 +39,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.valid_address(city,state,address,zip)
-    run_it = false
+    run_it = true
     if run_it
       client = SmartyStreetsConfig.client
       lookup = SmartyStreets::USStreet::Lookup.new
@@ -47,7 +49,6 @@ class Product < ActiveRecord::Base
       lookup.zipcode = zip
       lookup.candidates = 1
       lookup.match = SmartyStreets::USStreet::MatchType::STRICT
-      puts "here1"
       begin
         client.send_lookup(lookup)
       rescue SmartyStreets::SmartyError => err
