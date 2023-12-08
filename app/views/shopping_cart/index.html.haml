@@ -1,3 +1,8 @@
+.profile_button
+  .cart-button-container
+    = link_to "Return Home", products_path
+    = button_to 'Clear Shopping Cart', destroy_all_shopping_cart_path, method: :delete, data: { confirm: 'Are you sure you want to clear your shopping cart?' }, class: "clear-cart-button"
+
 .welcome_statement
   %h2 Shopping Cart
 
@@ -30,7 +35,4 @@
         = label_tag 'use_wallet_balance', 'Use Wallet Balance ($' + '%.2f' % @wallet.wallet + ')?', class: 'styled-label'
 
       = submit_tag 'Check Out', :id => 'check_out_button', class: "clear-cart-button"
-.profile_button
-  .cart-button-container
-    = button_to 'Clear Shopping Cart', destroy_all_shopping_cart_path, method: :delete, data: { confirm: 'Are you sure you want to clear your shopping cart?' }, class: "clear-cart-button"
-    = link_to "Return Home", products_path
+%p.spacing
