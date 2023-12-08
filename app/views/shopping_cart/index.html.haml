@@ -25,7 +25,6 @@
     .welcome_statement
       %h6 Total Price: $#{'%.2f' % total_price}
       %h6 Use Wallet Balance ($#{'%.2f' % @wallet.wallet})?
-      = label_tag :use_wallet_balance, "Balance: $#{'%.2f' % @wallet.wallet}"
       = check_box_tag :use_wallet_balance, nil, false, id: 'use_wallet_balance'
 
       = submit_tag 'Check Out', :id => 'check_out_button'
