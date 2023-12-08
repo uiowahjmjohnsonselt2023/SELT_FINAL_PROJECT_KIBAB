@@ -581,7 +581,7 @@ table#products thead {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: auto;
+    min_width: 100%;
     margin: auto;
 }
 
