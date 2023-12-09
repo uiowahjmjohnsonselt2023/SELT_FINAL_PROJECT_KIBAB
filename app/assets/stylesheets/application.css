@@ -490,8 +490,8 @@ table#products thead {
 }
 
 .profile_button a:hover {
-    color: #444444;
-    background-color: darkslategray;
+    color: white;
+    background-color: #7c7c7c;
 }
 
 .links-container {
