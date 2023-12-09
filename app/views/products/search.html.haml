@@ -31,6 +31,9 @@
     = button_tag '&#8592;'.html_safe, class: 'carousel-button prev', :onclick => "prevImg()"
     = button_tag '&#8594;'.html_safe, class: 'carousel-button next', :onclick => "nextImg()"
 
+%th= link_to 'Product Name', products_path(sort: 'product_name', direction: toggle_direction('product_name'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) }), class: "clear-cart-button"
+%th= link_to 'Price', products_path(sort: 'price', direction: toggle_direction('price'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) }), class: "clear-cart-button"
+
 %p.spacing
 .product_card_display
   - @products.each do |product|
