@@ -113,6 +113,24 @@ body {
     background-color: #7c7c7c;
 }
 
+.bookmark_button {
+    background-color: #0086b3;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    margin: 5px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.bookmark_button:hover {
+    color: white;
+    background-color: darkslategray;
+}
+
 .product_search_field {
     align-self: center;
     display: inline-block;

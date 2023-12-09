@@ -19,8 +19,8 @@
               %p.listing-text= Purchase.where(:product_id => item.product.id).first.purchase_timestamp
           %td.border_radius_right
             .product_listing.right
-              %p= link_to "More Info", product_path(item.product.id), class: "listing_button"
-              %p= link_to "Add Review", new_seller_review_path(review_id: item.product.user_id), class: "listing_button"
+              %p= link_to "More Info", product_path(item.product.id), class: "bookmark_button"
+              %p= link_to "Add Review", new_seller_review_path(review_id: item.product.user_id), class: "bookmark_button"
 
 .profile_button
   = link_to 'Return to Profile', "/users/#{@current_user[:id]}"
