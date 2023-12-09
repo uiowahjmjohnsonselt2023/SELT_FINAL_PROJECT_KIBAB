@@ -71,4 +71,28 @@ describe ShoppingCartController do
     end
 
   end
+  describe '#confirm_purchase' do
+    let(:valid_params) do
+      {
+        address: {
+          city: 'City',
+          state: 'State',
+          street_address: 'Street Address',
+          zip: '12345'
+        },
+        credit_card: {
+          credit_card_name: 'John Doe',
+          credit_card_number: '1111111111111111',
+          credit_card_security_num: '111',
+          credit_card_expiration: '12/25'
+        },
+        use_wallet_balance: 'on'
+      }
+      it 'completes purchase' do
+
+      end
+    end
+
+
+  end
 end
