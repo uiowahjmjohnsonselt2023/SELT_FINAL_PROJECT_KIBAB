@@ -19,6 +19,9 @@
       = label  :product, :quality, "Quality:", class: "background-text"
       = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
     = submit_tag 'Search', :id => 'search_button', class: "search_button"
+    = link_to 'Sort by Name', products_path(sort: 'product_name', direction: toggle_direction('product_name'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) }), class: "search_button"
+    = link_to 'Sort by Price', products_path(sort: 'price', direction: toggle_direction('price'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) }), class: "search_button"
+
 
 -if  @products.select {|product| product.image?}.length > 0 && !@products.nil? && !@products.empty?
   .carousel
@@ -30,9 +33,6 @@
           = link_to image_tag(product.image.url, :height => "400"), product_path(product.id), id: "carousel-slide-#{id}", class: "carousel-slide"
     = button_tag '&#8592;'.html_safe, class: 'carousel-button prev', :onclick => "prevImg()"
     = button_tag '&#8594;'.html_safe, class: 'carousel-button next', :onclick => "nextImg()"
-
-%th= link_to 'Product Name', products_path(sort: 'product_name', direction: toggle_direction('product_name'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) }), class: "clear-cart-button"
-%th= link_to 'Price', products_path(sort: 'price', direction: toggle_direction('price'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) }), class: "clear-cart-button"
 
 %p.spacing
 .product_card_display
