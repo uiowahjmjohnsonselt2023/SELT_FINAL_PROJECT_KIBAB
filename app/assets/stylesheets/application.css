@@ -764,3 +764,6 @@ table#products thead {
     text-decoration: none;
 }
 
+.about-wrapper {
+    padding-bottom: 60px
+}
