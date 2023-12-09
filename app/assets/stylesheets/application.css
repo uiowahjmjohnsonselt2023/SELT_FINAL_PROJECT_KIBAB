@@ -476,8 +476,8 @@ table#products thead {
 .profile_button a {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #0086b3;
-    color: white;
+    background-color: white;
+    color: #0086b3;
     text-decoration: none;
     border-radius: 5px;
     font-size: 16px;
@@ -485,7 +485,7 @@ table#products thead {
 }
 
 .profile_button a:hover {
-    color: white;
+    color: #444444;
     background-color: darkslategray;
 }
 
@@ -528,9 +528,11 @@ table#products thead {
 .product_description {
     text-align: center;
     color: white;
+    width: 80%;
     background-color: rgba(0, 134, 179, 0.6);
-    background-size: 80% 80%;
+    background-size: contain;
     font-size: large;
+    margin: auto;
 }
 
 .header_text {
