@@ -18,5 +18,5 @@ window.onload = function showSlides() {
 
     slides.item((slideIndex-1)).style.display = "block";
     dots.item((slideIndex-1)).className += " active";
-    setTimeout(showSlides, 3000);
+    setTimeout(showSlides, 5000);
 }
