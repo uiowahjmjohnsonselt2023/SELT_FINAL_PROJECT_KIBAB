@@ -49,6 +49,14 @@ class ShoppingCartController < ApplicationController
       total_price += item.product.price.to_f
       @total_price = total_price
     end
+    current_wallet = Wallet.find_by_user_id(@current_user.id).wallet
+    if shopping_cart_params[:use_wallet_balance] == 'on'
+      if current_wallet > @total_price.to_f
+        @total_price = 0
+      else
+        @total_price = @total_price.to_f - current_wallet
+      end
+    end
     if !shopping_cart_params[:address][:city].empty? && !shopping_cart_params[:address][:state].empty? &&!shopping_cart_params[:address][:street_address].empty? &&!shopping_cart_params[:address][:zip].empty?
       @lookup = Purchase.valid_address(shopping_cart_params[:address][:city],shopping_cart_params[:address][:state],shopping_cart_params[:address][:street_address],shopping_cart_params[:address][:zip])
       @valid_card = Wallet.check_credit(shopping_cart_params[:credit_card][:credit_card_name],shopping_cart_params[:credit_card][:credit_card_number],shopping_cart_params[:credit_card][:credit_card_security_num],shopping_cart_params[:credit_card][:credit_card_expiration])
