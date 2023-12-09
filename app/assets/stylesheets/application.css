@@ -623,6 +623,11 @@ table#products thead {
     font-size: 15px;
 }
 
+.general_button:hover {
+    color: white;
+    background-color: darkslategray;
+}
+
 .clear-cart-button:hover {
     color: white;
     background-color: darkslategray;
