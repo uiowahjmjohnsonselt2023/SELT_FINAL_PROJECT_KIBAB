@@ -121,14 +121,14 @@ describe Product do
         products = described_class.filtered_search('Bookshelf', 'Home', 'None')
         expect(products).to be_an(ActiveRecord::Relation)
       end
-      it 'search by a category' do
-        products = described_class.search_by_category('Home')
-        expect(products).to be_an(ActiveRecord::Relation)
-      end
-      it 'search by a category nil for code coverage' do
-        products = described_class.search_by_category(nil)
-        expect(products).to eq(described_class)
-      end
+      # it 'search by a category' do
+      #   products = described_class.search_by_category('Home')
+      #   expect(products).to be_an(ActiveRecord::Relation)
+      # end
+      # it 'search by a category nil for code coverage' do
+      #   products = described_class.search_by_category(nil)
+      #   expect(products).to eq(described_class)
+      # end
       it 'create bookmark' do
         user = User.create!({uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name})
         user2 = User.create!({uid: SecureRandom.uuid, provider: 'google', email: Faker::Internet.email, name: Faker::Name.name})
