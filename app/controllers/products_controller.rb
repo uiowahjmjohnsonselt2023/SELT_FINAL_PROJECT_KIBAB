@@ -108,6 +108,7 @@ class ProductsController < ApplicationController
 
   def sorting
     if params[:sort] && params[:direction]
+      @products = Product.where(is_sold: false).where.not(user_id: @current_user.id)
       sort_direction = params[:direction] == 'asc' ? 'desc' : 'asc'
       case params[:sort]
       when 'product_name'
