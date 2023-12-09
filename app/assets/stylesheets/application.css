@@ -272,6 +272,12 @@ table#products thead {
     text-shadow: 0 0 10px #0086b3, 0 0 10px #0086b3;
 }
 
+.title_text.center {
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+}
+
 .product_card_display {
     align-self: center;
     display: flex;
@@ -600,6 +606,9 @@ table#products thead {
 .table_center {
     text-align: center;
     min-width: 100%;
+    background-color: rgba(0, 134, 179, 0.6);
+    border-radius: 5px;
+
 }
 
 .general_button {

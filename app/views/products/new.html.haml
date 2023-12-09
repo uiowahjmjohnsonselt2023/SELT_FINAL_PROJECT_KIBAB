@@ -1,7 +1,7 @@
 %p.spacing
 = link_to '&lt;'.html_safe, products_path,class: "basic_link_button"
 
-%h2.header_text New Product
+%h2.title_text.center New Product
 
 = form_tag products_path, :method => 'post', multipart: true do
   .edit_product_form
@@ -59,3 +59,5 @@
           = text_field :product, 'zip', class: "generic_fields"
 
     = submit_tag 'Confirm', class: "general_button"
+
+%p.spacing
