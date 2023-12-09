@@ -15,7 +15,6 @@ class ShoppingCart < ActiveRecord::Base
         total_price = total_price.to_f - current_wallet
       end
     end
-    total_price
+    sprintf("%.2f", total_price)
   end
-
 end
