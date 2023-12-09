@@ -241,9 +241,11 @@ table#products thead {
     margin: auto;
     position: relative;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .carousel-slide img {
+    align-self: center;
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -257,6 +259,11 @@ table#products thead {
 @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
+}
+
+.dots {
+    text-align: center;
+    margin: auto;
 }
 
 .dot {
