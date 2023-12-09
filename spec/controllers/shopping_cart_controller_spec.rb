@@ -38,7 +38,7 @@ describe ShoppingCartController do
       expect(assigns(:current_shopping_cart_list)).to eq(nil)
     end
     it 'checks for sold products, removes bookmarks, and assigns current bookmarks' do
-      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: 1, product_traffic: 5)
+      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: true, user_id: 1, product_traffic: 5)
       #user = User.create(email: 'test@example.com', name: 'Test User', session_token: 'your_session_token')
       shoppingcart = ShoppingCart.create(product_id: product.id, user_id: @user.id)
       controller.instance_variable_set(:@current_user, @user)
@@ -48,7 +48,7 @@ describe ShoppingCartController do
       allow(ShoppingCart).to receive(:destroy).and_return(shoppingcart.id)
       get :index
       expect(flash[:notice]).to eq("#{product.name} was sold.")
-      expect(assigns(:current_bookmarks)).to eq([shoppingcart])
+      expect(assigns(:current_shopping_cart_list)).to eq([shoppingcart])
     end
   end
 end

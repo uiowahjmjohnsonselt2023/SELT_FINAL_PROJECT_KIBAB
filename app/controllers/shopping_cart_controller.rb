@@ -11,8 +11,9 @@ class ShoppingCartController < ApplicationController
   def index
     ShoppingCart.where(user_id: @current_user.id).each do |item|
       if item.product.is_sold.eql? true
-        puts('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11')
+
           flash[:notice] = "#{item.product.name} was sold."
+          puts("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! #{item.product.name}")
           ShoppingCart.destroy(item)
       end
     end
