@@ -1,7 +1,7 @@
 %html
   %head
     %title Index Page
-    = javascript_include_tag "index"
+    = javascript_include_tag "index", "data-turbolinks-track" => true
     -# = javascript_include_tag 'application'
     -# = csrf_meta_tags
 
@@ -24,17 +24,6 @@
   = link_to 'Sort by Name', products_path(sort: 'product_name', direction: toggle_direction('product_name'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) }), class: "sort_button"
   = link_to 'Sort by Price', products_path(sort: 'price', direction: toggle_direction('price'), search: params[:search], product: { categories: params.dig(:product, :categories), descriptions: params.dig(:product, :descriptions) }), class: "sort_button"
 
--if  @products.select {|product| product.image?}.length > 0 && !@products.nil? && !@products.empty?
-  .carousel
-    .carousel-slides
-      - @products.select {|product| product.image?}.each_with_index do |product,id|
-        - if id.eql?(0)
-          = link_to image_tag(product.image.url, :height => "400"), product_path(product.id), id: "carousel-slide-#{id}", class: "carousel-slide active"
-        - else
-          = link_to image_tag(product.image.url, :height => "400"), product_path(product.id), id: "carousel-slide-#{id}", class: "carousel-slide"
-    = button_tag '&#8592;'.html_safe, class: 'carousel-button prev', :onclick => "prevImg()"
-    = button_tag '&#8594;'.html_safe, class: 'carousel-button next', :onclick => "nextImg()"
-
 %p.spacing
 .product_card_display
   - @products.each do |product|
@@ -48,3 +37,16 @@
       = link_to 'Add to shopping cart', transaction_path_url(product.id), class: "card-button"
 
       = link_to '&starf;'.html_safe, bookmark_from_product_path(product.id), class: "card-button"
+
+-if !@priority_products.nil? && !@priority_products.empty?
+  -count = 0
+  %h4.title_text.center Our Popular Products!
+  .carousel
+    - @priority_products.each do |product|
+      -count = count + 1
+      =link_to (image_tag product.image.url, :height => "400", class: "carousel-slide fade"), product_path(product.id)
+  .dots
+    -count.times do
+      %span.dot
+
+%p.spacing
