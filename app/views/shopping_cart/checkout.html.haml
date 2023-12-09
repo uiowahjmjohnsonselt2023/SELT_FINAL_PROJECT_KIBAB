@@ -23,29 +23,31 @@
                 %td.edit_field_body
                     = text_field :address, 'zip', class: "generic_fields"
 
-    %h2.title_text.center Credit Card Information
+    - if @total_price.to_f > 0.00
+        %h2.title_text.center Credit Card Information
     .edit_product_form
-        %table.table_center
-            %tr
-                %td.edit_body
-                    = label :credit_card, :credit_card_name, 'Name', class: "product_subtext"
-                %td.edit_field_body
-                    = text_field :credit_card, 'credit_card_name', class: "generic_fields"
-            %tr
-                %td.edit_body
-                    = label :credit_card, :credit_card_number, 'Credit Card Number', class: "product_subtext"
-                %td.edit_field_body
-                    = text_field :credit_card, 'credit_card_number', class: "generic_fields"
-            %tr
-                %td.edit_body
-                    = label :credit_card, :credit_card_security_num, 'CVV', class: "product_subtext"
-                %td.edit_field_body
-                    = text_field :credit_card, 'credit_card_security_num', class: "generic_fields"
-            %tr
-                %td.edit_body
-                    = label :credit_card, :credit_card_expiration, 'Expiration Date', class: "product_subtext"
-                %td.edit_field_body
-                    = text_field :credit_card, 'credit_card_expiration', class: "generic_fields"
+        - if @total_price.to_f > 0.00
+            %table.table_center
+                %tr
+                    %td.edit_body
+                        = label :credit_card, :credit_card_name, 'Name', class: "product_subtext"
+                    %td.edit_field_body
+                        = text_field :credit_card, 'credit_card_name', class: "generic_fields"
+                %tr
+                    %td.edit_body
+                        = label :credit_card, :credit_card_number, 'Credit Card Number', class: "product_subtext"
+                    %td.edit_field_body
+                        = text_field :credit_card, 'credit_card_number', class: "generic_fields"
+                %tr
+                    %td.edit_body
+                        = label :credit_card, :credit_card_security_num, 'CVV', class: "product_subtext"
+                    %td.edit_field_body
+                        = text_field :credit_card, 'credit_card_security_num', class: "generic_fields"
+                %tr
+                    %td.edit_body
+                        = label :credit_card, :credit_card_expiration, 'Expiration Date', class: "product_subtext"
+                    %td.edit_field_body
+                        = text_field :credit_card, 'credit_card_expiration', class: "generic_fields"
 
         %h4.title_text Total Price: $#{@total_price}
 
