@@ -28,7 +28,7 @@ class BookmarksController < ApplicationController
   end
 
   def delete_one
-    if bookmark_params[:id].present?
+    if bookmark_params[:id].present? && !bookmark_params[:id].nil?
       @current_bookmark = bookmark_params[:id]
       Bookmark.destroy(@current_bookmark)
       flash[:notice] = "Bookmark deleted."
