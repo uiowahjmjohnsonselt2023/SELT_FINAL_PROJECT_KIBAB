@@ -40,6 +40,7 @@
 
 -if  @products.select {|product| product.image?}.length > 0 && !@products.nil? && !@products.empty?
   -count = 0
+  %h4.title_text.center Prioritized Products!
   .carousel
     - @products.select {|product| product.image?}.each_with_index do |product,id|
       -count = count + 1

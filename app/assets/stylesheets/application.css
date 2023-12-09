@@ -243,6 +243,7 @@ table#products thead {
     box-sizing: border-box;
     overflow: hidden;
     text-align: center;
+    padding: 10px;
 }
 
 .carousel-slide {
@@ -271,7 +272,7 @@ table#products thead {
     height: 15px;
     width: 15px;
     margin: 0 2px;
-    background-color: #bbb;
+    background-color: #1c2324;
     border-radius: 50%;
     display: inline-block;
     text-align: center;
@@ -279,7 +280,7 @@ table#products thead {
 }
 
 .dot.active {
-    background-color: #717171;
+    background-color: #0086b3;
 }
 
 .carousel-button {
