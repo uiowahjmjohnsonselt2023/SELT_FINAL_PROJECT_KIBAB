@@ -245,8 +245,8 @@ table#products thead {
     text-align: center;
 }
 
-.carousel-slide img {
-    align-self: center;
+.carousel-slide {
+    text-align: center;
     width: 100%;
     height: 100%;
     object-fit: contain;
