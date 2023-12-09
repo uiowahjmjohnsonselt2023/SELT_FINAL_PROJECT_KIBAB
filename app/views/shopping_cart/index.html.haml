@@ -5,34 +5,33 @@
     %td.shopping-cart-clear-button
       = button_to 'Clear Shopping Cart', destroy_all_shopping_cart_path, method: :delete, data: { confirm: 'Are you sure you want to clear your shopping cart?' }, class: "clear-cart-button"
 
-.welcome_statement
-  %h2 Shopping Cart
+%h2.title_text.center Shopping Cart
 
 = form_tag checkout_path, :id => 'user_shopping_cart' do
   - if @current_shopping_cart_list.nil? || @current_shopping_cart_list.empty?
-    %h4 You have no items in your shopping cart
-    %h4 Wallet Balance: $#{'%.2f' % @wallet.wallet}
+    %h4.title_text.center You have no items in your shopping cart
+    %h4.title_text.center Wallet Balance: $#{'%.2f' % @wallet.wallet}
   - else
     - total_price = 0
     .product_listing
       %table.product_listing_display
         - @current_shopping_cart_list.each do |item|
           %tr.product_listing_row
-            %td.product_listing_row
+            %td.border_radius_left
               .listing_img
                 = link_to image_tag(item.product.image.url, :height => "400", :class => "card-img"), product_path(item.product.id)
               .product_alignment_fields
                 %p.listing-text= "Name: " + item.product.name
                 %p.listing-text= "Category: " + item.product.category
                 %p.listing-text= 'Listing Price: $' + item.product.price.to_s
-            %td
+            %td.border_radius_right
               .product_listing.right
-                %p= link_to "More Info", product_path(item.product.id), class: "card-button"
+                %p= link_to "More Info", product_path(item.product.id), class: "bookmark_button"
             - total_price += item.product.price.to_f
-    .welcome_statement
-      %h6 Total Price: $#{'%.2f' % total_price}
 
-      %h6
+      %h6.title_text Total Price: $#{'%.2f' % total_price}
+
+      %h6.title_text
         = check_box_tag :use_wallet_balance, nil, false, id: 'use_wallet_balance', class: 'styled-checkbox'
         = label_tag 'use_wallet_balance', 'Use Wallet Balance ($' + '%.2f' % @wallet.wallet + ')?', class: 'styled-label'
 

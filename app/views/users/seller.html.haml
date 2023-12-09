@@ -1,14 +1,13 @@
-.welcome_statement
-  %h2 Items up for sale
+%p.spacing
+%h1.title_text.center Items up for sale
 
-.profile_button
-  %h2 Sold Items
+%h2.title_text.center Sold Items
 
 .product_listing
   %table.product_listing_display
     - Product.where(:user_id => @current_user.id, :is_sold => true).each do |product|
       %tr.product_listing_row
-        %td.product_listing_row
+        %td.border_radius_left
           .listing_img
             = link_to image_tag(product.image.url, :height => "400", :class => "card-img"), product_path(product.id)
           .product_alignment_fields
@@ -16,18 +15,18 @@
             %p.listing-text= "Category: " + product.category
             %p.listing-text= 'Money Made: $' + product.transaction
             %p.listing-text= Purchase.where(:product_id => product.id).first.purchase_timestamp
-        %td
+        %td.border_radius_right
           .product_listing.right
-            %p= link_to "More Info", product_path(product.id), class: "card-button"
+            %p= link_to "More Info", product_path(product.id), class: "bookmark_button"
 
-.profile_button
-  %h2 Items Not Sold Yet
+
+  %h2.title_text.center Items Not Sold Yet
 
 .product_listing
   %table.product_listing_display
     - Product.where(:user_id => @current_user.id, :is_sold => false).each do |product|
       %tr.product_listing_row
-        %td.product_listing_row
+        %td.border_radius_left
           .listing_img
             = link_to image_tag(product.image.url, :height => "400", :class => "card-img"), product_path(product.id)
           .product_alignment_fields
@@ -36,9 +35,11 @@
             %p.listing-text= 'Listing Price: $' + product.price.to_s
             %p.listing-text= 'Up for sale.'
 
-        %td
+        %td.border_radius_right
           .product_listing.right
-            %p= link_to "More Info", product_path(product.id), class: "card-button"
+            %p= link_to "More Info", product_path(product.id), class: "bookmark_button"
 
 .profile_button
   = link_to 'Return to Profile', "/users/#{@current_user[:id]}"
+
+%p.spacing

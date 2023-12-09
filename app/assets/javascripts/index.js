@@ -1,66 +1,21 @@
-function prevImg() {
-    console.log("prev")
-    let slides = document.querySelectorAll(".carousel-slide")
-    let slidesContainer = document.querySelector(".carousel-slides")
-    console.log(slides)
-    offset = -1
-    let newIndex = 0;
-    let activeSlide;
-    size = allImageSizes();
-    slides.forEach(
-        function(node, index) {
-            if (node.classList.contains("active")) {
-                newIndex = index + offset;
-                activeSlide = node;
-            }
-        }
-    );
+let slideIndex = 0;
+window.onload = function showSlides() {
+    const slides = document.querySelectorAll('.carousel-slide')
+    let dots = document.querySelectorAll(".dot")
 
-    if (newIndex < 0) newIndex = slides.length - 1
-    if (newIndex >= slides.length) newIndex = 0
+    slides.forEach((slide) => {
+        slide.style.display = "none";
+    })
 
-    slidesContainer.style.transform = 'translateX(' + 0.9*(-newIndex*(size / slides.length) ) + 'px)'
-    console.log("translate")
+    slideIndex = slideIndex + 1;
 
-    activeSlide.classList.remove("active")
-    slides[newIndex].classList.add("active")
+    if (slideIndex > slides.length) {slideIndex = 1}
+
+    dots.forEach((dot) => {
+        dot.classList.remove("active")
+    })
+
+    slides.item((slideIndex-1)).style.display = "block";
+    dots.item((slideIndex-1)).className += " active";
+    setTimeout(showSlides, 5000);
 }
-
-function nextImg() {
-    console.log("next")
-    const slides = document.querySelectorAll(".carousel-slide")
-    const slidesContainer = document.querySelector(".carousel-slides")
-    console.log(slides)
-    offset = 1
-    let activeSlide;
-    size = allImageSizes();
-    slides.forEach(
-        function(node, index) {
-            if (node.classList.contains("active")) {
-                newIndex = index + offset;
-                activeSlide = node;
-            }
-        }
-    );
-
-    if (newIndex < 0) newIndex = slides.length - 1
-    if (newIndex >= slides.length-1) newIndex = 0
-
-    slidesContainer.style.transform = 'translateX(' + 0.9*(-newIndex*(size / slides.length) )+ 'px)'
-    console.log("translate")
-
-    activeSlide.classList.remove("active")
-    slides[newIndex].classList.add("active")
-}
-
-function allImageSizes() {
-    const slides = document.querySelectorAll(".carousel-slide");
-    size = 0;
-    slides.forEach(
-        function(node) {
-            size = size + node.clientWidth;
-        }
-    );
-    return size;
-}
-

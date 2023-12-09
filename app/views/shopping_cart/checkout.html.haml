@@ -1,5 +1,5 @@
 = form_tag confirm_purchase_path do
-    %h2.header_text Shipping Address
+    %h2.title_text.center Shipping Address
     .edit_product_form
         %table.table_center
             %tr
@@ -23,7 +23,7 @@
                 %td.edit_field_body
                     = text_field :address, 'zip', class: "generic_fields"
 
-    %h2.header_text Credit Card Information
+    %h2.title_text.center Credit Card Information
     .edit_product_form
         %table.table_center
             %tr
@@ -47,8 +47,10 @@
                 %td.edit_field_body
                     = text_field :credit_card, 'credit_card_expiration', class: "generic_fields"
 
-        %h4.header_text Total Price: $#{'%.2f' %@total_price}
+        %h4.title_text Total Price: $#{@total_price}
 
-        %p.header_text Buy Product?
+        %p.title_text Buy Product?
         = hidden_field_tag :use_wallet_balance, params[:use_wallet_balance]
         = submit_tag 'Purchase', :id => 'confirm_purchase_button', class: "general_button"
+
+%p.spacing

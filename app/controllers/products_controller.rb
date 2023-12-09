@@ -14,6 +14,12 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.where(is_sold: false).where.not(user_id: @current_user.id).order("product_traffic desc")
+    if !@products.empty? && !@products.nil?
+      @priority_products = @products.select{|product| product.image?}
+      if @priority_products.length > 5
+        @priority_products = @priority_products.take(5)
+      end
+    end
     sorting
   end
 
@@ -108,6 +114,7 @@ class ProductsController < ApplicationController
 
   def sorting
     if params[:sort] && params[:direction]
+      @products = Product.where(is_sold: false).where.not(user_id: @current_user.id)
       sort_direction = params[:direction] == 'asc' ? 'desc' : 'asc'
       case params[:sort]
       when 'product_name'

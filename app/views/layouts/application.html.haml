@@ -8,15 +8,7 @@
 
   %body
     %nav.navbar
-      .nav_item
-        = link_to 'KIBAB Shop', products_path
       -if @current_user
-        -if !@current_shopping_cart.nil?
-          .nav_item
-            = link_to "Shopping Cart (#{@current_shopping_cart.size})", view_shopping_cart_path
-        -else
-          .nav_item
-            = link_to "Shopping Cart (0)", view_shopping_cart_path
         .nav_item_2.profile-dropdown{ style: 'position: relative;' }
           %a.dropdown-toggle{ id: 'profile-link', href: '#', style: 'display: block; border-radius: 50%;' }
             = image_tag @current_user.pfp, style: 'display: block; max-width: 50px; height: auto; border-radius: 50%;'
@@ -27,14 +19,24 @@
               Bookmarks
             %a{ href: '#', onclick: 'handleLogout(event)', style: 'color: white; padding: 12px 16px; text-decoration: none; display: block; text-align: center;' }
               Logout
+      .nav_item
+        = link_to image_tag("icons/home.png", :width => "50"), products_path
+      -if @current_user
+        -if !@current_shopping_cart.nil?
+          .nav_item.icon_text
+            = link_to image_tag("icons/shopping_cart.png", :width=> "50")+"(#{@current_shopping_cart.size})", view_shopping_cart_path
+        -else
+          .nav_item
+            = link_to image_tag("icons/shopping_cart.png"), "(0)", view_shopping_cart_path
     #main
       - if flash[:notice]
         #notice.message= flash[:notice]
       - elsif flash[:warning]
         #warning.message= flash[:warning]
       = yield
-    %footer.footer
-      = link_to 'About', about_path_url, class: 'about-link'
+
+  %footer.footer
+    = link_to 'About', about_path_url, class: 'about-link'
 
 :javascript
   document.addEventListener('DOMContentLoaded', function() {

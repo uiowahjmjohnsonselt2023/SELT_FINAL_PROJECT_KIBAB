@@ -15,10 +15,10 @@
  */
 html, body {
     height: 100%;
+    background-image: url("icons/background.png");
 }
 
 body {
-    display: flex;
     flex-direction: column;
     font-family: "Verdana", sans-serif;
 }
@@ -33,12 +33,18 @@ body {
     justify-content: space-around;
     padding: 10px;
     color: white;
+    margin: -5px;
 }
 
 .nav_item {
     text-align: center;
     font-size: 35px;
 }
+
+.nav_item.icon_text {
+    font-size: 15px;
+}
+
 
 .nav_item a {
     text-decoration: none;
@@ -64,6 +70,15 @@ body {
 .welcome_statement {
     color: #333333;
     font-size: 40px;
+    height: 20%;
+    text-align: center;
+}
+
+.product-index-form {
+    text-align: center;
+}
+
+.product-search-form {
     text-align: center;
 }
 
@@ -71,17 +86,20 @@ body {
     overflow: hidden;
     position: relative;
     display: inline-block;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
     align-self: center;
-    width: 100%;
+    width: 80%;
     padding: 15px;
+    background-color: rgba(0, 134, 179, 0.6);
+    background-size: 50% 50%;
+    border-radius: 10px;
     text-align: center;
 }
 
 .search_button {
-    background-color: #0086b3;
+    background-color: white;
     border: none;
-    color: white;
+    color: #0086b3;
     padding: 10px 10px;
     margin: 5px;
     text-align: center;
@@ -91,6 +109,24 @@ body {
 }
 
 .search_button:hover {
+    color: white;
+    background-color: #7c7c7c;
+}
+
+.bookmark_button {
+    background-color: #0086b3;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    margin: 5px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.bookmark_button:hover {
     color: white;
     background-color: darkslategray;
 }
@@ -181,7 +217,7 @@ button {
 
 .create_account a:hover {
     color: white;
-    background-color: darkslategray;
+    background-color: #7c7c7c;
 }
 
 table#products thead {
@@ -201,24 +237,50 @@ table#products thead {
 
 .carousel {
     width: 80%;
-    height: 80%;
+    height: 400px;
     margin: auto;
     position: relative;
+    box-sizing: border-box;
     overflow: hidden;
-}
-
-.carousel-slides {
-    display: flex;
-    object-fit: contain;
-    height: 400px;
-    width: 100%;
+    text-align: center;
+    padding: 10px;
 }
 
 .carousel-slide {
-    position: relative;
-    inset: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    max-height: 400px;
+    border-radius: 5px;
+}
+
+.fade {
+    animation: fade 5s linear;
+}
+
+@keyframes fade {
+    0%,100% { opacity: 0 }
+    10%, 90% { opacity: 1 }
+}
+
+.dots {
+    text-align: center;
+    margin: auto;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #1c2324;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.6s ease;
+}
+
+.dot.active {
+    background-color: #0086b3;
 }
 
 .carousel-button {
@@ -250,6 +312,17 @@ table#products thead {
     right: 1rem;
 }
 
+.title_text {
+    color: white;
+    text-shadow: 0 0 10px #0086b3, 0 0 10px #0086b3;
+}
+
+.title_text.center {
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+}
+
 .product_card_display {
     align-self: center;
     display: flex;
@@ -272,6 +345,15 @@ table#products thead {
     padding: 20px;
     width: 300px;
     font-family: "Verdana", sans-serif;
+    background-color: white;
+}
+
+.background-text {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 5px;
 }
 
 .card-img {
@@ -348,11 +430,13 @@ table#products thead {
     border-spacing:0 15px;
     border-radius: 5px;
     border: 1px solid #0086b3;
+    background-color: rgba(0, 134, 179, 0.6);
 }
 
 .review_card_display {
     width: 800px;
     margin: auto;
+    background-color: rgba(0, 134, 179, 0.6);
     position: relative;
     overflow: hidden;
     border: 1px solid #0086b3;
@@ -377,6 +461,7 @@ table#products thead {
     display: block;
     border-radius: 5px;
     border: 1px solid #0086b3;
+    background-color: white;
     margin: 5px;
     padding: 5px;
 }
@@ -400,9 +485,20 @@ table#products thead {
 }
 
 .product_listing_row {
-    border-radius: 5px;
     border: 1px solid #0086b3;
+    background-color: white;
 }
+
+.border_radius_left {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.border_radius_right {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 
 .listing_img {
     margin: 10px;
@@ -418,10 +514,22 @@ table#products thead {
     border: 1px solid #0086b3;
 }
 
-.listing-buttons.right{
-    display: inline-block;
-    vertical-align: top;
-    text-align: right;
+.listing_button{
+    border-radius: 5px;
+    color: white;
+    background-color: #0086b3;
+    text-align: center;
+    padding: 5px 5px;
+    text-decoration: none;
+    width: 100%;
+    font-size: 18px;
+    margin: 5px 5px;
+    font-family: "Verdana", sans-serif;
+}
+
+.listing_button:hover {
+    color: white;
+    background-color: darkslategray;
 }
 
 .listing-text {
@@ -448,8 +556,8 @@ table#products thead {
 .profile_button a {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #0086b3;
-    color: white;
+    background-color: white;
+    color: #0086b3;
     text-decoration: none;
     border-radius: 5px;
     font-size: 16px;
@@ -458,7 +566,7 @@ table#products thead {
 
 .profile_button a:hover {
     color: white;
-    background-color: darkslategray;
+    background-color: #7c7c7c;
 }
 
 .links-container {
@@ -467,6 +575,9 @@ table#products thead {
 }
 
 .product_show_display {
+    background-color: rgba(0, 134, 179, 0.6);
+    border-radius: 5px;
+    padding: 10px;
     text-align: center;
     width: 800px;
     margin: auto;
@@ -474,12 +585,12 @@ table#products thead {
 
 .product_text {
     font-size: 20px;
-    color: #0086b3;
+    color: white;
 }
 
 .product_subtext {
     font-size: 14px;
-    color: #0086b3;
+    color: white;
 }
 
 .product_row_body {
@@ -496,21 +607,26 @@ table#products thead {
 
 .product_description {
     text-align: center;
-    color: #0086b3;
+    color: white;
+    border-radius: 5px;
+    width: 815px;
+    background-color: rgba(0, 134, 179, 0.6);
+    background-size: contain;
     font-size: large;
+    margin: auto;
 }
 
 .header_text {
     font-size: 20px;
-    color: #0086b3;
+    color: white;
     text-align: center;
 }
 
 .basic_link_button {
     border-radius: 5px;
     background: none;
-    color: white;
-    background-color: #0086b3;
+    color: #0086b3;
+    background-color: white;
     text-align: center;
     padding: 10px 10px;
     text-decoration: none;
@@ -521,11 +637,11 @@ table#products thead {
 
 .basic_link_button:hover {
     color: white;
-    background-color: darkslategray;
+    background-color: #7c7c7c;
 }
 
 .spacing {
-    height: 20px;
+    margin: 20px;
 }
 
 .generic_fields {
@@ -559,6 +675,9 @@ table#products thead {
 .table_center {
     text-align: center;
     min-width: 100%;
+    background-color: rgba(0, 134, 179, 0.6);
+    border-radius: 5px;
+
 }
 
 .general_button {
@@ -570,6 +689,12 @@ table#products thead {
     text-align: center;
     border-radius: 5px;
     font-size: 15px;
+    text-decoration: none;
+}
+
+.general_button:hover {
+    color: white;
+    background-color: darkslategray;
 }
 
 .clear-cart-button:hover {
@@ -603,4 +728,38 @@ table#products thead {
 .clear-cart-button,
 .return-to-products-button {
     display: inline-block;
+}
+
+.about_divs {
+    background-color: rgba(0, 134, 179, 0.6);
+    background-size: contain;
+    color: white;
+    font-size: 15px;
+    width: 50%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#notice {
+    background-color: white;
+    color: black;
+    padding: 8px;
+    text-align: center;
+    font-size: 24px;
+    margin: 0 auto;
+    border: 4px solid #0086b3;
+}
+
+.sort_button {
+    background-color: white;
+    border: none;
+    color: #0086b3;
+    padding: 10px 10px;
+    margin: 5px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    text-decoration: none;
 }
