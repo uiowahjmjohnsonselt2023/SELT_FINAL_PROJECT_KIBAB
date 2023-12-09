@@ -13,7 +13,6 @@ class ShoppingCartController < ApplicationController
       if item.product.is_sold.eql? true
 
           flash[:notice] = "#{item.product.name} was sold."
-          puts("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! #{item.product.name}")
           ShoppingCart.destroy(item)
       end
     end
