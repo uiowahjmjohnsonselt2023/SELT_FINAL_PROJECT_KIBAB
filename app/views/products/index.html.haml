@@ -42,12 +42,14 @@
   -count = 0
   %h4.title_text.center Prioritized Products!
   .carousel
-    - @products.select {|product| product.image?}.each_with_index do |product,id|
+    - @products.select {|product| product.image?}.each do |product|
       -count = count + 1
       - if id.eql?(0)
-        = image_tag product.image.url, :height => "400", id: "carousel-slide", class: "carousel-slide fade"
+        = image_tag product.image.url, :height => "400", class: "carousel-slide fade"
       - else
-        = image_tag product.image.url, :height => "400", id: "carousel-slide", class: "carousel-slide fade"
+        = image_tag product.image.url, :height => "400", class: "carousel-slide fade"
   .dots
     -count.times do
       %span.dot
+
+%p.spacing
