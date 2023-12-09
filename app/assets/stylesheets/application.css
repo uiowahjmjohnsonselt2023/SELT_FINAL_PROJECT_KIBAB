@@ -556,8 +556,8 @@ table#products thead {
 .basic_link_button {
     border-radius: 5px;
     background: none;
-    color: white;
-    background-color: #0086b3;
+    color: #0086b3;
+    background-color: white;
     text-align: center;
     padding: 10px 10px;
     text-decoration: none;
@@ -568,7 +568,7 @@ table#products thead {
 
 .basic_link_button:hover {
     color: white;
-    background-color: darkslategray;
+    background-color: #7c7c7c;
 }
 
 .spacing {
