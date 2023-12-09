@@ -17,4 +17,13 @@ class ShoppingCart < ActiveRecord::Base
     end
     sprintf("%.2f", total_price)
   end
+
+  def self.update_wallet(current_wallet, total_price)
+    if current_wallet.wallet > total_price
+      current_wallet.wallet = current_wallet.wallet - total_price
+    else
+      current_wallet.wallet = 0
+    end
+    current_wallet.save
+  end
 end
