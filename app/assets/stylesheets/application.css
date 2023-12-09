@@ -386,6 +386,7 @@ table#products thead {
     border-spacing:0 15px;
     border-radius: 5px;
     border: 1px solid #0086b3;
+    background-color: rgba(0, 134, 179, 0.6);
 }
 
 .review_card_display {
@@ -440,9 +441,20 @@ table#products thead {
 }
 
 .product_listing_row {
-    border-radius: 5px;
     border: 1px solid #0086b3;
+    background-color: white;
 }
+
+.border_radius_left {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.border_radius_right {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 
 .listing_img {
     margin: 10px;
@@ -458,10 +470,22 @@ table#products thead {
     border: 1px solid #0086b3;
 }
 
-.listing-buttons.right{
-    display: inline-block;
-    vertical-align: top;
-    text-align: right;
+.listing_button{
+    border-radius: 5px;
+    color: white;
+    background-color: #0086b3;
+    text-align: center;
+    padding: 5px 5px;
+    text-decoration: none;
+    width: 100%;
+    font-size: 18px;
+    margin: 5px 5px;
+    font-family: "Verdana", sans-serif;
+}
+
+.listing_button:hover {
+    color: white;
+    background-color: darkslategray;
 }
 
 .listing-text {
