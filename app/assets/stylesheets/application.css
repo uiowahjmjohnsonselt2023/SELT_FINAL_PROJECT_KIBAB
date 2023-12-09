@@ -52,7 +52,7 @@ body {
 }
 
 .footer {
-    position: relative;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -762,4 +762,8 @@ table#products thead {
     border-radius: 5px;
     font-size: 15px;
     text-decoration: none;
+}
+
+.about-wrapper {
+    padding-bottom: 60px
 }
