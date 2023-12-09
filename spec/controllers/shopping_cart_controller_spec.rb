@@ -51,4 +51,24 @@ describe ShoppingCartController do
       expect(assigns(:current_shopping_cart_list)).to eq([shoppingcart])
     end
   end
+  describe '#checkout' do
+    it 'calculates price correctly' do
+      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: true, user_id: 1, product_traffic: 5, price:10.0)
+      @cart = ShoppingCart.create(user_id: @user.id, product_id: product.id)
+      @wallet = Wallet.create(user_id:@user.id, wallet: 50.0)
+      controller.instance_variable_set(:@current_user, @user)
+      controller.instance_variable_set(:@wallet, @wallet)
+      controller.instance_variable_set(:@current_shopping_cart_list,@cart )
+      allow(@cart).to receive(:product).and_return(product)
+      allow(product).to receive(:price).and_return(10.0)
+      post :checkout
+      @user.reload
+      @wallet.reload
+      expected_price = @cart.product.price - @wallet.wallet
+      expected_price = 0 if expected_price.negative?
+
+      expect(assigns(:total_price)).to eq(expected_price)
+    end
+
+  end
 end
