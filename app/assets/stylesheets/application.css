@@ -108,8 +108,8 @@ body {
 }
 
 .search_button:hover {
-    color: #444444;
-    background-color: darkslategray;
+    color: white;
+    background-color: #7c7c7c;
 }
 
 .product_search_field {
@@ -198,7 +198,7 @@ button {
 
 .create_account a:hover {
     color: white;
-    background-color: darkslategray;
+    background-color: #7c7c7c;
 }
 
 table#products thead {
@@ -265,6 +265,11 @@ table#products thead {
 
 .carousel-button.next {
     right: 1rem;
+}
+
+.title_text {
+    color: white;
+    text-shadow: 0 0 10px #0086b3, 0 0 10px #0086b3;
 }
 
 .product_card_display {
