@@ -39,7 +39,7 @@
 
 - if !@seller_reviews.empty? && !@seller_reviews.nil?
   .review_card_display
-    %h4 Seller Reviews
+    %h4.header_text Seller Reviews
     %table.review_table
       - @seller_reviews.each do |r|
         %tr.review_row
@@ -48,3 +48,6 @@
             %p.review_text= '&ldquo;'.html_safe + r.review + '&rdquo;'.html_safe
           %td.review_stars
             %p.review_name= "Reviewer: " + r.name
+
+
+%p.spacing
