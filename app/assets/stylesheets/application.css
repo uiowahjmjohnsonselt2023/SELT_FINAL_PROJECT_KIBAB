@@ -242,6 +242,7 @@ table#products thead {
     position: relative;
     box-sizing: border-box;
     overflow: hidden;
+    text-align: center;
 }
 
 .carousel-slide img {
