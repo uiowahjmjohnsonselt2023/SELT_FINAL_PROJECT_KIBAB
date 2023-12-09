@@ -379,6 +379,7 @@ table#products thead {
 .review_card_display {
     width: 800px;
     margin: auto;
+    background-color: rgba(0, 134, 179, 0.6);
     position: relative;
     overflow: hidden;
     border: 1px solid #0086b3;
@@ -403,6 +404,7 @@ table#products thead {
     display: block;
     border-radius: 5px;
     border: 1px solid #0086b3;
+    background-color: white;
     margin: 5px;
     padding: 5px;
 }
@@ -493,6 +495,9 @@ table#products thead {
 }
 
 .product_show_display {
+    background-color: rgba(0, 134, 179, 0.6);
+    border-radius: 5px;
+    padding: 10px;
     text-align: center;
     width: 800px;
     margin: auto;
@@ -500,12 +505,12 @@ table#products thead {
 
 .product_text {
     font-size: 20px;
-    color: #0086b3;
+    color: white;
 }
 
 .product_subtext {
     font-size: 14px;
-    color: #0086b3;
+    color: white;
 }
 
 .product_row_body {
@@ -522,13 +527,15 @@ table#products thead {
 
 .product_description {
     text-align: center;
-    color: #0086b3;
+    color: white;
+    background-color: rgba(0, 134, 179, 0.6);
+    background-size: 80% 80%;
     font-size: large;
 }
 
 .header_text {
     font-size: 20px;
-    color: #0086b3;
+    color: white;
     text-align: center;
 }
 
