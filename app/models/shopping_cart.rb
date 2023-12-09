@@ -26,4 +26,15 @@ class ShoppingCart < ActiveRecord::Base
     end
     current_wallet.save
   end
+
+  def self.buy_each_shopping_cart_item(item, current_user)
+    item.product.set_sold_true
+    Purchase.create!(user_id: current_user.id, product_id: item.product.id, purchase_timestamp: Time.now)
+    price = item.product.price.to_f
+    user_selling = User.where(id: item.product.user_id).first
+    user_wallet = Wallet.find_by_user_id(user_selling.id)
+    user_wallet.update(wallet: user_wallet.wallet + item.product.transaction.to_f)
+    ShoppingCart.destroy(item.id)
+    price
+  end
 end
