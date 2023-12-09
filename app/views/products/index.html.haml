@@ -38,11 +38,11 @@
 
       = link_to '&starf;'.html_safe, bookmark_from_product_path(product.id), class: "card-button"
 
--if  @products.select {|product| product.image?}.length > 0 && !@products.nil? && !@products.empty?
+-if !@priority_products.nil? && !@priority_products.empty?
   -count = 0
-  %h4.title_text.center Prioritized Products!
+  %h4.title_text.center Our Popular Products!
   .carousel
-    - @products.select {|product| product.image?}.each do |product|
+    - @priority_products.each do |product|
       -count = count + 1
       =link_to (image_tag product.image.url, :height => "400", class: "carousel-slide fade"), product_path(product.id)
   .dots
