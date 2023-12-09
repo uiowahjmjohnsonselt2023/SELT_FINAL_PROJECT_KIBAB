@@ -99,4 +99,28 @@ describe ShoppingCart do
       expect(current_wallet.wallet).to eq(25.00)
     end
   end
+
+  describe '.buy_each_shopping_cart_item' do
+    before do
+      OmniAuth.config.test_mode = true
+      OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new({
+                                                                    provider: 'google',
+                                                                    uid: '123456',
+                                                                    info: {
+                                                                      email: 'user@example.com',
+                                                                      name: 'Example User'
+                                                                    }
+                                                                  })
+    end
+    it 'deleting an item and return its price' do
+      user = User.create_with_omniauth(OmniAuth.config.mock_auth[:google])
+      p1 = {:user_id => 1, :name => "Bookshelf", :category => "Home", :quality => "Like New", :description => "Bought a new one need to get rid of it", :price => "89.65", :street_address => "732 Orland Square Dr", :city => "Orland Park", :state => "IL", :zip => "60462", :lat => 41.61986538321291, :long => -87.84873608867929, :product_traffic => 0}
+      p2 = {:user_id => 1, :name => "Shower Curtain", :category => "Home", :quality => "Used", :description => "Bought a new one need to get rid of it", :price => "15.49", :street_address => "732 Orland Square Dr", :city => "Orland Park", :state => "IL", :zip => "60462", :lat => 41.61986538321291, :long => -87.84873608867929, :product_traffic => 0}
+      product1 = Product.create!(p1)
+      product2 = Product.create!(p2)
+      shopping_cart_list = [ShoppingCart.create!(user_id: user.id, product_id: product1.id), ShoppingCart.create!(user_id: user.id, product_id: product2.id)]
+      price = ShoppingCart.buy_each_shopping_cart_item(shopping_cart_list.first, user)
+      expect(price).to eq(89.65)
+    end
+  end
 end
