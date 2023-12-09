@@ -1,7 +1,7 @@
 .welcome_statement
   %h2.title_text.center Bookmarks
   - if @current_bookmarks.nil? || @current_bookmarks.empty?
-    %h4 You have no items in your bookmarks
+    %h4.title_text.center You have no items in your bookmarks
   - else
     = button_to "Delete All Bookmarks", delete_all_bookmarks_path, method: :post, class: "bookmark_button"
 
