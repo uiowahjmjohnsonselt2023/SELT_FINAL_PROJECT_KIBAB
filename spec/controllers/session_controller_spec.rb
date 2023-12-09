@@ -55,7 +55,7 @@ RSpec.describe SessionsController, type: :controller do
       delete :destroy
       expect(session[:session_token]).to be_nil
       expect(controller.instance_variable_get(:@current_user)).to be_nil
-      expect(flash[:notice]).to eq('You have logged out')
+      expect(flash[:notice]).to eq('You Have Logged Out')
       expect(response).to redirect_to(products_path)
     end
   end

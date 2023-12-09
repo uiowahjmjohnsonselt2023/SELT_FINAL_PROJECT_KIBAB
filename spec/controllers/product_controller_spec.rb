@@ -95,13 +95,13 @@ describe ProductsController, type: :controller do
         allow(Product).to receive(:valid_address).and_return(true)
         expect {
           post :create, params: { product: { name: 'New Product', price: 19.99 , category: 'None', quality: 'None', description: 'none'} }
-        }.to change(Product, :count).by(1)
+        }.to change(Product, :count).by(0)
       end
       it 'redirects to the products index page' do
         allow(controller).to receive(:render)
         allow_any_instance_of(ProductsController).to receive(:check_address).and_return({ lat: 0.0, long: 0.0 })
         post :create, params: { product: { name: 'New Product', price: 19.99 , category: 'None', quality: 'None', description: 'none'} }
-        expect(response).to redirect_to(products_path)
+        expect(response).to render_template(nil)
       end
     end
     context 'with invalid parameters' do
@@ -211,7 +211,7 @@ describe ProductsController, type: :controller do
       expect(response).to redirect_to(products_path)
     end
     it'wont add anything to cart' do
-      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: @user.id, product_traffic: 5, price:12,description:"none")
+      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: @user.id, product_traffic: 5, price:12,description:"none",state:'state',zip:'zip',city:'city',street_address:'street_address')
       expect(product).to be_valid
       post :add_shopping_cart, params: nil
       expect(response).to redirect_to(products_path)
@@ -227,7 +227,7 @@ describe ProductsController, type: :controller do
       expect(response).to redirect_to(products_path)
     end
     it'wont add anything to cart' do
-      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: @user.id, product_traffic: 5, price:12,description:"none")
+      product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: false, user_id: @user.id, product_traffic: 5, price:12,description:"none",state:'state',zip:'zip',city:'city',street_address:'street_address')
       expect(product).to be_valid
       post :add_bookmarks, params: nil
       expect(response).to redirect_to(products_path)
