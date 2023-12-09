@@ -597,7 +597,7 @@ table#products thead {
 }
 
 .spacing {
-    height: 20px;
+    margin: 20px;
 }
 
 .generic_fields {
@@ -645,6 +645,7 @@ table#products thead {
     text-align: center;
     border-radius: 5px;
     font-size: 15px;
+    text-decoration: none;
 }
 
 .general_button:hover {
