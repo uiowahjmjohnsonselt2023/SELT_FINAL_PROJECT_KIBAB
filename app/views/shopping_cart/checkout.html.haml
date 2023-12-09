@@ -1,33 +1,54 @@
-.new_product_form
 = form_tag confirm_purchase_path do
-    %h2 Shipping Address
-    = label :address, :street_address, 'Street Address'
-    = text_field :address, 'street_address'
+    %h2.header_text Shipping Address
+    .edit_product_form
+        %table.table_center
+            %tr
+                %td.edit_body
+                    = label :address, :street_address, 'Street Address', class: "product_subtext"
+                %td.edit_field_body
+                    = text_field :address, 'street_address', class: "generic_fields"
+            %tr
+                %td.edit_body
+                    = label :address, :state, 'State', class: "product_subtext"
+                %td.edit_field_body
+                    = text_field :address, 'state', class: "generic_fields"
+            %tr
+                %td.edit_body
+                    = label :address, :city, 'City', class: "product_subtext"
+                %td.edit_field_body
+                    = text_field :address, 'city', class: "generic_fields"
+            %tr
+                %td.edit_body
+                    = label :address, :zip, 'Zip', class: "product_subtext"
+                %td.edit_field_body
+                    = text_field :address, 'zip', class: "generic_fields"
 
-    = label :address, :state, 'State'
-    = text_field :address, 'state'
+    %h2.header_text Credit Card Information
+    .edit_product_form
+        %table.table_center
+            %tr
+                %td.edit_body
+                    = label :credit_card, :credit_card_name, 'Name', class: "product_subtext"
+                %td.edit_field_body
+                    = text_field :credit_card, 'credit_card_name', class: "generic_fields"
+            %tr
+                %td.edit_body
+                    = label :credit_card, :credit_card_number, 'Credit Card Number', class: "product_subtext"
+                %td.edit_field_body
+                    = text_field :credit_card, 'credit_card_number', class: "generic_fields"
+            %tr
+                %td.edit_body
+                    = label :credit_card, :credit_card_security_num, 'CVV', class: "product_subtext"
+                %td.edit_field_body
+                    = text_field :credit_card, 'credit_card_security_num', class: "generic_fields"
+            %tr
+                %td.edit_body
+                    = label :credit_card, :credit_card_expiration, 'Expiration Date', class: "product_subtext"
+                %td.edit_field_body
+                    = text_field :credit_card, 'credit_card_expiration', class: "generic_fields"
 
-    = label :address, :city, 'City'
-    = text_field :address, 'city'
+        %h4.header_text Total Price: $#{'%.2f' %@total_price}
 
-    = label :address, :zip, 'Zip'
-    = text_field :address, 'zip'
-
-    %h2 Credit Card Information
-    = label :credit_card, :credit_card_name, 'Name'
-    = text_field :credit_card, 'credit_card_name'
-
-    = label :credit_card, :credit_card_number, 'Credit Card Number'
-    = text_field :credit_card, 'credit_card_number'
-
-    = label :credit_card, :credit_card_security_num, 'CVV'
-    = text_field :credit_card, 'credit_card_security_num'
-
-    = label :credit_card, :credit_card_expiration, 'Expiration Date'
-    = text_field :credit_card, 'credit_card_expiration'
-
-    %h4 Total Price: $#{@total_price}
-
-    %p Buy Product?
-    = hidden_field_tag :use_wallet_balance, params[:use_wallet_balance]
-    = submit_tag 'Purchase', :id => 'confirm_purchase_button'
+        %p.header_text Buy Product?
+        = hidden_field_tag :use_wallet_balance, params[:use_wallet_balance]
+        = submit_tag 'Purchase', :id => 'confirm_purchase_button', class: "general_button"

@@ -18,7 +18,7 @@
             %p.listing-text= 'Listing Price: $' + item.product.price.to_s
         %td
           .product_listing.right
-            %p= link_to "More about #{item.product.name}", product_path(item.product.id), class: "card-button"
+            %p= link_to "More Info", product_path(item.product.id), class: "card-button"
             %p= button_to "Delete Bookmark?", delete_one_bookmark_path(item.id), method: :post, class: "search_button"
 .profile_button
   = link_to "Return to products page", products_path

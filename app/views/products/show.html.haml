@@ -5,34 +5,37 @@
     = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}&callback=initMap",
     defer: true
 
-%h2 #{@current_product.name}
-%h4 Category: #{@current_product.category}
-%h4 Quality: #{@current_product.quality}
-%h4 Product Image
-= image_tag @current_product.image.url, :width => "600"
-%h4 Description
-%p #{@current_product.description}
--# %h4 Location
--# %p #{@current_product.location}
-%h4 Price
-%p $#{@current_product.price}
+%p.spacing
+  = link_to 'Return to Home', products_path, class: "basic_link_button"
+
+.product_show_display
+  %table.product_img_description
+    %tr
+      %td.product_row_body
+        = image_tag @current_product.image.url, :width => "400", :class => "main-product-img"
+      %td.product_row_body
+        %h2.header_text #{@current_product.name}
+        %p.product_text Category: #{@current_product.category}
+        %p.product_text Quality: #{@current_product.quality}
+        %p.product_text $#{@current_product.price}
+        -if @current_product.is_sold == false
+          -if @current_user.id.eql?(@current_product.user_id)
+            = link_to 'Edit Item', edit_product_path(@current_product), class: "basic_link_button"
+          -else
+            = link_to 'Add to shopping cart', transaction_path_url, class: "basic_link_button"
+            = link_to 'Bookmark', bookmark_from_product_path, class: "basic_link_button"
+          %p.product_subtext #{@current_product.product_traffic} people have viewed this item
+
+.product_description
+  %h2.header_text Description
+  %p #{@current_product.description}
 
 .map-container
-  %h2 #{@current_product.name} Location:
+  %h2.header_text #{@current_product.name} Location:
   #product_map.product_map{ "data-latitude" => @current_product.lat.to_f, "data-longitude" => @current_product.long.to_f}
   %p#product_location{ "data-latitude" => @current_product.lat, "data-longitude" => @current_product.long, "data-name" => @current_product.name }
 
--if (@current_user.id.eql?(@current_product.user_id))
-  .link_to_button
-    = link_to 'Edit Item', edit_product_path(@current_product)
--else
-  .link_to_button
-    = link_to 'Add to shopping cart', transaction_path_url
-  .link_to_button
-    = link_to 'Bookmark', bookmark_from_product_path
-
-.link_to_button
-  = link_to 'Return to Home', products_path
+%p.spacing
 
 - if !@seller_reviews.empty? && !@seller_reviews.nil?
   .review_card_display
