@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   match '/bookmarks/index', to: 'bookmarks#index', via: :get, :as => 'view_bookmarks'
   match '/bookmarks/delete', to:'bookmarks#destroy', via: :post, :as => 'delete_all_bookmarks'
   match '/bookmarks/:id/delete_one', to:'bookmarks#delete_one', via: :post, :as => "delete_one_bookmark"
-  match '/bookmarks/delete_one', to:'bookmarks#delete_one', via: :post, :as => "no_bookmark"
+  #match '/bookmarks/delete_one', to:'bookmarks#delete_one', via: :post, :as => "no_bookmark"
 
   # Seller Reviews
   match '/review', to: 'products#new_seller_review', via: :get, :as => 'new_seller_review'

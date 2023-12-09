@@ -17,7 +17,7 @@ if RUBY_VERSION>='2.6.0'
 end
 RSpec.describe BookmarksController, type: :controller do
   let(:user) { instance_double(User, id: 1) }
-  let(:product) { instance_double(Product, id: 1, name: 'Test Product', is_sold: false) }
+  #let(:product) { instance_double(Product, id: 1, name: 'Test Product', is_sold: false) }
 
   before do
 
@@ -72,7 +72,7 @@ RSpec.describe BookmarksController, type: :controller do
       controller.instance_variable_set(:@current_bookmark, bookmark)
       allow(Bookmark).to receive(:destroy)
       allow(bookmark).to receive(:product).and_return(product)
-      delete :delete_one, params: {}
+      post :delete_one_bookmark, params: {id:nil}
 
       expect(flash[:notice]).to eq("Could not delete #{product.name}." )
     end
