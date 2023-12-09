@@ -39,7 +39,12 @@ class ShoppingCartController < ApplicationController
 
     if !shopping_cart_params[:address][:city].empty? && !shopping_cart_params[:address][:state].empty? &&!shopping_cart_params[:address][:street_address].empty? &&!shopping_cart_params[:address][:zip].empty?
       @lookup = Purchase.valid_address(shopping_cart_params[:address][:city],shopping_cart_params[:address][:state],shopping_cart_params[:address][:street_address],shopping_cart_params[:address][:zip])
-      @valid_card = Wallet.check_credit(shopping_cart_params[:credit_card][:credit_card_name],shopping_cart_params[:credit_card][:credit_card_number],shopping_cart_params[:credit_card][:credit_card_security_num],shopping_cart_params[:credit_card][:credit_card_expiration])
+      if @total_price.to_f > 0.00
+        @valid_card = Wallet.check_credit(shopping_cart_params[:credit_card][:credit_card_name],shopping_cart_params[:credit_card][:credit_card_number],shopping_cart_params[:credit_card][:credit_card_security_num],shopping_cart_params[:credit_card][:credit_card_expiration])
+      else
+        @valid_card = ''
+      end
+
       if @lookup.is_a?(Hash) && @valid_card == ''
         current_wallet = Wallet.find_by_user_id(@current_user.id)
         total_price = 0
@@ -54,13 +59,9 @@ class ShoppingCartController < ApplicationController
           ShoppingCart.destroy(item.id)
         end
 
+
         if shopping_cart_params[:use_wallet_balance] == 'on'
-          if current_wallet.wallet > total_price
-            current_wallet.wallet = current_wallet.wallet - total_price
-          else
-            current_wallet.wallet = 0
-          end
-          current_wallet.save
+          ShoppingCart::update_wallet(current_wallet, total_price)
         end
 
         flash[:notice] = "Purchased successfully!"
