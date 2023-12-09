@@ -27,60 +27,34 @@ class ShoppingCartController < ApplicationController
   def checkout
     @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
     current_wallet = Wallet.find_by_user_id(@current_user.id).wallet
-    @total_price = 0
-    @current_shopping_cart_list.each do |item|
-      @total_price += item.product.price.to_f
-    end
-    @total_price = sprintf("%.2f", @total_price)
-    if shopping_cart_params[:use_wallet_balance] == 'on'
-      if current_wallet > @total_price.to_f
-        @total_price = 0
-      else
-        @total_price = @total_price.to_f - current_wallet
-      end
-    end
-    @total_price
+    use_wallet = shopping_cart_params[:use_wallet_balance] == 'on'
+    @total_price = ShoppingCart::compute_total_price(@current_shopping_cart_list, current_wallet, use_wallet)
   end
 
   def confirm_purchase
-    total_price = 0
     @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
-    @current_shopping_cart_list.each do |item|
-      total_price += item.product.price.to_f
-      @total_price = total_price
-    end
     current_wallet = Wallet.find_by_user_id(@current_user.id).wallet
-    if shopping_cart_params[:use_wallet_balance] == 'on'
-      if current_wallet > @total_price.to_f
-        @total_price = 0
-      else
-        @total_price = @total_price.to_f - current_wallet
-      end
-    end
+    use_wallet = shopping_cart_params[:use_wallet_balance] == 'on'
+    @total_price = ShoppingCart::compute_total_price(@current_shopping_cart_list, current_wallet, use_wallet)
+
     if !shopping_cart_params[:address][:city].empty? && !shopping_cart_params[:address][:state].empty? &&!shopping_cart_params[:address][:street_address].empty? &&!shopping_cart_params[:address][:zip].empty?
       @lookup = Purchase.valid_address(shopping_cart_params[:address][:city],shopping_cart_params[:address][:state],shopping_cart_params[:address][:street_address],shopping_cart_params[:address][:zip])
-      @valid_card = Wallet.check_credit(shopping_cart_params[:credit_card][:credit_card_name],shopping_cart_params[:credit_card][:credit_card_number],shopping_cart_params[:credit_card][:credit_card_security_num],shopping_cart_params[:credit_card][:credit_card_expiration])
+      if @total_price.to_f > 0.00
+        @valid_card = Wallet.check_credit(shopping_cart_params[:credit_card][:credit_card_name],shopping_cart_params[:credit_card][:credit_card_number],shopping_cart_params[:credit_card][:credit_card_security_num],shopping_cart_params[:credit_card][:credit_card_expiration])
+      else
+        @valid_card = ''
+      end
+
       if @lookup.is_a?(Hash) && @valid_card == ''
         current_wallet = Wallet.find_by_user_id(@current_user.id)
         total_price = 0
         @current_shopping_cart_list = ShoppingCart.where(user_id: @current_user.id)
         @current_shopping_cart_list.each do |item|
-          item.product.set_sold_true
-          Purchase.create!(user_id: @current_user.id, product_id: item.product.id, purchase_timestamp: Time.now)
-          total_price += item.product.price.to_f
-          user_selling = User.where(id: item.product.user_id).first
-          user_wallet = Wallet.find_by_user_id(user_selling.id)
-          user_wallet.update(wallet: user_wallet.wallet + item.product.transaction.to_f)
-          ShoppingCart.destroy(item.id)
+          total_price += ShoppingCart::buy_each_shopping_cart_item(item, @current_user)
         end
 
         if shopping_cart_params[:use_wallet_balance] == 'on'
-          if current_wallet.wallet > total_price
-            current_wallet.wallet = current_wallet.wallet - total_price
-          else
-            current_wallet.wallet = 0
-          end
-          current_wallet.save
+          ShoppingCart::update_wallet(current_wallet, total_price)
         end
 
         flash[:notice] = "Purchased successfully!"
