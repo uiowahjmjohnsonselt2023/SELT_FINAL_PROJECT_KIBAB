@@ -23,7 +23,7 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    Bookmark.destroy(Bookmark.where(user_id: @current_user.id))
+    Bookmark.where(user_id: @current_user.id).destroy_all
     redirect_to products_path
   end
 
