@@ -6,17 +6,17 @@
     -# = csrf_meta_tags
 
 .welcome_statement
-  %h1 Shop KIBAB
+  =image_tag "icons/logo.png", :width => "300"
 
-= form_tag search_path_path, :method => 'get' do
+= form_tag search_path_path, :method => 'get', :class => "product-index-form" do
   .product_search_bar
     = text_field_tag :search, params[:search], placeholder: 'Search Products &#x26B2;'.html_safe, class: "product_search_field"
 
     .product_alignment_fields
-      = label :product, :categories, "Category:", class: "card-text"
+      = label :product, :categories, "Category:", class: "background-text"
       = select :product, :quality, ['None','Well Worn', 'Used', 'Like New', 'New'], selected: params.dig(:product, :quality)
     .product_alignment_fields
-      = label  :product, :quality, "Quality:", class: "card-text"
+      = label  :product, :quality, "Quality:", class: "background-text"
       = select :product, :categories, ['None', 'Home', 'Entertainment', 'Clothing', 'Personal Care', 'Office', 'Other'], selected: params.dig(:product, :categories)
     = submit_tag 'Search', :id => 'search_button', class: "search_button"
 
@@ -31,7 +31,7 @@
     = button_tag '&#8592;'.html_safe, class: 'carousel-button prev', :onclick => "prevImg()"
     = button_tag '&#8594;'.html_safe, class: 'carousel-button next', :onclick => "nextImg()"
 
-
+%p.spacing
 .product_card_display
   - @products.each do |product|
     .product_card

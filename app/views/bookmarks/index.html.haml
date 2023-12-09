@@ -1,24 +1,27 @@
 .welcome_statement
-  %h2 Bookmarks
+  %h2.title_text.center Bookmarks
   - if @current_bookmarks.nil? || @current_bookmarks.empty?
     %h4 You have no items in your bookmarks
   - else
-    = button_to "Delete All Bookmarks", delete_all_bookmarks_path, method: :post, class: "search_button"
+    = button_to "Delete All Bookmarks", delete_all_bookmarks_path, method: :post, class: "bookmark_button"
 
 .product_listing
   %table.product_listing_display
     - @current_bookmarks.each do |item|
       %tr.product_listing_row
-        %td.product_listing_row
+        %td.border_radius_left
           .listing_img
             = link_to image_tag(item.product.image.url, :height => "400", :class => "card-img"), product_path(item.product.id)
           .product_alignment_fields
             %p.listing-text= "Name: " + item.product.name
             %p.listing-text= "Category: " + item.product.category
             %p.listing-text= 'Listing Price: $' + item.product.price.to_s
-        %td
+        %td.border_radius_right
           .product_listing.right
-            %p= link_to "More Info", product_path(item.product.id), class: "card-button"
-            %p= button_to "Delete Bookmark?", delete_one_bookmark_path(item.id), method: :post, class: "search_button"
+            %p= link_to "More Info", product_path(item.product.id), class: "bookmark_button"
+            %p= button_to "Delete?", delete_one_bookmark_path(item.id), method: :post, class: "bookmark_button"
+
 .profile_button
   = link_to "Return to products page", products_path
+
+%p.spacing
