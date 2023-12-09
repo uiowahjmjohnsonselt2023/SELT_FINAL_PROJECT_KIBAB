@@ -1,9 +1,9 @@
 .profile_button
-  %h2 #{@current_user.name}'s Account
-  %h4 Email
-  %p #{@current_user.email}
-  %h4 In-store credit
-  %p $#{'%.2f' % @wallet.wallet}
+  %h2.title_text #{@current_user.name}'s Account
+  %h4.title_text Email
+  %p.title_text #{@current_user.email}
+  %h4.title_text In-store credit
+  %p.title_text $#{'%.2f' % @wallet.wallet}
 
 .profile_button
   = link_to 'Add a New Product to Sell?', new_product_path
@@ -26,3 +26,5 @@
             %p.review_text= '&ldquo;'.html_safe + r.review + '&rdquo;'.html_safe
           %td.review_stars
             %p.review_name= "Reviewer: " + r.name
+
+%p.spacing
