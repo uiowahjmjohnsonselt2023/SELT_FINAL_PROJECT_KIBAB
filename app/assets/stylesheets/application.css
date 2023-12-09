@@ -724,3 +724,16 @@ table#products thead {
     margin: 0 auto;
     border: 4px solid #0086b3;
 }
+
+.sort_button {
+    background-color: white;
+    border: none;
+    color: #0086b3;
+    padding: 10px 10px;
+    margin: 5px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 15px;
+    text-decoration: none;
+}
