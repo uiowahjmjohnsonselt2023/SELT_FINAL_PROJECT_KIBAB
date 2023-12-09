@@ -72,27 +72,26 @@ describe ShoppingCartController do
 
   end
   describe '#confirm_purchase' do
-    let(:valid_params) do
-      {
-        address: {
-          city: 'City',
-          state: 'State',
-          street_address: 'Street Address',
-          zip: '12345'
-        },
-        credit_card: {
-          credit_card_name: 'John Doe',
-          credit_card_number: '1111111111111111',
-          credit_card_security_num: '111',
-          credit_card_expiration: '12/25'
-        },
-        use_wallet_balance: 'on'
-      }
-      it 'completes purchase' do
-
-      end
+    it 'does not have valid params' do
+      post :confirm_purchase#,  params: { shopping_cart_params: {city: 'city', state: 'state', street_address: 'address', zip: 'SomeQuality'} }
+      expect(flash[:notice]).to eq('Please fill in every address box')
+      expect(response).to render(checkout_path)
     end
-
-
+    # it 'does have valid params' do
+    #   shopping_cart_parmas[:address][:city] = 'Iowa City'
+    #   shopping_cart_parmas[:address][:state] = 'Iowa'
+    #   shopping_cart_parmas[:address][:zip] = '52246'
+    #   shopping_cart_parmas[:address][:street_address] = '647 emerald st'
+    #   controller.instance_variable_set(:@lookup, {lat => 0, long=> 0 })
+    #   controller.instance_variable_set(:@valid_Card, '')
+    #
+    #   product = Product.create(name: 'test', category: 'SomeCategory', quality: 'SomeQuality', is_sold: true, user_id: 1, product_traffic: 5, price:10.0)
+    #   @cart = ShoppingCart.create(user_id: @user.id, product_id: product.id)
+    #   @wallet = Wallet.create(user_id:@user.id, wallet: 50.0)
+    #   post :confirm_purchase
+    #   expect(flash[:notice]).to eq('Purchased successfully!')
+    #   expect(response).to redirect_to(products_path)
+    #
+    # end
   end
 end

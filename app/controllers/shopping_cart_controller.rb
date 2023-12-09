@@ -42,7 +42,9 @@ class ShoppingCartController < ApplicationController
   end
 
   def confirm_purchase
+    puts("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! top")
     if !shopping_cart_params[:address][:city].empty? && !shopping_cart_params[:address][:state].empty? &&!shopping_cart_params[:address][:street_address].empty? &&!shopping_cart_params[:address][:zip].empty?
+      puts("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! after check")
       @lookup = Purchase.valid_address(shopping_cart_params[:address][:city],shopping_cart_params[:address][:state],shopping_cart_params[:address][:street_address],shopping_cart_params[:address][:zip])
       @valid_card = Wallet.check_credit(shopping_cart_params[:credit_card][:credit_card_name],shopping_cart_params[:credit_card][:credit_card_number],shopping_cart_params[:credit_card][:credit_card_security_num],shopping_cart_params[:credit_card][:credit_card_expiration])
       if @lookup.is_a?(Hash) && @valid_card == ''
@@ -81,6 +83,7 @@ class ShoppingCartController < ApplicationController
         render checkout_path
       end
     else
+      puts("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! here")
       flash[:notice] = 'Please fill in every address box'
       render checkout_path
     end
