@@ -59,7 +59,6 @@ class ShoppingCartController < ApplicationController
           ShoppingCart.destroy(item.id)
         end
 
-
         if shopping_cart_params[:use_wallet_balance] == 'on'
           ShoppingCart::update_wallet(current_wallet, total_price)
         end

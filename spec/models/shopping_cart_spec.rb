@@ -73,4 +73,30 @@ describe ShoppingCart do
       expect(total_price).to eq("0.00")
     end
   end
+
+  describe '.update_wallet' do
+    before do
+      OmniAuth.config.test_mode = true
+      OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new({
+                                                                    provider: 'google',
+                                                                    uid: '123456',
+                                                                    info: {
+                                                                      email: 'user@example.com',
+                                                                      name: 'Example User'
+                                                                    }
+                                                                  })
+    end
+    it 'wallet is less than total price' do
+      user = User.create_with_omniauth(OmniAuth.config.mock_auth[:google])
+      current_wallet = Wallet.create!(user_id: user.id, wallet: 50.00)
+      ShoppingCart.update_wallet(current_wallet, 100.00)
+      expect(current_wallet.wallet).to eq(0.00)
+    end
+    it 'wallet is more than total price' do
+      user = User.create_with_omniauth(OmniAuth.config.mock_auth[:google])
+      current_wallet = Wallet.create!(user_id: user.id, wallet: 50.00)
+      ShoppingCart.update_wallet(current_wallet, 25.00)
+      expect(current_wallet.wallet).to eq(25.00)
+    end
+  end
 end
