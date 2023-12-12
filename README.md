@@ -12,15 +12,21 @@ git push -u origin main
 
 ## Bundling Instructions
 **Make sure to run 'bundle install --without production'**\
-Check to make sure you have bundler 1.17.3 with 'bundler -v'\
-If it isn't the right version, run 'gem uninstall bundler', followed by 'gem install bundler -v 1.17.3'\
-To switch your Ruby version, run 'rbenv global 2.6.6', and check with 'ruby -v'
+Check to make sure you have bundler 2.3.26 with 'bundler -v'\
+If it isn't the right version, run 'gem uninstall bundler', followed by 'gem install bundler -v 2.3.26'\
+To switch your Ruby version, run 'rbenv global 3.1.4', and check with 'ruby -v'
 
 ## Testing Instructions
 Testing gems used for KIBAB-Project include cucumber-rails 2.1.0 (capybara (>= 2.12, < 4) cucumber (>= 3.0.2, < 5)), rails-rspec 4.1.2, simplecov 0.22.0
 To test and see full test coverage first run rspec:
 
     bundle exec rspec spec/
+
+If running the command above fails because of a pending migration error run the following commands:
+
+    bundle exec rake db:migrate RAILS_ENV=test
+    
+    bundle exec rake db:seed RAILS_ENV=test
     
 Then run cucumber scenarios:
 
